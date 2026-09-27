@@ -242,8 +242,11 @@ def fetch_trades_official(lawd: str, ymd: str, key: str) -> list[dict[str, Any]]
     out=[]
     for item in root.findall(".//item"):
         deal_type=xml_text(item,["dealingGbn","거래유형"])
-        cancel=xml_text(item,["cdealType","해제여부"])
-        if "직거래" in deal_type or cancel not in {"", "0", "해제아님"}:
+        cancel_type=xml_text(item,["cdealType","해제여부"])
+        cancel_day=xml_text(item,["cdealDay","해제사유발생일","해제사유 발생일"])
+        # 국토부 응답에서 해제여부 또는 해제사유발생일이 잡히면 취소거래로 제외.
+        # 정상 거래는 보통 두 값이 비어 있거나 해제여부가 0/해제아님으로 온다.
+        if "직거래" in deal_type or cancel_day or cancel_type not in {"", "0", "N", "해제아님"}:
             continue
         name=xml_text(item,["aptNm","아파트"]); area=to_number(xml_text(item,["excluUseAr","전용면적"])); floor=to_int(xml_text(item,["floor","층"])); price=to_int(xml_text(item,["dealAmount","거래금액"]));
         yy=to_int(xml_text(item,["dealYear","년"])); mm=to_int(xml_text(item,["dealMonth","월"])); dd=to_int(xml_text(item,["dealDay","일"]));
