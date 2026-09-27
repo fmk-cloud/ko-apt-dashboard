@@ -127,37 +127,110 @@ function applyPopover(){
   closePopover();updateSummaries();render();
 }
 
-function txRows(c,group){
+function areaClusters(c,group){
   const raw=(c.tx || []).map(x=>({date:x[0],area:Number(x[1]),floor:Number(x[2]),price:Number(x[3])}));
   const band=group===59 ? raw.filter(t=>t.area>=57&&t.area<=61.5) : raw.filter(t=>t.area>=82&&t.area<=86.5);
   const mid=band.filter(t=>t.floor>=10);
   if(!mid.length) return [];
-  // Prefer the most frequently traded near-identical exclusive-area cluster to avoid mixing distinct 59/84 types.
-  const counts=new Map();
-  mid.forEach(t=>{ const k=(Math.round(t.area*10)/10).toFixed(1); counts.set(k,(counts.get(k)||0)+1); });
-  const [modeKey,modeCount]=[...counts.entries()].sort((a,b)=>b[1]-a[1] || Math.abs(Number(a[0])-group)-Math.abs(Number(b[0])-group))[0];
-  const mode=Number(modeKey);
-  const clustered=mid.filter(t=>Math.abs(t.area-mode)<=0.26);
-  return (modeCount>=2 && clustered.length>=2) ? clustered : mid;
+  const byArea=new Map();
+  for(const t of mid){
+    const key=t.area.toFixed(2);
+    if(!byArea.has(key)) byArea.set(key,[]);
+    byArea.get(key).push(t);
+  }
+  return [...byArea.entries()]
+    .map(([key,rows])=>({area:Number(key),rows,count:rows.length}))
+    .sort((a,b)=>b.count-a.count || Math.abs(a.area-group)-Math.abs(b.area-group) || a.area-b.area);
+}
+function txRows(c,group){
+  return areaClusters(c,group)[0]?.rows || [];
 }
 function weightFor(dist){ return dist===0?1:dist===1?.8:dist===2?.65:dist===3?.5:dist<=6?.3:.15; }
+function median(vals){
+  const a=[...vals].filter(Number.isFinite).sort((x,y)=>x-y);
+  if(!a.length)return null;
+  const m=Math.floor(a.length/2);
+  return a.length%2?a[m]:(a[m-1]+a[m])/2;
+}
 function weightedMedian(arr){
-  const a=[...arr].sort((x,y)=>x.price-y.price), total=a.reduce((s,x)=>s+x.weight,0); let acc=0;
-  for(const x of a){acc+=x.weight;if(acc>=total/2)return x.price;} return a.at(-1)?.price ?? null;
+  const a=[...arr].sort((x,y)=>x.price-y.price), total=a.reduce((s,x)=>s+x.weight,0);
+  let acc=0;
+  for(let i=0;i<a.length;i++){
+    acc+=a[i].weight;
+    if(acc>total/2)return a[i].price;
+    if(Math.abs(acc-total/2)<1e-9){
+      const next=a[i+1]?.price;
+      return next==null?a[i].price:(a[i].price+next)/2;
+    }
+  }
+  return a.at(-1)?.price ?? null;
 }
 function pctile(vals,p){
   const a=[...vals].sort((x,y)=>x-y); if(!a.length)return null;if(a.length===1)return a[0];
   const i=(a.length-1)*p,l=Math.floor(i),h=Math.ceil(i);return l===h?a[l]:a[l]+(a[h]-a[l])*(i-l);
 }
-function estimate(c,group,target,isEnd){
-  const base=txRows(c,group);if(!base.length)return null;const windows=[0,1,2,3,6,12];
+function contextRows(series,target,isEnd){
+  return series.filter(t=>{
+    const d=monthDiff(dateObj(t.date),target);
+    if(isEnd&&d>0)return false;
+    return Math.abs(d)<=3;
+  });
+}
+function filterNormalTrades(cand,series,target,isEnd){
+  const ctx=contextRows(series,target,isEnd);
+  if(ctx.length<3)return {rows:cand,removed:0,validated:false};
+  const center=median(ctx.map(x=>x.price));
+  const deviations=ctx.map(x=>Math.abs(x.price-center));
+  const mad=median(deviations) || 0;
+  // At least 20% price deviation is tolerated. When normal dispersion is wider,
+  // a 3-sigma robust band is used instead. Minimum absolute band is 1억원.
+  const threshold=Math.max(center*0.20, mad*1.4826*3, 10000);
+  const rows=cand.filter(x=>Math.abs(x.price-center)<=threshold);
+  return {rows,removed:cand.length-rows.length,validated:true,center,threshold};
+}
+function estimateSeries(series,target,isEnd){
+  if(!series.length)return null;
+  const windows=[0,1,2,3,6,12];
   for(const win of windows){
-    const cand=base.filter(t=>{const d=monthDiff(dateObj(t.date),target);if(isEnd&&d>0)return false;return Math.abs(d)<=win;});
-    if(!cand.length)continue;const monthSet=new Set(cand.map(t=>t.date.slice(0,7)));
-    if(win===0&&cand.length<2)continue;
+    const rawCand=series.filter(t=>{
+      const d=monthDiff(dateObj(t.date),target);
+      if(isEnd&&d>0)return false;
+      return Math.abs(d)<=win;
+    });
+    if(!rawCand.length)continue;
+    const normal=filterNormalTrades(rawCand,series,target,isEnd);
+    const cand=normal.rows;
+    if(!cand.length)continue;
+    const monthSet=new Set(cand.map(t=>t.date.slice(0,7)));
+    // A single exact-month trade is acceptable only when nearby same-type trades
+    // provide enough context to validate that it is not an abnormal price.
+    if(win===0&&cand.length<2&&!normal.validated)continue;
     if(win>0&&cand.length<2&&monthSet.size<2&&win<12)continue;
-    const weighted=cand.map(t=>{const dist=Math.abs(monthDiff(dateObj(t.date),target));return {...t,dist,weight:weightFor(dist)};});
-    const prices=cand.map(x=>x.price);return {value:weightedMedian(weighted),low:pctile(prices,.25),high:pctile(prices,.75),samples:weighted,window:win};
+    const weighted=cand.map(t=>{
+      const dist=Math.abs(monthDiff(dateObj(t.date),target));
+      return {...t,dist,weight:weightFor(dist)};
+    });
+    const prices=cand.map(x=>x.price);
+    return {
+      value:weightedMedian(weighted),low:pctile(prices,.25),high:pctile(prices,.75),
+      samples:weighted,window:win,outliersRemoved:normal.removed || 0
+    };
+  }
+  return null;
+}
+function estimate(c,group,target,isEnd){
+  const clusters=areaClusters(c,group);
+  if(!clusters.length)return null;
+  const primary=clusters[0];
+  // Same exact exclusive-area type is always tried first.
+  let e=estimateSeries(primary.rows,target,isEnd);
+  if(e)return {...e,areaUsed:primary.area,primaryArea:primary.area,areaFallback:false};
+  // Only if the representative type cannot be estimated do we use the closest
+  // alternate 59/84 type, and confidence is reduced.
+  const alternates=clusters.slice(1).sort((a,b)=>Math.abs(a.area-primary.area)-Math.abs(b.area-primary.area) || b.count-a.count);
+  for(const cl of alternates){
+    e=estimateSeries(cl.rows,target,isEnd);
+    if(e)return {...e,areaUsed:cl.area,primaryArea:primary.area,areaFallback:true};
   }
   return null;
 }
@@ -165,11 +238,15 @@ function confidence(oldE,newE){
   if(!oldE||!newE)return{s:1,reasons:['10층 이상 실거래 표본이 부족해 정상 중층 매수가를 계산하지 못함']};
   let s=5,reasons=[];
   for(const [label,e] of [['과거',oldE],['현재',newE]]){
+    reasons.push(`${label}: 대표 전용 ${e.primaryArea.toFixed(2)}㎡${e.areaFallback?` 대신 ${e.areaUsed.toFixed(2)}㎡ 대체 사용`: ' 사용'}`);
+    if(e.areaFallback){s-=1;reasons.push(`${label}: 동일 대표면적 표본 부족으로 근접 타입 대체`);}
     if(e.window===0) reasons.push(`${label}: 목표월 10층 이상 거래 사용`);
     else if(e.window<=1){s-=1;reasons.push(`${label}: ±1개월까지 확대`);}
     else if(e.window<=3){s-=2;reasons.push(`${label}: ±${e.window}개월까지 확대`);}
     else{s-=3;reasons.push(`${label}: ±${e.window}개월까지 확대`);}
-    if(e.samples.length<=2){s-=1;reasons.push(`${label}: 표본 ${e.samples.length}건`);}
+    if(e.samples.length===1){s-=1;reasons.push(`${label}: 정상거래 표본 1건`);}
+    else if(e.samples.length===2){s-=1;reasons.push(`${label}: 정상거래 표본 2건`);}
+    if(e.outliersRemoved>0){s-=1;reasons.push(`${label}: 주변 시세 흐름과 크게 벗어난 거래 ${e.outliersRemoved}건 제외`);}
   }
   return{s:Math.max(1,s),reasons};
 }
@@ -205,7 +282,7 @@ function render(){
   tb.innerHTML=shownRows.map((r,idx)=>{
     const c=r.c, name=esc(displayName(c)), naver=esc(c.naver || `https://new.land.naver.com/search?sk=${encodeURIComponent(c.name)}`), far=c.far==null?'—':`${Number(c.far).toFixed(Number(c.far)%1?1:0)}%`, completed=esc(c.completed || '—');
     if(!r.ok){const reason=r.areaMissing?`${currentArea}㎡ 중층 데이터 부족`:'비교기간 중층 데이터 부족';return `<tr class="emptyRow"><td class="rank">—</td><td><a class="name" target="_blank" rel="noopener" href="${naver}">${name}</a><div class="subline">${reason}</div></td><td>${c.households??'—'}</td><td>${far}</td><td>${completed}</td><td class="na">중층 데이터 부족</td><td class="na">중층 데이터 부족</td><td>—</td><td>—</td><td><span class="conf" onclick="openDetail(${idx})">*1</span></td></tr>`;}
-    const cls=r.change>=0?'up':'down';return `<tr><td class="rank">${r.rank}</td><td><a class="name" target="_blank" rel="noopener" href="${naver}">${name}</a><div class="subline">10층 이상 · 대표면적 자동매칭</div></td><td>${c.households??'—'}</td><td>${far}</td><td>${completed}</td><td><div class="priceMain"><span class="est">(추정)</span>${money(r.oldE.value)}</div><div class="rangeLine">${money(r.oldE.low)}~${money(r.oldE.high)} · ${r.oldE.samples.length}건</div></td><td><div class="priceMain"><span class="est">(추정)</span>${money(r.newE.value)}</div><div class="rangeLine">${money(r.newE.low)}~${money(r.newE.high)} · ${r.newE.samples.length}건</div></td><td class="${cls}">${signedMoney(r.change)}</td><td class="${cls}">${signedPct(r.rate)}</td><td><span class="conf" onclick="openDetail(${idx})">*${r.cf.s}</span></td></tr>`;
+    const cls=r.change>=0?'up':'down';return `<tr><td class="rank">${r.rank}</td><td><a class="name" target="_blank" rel="noopener" href="${naver}">${name}</a><div class="subline">10층 이상 · 대표 전용 ${r.oldE.primaryArea.toFixed(2)}㎡ 우선</div></td><td>${c.households??'—'}</td><td>${far}</td><td>${completed}</td><td><div class="priceMain"><span class="est">(추정)</span>${money(r.oldE.value)}</div><div class="rangeLine">${money(r.oldE.low)}~${money(r.oldE.high)} · ${r.oldE.samples.length}건</div></td><td><div class="priceMain"><span class="est">(추정)</span>${money(r.newE.value)}</div><div class="rangeLine">${money(r.newE.low)}~${money(r.newE.high)} · ${r.newE.samples.length}건</div></td><td class="${cls}">${signedMoney(r.change)}</td><td class="${cls}">${signedPct(r.rate)}</td><td><span class="conf" onclick="openDetail(${idx})">*${r.cf.s}</span></td></tr>`;
   }).join('');
 }
 function sampleHtml(e,target){
@@ -216,8 +293,8 @@ window.openDetail=function(index){
   const r=shownRows[index],oldTarget=new Date(`${state.fromMonth}-01T12:00:00+09:00`),newTarget=new Date(`${state.toMonth}-01T12:00:00+09:00`),c=r.c;
   $('#dTitle').textContent=displayName(c);$('#dSub').textContent=`${c.region} · ${c.households??'—'}세대 · 용적률 ${c.far==null?'—':c.far+'%'} · 준공 ${c.completed||'—'}`;
   $('#oldP').textContent=r.oldE?`(추정)${money(r.oldE.value)}`:'계산 불가';$('#newP').textContent=r.newE?`(추정)${money(r.newE.value)}`:'계산 불가';
-  $('#oldT').textContent=r.oldE?`표본 ${r.oldE.samples.length}건 · 관찰구간 ${money(r.oldE.low)}~${money(r.oldE.high)}`:'10층 이상 표본 없음';
-  $('#newT').textContent=r.newE?`표본 ${r.newE.samples.length}건 · 관찰구간 ${money(r.newE.low)}~${money(r.newE.high)}`:'10층 이상 표본 없음';
+  $('#oldT').textContent=r.oldE?`대표 전용 ${r.oldE.areaUsed.toFixed(2)}㎡ · 표본 ${r.oldE.samples.length}건 · 관찰구간 ${money(r.oldE.low)}~${money(r.oldE.high)}`:'10층 이상 표본 없음';
+  $('#newT').textContent=r.newE?`대표 전용 ${r.newE.areaUsed.toFixed(2)}㎡ · 표본 ${r.newE.samples.length}건 · 관찰구간 ${money(r.newE.low)}~${money(r.newE.high)}`:'10층 이상 표본 없음';
   $('#confT').textContent=`*${r.cf.s} 산정 근거`;$('#reasons').innerHTML=r.cf.reasons.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#oldSamples').innerHTML=sampleHtml(r.oldE,oldTarget);$('#newSamples').innerHTML=sampleHtml(r.newE,newTarget);$('#detailWrap').classList.add('show');
 };
