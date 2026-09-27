@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>ko부동산 가격비교 도구</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="titlebar">ko부동산 가격비교 도구 <span id="updatedAt"></span></div>
+  <div class="dataNotice" id="dataNotice" hidden></div>
+
+  <section class="top">
+    <div class="filterCard">
+      <div class="filterGroup">
+        <div class="filterLabel">데이터 기간</div>
+        <button class="summaryBtn" id="periodSummary">2025.09 ~ 현재</button>
+      </div>
+      <div class="filterGroup">
+        <div class="filterLabel">면적(전용)</div>
+        <div class="dual" id="areaToggle">
+          <button data-area="59" class="active">59m²</button>
+          <button data-area="84">84m²</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="filterCard">
+      <div class="metaStack">
+        <div class="metaItem">
+          <div class="filterLabel">세대수</div>
+          <button class="summaryBtn" id="hhSummary">300세대 ~ 이상</button>
+        </div>
+        <div class="metaItem">
+          <div class="filterLabel">용적률</div>
+          <button class="summaryBtn" id="farSummary">100% ~ 이상</button>
+        </div>
+        <div class="metaItem">
+          <div class="filterLabel">준공일자</div>
+          <button class="summaryBtn" id="yearSummary">전체</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card regionCard">
+      <div class="regionToolbar">
+        <button class="toolBtn" id="selectLoadedRegions">수록지역 선택</button>
+        <button class="toolBtn" id="selectAllRegions">전체 선택</button>
+        <button class="toolBtn" id="clearRegions">선택해제</button>
+      </div>
+      <div class="regionWrap">
+        <div class="regionCols" id="seoulRegionRows"></div>
+        <div class="regionCols" id="gyeonggiRegionRows"></div>
+      </div>
+      <button class="regionInfo" id="openGradeHelp" title="급지 참고표">!</button>
+    </div>
+  </section>
+
+  <section class="rankSection">
+    <div class="rankHeading">
+      <h2 class="tableTitle">상승 순위</h2>
+      <div class="tableSub">대표값 = 그 시점에 정상적인 중층 이상을 실제 매수하는 데 필요했을 것으로 보는 가격 · *숫자 클릭 → 사용 거래와 근거</div>
+      <div class="rowCount" id="rowCount"></div>
+    </div>
+    <div class="card tableCard">
+      <div class="tableWrap">
+        <table>
+          <thead>
+          <tr>
+            <th class="rank">순위</th>
+            <th>단지명</th>
+            <th>세대수</th>
+            <th>용적률</th>
+            <th>준공일자</th>
+            <th id="oldHead">2025.09 정상 중층 매수가</th>
+            <th id="newHead">현재 정상 중층 매수가</th>
+            <th>상승액</th>
+            <th>상승률</th>
+            <th>신뢰도</th>
+          </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr class="emptyRow"><td colspan="10">데이터를 불러오는 중입니다…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    실거래 원천: 국토교통부 공개 실거래 자료 · 단지 기본정보: 서울 열린데이터광장/K-apt 기반 · 가격은 신고 실거래를 이용한 비교용 추정치이며 감정평가·호가가 아닙니다.
+  </footer>
+</div>
+
+<div class="popover" id="filterPopover">
+  <div class="popTitle" id="popTitle">필터</div>
+  <div class="popRange">
+    <select id="popMin"></select><span class="popSep">~</span><select id="popMax"></select>
+  </div>
+  <div class="popActions">
+    <button id="popCancel">취소</button><button class="apply" id="popApply">적용</button>
+  </div>
+</div>
+
+<div class="modalWrap" id="detailWrap">
+  <div class="modal modalSm">
+    <div class="modalHead">
+      <div><h3 class="modalTitle" id="dTitle">상세</h3><div class="tableSub detailSub" id="dSub"></div></div>
+      <button class="modalClose" data-close="detailWrap">×</button>
+    </div>
+    <div class="detailCards">
+      <div class="card detailCard"><div class="detailLabel">과거 정상 중층 매수가</div><div class="detailPrice" id="oldP">—</div><div class="rangeLine" id="oldT"></div></div>
+      <div class="card detailCard"><div class="detailLabel">현재 정상 중층 매수가</div><div class="detailPrice" id="newP">—</div><div class="rangeLine" id="newT"></div></div>
+    </div>
+    <div class="card detailPanel"><div class="detailPanelTitle" id="confT"></div><ul class="reasonList" id="reasons"></ul></div>
+    <div class="card detailPanel"><div class="detailPanelTitle">과거 추정에 사용한 10층 이상 거래</div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>가격</th><th>월차</th></tr></thead><tbody id="oldSamples"></tbody></table></div></div>
+    <div class="card detailPanel"><div class="detailPanelTitle">현재 추정에 사용한 10층 이상 거래</div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>가격</th><th>월차</th></tr></thead><tbody id="newSamples"></tbody></table></div></div>
+  </div>
+</div>
+
+<div class="modalWrap" id="gradeHelpWrap">
+  <div class="modal gradeModal">
+    <div class="modalHead">
+      <div><h3 class="modalTitle">급지 참고표</h3><div class="tableSub detailSub">사용자 기준 구분 · 참고용</div></div>
+      <button class="modalClose" data-close="gradeHelpWrap">×</button>
+    </div>
+    <div class="helpGrid">
+      <div>
+        <div class="helpText" id="gradeText"></div>
+        <div class="helpCaption">※ 괄호 안 텍스트는 해당 구 내 핵심 생활권 또는 별도 생활권 메모입니다.</div>
+      </div>
+      <div class="helpMapWrap"><img class="helpMap" src="./assets/grade-map.png" alt="급지 참고 지도"></div>
+    </div>
+  </div>
+</div>
+
+<script src="./assets/app.js" defer></script>
+</body>
+</html>
