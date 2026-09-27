@@ -1,0 +1,131 @@
+name: Update apartment data
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "full = 전체 이력 재구축 / incremental = 최근 3~4개월 갱신"
+        required: true
+        default: incremental
+        type: choice
+        options:
+          - incremental
+          - full
+      enrich_far:
+        description: "용적률 미확인 단지 건축물대장 조회"
+        required: true
+        default: false
+        type: boolean
+  schedule:
+    # 04:00 Asia/Seoul on the 1st. GitHub cron is UTC, so run at 19:00 UTC
+    # on possible month-end dates and gate below by the KST calendar day.
+    - cron: "0 19 28-31 * *"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_data.py"
+      - ".github/workflows/update-data.yml"
+      - "data/site-data.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apartment-data-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Decide whether this run should update
+        id: decide
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            KST_DAY=$(TZ=Asia/Seoul date +%d)
+            if [[ "$KST_DAY" != "01" ]]; then
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "Not the 1st in Seoul; skip."
+              exit 0
+            fi
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "mode=incremental" >> "$GITHUB_OUTPUT"
+            echo "far=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+            echo "far=${{ inputs.enrich_far }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # On the first repository push, hydrate the bundled sample JSON once.
+          STATUS=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/site-data.json')
+          try:
+              print(json.loads(p.read_text(encoding='utf-8')).get('meta',{}).get('status',''))
+          except Exception:
+              print('')
+          PY
+          )
+          if [[ "$STATUS" == "sample" || -z "$STATUS" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "mode=full" >> "$GITHUB_OUTPUT"
+            echo "far=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build static data
+        if: steps.decide.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXTRA=""
+          if [[ "${{ steps.decide.outputs.far }}" == "true" ]]; then EXTRA="--enrich-far"; fi
+          python scripts/build_data.py --mode "${{ steps.decide.outputs.mode }}" --start 2022-09 $EXTRA
+
+      - name: Validate generated JSON
+        if: steps.decide.outputs.run == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/site-data.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d['meta']['status']=='full'
+          assert set(d['meta']['loaded_regions']) == {'영등포구','성동구','마포구'}
+          assert len(d['complexes']) > 0
+          print('complexes:', len(d['complexes']), 'bytes:', p.stat().st_size)
+          PY
+
+      - name: Commit refreshed data
+        if: steps.decide.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- data/site-data.json data/far-cache.json; then
+            echo "No data change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/site-data.json data/far-cache.json
+          git commit -m "data: refresh apartment transactions"
+          git push
