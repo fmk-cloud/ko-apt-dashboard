@@ -1,4 +1,4 @@
-name: Validate Yeongdeungpo dashboard v16
+name: Validate Yeongdeungpo dashboard v17
 
 on:
   workflow_dispatch:
@@ -12,28 +12,23 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Validate static data
+      - name: Validate static v17
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-
           d=json.loads(Path("data/site-data.json").read_text(encoding="utf-8"))
           by={c["name"]:c for c in d["complexes"]}
-
-          assert "당산현대5차" in by
-          assert "당산강변래미안3차" in by
-          assert by["당산현대5차"]["far"] == 373
-          assert by["당산강변래미안3차"]["far"] > 336
-          assert len(by["당산강변래미안3차"]["tx"]) >= 10
-          assert any(t[1] == 55.91 for t in by["당산강변래미안3차"]["tx"])
-
+          assert by["당산동1차효성아파트"]["far"]==280
+          assert len(by["당산동1차효성아파트"]["tx"])>=10
+          assert by["당산동대우"]["far"]==399.5
+          assert by["당산동부센트레빌"]["far"]==276.9
+          assert by["당산삼성래미안"]["far"]==299
           text=Path("index.html").read_text(encoding="utf-8")
-          assert "k APT Dashboard v16" in text
-          assert "$('#popApply').onclick=applyPopover;" in text
-
-          print("OK v16")
-          print("complexes",len(d["complexes"]))
-          print("modern5 tx",len(by["당산현대5차"]["tx"]))
-          print("river tx",len(by["당산강변래미안3차"]["tx"]))
+          assert "k APT Dashboard v17" in text
+          assert "floor<=3" in text
+          assert "oldE.selectedMonth<=newE.selectedMonth" in text
+          assert "saveFilterPreset" in text
+          assert "loadFilterPreset" in text
+          print("OK v17")
           PY
