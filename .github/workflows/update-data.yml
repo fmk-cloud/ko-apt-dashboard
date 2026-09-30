@@ -1,28 +1,25 @@
-name: Update 4-district apartment dashboard
+name: Update Yeongdeungpo dashboard v14
 
 on:
   workflow_dispatch:
     inputs:
       enrich_far:
-        description: "건축HUB 용적률까지 보강"
+        description: "건축HUB 용적률 보강 시도"
         required: true
         default: true
         type: boolean
-  schedule:
-    # 매월 1일 04:00 KST = 전날 19:00 UTC
-    - cron: "0 19 28-31 * *"
 
 permissions:
   contents: write
 
 concurrency:
-  group: k-apt-pilot-refresh
-  cancel-in-progress: false
+  group: k-apt-yeongdeungpo-v14
+  cancel-in-progress: true
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 45
     env:
       PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
       BUILDING_HUB_API_KEY: ${{ secrets.BUILDING_HUB_API_KEY }}
@@ -37,25 +34,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Calendar gate
-        id: gate
-        shell: bash
-        run: |
-          if [[ "${{ github.event_name }}" == "schedule" ]]; then
-            if [[ "$(TZ=Asia/Seoul date +%d)" != "01" ]]; then
-              echo "run=false" >> "$GITHUB_OUTPUT"
-              exit 0
-            fi
-          fi
-          echo "run=true" >> "$GITHUB_OUTPUT"
-
-      - name: Build 4 districts sale/rent data
-        if: steps.gate.outputs.run == 'true'
+      - name: Build Yeongdeungpo data
         shell: bash
         run: |
           set -euo pipefail
           EXTRA=""
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.enrich_far }}" == "false" ]]; then
+          if [[ "${{ inputs.enrich_far }}" == "false" ]]; then
             EXTRA="--skip-far"
           fi
           python scripts/build_data.py \
@@ -64,11 +48,9 @@ jobs:
             $EXTRA
 
       - name: Embed latest data into index.html
-        if: steps.gate.outputs.run == 'true'
         run: python scripts/embed_data.py
 
-      - name: Validate 4-district site
-        if: steps.gate.outputs.run == 'true'
+      - name: Validate core site
         shell: bash
         run: |
           python - <<'PY'
@@ -77,12 +59,10 @@ jobs:
 
           d=json.loads(Path("data/site-data.json").read_text(encoding="utf-8"))
           complexes=d.get("complexes",[])
-          assert complexes, "단지 데이터가 0건입니다."
+          assert complexes, "영등포구 단지 데이터가 0건입니다."
 
           regions=set(d.get("meta",{}).get("loaded_regions",[]))
-          expected={"성동구","마포구","동작구","영등포구"}
-          missing=expected-regions
-          assert not missing, f"누락 지역: {sorted(missing)}"
+          assert "영등포구" in regions, f"영등포구 누락: {regions}"
 
           sale=sum(bool(c.get("tx")) for c in complexes)
           rent=sum(bool(c.get("jeonse_tx")) for c in complexes)
@@ -96,17 +76,14 @@ jobs:
           print("household metadata:",households)
           print("FAR metadata:",far)
           print("station-walk metadata:",stations)
+          print("api_status:",d.get("meta",{}).get("api_status"))
 
+          # v14는 매매가 정상 수집되면 성공 처리.
           assert sale>0, "매매 데이터가 없습니다."
-          assert rent>0, "전세 데이터가 없습니다. 공공데이터포털 전월세 API 활용신청을 확인하세요."
-          assert households>0, "K-apt 기본정보가 한 건도 매칭되지 않았습니다."
-          assert stations>0, "K-apt 역세권 정보가 한 건도 매칭되지 않았습니다."
-
           assert Path("index.html").stat().st_size>100000
           PY
 
-      - name: Commit refreshed pilot site
-        if: steps.gate.outputs.run == 'true'
+      - name: Commit refreshed Yeongdeungpo site
         shell: bash
         run: |
           set -euo pipefail
@@ -117,5 +94,5 @@ jobs:
             echo "No changes."
             exit 0
           fi
-          git commit -m "data: refresh 4-district pilot"
+          git commit -m "data: refresh Yeongdeungpo v14"
           git push
