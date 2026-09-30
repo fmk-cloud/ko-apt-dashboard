@@ -1,4 +1,4 @@
-name: Validate Yeongdeungpo dashboard v17
+name: Validate Yeongdeungpo dashboard v18
 
 on:
   workflow_dispatch:
@@ -12,23 +12,18 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Validate static v17
+      - name: Validate static v18
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           d=json.loads(Path("data/site-data.json").read_text(encoding="utf-8"))
-          by={c["name"]:c for c in d["complexes"]}
-          assert by["당산동1차효성아파트"]["far"]==280
-          assert len(by["당산동1차효성아파트"]["tx"])>=10
-          assert by["당산동대우"]["far"]==399.5
-          assert by["당산동부센트레빌"]["far"]==276.9
-          assert by["당산삼성래미안"]["far"]==299
+          assert d["meta"]["loaded_regions"]==["영등포구"]
+          assert len(d["complexes"])==160
           text=Path("index.html").read_text(encoding="utf-8")
-          assert "k APT Dashboard v17" in text
-          assert "floor<=3" in text
-          assert "oldE.selectedMonth<=newE.selectedMonth" in text
-          assert "saveFilterPreset" in text
-          assert "loadFilterPreset" in text
-          print("OK v17")
+          assert "k APT Dashboard v18" in text
+          assert "function filterComplex(c)" in text
+          assert "let DATA = window.__EMBEDDED_DATA__;" in text
+          assert 'id="popLoad"' in text
+          print("OK v18")
           PY
