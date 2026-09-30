@@ -1,98 +1,41 @@
-name: Update Yeongdeungpo dashboard v14
+name: Validate static Yeongdeungpo dashboard v15
 
 on:
   workflow_dispatch:
-    inputs:
-      enrich_far:
-        description: "건축HUB 용적률 보강 시도"
-        required: true
-        default: true
-        type: boolean
 
 permissions:
-  contents: write
-
-concurrency:
-  group: k-apt-yeongdeungpo-v14
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  update:
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-    env:
-      PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
-      BUILDING_HUB_API_KEY: ${{ secrets.BUILDING_HUB_API_KEY }}
-      KAPT_API_KEY: ${{ secrets.KAPT_API_KEY }}
-
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Build Yeongdeungpo data
-        shell: bash
-        run: |
-          set -euo pipefail
-          EXTRA=""
-          if [[ "${{ inputs.enrich_far }}" == "false" ]]; then
-            EXTRA="--skip-far"
-          fi
-          python scripts/build_data.py \
-            --start 2025-07 \
-            --output data/site-data.json \
-            $EXTRA
-
-      - name: Embed latest data into index.html
-        run: python scripts/embed_data.py
-
-      - name: Validate core site
-        shell: bash
+      - name: Validate static files
         run: |
           python - <<'PY'
-          import json
+          import json, re
           from pathlib import Path
 
-          d=json.loads(Path("data/site-data.json").read_text(encoding="utf-8"))
-          complexes=d.get("complexes",[])
-          assert complexes, "영등포구 단지 데이터가 0건입니다."
+          index=Path("index.html")
+          data_path=Path("data/site-data.json")
+          assert index.exists(), "index.html 없음"
+          assert data_path.exists(), "data/site-data.json 없음"
 
-          regions=set(d.get("meta",{}).get("loaded_regions",[]))
-          assert "영등포구" in regions, f"영등포구 누락: {regions}"
+          d=json.loads(data_path.read_text(encoding="utf-8"))
+          cs=d.get("complexes",[])
+          assert cs, "단지 데이터 0건"
+          assert set(c.get("region") for c in cs)=={"영등포구"}
+          assert sum(bool(c.get("tx")) for c in cs)>0
 
-          sale=sum(bool(c.get("tx")) for c in complexes)
-          rent=sum(bool(c.get("jeonse_tx")) for c in complexes)
-          households=sum(c.get("households") is not None for c in complexes)
-          far=sum(c.get("far") is not None for c in complexes)
-          stations=sum(bool(c.get("station_walks")) or c.get("station_walk_minutes") is not None for c in complexes)
+          text=index.read_text(encoding="utf-8")
+          assert "k APT Dashboard v15" in text
+          assert "window.__EMBEDDED_DATA__=" in text
 
-          print("complexes:",len(complexes))
-          print("sale complexes:",sale)
-          print("rent complexes:",rent)
-          print("household metadata:",households)
-          print("FAR metadata:",far)
-          print("station-walk metadata:",stations)
-          print("api_status:",d.get("meta",{}).get("api_status"))
-
-          # v14는 매매가 정상 수집되면 성공 처리.
-          assert sale>0, "매매 데이터가 없습니다."
-          assert Path("index.html").stat().st_size>100000
+          print("complexes:",len(cs))
+          print("sale complexes:",sum(bool(c.get("tx")) for c in cs))
+          print("300+ households:",sum((c.get("households") or 0)>=300 for c in cs))
+          print("OK - static dashboard validated")
           PY
-
-      - name: Commit refreshed Yeongdeungpo site
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html data/site-data.json data/far-cache.json data/kapt-cache.json
-          if git diff --cached --quiet; then
-            echo "No changes."
-            exit 0
-          fi
-          git commit -m "data: refresh Yeongdeungpo v14"
-          git push
