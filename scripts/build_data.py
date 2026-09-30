@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-성동구·마포구·동작구·영등포구 4개구의 아파트 매매·전세 실거래를 수집해
+영등포구의 아파트 매매·전세 실거래를 수집해
 ko-apt UI용 site-data.json을 만든다.
 
 가격 비교 규칙은 브라우저(app.js)에서 수행:
@@ -39,6 +39,7 @@ MOLIT_URL = "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataS
 MOLIT_RENT_URL = "https://apis.data.go.kr/1613000/RTMSDataSvcAptRent/getRTMSDataSvcAptRent"
 KAPT_LIST_URL = "https://apis.data.go.kr/1613000/AptListService3/getSidoAptList3"
 KAPT_BASIC_URL = "https://apis.data.go.kr/1613000/AptBasisInfoServiceV4/getAphusBassInfoV4"
+KAPT_DETAIL_URL = "https://apis.data.go.kr/1613000/AptBasisInfoServiceV4/getAphusDtlInfoV4"
 BLD_RECAP_URL = "https://apis.data.go.kr/1613000/BldRgstHubService/getBrRecapTitleInfo"
 BLD_TITLE_URL = "https://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo"
 UA = "ko-apt-dashboard-simple/2.0"
@@ -70,12 +71,7 @@ GYEONGGI_ADMIN = {
     "구리시":"41310",
 }
 
-LAWDS = {
-    "성동구": SEOUL["성동구"],
-    "마포구": SEOUL["마포구"],
-    "동작구": SEOUL["동작구"],
-    "영등포구": SEOUL["영등포구"],
-}
+LAWDS = {"영등포구": SEOUL["영등포구"]}
 CODE_TO_ADMIN = {v:k for k,v in LAWDS.items()}
 
 DONGTAN_DONGS = {
@@ -90,7 +86,7 @@ JICHUK_DONGS = {"지축동"}
 def now_kst() -> dt.datetime:
     return dt.datetime.now(dt.timezone(dt.timedelta(hours=9)))
 
-def request_bytes(url: str, timeout: int = 20, tries: int = 3) -> bytes:
+def request_bytes(url: str, timeout: int = 12, tries: int = 2) -> bytes:
     last = None
     for i in range(tries):
         try:
@@ -677,6 +673,28 @@ def kapt_basic(kapt_code: str, key: str) -> dict[str,Any] | None:
     it=obj.find(".//item")
     return {ch.tag:clean(ch.text) for ch in list(it)} if it is not None else None
 
+
+def kapt_detail(kapt_code: str, key: str) -> dict[str,Any] | None:
+    params={"serviceKey":urllib.parse.unquote(key),"kaptCode":kapt_code,"_type":"json"}
+    url=KAPT_DETAIL_URL+"?"+urllib.parse.urlencode(params,safe="%")
+    try:
+        obj=parse_json_or_xml(request_bytes(url))
+    except Exception:
+        return None
+    if isinstance(obj,dict):
+        body=obj.get("response",{}).get("body",obj.get("body",{}))
+        item=body.get("item") or body.get("Item")
+        if item is None and isinstance(body.get("items"),dict):
+            item=body["items"].get("item")
+        if isinstance(item,list):
+            item=item[0] if item else None
+        return item if isinstance(item,dict) else None
+    code=clean(obj.findtext(".//resultCode"))
+    if code and code not in {"00","000"}:
+        return None
+    it=obj.find(".//item")
+    return {ch.tag:clean(ch.text) for ch in list(it)} if it is not None else None
+
 def enrich_kapt(complexes: dict[str,dict[str,Any]], key: str, cache_path: Path) -> None:
     if not key:
         return
@@ -712,7 +730,9 @@ def enrich_kapt(complexes: dict[str,dict[str,Any]], key: str, cache_path: Path) 
             c["bjdong_cd"]=normalize_bjdong_cd(bjd_full, lawd)
         info=cache.get(kapt_code)
         if not isinstance(info,dict):
-            info=kapt_basic(kapt_code,key)
+            basic=kapt_basic(kapt_code,key) or {}
+            detail=kapt_detail(kapt_code,key) or {}
+            info={**basic,**detail}
             if info:
                 cache[kapt_code]=info
         if not info:
@@ -763,13 +783,37 @@ def enrich_kapt(complexes: dict[str,dict[str,Any]], key: str, cache_path: Path) 
     cache_path.write_text(json.dumps(cache,ensure_ascii=False,separators=(",",":")),encoding="utf-8")
     print(f"[kapt] cache saved: {len(cache)}",flush=True)
 
+
+def probe_optional_apis(key: str, end: str) -> dict[str,str]:
+    """부가 API를 1회만 확인한다. 실패해도 매매 사이트는 계속 만든다."""
+    status={"rent":"unknown","kapt":"unknown","far":"deferred"}
+    ym=end.replace("-","")
+
+    try:
+        fetch_rent_page(SEOUL["영등포구"],ym,key,1)
+        status["rent"]="ok"
+        print("[probe] rent=ok",flush=True)
+    except Exception as e:
+        status["rent"]="unavailable"
+        print(f"[probe] rent unavailable: {e}",file=sys.stderr)
+
+    try:
+        rows=kapt_list(key)
+        status["kapt"]="ok" if rows else "unavailable"
+        print(f"[probe] kapt={status['kapt']} rows={len(rows)}",flush=True)
+    except Exception as e:
+        status["kapt"]="unavailable"
+        print(f"[probe] kapt unavailable: {e}",file=sys.stderr)
+
+    return status
+
 def main() -> None:
     ap=argparse.ArgumentParser()
     ap.add_argument("--start",default="2025-07")
     ap.add_argument("--end",default=None,help="YYYY-MM; default current KST month")
     ap.add_argument("--mode",default="full",choices=["full","incremental"],help="현재는 정확도 우선으로 두 모드 모두 지정 기간을 재구축")
     ap.add_argument("--output",default=str(OUT_DEFAULT))
-    ap.add_argument("--skip-kapt",action="store_true",help="4개구 세대수/사용승인일/인근역 K-apt 보강 생략")
+    ap.add_argument("--skip-kapt",action="store_true",help="영등포구 K-apt 보강 생략")
     ap.add_argument("--skip-far",action="store_true",help="건축HUB 용적률 보강 생략")
     ap.add_argument("--far-cache",default="data/far-cache.json",help="건축HUB 용적률 캐시")
     ap.add_argument("--kapt-cache",default="data/kapt-cache.json",help="K-apt 기본정보 캐시")
@@ -779,16 +823,35 @@ def main() -> None:
     if not key:
         raise SystemExit("PUBLIC_DATA_API_KEY 환경변수가 필요합니다.")
     end=args.end or now_kst().strftime("%Y-%m")
-    complexes=collect_trades(args.start,end,key)
-    collect_rents_into(complexes,args.start,end,key)
 
-    if not args.skip_kapt:
+    # 매매는 필수. 매매만 실패하면 전체 빌드를 실패시킨다.
+    complexes=collect_trades(args.start,end,key)
+    api_status=probe_optional_apis(key,end)
+
+    # 전세는 권한/서비스가 있을 때만 수집.
+    if api_status["rent"]=="ok":
+        collect_rents_into(complexes,args.start,end,key)
+    else:
+        print("[rent] unavailable -> sale-only site continues",flush=True)
+
+    # K-apt도 사용 가능할 때만 보강.
+    if not args.skip_kapt and api_status["kapt"]=="ok":
         kapt_key=os.environ.get("KAPT_API_KEY") or key
         enrich_kapt(complexes,kapt_key,Path(args.kapt_cache))
+    else:
+        print("[kapt] unavailable/skipped -> core site continues",flush=True)
 
+    # 건축HUB도 실패해도 핵심 사이트는 계속 진행.
     if not args.skip_far:
         building_key=os.environ.get("BUILDING_HUB_API_KEY") or key
-        enrich_far(complexes, building_key, Path(args.far_cache))
+        try:
+            enrich_far(complexes, building_key, Path(args.far_cache))
+            api_status["far"]="attempted"
+        except Exception as e:
+            api_status["far"]="unavailable"
+            print(f"[far] unavailable -> core site continues: {e}",file=sys.stderr)
+    else:
+        api_status["far"]="skipped" 
 
     # 거래 없는 메타 단지는 넣지 않는다. 이 사이트는 가격 비교가 목적.
     arr=list(complexes.values())
@@ -800,17 +863,18 @@ def main() -> None:
 
     out={
         "meta":{
-            "status":"pilot_4_districts",
+            "status":"pilot_yeongdeungpo_v14",
             "updated_at":now_kst().strftime("%Y-%m-%d %H:%M KST"),
             "current_month":end,
             "min_month":args.start,
             "loaded_regions":sorted(loaded_tags),
             "complex_count":len(arr),
-            "note":"파일럿 v13: 성동구·마포구·동작구·영등포구 4개구의 매매·전세 실거래. 59㎡가 없으면 같은 20평대의 가장 가까운 전용을 대체하고, 역세권은 K-apt 인근역 도보시간 20분 이내를 우선 사용.",
+            "note":"v14 영등포구 단일지역 파일럿. 매매는 필수 수집하고 전세/K-apt/용적률은 사용 가능한 API만 보강합니다.",
+            "api_status":api_status,
             "sources":{
                 "trades":"국토교통부 아파트 매매 실거래가 상세 자료",
                 "rent":"국토교통부 아파트 전월세 실거래가 자료(월세 0원인 순수 전세)",
-                "metadata":"성동·마포·동작·영등포 세대수/사용승인일/인근역은 K-apt 기본정보 API 매칭 가능 단지에 한해 보강",
+                "metadata":"영등포구 세대수/사용승인일/인근역은 K-apt 기본+상세정보 API 매칭 가능 단지에 한해 보강",
                 "far":"국토교통부 건축HUB 건축물대장정보 서비스 총괄표제부(vlRat) 우선",
                 "station":"K-apt 기본정보의 인근 지하철역/도보시간. UI는 20분 이내만 역 필터에 포함"
             },
