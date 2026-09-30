@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-서울 25개구 + 경기 주요 생활권의 국토부 아파트 매매 실거래를 수집해
+성동구·마포구·동작구·영등포구 4개구의 아파트 매매·전세 실거래를 수집해
 ko-apt UI용 site-data.json을 만든다.
 
 가격 비교 규칙은 브라우저(app.js)에서 수행:
@@ -70,7 +70,12 @@ GYEONGGI_ADMIN = {
     "구리시":"41310",
 }
 
-LAWDS = {**SEOUL, **GYEONGGI_ADMIN}
+LAWDS = {
+    "성동구": SEOUL["성동구"],
+    "마포구": SEOUL["마포구"],
+    "동작구": SEOUL["동작구"],
+    "영등포구": SEOUL["영등포구"],
+}
 CODE_TO_ADMIN = {v:k for k,v in LAWDS.items()}
 
 DONGTAN_DONGS = {
@@ -85,7 +90,7 @@ JICHUK_DONGS = {"지축동"}
 def now_kst() -> dt.datetime:
     return dt.datetime.now(dt.timezone(dt.timedelta(hours=9)))
 
-def request_bytes(url: str, timeout: int = 60, tries: int = 5) -> bytes:
+def request_bytes(url: str, timeout: int = 20, tries: int = 3) -> bytes:
     last = None
     for i in range(tries):
         try:
@@ -95,7 +100,7 @@ def request_bytes(url: str, timeout: int = 60, tries: int = 5) -> bytes:
         except Exception as e:  # noqa: BLE001
             last = e
             if i + 1 < tries:
-                time.sleep(1.5 * (i + 1))
+                time.sleep(1.0 * (i + 1))
     raise RuntimeError(f"request failed: {last}")
 
 def clean(v: Any) -> str:
@@ -619,7 +624,7 @@ def parse_json_or_xml(raw: bytes) -> Any:
 def kapt_list(key: str) -> list[dict[str,Any]]:
     """서울·경기 K-apt 단지목록. 실패하면 빈 목록으로 돌아가 실거래만 사용한다."""
     all_rows=[]
-    for sido in ("11","41"):
+    for sido in ("11",):
         page=1
         while True:
             params={"serviceKey":urllib.parse.unquote(key),"sidoCode":sido,"pageNo":page,"numOfRows":1000,"_type":"json"}
@@ -764,7 +769,7 @@ def main() -> None:
     ap.add_argument("--end",default=None,help="YYYY-MM; default current KST month")
     ap.add_argument("--mode",default="full",choices=["full","incremental"],help="현재는 정확도 우선으로 두 모드 모두 지정 기간을 재구축")
     ap.add_argument("--output",default=str(OUT_DEFAULT))
-    ap.add_argument("--skip-kapt",action="store_true",help="서울·경기 세대수/사용승인일 K-apt 보강 생략")
+    ap.add_argument("--skip-kapt",action="store_true",help="4개구 세대수/사용승인일/인근역 K-apt 보강 생략")
     ap.add_argument("--skip-far",action="store_true",help="건축HUB 용적률 보강 생략")
     ap.add_argument("--far-cache",default="data/far-cache.json",help="건축HUB 용적률 캐시")
     ap.add_argument("--kapt-cache",default="data/kapt-cache.json",help="K-apt 기본정보 캐시")
@@ -795,17 +800,17 @@ def main() -> None:
 
     out={
         "meta":{
-            "status":"full",
+            "status":"pilot_4_districts",
             "updated_at":now_kst().strftime("%Y-%m-%d %H:%M KST"),
             "current_month":end,
             "min_month":args.start,
             "loaded_regions":sorted(loaded_tags),
             "complex_count":len(arr),
-            "note":"서울 25개구 + 경기 주요 생활권의 매매·전세 실거래. 59㎡가 없으면 같은 20평대의 가장 가까운 전용을 대체하고, 역세권은 K-apt 인근역 도보시간 20분 이내를 우선 사용.",
+            "note":"파일럿 v13: 성동구·마포구·동작구·영등포구 4개구의 매매·전세 실거래. 59㎡가 없으면 같은 20평대의 가장 가까운 전용을 대체하고, 역세권은 K-apt 인근역 도보시간 20분 이내를 우선 사용.",
             "sources":{
                 "trades":"국토교통부 아파트 매매 실거래가 상세 자료",
                 "rent":"국토교통부 아파트 전월세 실거래가 자료(월세 0원인 순수 전세)",
-                "metadata":"서울·경기 세대수/사용승인일은 K-apt 기본정보 API 매칭 가능 단지에 한해 보강",
+                "metadata":"성동·마포·동작·영등포 세대수/사용승인일/인근역은 K-apt 기본정보 API 매칭 가능 단지에 한해 보강",
                 "far":"국토교통부 건축HUB 건축물대장정보 서비스 총괄표제부(vlRat) 우선",
                 "station":"K-apt 기본정보의 인근 지하철역/도보시간. UI는 20분 이내만 역 필터에 포함"
             },

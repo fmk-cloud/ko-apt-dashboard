@@ -9,7 +9,6 @@ data=root/"data"/"site-data.json"
 obj=json.loads(data.read_text(encoding="utf-8"))
 payload=json.dumps(obj,ensure_ascii=False,separators=(",",":"))
 text=index.read_text(encoding="utf-8")
-
 pat=r'window\.__EMBEDDED_DATA__=\{.*?\};</script>'
 replacement='window.__EMBEDDED_DATA__='+payload+';</script>'
 new,n=re.subn(pat,replacement,text,count=1,flags=re.S)

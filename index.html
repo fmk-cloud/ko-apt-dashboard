@@ -113,8 +113,8 @@ footer{font-size:8px;color:#96a0aa;margin:8px 3px 0;line-height:1.5}
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k APT Dashboard v12 <span id="updatedAt"></span></div>
-    <div class="dataNotice" id="dataNotice">현재 미리보기 내장 데이터는 기존 성동·마포·영등포 3개구입니다. 전체 서울·경기 주요지역 수집용 코드도 함께 준비되어 있습니다.</div>
+    <div class="titlebar">k APT Dashboard v13 <span id="updatedAt"></span></div>
+    <div class="dataNotice" id="dataNotice">파일럿 v13: 성동구·마포구·동작구·영등포구 4개구만 수집합니다. 먼저 핵심 기능을 검증한 뒤 지역을 확대합니다.</div>
   </div>
 
   <section class="dashboardTop">
@@ -131,7 +131,7 @@ footer{font-size:8px;color:#96a0aa;margin:8px 3px 0;line-height:1.5}
         <div class="filterGroup"><div class="filterLabel">용적률</div><button class="summaryBtn" id="farSummary">100% ~ 이상</button></div>
         <div class="filterGroup"><div class="filterLabel">매매 - 전세 갭</div><button class="summaryBtn extraFilterBtn" id="gapSummary">6억 ~ 7억</button></div>
         <div class="filterGroup"><div class="filterLabel">준공일자</div><button class="summaryBtn" id="yearSummary">전체</button></div>
-        <div class="filterGroup"><div class="filterLabel">신뢰도</div><button class="summaryBtn extraFilterBtn" id="confidenceSummary" title="선택한 신뢰도 등급만 순위표에 표시합니다.">중○ ~ 상●</button></div>
+        <div class="filterGroup"><div class="filterLabel">신뢰도</div><button class="summaryBtn extraFilterBtn" id="confidenceSummary">중○ ~ 상●</button></div>
       </div>
     </div>
 
@@ -1035,9 +1035,9 @@ window.openDetail=function(index){
 async function init(){
   state.toMonth=DATA.meta.current_month || '2026-09';
   const earliest=DATA.meta.min_month || '2022-09'; if(state.fromMonth<earliest)state.fromMonth=earliest;if(state.fromMonth>state.toMonth)state.fromMonth=state.toMonth;
-  const loaded=DATA.meta.loaded_regions || ['영등포구','성동구','마포구'];selectedRegions=new Set(loaded);
+  const loaded=DATA.meta.loaded_regions || ['성동구','마포구','동작구','영등포구'];selectedRegions=new Set(loaded);
   $('#updatedAt').textContent=DATA.meta.updated_at?`데이터 ${DATA.meta.updated_at}`:'';
-  const n=$('#dataNotice');n.hidden=false;n.textContent='독립형 미리보기입니다. 현재 내장 데이터는 성동·마포·영등포 3개구이며, 별도 서버 없이 이 HTML 파일만 열어도 모든 버튼과 표가 작동합니다.';
+  const n=$('#dataNotice');n.hidden=false;n.textContent='파일럿 v13입니다. 성동구·마포구·동작구·영등포구 4개구만 수집하며, 매매·전세·용적률·역세권 필터를 먼저 검증합니다.';
   $('#gradeText').textContent=GRADE_TEXT;buildRegionRows('seoulRegionRows',seoulRows);buildRegionRows('gyeonggiRegionRows',gyeonggiRows);updateSummaries();render();
 }
 
@@ -1054,14 +1054,14 @@ $('#areaToggle').querySelectorAll('button').forEach(btn=>btn.onclick=()=>{curren
 
 const STATION_RANKINGS=[[1, "압구정역"], [2, "한강진역"], [3, "신반포역"], [4, "구반포역"], [5, "서울숲역"], [6, "잠원역"], [7, "고속터미널역"], [8, "청담역"], [9, "강남역"], [10, "삼성역"], [11, "대치역"], [12, "도곡역"], [13, "압구정로데오역"], [14, "잠실새내역"], [15, "잠실역"], [16, "서초역"], [17, "교대역"], [18, "선릉역"], [19, "역삼역"], [20, "신논현역"], [21, "방배역"], [22, "개포동역"], [23, "성수역"], [24, "이촌역"], [25, "논현역"], [26, "양재역"], [27, "매봉역"], [28, "여의도역"], [29, "여의나루역"], [30, "마포역"], [31, "공덕역"], [32, "옥수역"], [33, "금호역"], [34, "왕십리역"], [35, "용산역"], [36, "서울역"], [37, "광화문역"], [38, "서대문역"], [39, "흑석역"], [40, "목동역"], [41, "올림픽공원역"], [42, "송파역"], [43, "당산역"], [44, "고덕역"], [45, "청량리역"], [46, "아현역"], [47, "신길역"], [48, "마곡나루역"], [49, "노원역"], [49, "건대입구역"], [50, "길음역"]];
 const STATION_META={"압구정역": [1080, 560, ["3"]], "한강진역": [865, 535, ["6"]], "신반포역": [960, 670, ["9"]], "구반포역": [900, 690, ["9"]], "서울숲역": [1105, 475, ["분당"]], "잠원역": [1025, 610, ["3"]], "고속터미널역": [1000, 660, ["3", "7", "9"]], "청담역": [1220, 590, ["7"]], "강남역": [1070, 770, ["2", "신분당"]], "삼성역": [1255, 720, ["2"]], "대치역": [1220, 810, ["3"]], "도곡역": [1150, 850, ["3", "분당"]], "압구정로데오역": [1150, 590, ["분당"]], "잠실새내역": [1330, 670, ["2"]], "잠실역": [1410, 665, ["2", "8"]], "서초역": [980, 800, ["2"]], "교대역": [1025, 810, ["2", "3"]], "선릉역": [1180, 750, ["2", "분당"]], "역삼역": [1125, 780, ["2"]], "신논현역": [1045, 720, ["9", "신분당"]], "방배역": [920, 815, ["2"]], "개포동역": [1250, 875, ["분당"]], "성수역": [1195, 465, ["2"]], "이촌역": [745, 650, ["4", "경의"]], "논현역": [1030, 680, ["7", "신분당"]], "양재역": [1065, 890, ["3", "신분당"]], "매봉역": [1110, 855, ["3"]], "여의도역": [520, 545, ["5", "9"]], "여의나루역": [570, 570, ["5"]], "마포역": [620, 505, ["5"]], "공덕역": [665, 480, ["5", "6", "경의", "공항"]], "옥수역": [1000, 545, ["3", "경의"]], "금호역": [970, 510, ["3"]], "왕십리역": [1045, 420, ["2", "5", "경의", "분당"]], "용산역": [700, 610, ["1", "경의"]], "서울역": [745, 500, ["1", "4", "경의", "공항"]], "광화문역": [790, 360, ["5"]], "서대문역": [720, 405, ["5"]], "흑석역": [805, 705, ["9"]], "목동역": [340, 620, ["5"]], "올림픽공원역": [1510, 625, ["5", "9"]], "송파역": [1435, 735, ["8"]], "당산역": [430, 520, ["2", "9"]], "고덕역": [1490, 430, ["5"]], "청량리역": [1100, 320, ["1", "경의", "분당"]], "아현역": [680, 435, ["2"]], "신길역": [470, 605, ["1", "5"]], "마곡나루역": [250, 445, ["9", "공항"]], "노원역": [1180, 155, ["4", "7"]], "건대입구역": [1280, 440, ["2", "7"]], "길음역": [985, 245, ["4"]]};
-const FAV_STORAGE_KEY='koAptDashboardFavoritesV6';
+const FAV_STORAGE_KEY='koAptDashboardFavoritesV7';
 const FAV_COLORS=['rose','orange','yellow','green','blue','neutral'];
 const REGION_META={
   '강남구':'rose','서초구':'rose','용산구':'rose','송파구':'rose','성동구':'orange','마포구':'orange','광진구':'orange','동작구':'yellow','양천구':'yellow','강동구':'yellow','영등포구':'yellow','중구':'yellow',
   '종로구':'green','서대문구':'green','동대문구':'green','성북구':'green','강서구':'green','관악구':'green','구로구':'blue','노원구':'blue','은평구':'blue','중랑구':'blue','강북구':'blue','금천구':'blue','도봉구':'blue',
   '과천시':'rose','분당구':'rose','광명시':'orange','하남시':'orange','평촌동':'yellow','수지구':'yellow','광교':'yellow','동탄시':'green','성남시':'green','수정구':'green','중원구':'green','삼송동':'green','지축':'green','일산':'blue','의왕시':'green','구리시':'green'
 };
-const DEFAULT_REGION_FAVORITES=['강남구','서초구','용산구','송파구','성동구','마포구','광진구','동작구','양천구','강동구','영등포구','중구','종로구','서대문구','동대문구','성북구','강서구','관악구','구로구','노원구','은평구','중랑구','강북구','금천구','도봉구','과천시','분당구','광명시','하남시','평촌동','수지구','광교','동탄시','성남시','수정구','중원구','삼송동','지축','일산','의왕시','구리시'];
+const DEFAULT_REGION_FAVORITES=['성동구','마포구','동작구','영등포구'];
 const DEFAULT_STATION_FAVORITES=['압구정역','강남역','서울숲역','대치역','성수역','여의도역','공덕역','옥수역','금호역','왕십리역','용산역','서울역','광화문역','서대문역','흑석역','목동역','당산역','신길역','노원역','건대입구역'];
 const DEFAULT_APT_FAVORITES=['당산푸르지오','영등포삼환','신동아','신길삼환','당산현대5차','강변래미안'];
 let favMode='region';
@@ -1072,7 +1072,7 @@ let colorTarget=null;
 function loadFavoriteState(){
   let saved=null;try{saved=JSON.parse(localStorage.getItem(FAV_STORAGE_KEY)||'null')}catch(e){}
   const aptExisting=new Set((DATA.complexes||[]).map(c=>c.name));
-  favoriteState=saved&&saved.version===1?saved:{version:1,mode:'region',lists:{region:[...DEFAULT_REGION_FAVORITES],station:[...DEFAULT_STATION_FAVORITES],apt:DEFAULT_APT_FAVORITES.filter(x=>aptExisting.has(x))},selected:{region:['성동구','마포구','영등포구'],station:[],apt:[]},colors:{region:{},station:{},apt:{}}};
+  favoriteState=saved&&saved.version===1?saved:{version:1,mode:'region',lists:{region:[...DEFAULT_REGION_FAVORITES],station:[...DEFAULT_STATION_FAVORITES],apt:DEFAULT_APT_FAVORITES.filter(x=>aptExisting.has(x))},selected:{region:['성동구','마포구','동작구','영등포구'],station:[],apt:[]},colors:{region:{},station:{},apt:{}}};
   for(const k of ['region','station','apt']){ favoriteState.lists[k]||=[];favoriteState.selected[k]||=[];favoriteState.colors[k]||={}; }
   favMode=favoriteState.mode||'region';
 }
@@ -1130,11 +1130,8 @@ filterComplex=function(c){
 
   // 용적률
   const farDefault=state.farMin==='100'&&state.farMax==='max';
-  const farRaw=c.far;
-  const farValue=(farRaw===null||farRaw===undefined||farRaw==='')?NaN:Number(farRaw);
+  const farValue=Number(c.far);
   if(!Number.isFinite(farValue)){
-    // 기본값에서는 용적률 미확인 단지도 표시한다.
-    // 사용자가 특정 용적률 범위를 고른 경우에만 미확인 단지를 제외한다.
     if(!farDefault)return false;
   }else if(!inRange(farValue,state.farMin,state.farMax)){
     return false;
@@ -1167,13 +1164,11 @@ filterComplex=function(c){
         const walks=Array.isArray(c.station_walks)?c.station_walks:[];
         if(walks.some(w=>norm(w.name||w.station||'')===wanted && Number(w.minutes)<=20))return true;
 
-        // K-apt가 단일 인근역만 제공한 경우
         const directName=norm(c.station||'');
         const directMin=Number(c.station_walk_minutes);
         if(directName===wanted && Number.isFinite(directMin) && directMin<=20)return true;
 
-        // 기존 메타데이터의 거리값은 보조값으로 사용:
-        // 직선 1.35km 이내를 약 도보 20분권으로 취급한다.
+        // 과거 캐시에 실제 역 거리(km)가 있는 경우의 보조 기준
         const hay=norm((c.station_display||'')+' '+(c.station||''));
         const dist=Number(c.station_distance_km);
         if(hay.includes(wanted) && Number.isFinite(dist) && dist<=1.35)return true;
@@ -1313,7 +1308,9 @@ function initFavoritesUI(){
  $('#addFavoriteBtn').onclick=openFavoriteAdd;$('#favSelectAll').onclick=selectAllFavorites;$('#favClear').onclick=clearFavoriteSelection;$('#favoriteSearch').oninput=e=>renderFavoriteSearch(e.target.value);
  $('#allFilterBtn').onclick=()=>{
    favMode='region';
-   favoriteState.selected.region=[...favoriteState.lists.region];
+   const loaded=[...(DATA.meta.loaded_regions||['성동구','마포구','동작구','영등포구'])];
+   for(const r of loaded)if(!favoriteState.lists.region.includes(r))favoriteState.lists.region.push(r);
+   favoriteState.selected.region=loaded;
    favoriteState.selected.station=[];
    favoriteState.selected.apt=[];
    saveFavoriteState();
