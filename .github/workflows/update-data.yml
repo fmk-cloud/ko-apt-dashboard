@@ -1,37 +1,28 @@
-name: Update apartment data
+name: Update apartment dashboard data
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "full = 전체 이력 재구축 / incremental = 최근 3~4개월 갱신"
+        description: "full 권장 / incremental도 현재는 지정기간 전체 재구축"
         required: true
-        default: incremental
+        default: full
         type: choice
-        options:
-          - incremental
-          - full
+        options: [full, incremental]
       enrich_far:
-        description: "용적률 미확인 단지 건축물대장 조회"
+        description: "건축HUB 용적률 보강"
         required: true
-        default: false
+        default: true
         type: boolean
   schedule:
-    # 04:00 Asia/Seoul on the 1st. GitHub cron is UTC, so run at 19:00 UTC
-    # on possible month-end dates and gate below by the KST calendar day.
+    # 매월 1일 04:00 KST = 전날 19:00 UTC
     - cron: "0 19 28-31 * *"
-  push:
-    branches: [main]
-    paths:
-      - "scripts/build_data.py"
-      - ".github/workflows/update-data.yml"
-      - "data/site-data.json"
 
 permissions:
   contents: write
 
 concurrency:
-  group: apartment-data-update
+  group: k-apt-data-refresh
   cancel-in-progress: false
 
 jobs:
@@ -39,6 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
+      BUILDING_HUB_API_KEY: ${{ secrets.BUILDING_HUB_API_KEY }}
+      KAPT_API_KEY: ${{ secrets.KAPT_API_KEY }}
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,84 +42,69 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Decide whether this run should update
-        id: decide
+      - name: Calendar gate
+        id: gate
         shell: bash
         run: |
-          set -euo pipefail
           if [[ "${{ github.event_name }}" == "schedule" ]]; then
-            KST_DAY=$(TZ=Asia/Seoul date +%d)
-            if [[ "$KST_DAY" != "01" ]]; then
+            if [[ "$(TZ=Asia/Seoul date +%d)" != "01" ]]; then
               echo "run=false" >> "$GITHUB_OUTPUT"
-              echo "Not the 1st in Seoul; skip."
               exit 0
             fi
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            echo "mode=incremental" >> "$GITHUB_OUTPUT"
-            echo "far=false" >> "$GITHUB_OUTPUT"
-            exit 0
           fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
 
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
-            echo "far=${{ inputs.enrich_far }}" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          # On the first repository push, hydrate the bundled sample JSON once.
-          STATUS=$(python - <<'PY'
-          import json
-          from pathlib import Path
-          p=Path('data/site-data.json')
-          try:
-              print(json.loads(p.read_text(encoding='utf-8')).get('meta',{}).get('status',''))
-          except Exception:
-              print('')
-          PY
-          )
-          if [[ "$STATUS" == "sample" || -z "$STATUS" ]]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            echo "mode=full" >> "$GITHUB_OUTPUT"
-            echo "far=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Build static data
-        if: steps.decide.outputs.run == 'true'
+      - name: Build Seoul + Gyeonggi sale/rent data
+        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
           EXTRA=""
-          if [[ "${{ steps.decide.outputs.far }}" == "true" ]]; then EXTRA="--enrich-far"; fi
-          python scripts/build_data.py --mode "${{ steps.decide.outputs.mode }}" --start 2022-09 $EXTRA
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.enrich_far }}" == "false" ]]; then
+            EXTRA="--skip-far"
+          fi
+          python scripts/build_data.py \
+            --mode "${{ inputs.mode || 'full' }}" \
+            --start 2025-07 \
+            --output data/site-data.json \
+            $EXTRA
 
-      - name: Validate generated JSON
-        if: steps.decide.outputs.run == 'true'
+      - name: Embed data into single static HTML
+        if: steps.gate.outputs.run == 'true'
+        run: python scripts/embed_data.py
+
+      - name: Validate
+        if: steps.gate.outputs.run == 'true'
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          p=Path('data/site-data.json')
-          d=json.loads(p.read_text(encoding='utf-8'))
-          assert d['meta']['status']=='full'
-          assert set(d['meta']['loaded_regions']) == {'영등포구','성동구','마포구'}
-          assert len(d['complexes']) > 0
-          print('complexes:', len(d['complexes']), 'bytes:', p.stat().st_size)
+          d=json.loads(Path("data/site-data.json").read_text(encoding="utf-8"))
+          assert len(d["complexes"]) > 0
+          regs=set(d["meta"]["loaded_regions"])
+          for gu in ["강남구","서초구","송파구","영등포구","마포구","성동구"]:
+              assert gu in regs, f"missing {gu}"
+          has_rent=sum(bool(c.get("jeonse_tx")) for c in d["complexes"])
+          has_far=sum(c.get("far") is not None for c in d["complexes"])
+          has_station=sum(bool(c.get("station_walks")) or c.get("station_walk_minutes") is not None for c in d["complexes"])
+          print("complexes",len(d["complexes"]))
+          print("rent complexes",has_rent)
+          print("FAR complexes",has_far)
+          print("station-walk complexes",has_station)
+          print("index bytes",Path("index.html").stat().st_size)
           PY
 
-      - name: Commit refreshed data
-        if: steps.decide.outputs.run == 'true'
+      - name: Commit refreshed site
+        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- data/site-data.json data/far-cache.json; then
-            echo "No data change."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/site-data.json data/far-cache.json
-          git commit -m "data: refresh apartment transactions"
+          git add index.html data/site-data.json data/far-cache.json data/kapt-cache.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "data: refresh Seoul/Gyeonggi sale rent metadata"
           git push
