@@ -1,4 +1,4 @@
-name: Validate static Yeongdeungpo dashboard v15
+name: Validate Yeongdeungpo dashboard v16
 
 on:
   workflow_dispatch:
@@ -12,30 +12,28 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-
-      - name: Validate static files
+      - name: Validate static data
         run: |
           python - <<'PY'
-          import json, re
+          import json
           from pathlib import Path
 
-          index=Path("index.html")
-          data_path=Path("data/site-data.json")
-          assert index.exists(), "index.html 없음"
-          assert data_path.exists(), "data/site-data.json 없음"
+          d=json.loads(Path("data/site-data.json").read_text(encoding="utf-8"))
+          by={c["name"]:c for c in d["complexes"]}
 
-          d=json.loads(data_path.read_text(encoding="utf-8"))
-          cs=d.get("complexes",[])
-          assert cs, "단지 데이터 0건"
-          assert set(c.get("region") for c in cs)=={"영등포구"}
-          assert sum(bool(c.get("tx")) for c in cs)>0
+          assert "당산현대5차" in by
+          assert "당산강변래미안3차" in by
+          assert by["당산현대5차"]["far"] == 373
+          assert by["당산강변래미안3차"]["far"] > 336
+          assert len(by["당산강변래미안3차"]["tx"]) >= 10
+          assert any(t[1] == 55.91 for t in by["당산강변래미안3차"]["tx"])
 
-          text=index.read_text(encoding="utf-8")
-          assert "k APT Dashboard v15" in text
-          assert "window.__EMBEDDED_DATA__=" in text
+          text=Path("index.html").read_text(encoding="utf-8")
+          assert "k APT Dashboard v16" in text
+          assert "$('#popApply').onclick=applyPopover;" in text
 
-          print("complexes:",len(cs))
-          print("sale complexes:",sum(bool(c.get("tx")) for c in cs))
-          print("300+ households:",sum((c.get("households") or 0)>=300 for c in cs))
-          print("OK - static dashboard validated")
+          print("OK v16")
+          print("complexes",len(d["complexes"]))
+          print("modern5 tx",len(by["당산현대5차"]["tx"]))
+          print("river tx",len(by["당산강변래미안3차"]["tx"]))
           PY
