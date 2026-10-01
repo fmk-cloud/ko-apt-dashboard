@@ -1,29 +1,145 @@
-name: Validate Yeongdeungpo dashboard v18
+name: Update 4 districts apartment data v19
 
 on:
   workflow_dispatch:
+    inputs:
+      start_month:
+        description: "전체 재수집 시작월 (YYYY-MM)"
+        required: true
+        default: "2022-09"
+        type: string
+  schedule:
+    # 매월 1일 04:00 KST. GitHub cron은 UTC이므로 전월 28~31일 19:00 UTC에 실행 후 KST 날짜로 gate.
+    - cron: "0 19 28-31 * *"
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: k-apt-v19-four-districts
+  cancel-in-progress: false
 
 jobs:
-  validate:
+  gate_and_self_test:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    outputs:
+      run: ${{ steps.gate.outputs.run }}
+      start_month: ${{ steps.gate.outputs.start_month }}
     steps:
       - uses: actions/checkout@v4
-      - name: Validate static v18
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "schedule" && "$(TZ=Asia/Seoul date +%d)" != "01" ]]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "start_month=2022-09" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "start_month=${{ inputs.start_month }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "start_month=2022-09" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Static pipeline self-test
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python scripts/collect_region.py --self-test
+          python scripts/validate_build.py
+
+  collect:
+    needs: gate_and_self_test
+    if: needs.gate_and_self_test.outputs.run == 'true'
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - region: "영등포구"
+            slug: "yeongdeungpo"
+          - region: "마포구"
+            slug: "mapo"
+          - region: "성동구"
+            slug: "seongdong"
+          - region: "동작구"
+            slug: "dongjak"
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect ${{ matrix.region }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p parts
+          python scripts/collect_region.py \
+            --region "${{ matrix.region }}" \
+            --start "${{ needs.gate_and_self_test.outputs.start_month }}" \
+            --out "parts/${{ matrix.slug }}.json"
+      - name: Verify ${{ matrix.region }} result
+        shell: bash
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          d=json.loads(Path("data/site-data.json").read_text(encoding="utf-8"))
-          assert d["meta"]["loaded_regions"]==["영등포구"]
-          assert len(d["complexes"])==160
-          text=Path("index.html").read_text(encoding="utf-8")
-          assert "k APT Dashboard v18" in text
-          assert "function filterComplex(c)" in text
-          assert "let DATA = window.__EMBEDDED_DATA__;" in text
-          assert 'id="popLoad"' in text
-          print("OK v18")
+          p=Path("parts/${{ matrix.slug }}.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          m=d["meta"]
+          assert m["status"]=="region_ok"
+          assert m["region"]=="${{ matrix.region }}"
+          assert m["months_requested"]==m["months_succeeded"]
+          assert m["complex_count"]>=20
+          assert m["transaction_count"]>0
+          assert len(d["complexes"])==m["complex_count"]
+          print("REGION OK",m)
           PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: region-${{ matrix.slug }}
+          path: parts/${{ matrix.slug }}.json
+          retention-days: 3
+
+  merge_publish:
+    needs: collect
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: region-*
+          path: parts
+          merge-multiple: true
+      - name: Merge only after all four districts succeeded
+        run: python scripts/merge_regions.py --parts parts --out data/site-data.json
+      - name: Embed data into the unchanged v18 UI shell
+        run: python scripts/embed_data.py
+      - name: Final validation
+        run: python scripts/validate_build.py --full
+      - name: Commit validated v19 data and HTML
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/site-data.json index.html
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "data: refresh 4 districts v19"
+          git push
