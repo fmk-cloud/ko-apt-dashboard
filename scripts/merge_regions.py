@@ -66,14 +66,14 @@ def main() -> None:
     now = dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M KST")
     out = {
         "meta": {
-            "status": "full_v19_4gu",
+            "status": "full_v20_4gu",
             "updated_at": now,
             "current_month": current_month,
             "min_month": min_month,
             "loaded_regions": EXPECTED,
             "complex_count": len(complexes),
             "region_stats": region_stats,
-            "note": "v19 검증 범위: 영등포구·마포구·성동구·동작구. 각 구를 독립 수집·검증한 뒤 모두 성공한 경우에만 병합합니다.",
+            "note": "v20 검증 범위: 영등포구·마포구·성동구·동작구. 각 구를 독립 수집·검증한 뒤 모두 성공한 경우에만 병합합니다.",
             "sources": {
                 "trades": "국토교통부 아파트 매매 실거래가 상세 자료",
                 "metadata": "서울 열린데이터광장 OA-15818 기반 공개 메타데이터 캐시",

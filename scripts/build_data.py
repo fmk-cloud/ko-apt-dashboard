@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local full build for the four-district v19 pilot.
+"""Local full build for the four-district v20 pilot.
 
 GitHub Actions uses the same collect_region.py per district in parallel. This wrapper
 runs the identical pipeline sequentially for local verification when network/API keys

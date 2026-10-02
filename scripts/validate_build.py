@@ -10,7 +10,7 @@ EXPECTED=["영등포구","마포구","성동구","동작구"]
 def validate(full: bool) -> None:
     data=json.loads((ROOT/"data"/"site-data.json").read_text(encoding="utf-8"))
     html=(ROOT/"index.html").read_text(encoding="utf-8")
-    assert "k APT Dashboard v19" in html
+    assert "k APT Dashboard v20" in html
     # v18 UI behavior must remain present.
     required_js=[
         "function filterComplex(c)",
@@ -31,7 +31,7 @@ def validate(full: bool) -> None:
     assert counts.get("마포구",0)>=80
     assert counts.get("성동구",0)>=80
     if full:
-        assert data["meta"]["status"]=="full_v19_4gu"
+        assert data["meta"]["status"]=="full_v20_4gu"
         assert data["meta"]["loaded_regions"]==EXPECTED
         assert counts.get("동작구",0)>=50, counts
         for r in EXPECTED:

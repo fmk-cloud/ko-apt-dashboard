@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGIONS = json.loads((ROOT / "data" / "regions.json").read_text(encoding="utf-8"))
 META_URL = "https://raw.githubusercontent.com/wmjoo/seoul_apt/main/seoul_apartments_metadata.csv"
 MOLIT_URL = "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
-UA = "k-apt-dashboard-v19-four-districts/1.0"
+UA = "k-apt-dashboard-v20-four-districts/1.0"
 
 STATION_LINES = {
     # 영등포구
@@ -75,10 +75,17 @@ def to_int(v: Any) -> int | None:
 
 
 def norm_name(s: str) -> str:
-    s = unicodedata.normalize("NFKC", s or "").lower()
-    s = re.sub(r"\([^)]*\)", "", s)
-    s = s.replace("아파트", "").replace("apt", "")
-    return re.sub(r"[^0-9a-z가-힣]", "", s)
+    raw = unicodedata.normalize("NFKC", s or "").lower()
+    # 일반적인 괄호 보조표기(예: 래미안(1차))는 기존처럼 제거한다.
+    # 다만 단지명 전체가 괄호형인 경우(예: "(91-511)")에는 제거 결과가 빈 문자열이 되어
+    # 동일 단지를 거래마다 새 단지로 만들 수 있으므로 원문을 fallback으로 사용한다.
+    without_parens = re.sub(r"\([^)]*\)", "", raw)
+    candidate = without_parens.replace("아파트", "").replace("apt", "")
+    candidate = re.sub(r"[^0-9a-z가-힣]", "", candidate)
+    if candidate:
+        return candidate
+    fallback = raw.replace("아파트", "").replace("apt", "")
+    return re.sub(r"[^0-9a-z가-힣]", "", fallback)
 
 
 def norm_station(s: str) -> str:
@@ -353,6 +360,44 @@ def merge_seed_metadata(complexes: list[dict[str, Any]], region: str) -> None:
                 c[k] = v
 
 
+def collapse_exact_duplicates(complexes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Collapse only exact same-region/name/address duplicates and merge their transactions.
+
+    This is a final safety net after metadata enrichment. Distinct addresses are never merged.
+    """
+    merged: list[dict[str, Any]] = []
+    by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+    metadata_fields = [
+        "id", "households", "completed", "build_year", "station", "station_display",
+        "station_distance_km", "station_walk_minutes", "station_walks", "lat", "lon",
+        "far", "far_source", "top_floor", "naver", "legal_dong", "sigungu_cd", "region_tags"
+    ]
+    for c in complexes:
+        normalized = norm_name(c.get("name", "")) or clean_text(c.get("name"))
+        key = (clean_text(c.get("region")), normalized, clean_text(c.get("address")))
+        keeper = by_key.get(key)
+        if keeper is None:
+            keeper = c
+            by_key[key] = keeper
+            merged.append(keeper)
+            continue
+        for field in metadata_fields:
+            if keeper.get(field) in (None, "", []):
+                value = c.get(field)
+                if value not in (None, "", []):
+                    keeper[field] = value
+        all_tx = list(keeper.get("tx", [])) + list(c.get("tx", []))
+        seen_tx: set[tuple[Any, ...]] = set()
+        tx: list[list[Any]] = []
+        for row in sorted(all_tx, key=lambda z: (z[0], z[1], z[2], z[3])):
+            sig = tuple(row)
+            if sig not in seen_tx:
+                seen_tx.add(sig)
+                tx.append(row)
+        keeper["tx"] = tx
+    return merged
+
+
 def collect(region: str, start: str, end: str, key: str) -> dict[str, Any]:
     if region not in REGIONS:
         raise SystemExit(f"unsupported region: {region}")
@@ -391,6 +436,7 @@ def collect(region: str, start: str, end: str, key: str) -> dict[str, Any]:
         c["tx"] = tx
 
     merge_seed_metadata(complexes, region)
+    complexes = collapse_exact_duplicates(complexes)
     trade_count = sum(len(c.get("tx", [])) for c in complexes)
     with_trades = sum(bool(c.get("tx")) for c in complexes)
     if query_count != len(months):
@@ -427,6 +473,14 @@ def self_test() -> None:
     assert md[0]["station_display"] == "7상도"
     trade = {"name": "테스트", "build_year": 2005, "legal_dong": "상도동"}
     assert match_complex(build_matcher(md), trade) is md[0]
+    # Regression: parenthesized numeric apartment names must not normalize to empty.
+    assert norm_name("(91-511)") == "91511"
+    special = make_trade_only_complex("마포구", {"name":"(91-511)", "legal_dong":"신수동", "jibun":"91-511", "build_year":2000}, 1)
+    assert match_complex(build_matcher([special]), {"name":"(91-511)", "legal_dong":"신수동", "build_year":2000}) is special
+    dup1 = dict(special); dup1["tx"] = [["2026-01-01", 59.0, 10, 100000]]
+    dup2 = dict(special); dup2["tx"] = [["2026-02-01", 59.0, 11, 101000]]
+    collapsed = collapse_exact_duplicates([dup1, dup2])
+    assert len(collapsed) == 1 and len(collapsed[0]["tx"]) == 2
     assert month_range("2025-11", "2026-02") == ["202511", "202512", "202601", "202602"]
     print("collect_region self-test OK")
 
