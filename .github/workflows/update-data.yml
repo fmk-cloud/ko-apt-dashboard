@@ -1,10 +1,10 @@
-name: Update 4 districts apartment data v20
+name: Update 4 districts apartment data v21
 
 on:
   workflow_dispatch:
     inputs:
       start_month:
-        description: "전체 재수집 시작월 (YYYY-MM)"
+        description: "신규 지역 최초 수집 시작월 (YYYY-MM)"
         required: true
         default: "2022-09"
         type: string
@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: k-apt-v20-four-districts
+  group: k-apt-v21-four-districts
   cancel-in-progress: false
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
           - region: "동작구"
             slug: "dongjak"
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 60
     env:
       PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
     steps:
@@ -84,6 +84,8 @@ jobs:
           python scripts/collect_region.py \
             --region "${{ matrix.region }}" \
             --start "${{ needs.gate_and_self_test.outputs.start_month }}" \
+            --baseline data/site-data.json \
+            --refresh-months 6 \
             --out "parts/${{ matrix.slug }}.json"
       - name: Verify ${{ matrix.region }} result
         shell: bash
@@ -97,6 +99,8 @@ jobs:
           assert m["status"]=="region_ok"
           assert m["region"]=="${{ matrix.region }}"
           assert m["months_requested"]==m["months_succeeded"]
+          assert m["mode"] in {"full","incremental"}
+          assert m["refresh_start"]
           assert m["complex_count"]>=20
           assert m["transaction_count"]>0
           assert len(d["complexes"])==m["complex_count"]
@@ -130,7 +134,7 @@ jobs:
         run: python scripts/embed_data.py
       - name: Final validation
         run: python scripts/validate_build.py --full
-      - name: Commit validated v20 data and HTML
+      - name: Commit validated v21 data and HTML
         shell: bash
         run: |
           set -euo pipefail
@@ -141,5 +145,5 @@ jobs:
             echo "No changes."
             exit 0
           fi
-          git commit -m "data: refresh 4 districts v20"
+          git commit -m "data: refresh 4 districts v21"
           git push
