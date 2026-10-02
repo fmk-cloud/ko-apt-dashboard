@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import datetime as dt
 import difflib
@@ -23,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGIONS = json.loads((ROOT / "data" / "regions.json").read_text(encoding="utf-8"))
 META_URL = "https://raw.githubusercontent.com/wmjoo/seoul_apt/main/seoul_apartments_metadata.csv"
 MOLIT_URL = "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
-UA = "k-apt-dashboard-v20-four-districts/1.0"
+UA = "k-apt-dashboard-v21-incremental-four-districts/1.0"
 
 STATION_LINES = {
     # 영등포구
@@ -194,6 +195,51 @@ def month_range(start: str, end: str) -> list[str]:
         if m == 13:
             y, m = y + 1, 1
     return out
+
+
+def shift_month(ym: str, delta: int) -> str:
+    y, m = map(int, ym.split("-"))
+    idx = y * 12 + (m - 1) + delta
+    return f"{idx // 12:04d}-{idx % 12 + 1:02d}"
+
+
+def later_month(a: str, b: str) -> str:
+    return max(a, b)
+
+
+def load_baseline_region(region: str, baseline_path: str | None) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    if not baseline_path:
+        return [], {}
+    p = Path(baseline_path)
+    if not p.exists():
+        return [], {}
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        raise RuntimeError(f"baseline JSON unreadable: {p}: {exc}") from exc
+    complexes = [copy.deepcopy(c) for c in data.get("complexes", []) if c.get("region") == region]
+    if not complexes:
+        return [], data.get("meta", {}) or {}
+    for c in complexes:
+        c.setdefault("region", region)
+        c.setdefault("region_tags", [region])
+        c.setdefault("sigungu_cd", REGIONS[region])
+        c.setdefault("tx", [])
+    return complexes, data.get("meta", {}) or {}
+
+
+def strip_months(complexes: list[dict[str, Any]], months: set[str]) -> int:
+    removed = 0
+    for c in complexes:
+        kept = []
+        for row in c.get("tx", []):
+            ym = clean_text(row[0])[:7].replace("-", "") if row else ""
+            if ym in months:
+                removed += 1
+            else:
+                kept.append(row)
+        c["tx"] = kept
+    return removed
 
 
 def fetch_page(lawd: str, ymd: str, key: str, page: int) -> tuple[list[dict[str, Any]], int | None]:
@@ -398,31 +444,74 @@ def collapse_exact_duplicates(complexes: list[dict[str, Any]]) -> list[dict[str,
     return merged
 
 
-def collect(region: str, start: str, end: str, key: str) -> dict[str, Any]:
+def collect(
+    region: str,
+    start: str,
+    end: str,
+    key: str,
+    baseline_path: str | None = None,
+    refresh_months: int = 6,
+) -> dict[str, Any]:
     if region not in REGIONS:
         raise SystemExit(f"unsupported region: {region}")
-    complexes = load_metadata(region)
-    matcher = build_matcher(complexes)
+    if refresh_months < 1:
+        raise SystemExit("refresh_months must be >= 1")
+
+    baseline_complexes, baseline_meta = load_baseline_region(region, baseline_path)
+    if baseline_complexes:
+        complexes = baseline_complexes
+        # Existing regions are refreshed only for a recent rolling window.
+        # This avoids re-requesting old months that are already safely stored.
+        refresh_start = later_month(start, shift_month(end, -(refresh_months - 1)))
+        mode = "incremental"
+        print(
+            f"[baseline] {region}: complexes={len(complexes)}; "
+            f"refresh={refresh_start}..{end} ({refresh_months} month window)",
+            flush=True,
+        )
+    else:
+        # A region missing from the bundled baseline (initially 동작구) is built once from start.
+        complexes = load_metadata(region)
+        refresh_start = start
+        mode = "full"
+        print(f"[baseline] {region}: none; full collection={start}..{end}", flush=True)
+
     lawd = REGIONS[region]
-    months = month_range(start, end)
+    months = month_range(refresh_start, end)
     unmatched = Counter()
     query_count = 0
     raw_trade_count = 0
+    fetched: list[dict[str, Any]] = []
+
+    # Fetch first and mutate the stored baseline only after every requested month succeeds.
+    # A timeout therefore never turns a partially refreshed region into publishable data.
     for idx, ym in enumerate(months, 1):
         print(f"[trade] {region} {idx}/{len(months)} {ym}", flush=True)
-        rows = fetch_month(lawd, ym, key)
+        try:
+            rows = fetch_month(lawd, ym, key)
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(f"month fetch failed: {region} {ym}: {exc}") from exc
         query_count += 1
         raw_trade_count += len(rows)
-        for t in rows:
-            c = match_complex(matcher, t)
-            if c is None:
-                unmatched[norm_name(t.get("name", ""))] += 1
-                # A newly completed / missing-metadata complex is still retained rather than silently dropped.
-                c = make_trade_only_complex(region, t, len(complexes) + 1)
-                complexes.append(c)
-                matcher = build_matcher(complexes)
-            c["tx"].append([t["deal_date"], t["area_m2"], t["floor"], t["price_10k"]])
+        fetched.extend(rows)
         time.sleep(0.08)
+
+    if query_count != len(months):
+        raise RuntimeError(f"query count mismatch {query_count} != {len(months)}")
+
+    baseline_tx_count = sum(len(c.get("tx", [])) for c in complexes)
+    refresh_set = set(months)
+    removed_tx_count = strip_months(complexes, refresh_set) if mode == "incremental" else 0
+    matcher = build_matcher(complexes)
+
+    for t in fetched:
+        c = match_complex(matcher, t)
+        if c is None:
+            unmatched[norm_name(t.get("name", ""))] += 1
+            c = make_trade_only_complex(region, t, len(complexes) + 1)
+            complexes.append(c)
+            matcher = build_matcher(complexes)
+        c["tx"].append([t["deal_date"], t["area_m2"], t["floor"], t["price_10k"]])
 
     # Dedupe and stable-sort transaction arrays.
     for c in complexes:
@@ -439,11 +528,11 @@ def collect(region: str, start: str, end: str, key: str) -> dict[str, Any]:
     complexes = collapse_exact_duplicates(complexes)
     trade_count = sum(len(c.get("tx", [])) for c in complexes)
     with_trades = sum(bool(c.get("tx")) for c in complexes)
-    if query_count != len(months):
-        raise RuntimeError(f"query count mismatch {query_count} != {len(months)}")
     if trade_count == 0 or with_trades == 0:
         raise RuntimeError(f"no usable transactions collected for {region}")
 
+    baseline_min = clean_text(baseline_meta.get("min_month"))
+    min_month = min(x for x in [start, baseline_min] if x) if baseline_min else start
     now = dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M KST")
     return {
         "meta": {
@@ -452,12 +541,16 @@ def collect(region: str, start: str, end: str, key: str) -> dict[str, Any]:
             "lawd_cd": lawd,
             "updated_at": now,
             "current_month": end,
-            "min_month": start,
+            "min_month": min_month,
+            "mode": mode,
+            "refresh_start": refresh_start,
             "months_requested": len(months),
             "months_succeeded": query_count,
             "complex_count": len(complexes),
             "complexes_with_trades": with_trades,
             "transaction_count": trade_count,
+            "baseline_transaction_count": baseline_tx_count,
+            "removed_refresh_transaction_count": removed_tx_count,
             "raw_filtered_trade_count": raw_trade_count,
             "unmatched_trade_name_count": sum(unmatched.values()),
         },
@@ -482,6 +575,10 @@ def self_test() -> None:
     collapsed = collapse_exact_duplicates([dup1, dup2])
     assert len(collapsed) == 1 and len(collapsed[0]["tx"]) == 2
     assert month_range("2025-11", "2026-02") == ["202511", "202512", "202601", "202602"]
+    assert shift_month("2026-10", -5) == "2026-05"
+    sample = [{"tx":[["2026-04-01",59,10,100000],["2026-05-01",59,11,101000],["2026-10-01",59,12,102000]]}]
+    assert strip_months(sample, {"202605","202610"}) == 2
+    assert sample[0]["tx"] == [["2026-04-01",59,10,100000]]
     print("collect_region self-test OK")
 
 
@@ -491,6 +588,8 @@ def main() -> None:
     ap.add_argument("--start", default="2022-09")
     ap.add_argument("--end", default=None)
     ap.add_argument("--out")
+    ap.add_argument("--baseline", default=str(ROOT / "data" / "site-data.json"))
+    ap.add_argument("--refresh-months", type=int, default=6)
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
     if args.self_test:
@@ -502,7 +601,11 @@ def main() -> None:
     if not key:
         raise SystemExit("PUBLIC_DATA_API_KEY secret is missing")
     end = args.end or dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).strftime("%Y-%m")
-    payload = collect(args.region, args.start, end, key)
+    payload = collect(
+        args.region, args.start, end, key,
+        baseline_path=args.baseline,
+        refresh_months=args.refresh_months,
+    )
     p = Path(args.out)
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

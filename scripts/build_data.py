@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local full build for the four-district v20 pilot.
+"""Local resilient build for the four-district v21 pilot.
 
 GitHub Actions uses the same collect_region.py per district in parallel. This wrapper
 runs the identical pipeline sequentially for local verification when network/API keys
@@ -20,6 +20,7 @@ def main()->None:
     ap=argparse.ArgumentParser()
     ap.add_argument("--start",default="2022-09")
     ap.add_argument("--end",default=None)
+    ap.add_argument("--refresh-months",type=int,default=6)
     args=ap.parse_args()
     if not (os.environ.get("PUBLIC_DATA_API_KEY") or os.environ.get("MOLIT_API_KEY")):
         raise SystemExit("PUBLIC_DATA_API_KEY secret is missing")
@@ -27,7 +28,7 @@ def main()->None:
     if parts.exists(): shutil.rmtree(parts)
     parts.mkdir()
     for i,region in enumerate(REGIONS):
-        cmd=[sys.executable,"scripts/collect_region.py","--region",region,"--start",args.start,"--out",str(parts/f"region-{i}.json")]
+        cmd=[sys.executable,"scripts/collect_region.py","--region",region,"--start",args.start,"--baseline","data/site-data.json","--refresh-months",str(args.refresh_months),"--out",str(parts/f"region-{i}.json")]
         if args.end: cmd.extend(["--end",args.end])
         run(cmd)
     run([sys.executable,"scripts/merge_regions.py","--parts",str(parts),"--out","data/site-data.json"])

@@ -10,7 +10,7 @@ EXPECTED=["영등포구","마포구","성동구","동작구"]
 def validate(full: bool) -> None:
     data=json.loads((ROOT/"data"/"site-data.json").read_text(encoding="utf-8"))
     html=(ROOT/"index.html").read_text(encoding="utf-8")
-    assert "k APT Dashboard v20" in html
+    assert "k APT Dashboard v21" in html
     # v18 UI behavior must remain present.
     required_js=[
         "function filterComplex(c)",
@@ -31,13 +31,15 @@ def validate(full: bool) -> None:
     assert counts.get("마포구",0)>=80
     assert counts.get("성동구",0)>=80
     if full:
-        assert data["meta"]["status"]=="full_v20_4gu"
+        assert data["meta"]["status"]=="full_v21_4gu"
         assert data["meta"]["loaded_regions"]==EXPECTED
         assert counts.get("동작구",0)>=50, counts
         for r in EXPECTED:
             st=data["meta"]["region_stats"][r]
             assert st["months_succeeded"]>=1
             assert st["transaction_count"]>0
+            assert st.get("mode") in {"full","incremental"}
+            assert st.get("refresh_start")
     print("validate_build OK",dict(counts),data["meta"].get("status"))
 
 if __name__=="__main__":
