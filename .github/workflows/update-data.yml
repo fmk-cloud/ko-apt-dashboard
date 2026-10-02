@@ -1,4 +1,4 @@
-name: Update 4 districts apartment data v19
+name: Update 4 districts apartment data v20
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: k-apt-v19-four-districts
+  group: k-apt-v20-four-districts
   cancel-in-progress: false
 
 jobs:
@@ -130,7 +130,7 @@ jobs:
         run: python scripts/embed_data.py
       - name: Final validation
         run: python scripts/validate_build.py --full
-      - name: Commit validated v19 data and HTML
+      - name: Commit validated v20 data and HTML
         shell: bash
         run: |
           set -euo pipefail
@@ -141,5 +141,5 @@ jobs:
             echo "No changes."
             exit 0
           fi
-          git commit -m "data: refresh 4 districts v19"
+          git commit -m "data: refresh 4 districts v20"
           git push
