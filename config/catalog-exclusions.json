@@ -1,0 +1,4 @@
+[
+  {"id":"A15007201","name":"신대림자이","reason":"서울시 관리단위는 314세대이나 거래단위 1차 155세대·2차 159세대. 300세대 미만 차수를 합산해 수집하지 않도록 제외.","sources":["https://kbland.kr/se/c/15072","https://kbland.kr/se/c/15073"],"checked_at":"2026-10-05"},
+  {"id":"A15001019","name":"여의도광장","reason":"관리단위 744세대에 서로 다른 지번·거래명이 포함됨. 광장(1,2동)과 광장의 분리 세대수를 공식자료로 확정하기 전 수집 보류.","sources":["https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do","https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"],"checked_at":"2026-10-05"}
+]

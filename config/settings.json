@@ -1,0 +1,14 @@
+{
+  "region_code": "11560",
+  "region": "영등포구",
+  "minimum_households": 300,
+  "start_month": "2024-01",
+  "timezone": "Asia/Seoul",
+  "update_day": 1,
+  "update_hour": 4,
+  "strategy": "seoul-public-snapshot",
+  "unsupported_features": [
+    "far",
+    "gap"
+  ]
+}

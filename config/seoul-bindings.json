@@ -1,0 +1,1247 @@
+[
+  {
+    "complex_id": "A10022891",
+    "complex_name": "브라이튼여의도아파트",
+    "legal_dong": "여의도동",
+    "jibun": "525",
+    "trade_name": "브라이튼여의도",
+    "build_year": 2023,
+    "metadata_address": "서울특별시 영등포구 국제금융로 39",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10023715",
+    "complex_name": "더샵파크프레스티지",
+    "legal_dong": "신길동",
+    "jibun": "4974",
+    "trade_name": "더샵파크프레스티지",
+    "build_year": 2022,
+    "metadata_address": "서울특별시 영등포구 가마산로79길 37",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10024316",
+    "complex_name": "영등포 중흥S-클래스",
+    "legal_dong": "양평동1가",
+    "jibun": "271",
+    "trade_name": "영등포중흥에스클래스",
+    "build_year": 2021,
+    "metadata_address": "서울특별시 영등포구 선유서로24길 6",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10024470",
+    "complex_name": "신길파크자이",
+    "legal_dong": "신길동",
+    "jibun": "4967",
+    "trade_name": "신길파크자이",
+    "build_year": 2022,
+    "metadata_address": "서울특별시 영등포구 신길로28길 25",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10024615",
+    "complex_name": "힐스테이트클래시안아파트",
+    "legal_dong": "신길동",
+    "jibun": "4969",
+    "trade_name": "힐스테이트클래시안",
+    "build_year": 2020,
+    "metadata_address": "서울특별시 영등포구 신길로28길 9",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10024725",
+    "complex_name": "e편한세상 영등포 아델포레",
+    "legal_dong": "대림동",
+    "jibun": "1127",
+    "trade_name": "e편한세상영등포아델포레",
+    "build_year": 2020,
+    "metadata_address": "서울특별시 영등포구 신길로 29",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10024789",
+    "complex_name": "당산센트럴아이파크",
+    "legal_dong": "당산동5가",
+    "jibun": "43",
+    "trade_name": "당산센트럴아이파크",
+    "build_year": 2020,
+    "metadata_address": "서울특별시 영등포구 영신로 247",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10025024",
+    "complex_name": "신길센트럴자이",
+    "legal_dong": "신길동",
+    "jibun": "4964",
+    "trade_name": "신길센트럴자이아파트",
+    "build_year": 2021,
+    "metadata_address": "서울특별시 영등포구 신길로29길 17",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10025070",
+    "complex_name": "보라매 sk뷰",
+    "legal_dong": "신길동",
+    "jibun": "4958",
+    "trade_name": "보라매에스케이뷰",
+    "build_year": 2020,
+    "metadata_address": "서울특별시 영등포구 여의대방로35가길 19",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10025562",
+    "complex_name": "신길센트럴아이파크",
+    "legal_dong": "신길동",
+    "jibun": "4955",
+    "trade_name": "신길센트럴아이파크",
+    "build_year": 2019,
+    "metadata_address": "서울특별시 영등포구 가마산로 426",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10026816",
+    "complex_name": "아크로타워스퀘어",
+    "legal_dong": "영등포동7가",
+    "jibun": "203",
+    "trade_name": "아크로타워스퀘어",
+    "build_year": 2017,
+    "metadata_address": "서울특별시 영등포구 국회대로54길 10",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10027073",
+    "complex_name": "래미안에스티움",
+    "legal_dong": "신길동",
+    "jibun": "4950",
+    "trade_name": "래미안에스티움",
+    "build_year": 2017,
+    "metadata_address": "서울특별시 영등포구 신풍로 77",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10027755",
+    "complex_name": "래미안프레비뉴",
+    "legal_dong": "신길동",
+    "jibun": "4945",
+    "trade_name": "래미안영등포프레비뉴",
+    "build_year": 2015,
+    "metadata_address": "서울특별시 영등포구 가마산로 442",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15001009",
+    "complex_name": "여의도수정",
+    "legal_dong": "여의도동",
+    "jibun": "32",
+    "trade_name": "수정",
+    "build_year": 1976,
+    "metadata_address": "서울특별시 영등포구 국제금융로7길 1",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15001012",
+    "complex_name": "여의도공작",
+    "legal_dong": "여의도동",
+    "jibun": "21-2",
+    "trade_name": "공작",
+    "build_year": 1976,
+    "metadata_address": "서울특별시 영등포구 여의대로6길 17",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15001016",
+    "complex_name": "여의도대교",
+    "legal_dong": "여의도동",
+    "jibun": "41",
+    "trade_name": "대교",
+    "build_year": 1975,
+    "metadata_address": "서울특별시 영등포구 국제금융로7길 20",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15001019",
+    "complex_name": "여의도광장",
+    "legal_dong": "여의도동",
+    "jibun": "28",
+    "trade_name": "광장",
+    "build_year": 1978,
+    "metadata_address": "서울특별시 영등포구 여의나루로 7",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15001020",
+    "complex_name": "여의도삼부",
+    "legal_dong": "여의도동",
+    "jibun": "30-2",
+    "trade_name": "삼부",
+    "build_year": 1975,
+    "metadata_address": "서울특별시 영등포구 국제금융로7길 27",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15003002",
+    "complex_name": "영등포푸르지오",
+    "legal_dong": "영등포동",
+    "jibun": "647",
+    "trade_name": "영등포푸르지오",
+    "build_year": 2002,
+    "metadata_address": "서울특별시 영등포구 도신로29길 28",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15003701",
+    "complex_name": "영등포경남아너스빌",
+    "legal_dong": "영등포동7가",
+    "jibun": "46-1",
+    "trade_name": "경남아너스빌",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 영등포구 양산로 177",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15003801",
+    "complex_name": "영등포삼환",
+    "legal_dong": "영등포동8가",
+    "jibun": "76-1",
+    "trade_name": "삼환",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 영등포구 영중로 145",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15003802",
+    "complex_name": "당산푸르지오",
+    "legal_dong": "영등포동8가",
+    "jibun": "91",
+    "trade_name": "당산푸르지오",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 영등포구 영중로 154",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15004201",
+    "complex_name": "당산동대우",
+    "legal_dong": "당산동2가",
+    "jibun": "16-1",
+    "trade_name": "당산대우",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 영등포구 영등포로 106",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15004202",
+    "complex_name": "당산2가현대",
+    "legal_dong": "당산동2가",
+    "jibun": "164",
+    "trade_name": "당산2가현대홈타운",
+    "build_year": 1994,
+    "metadata_address": "서울특별시 영등포구 당산로 95",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15004405",
+    "complex_name": "당산2차삼성",
+    "legal_dong": "당산동4가",
+    "jibun": "94-1",
+    "trade_name": "당산삼성2차",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 영등포구 당산로36길 12",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15004406",
+    "complex_name": "당산현대3차",
+    "legal_dong": "당산동4가",
+    "jibun": "88",
+    "trade_name": "당산현대3차",
+    "build_year": 1988,
+    "metadata_address": "서울특별시 영등포구 당산로41길 23",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15004505",
+    "complex_name": "당산유원제일2차",
+    "legal_dong": "당산동5가",
+    "jibun": "7-2",
+    "trade_name": "유원제일2차",
+    "build_year": 1984,
+    "metadata_address": "서울특별시 영등포구 선유동2로 56",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15004506",
+    "complex_name": "당산동1차효성아파트",
+    "legal_dong": "당산동5가",
+    "jibun": "12",
+    "trade_name": "당산효성1차",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 영등포구 당산로42길 13",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15004507",
+    "complex_name": "당산삼성래미안",
+    "legal_dong": "당산동5가",
+    "jibun": "42",
+    "trade_name": "당산삼성래미안4차",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 영등포구 당산로 214",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15005001",
+    "complex_name": "신길우성4차아파트",
+    "legal_dong": "신길동",
+    "jibun": "102-8",
+    "trade_name": "우성4",
+    "build_year": 1991,
+    "metadata_address": "서울특별시 영등포구 영등포로64길 11",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15005301",
+    "complex_name": "신길우성5차",
+    "legal_dong": "신길동",
+    "jibun": "4933",
+    "trade_name": "우성5",
+    "build_year": 1993,
+    "metadata_address": "서울특별시 영등포구 도신로 100",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15005302",
+    "complex_name": "신길건영",
+    "legal_dong": "신길동",
+    "jibun": "364",
+    "trade_name": "건영",
+    "build_year": 1985,
+    "metadata_address": "서울특별시 영등포구 도림로 313",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15005303",
+    "complex_name": "신길1차우성아파트",
+    "legal_dong": "신길동",
+    "jibun": "365",
+    "trade_name": "우성1",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 영등포구 도신로 68",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15005402",
+    "complex_name": "신길삼성래미안",
+    "legal_dong": "신길동",
+    "jibun": "4934",
+    "trade_name": "삼성래미안",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 영등포구 가마산로79길 7",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15005603",
+    "complex_name": "신길삼성",
+    "legal_dong": "신길동",
+    "jibun": "4759",
+    "trade_name": "삼성",
+    "build_year": 1984,
+    "metadata_address": "서울특별시 영등포구 여의대방로 45",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15005705",
+    "complex_name": "신길삼환",
+    "legal_dong": "신길동",
+    "jibun": "897-1",
+    "trade_name": "삼환",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 영등포구 여의대방로43라길 9",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15007201",
+    "complex_name": "신대림자이",
+    "legal_dong": "대림동",
+    "jibun": "1121",
+    "trade_name": "신대림자이1단지",
+    "build_year": 2007,
+    "metadata_address": "서울특별시 영등포구 시흥대로173길 13",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15009201",
+    "complex_name": "문래남성",
+    "legal_dong": "문래동2가",
+    "jibun": "35",
+    "trade_name": "남성",
+    "build_year": 1983,
+    "metadata_address": "서울특별시 영등포구 경인로77길 21",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15009402",
+    "complex_name": "문래삼환",
+    "legal_dong": "문래동4가",
+    "jibun": "43",
+    "trade_name": "문래동삼환",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 영등포구 도림로143길 30",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15009505",
+    "complex_name": "문래두산위브",
+    "legal_dong": "문래동5가",
+    "jibun": "14",
+    "trade_name": "문래두산위브",
+    "build_year": 1988,
+    "metadata_address": "서울특별시 영등포구 선유로9나길 8",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15009606",
+    "complex_name": "문래베어스타운",
+    "legal_dong": "문래동6가",
+    "jibun": "38-1",
+    "trade_name": "문래베어스타운",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 영등포구 선유서로 40",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15009607",
+    "complex_name": "문래현대2차",
+    "legal_dong": "문래동6가",
+    "jibun": "45",
+    "trade_name": "현대2차",
+    "build_year": 1987,
+    "metadata_address": "서울특별시 영등포구 문래로4길 6",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15010202",
+    "complex_name": "양평삼성래미안",
+    "legal_dong": "양평동2가",
+    "jibun": "38-1",
+    "trade_name": "삼성래미안",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 영등포구 영등포로3길 9",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15010203",
+    "complex_name": "양평벽산",
+    "legal_dong": "양평동2가",
+    "jibun": "23",
+    "trade_name": "양평벽산블루밍",
+    "build_year": 1990,
+    "metadata_address": "서울특별시 영등포구 선유서로21길 19",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15010305",
+    "complex_name": "양평현대2차",
+    "legal_dong": "양평동3가",
+    "jibun": "79-4",
+    "trade_name": "현대2차",
+    "build_year": 1990,
+    "metadata_address": "서울특별시 영등포구 선유동2로 29",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15010306",
+    "complex_name": "양평거성파스텔",
+    "legal_dong": "양평동3가",
+    "jibun": "90-1",
+    "trade_name": "거성파스텔",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 영등포구 선유로43가길 24",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15010307",
+    "complex_name": "양평동6차현대아파트",
+    "legal_dong": "양평동3가",
+    "jibun": "101",
+    "trade_name": "양평현대6차",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 영등포구 선유로 207",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15010502",
+    "complex_name": "양평한신",
+    "legal_dong": "양평동5가",
+    "jibun": "76",
+    "trade_name": "양평한신",
+    "build_year": 1996,
+    "metadata_address": "서울특별시 영등포구 양평로24길 9",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15076302",
+    "complex_name": "여의도자이",
+    "legal_dong": "여의도동",
+    "jibun": "47",
+    "trade_name": "여의도자이",
+    "build_year": 2008,
+    "metadata_address": "서울특별시 영등포구 여의동로3길 10",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15076702",
+    "complex_name": "영등포아트자이",
+    "legal_dong": "도림동",
+    "jibun": "821",
+    "trade_name": "영등포아트자이",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 영등포구 도영로 66",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15080002",
+    "complex_name": "당산진로",
+    "legal_dong": "당산동1가",
+    "jibun": "16-1",
+    "trade_name": "진로",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 영등포구 당산로 68",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15080204",
+    "complex_name": "당산한양",
+    "legal_dong": "당산동3가",
+    "jibun": "2-6",
+    "trade_name": "당산한양",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 영등포구 영신로 193",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15080205",
+    "complex_name": "당산동부센트레빌",
+    "legal_dong": "당산동3가",
+    "jibun": "561",
+    "trade_name": "동부센트레빌",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 영등포구 영신로 191",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15080507",
+    "complex_name": "당산현대5차",
+    "legal_dong": "당산동4가",
+    "jibun": "30-1",
+    "trade_name": "당산현대5차",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 영등포구 당산로42길 16",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15080604",
+    "complex_name": "당산유원제일1차",
+    "legal_dong": "당산동4가",
+    "jibun": "91",
+    "trade_name": "유원제일",
+    "build_year": 1983,
+    "metadata_address": "서울특별시 영등포구 국회대로29길 13",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15081001",
+    "complex_name": "래미안당산1차아파트",
+    "legal_dong": "당산동",
+    "jibun": "374",
+    "trade_name": "래미안당산1차",
+    "build_year": 1995,
+    "metadata_address": "서울특별시 영등포구 당산로54길 11",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15081002",
+    "complex_name": "당산강변래미안3차",
+    "legal_dong": "당산동",
+    "jibun": "376",
+    "trade_name": "강변래미안",
+    "build_year": 2002,
+    "metadata_address": "서울특별시 영등포구 버드나루로 130",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15081105",
+    "complex_name": "대림코오롱",
+    "legal_dong": "대림동",
+    "jibun": "607-1",
+    "trade_name": "코오롱",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 영등포구 도영로 2-5",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15081107",
+    "complex_name": "대림현대3차",
+    "legal_dong": "대림동",
+    "jibun": "608-1",
+    "trade_name": "현대3차",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 영등포구 도신로 31",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15081503",
+    "complex_name": "대림우성",
+    "legal_dong": "대림동",
+    "jibun": "696",
+    "trade_name": "우성1",
+    "build_year": 1985,
+    "metadata_address": "서울특별시 영등포구 도림로 187",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15081604",
+    "complex_name": "대림3동현대아파트",
+    "legal_dong": "대림동",
+    "jibun": "785-1",
+    "trade_name": "현대1",
+    "build_year": 1992,
+    "metadata_address": "서울특별시 영등포구 도신로4길 14",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15081606",
+    "complex_name": "대림신동아",
+    "legal_dong": "대림동",
+    "jibun": "777-1",
+    "trade_name": "신동아",
+    "build_year": 1987,
+    "metadata_address": "서울특별시 영등포구 가마산로 312",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15083202",
+    "complex_name": "도림동아에코빌",
+    "legal_dong": "도림동",
+    "jibun": "165-1",
+    "trade_name": "동아에코빌",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 영등포구 도림로 365",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15083404",
+    "complex_name": "문래자이아파트",
+    "legal_dong": "문래동3가",
+    "jibun": "54",
+    "trade_name": "문래자이",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 영등포구 당산로4길 12",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15083602",
+    "complex_name": "문래공원한신",
+    "legal_dong": "문래동3가",
+    "jibun": "77-2",
+    "trade_name": "문래공원한신",
+    "build_year": 1988,
+    "metadata_address": "서울특별시 영등포구 문래로20길 14",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15083603",
+    "complex_name": "문래힐스테이트",
+    "legal_dong": "문래동3가",
+    "jibun": "94",
+    "trade_name": "문래힐스테이트",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 영등포구 문래로 82",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15083703",
+    "complex_name": "신길경남",
+    "legal_dong": "신길동",
+    "jibun": "67-1",
+    "trade_name": "경남",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 영등포구 영등포로 351",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15085404",
+    "complex_name": "신길한성",
+    "legal_dong": "신길동",
+    "jibun": "769-1",
+    "trade_name": "한성",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 영등포구 가마산로 575",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15085805",
+    "complex_name": "신길남서울",
+    "legal_dong": "신길동",
+    "jibun": "3002",
+    "trade_name": "남서울",
+    "build_year": 1974,
+    "metadata_address": "서울특별시 영등포구 신길로 108",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15086004",
+    "complex_name": "신길우성3차아파트",
+    "legal_dong": "신길동",
+    "jibun": "4656",
+    "trade_name": "우성3",
+    "build_year": 1989,
+    "metadata_address": "서울특별시 영등포구 대방천로14길 32",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15086006",
+    "complex_name": "보라매경남아너스빌",
+    "legal_dong": "신길동",
+    "jibun": "4780",
+    "trade_name": "보라매경남아너스빌",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 영등포구 여의대방로 25",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15086007",
+    "complex_name": "신길우성2차",
+    "legal_dong": "신길동",
+    "jibun": "4518",
+    "trade_name": "우성2",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 영등포구 대방천로 180",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15086202",
+    "complex_name": "양평신동아아파트",
+    "legal_dong": "양평동1가",
+    "jibun": "20",
+    "trade_name": "신동아",
+    "build_year": 1982,
+    "metadata_address": "서울특별시 영등포구 영등포로12길 8",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15086603",
+    "complex_name": "양평성원",
+    "legal_dong": "양평동4가",
+    "jibun": "12",
+    "trade_name": "성원",
+    "build_year": 1993,
+    "metadata_address": "서울특별시 영등포구 양평로17길 36",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15088208",
+    "complex_name": "여의도목화",
+    "legal_dong": "여의도동",
+    "jibun": "30",
+    "trade_name": "목화",
+    "build_year": 1977,
+    "metadata_address": "서울특별시 영등포구 여의나루로 126",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15088614",
+    "complex_name": "롯데캐슬엠파이어",
+    "legal_dong": "여의도동",
+    "jibun": "36",
+    "trade_name": "롯데캐슬엠파이어",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 영등포구 의사당대로 127",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15088717",
+    "complex_name": "여의도미성",
+    "legal_dong": "여의도동",
+    "jibun": "37",
+    "trade_name": "미성",
+    "build_year": 1978,
+    "metadata_address": "서울특별시 영등포구 의사당대로 110",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15088915",
+    "complex_name": "롯데캐슬아이비",
+    "legal_dong": "여의도동",
+    "jibun": "43-4",
+    "trade_name": "롯데캐슬아이비",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 영등포구 국제금융로 86",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15088918",
+    "complex_name": "여의도한양",
+    "legal_dong": "여의도동",
+    "jibun": "42",
+    "trade_name": "한양",
+    "build_year": 1975,
+    "metadata_address": "서울특별시 영등포구 국제금융로 79",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15089411",
+    "complex_name": "여의도삼익",
+    "legal_dong": "여의도동",
+    "jibun": "51",
+    "trade_name": "삼익",
+    "build_year": 1974,
+    "metadata_address": "서울특별시 영등포구 국제금융로 109",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15089421",
+    "complex_name": "여의도시범아파트",
+    "legal_dong": "여의도동",
+    "jibun": "50",
+    "trade_name": "시범",
+    "build_year": 1971,
+    "metadata_address": "서울특별시 영등포구 63로 45",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15089510",
+    "complex_name": "여의도은하",
+    "legal_dong": "여의도동",
+    "jibun": "52",
+    "trade_name": "은하",
+    "build_year": 1974,
+    "metadata_address": "서울특별시 영등포구 63로 7",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A15089513",
+    "complex_name": "여의도진주",
+    "legal_dong": "여의도동",
+    "jibun": "54",
+    "trade_name": "진주",
+    "build_year": 1977,
+    "metadata_address": "서울특별시 영등포구 국제금융로 108-6",
+    "evidence": "서울시 OA-15818 단지명·법정동·준공연도와 OA-21275 거래명·법정동·건축연도를 대조. 이름 표기 차이는 명시적 별칭으로 고정. 이후 동일 법정동·지번·거래명·연도를 모두 확인.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  }
+]
