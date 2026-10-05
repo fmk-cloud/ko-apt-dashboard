@@ -142,12 +142,14 @@ footer{font-size:8px;color:#96a0aa;margin:8px 3px 0;line-height:1.5}
 #tbody .changeAmount{font-size:16px;font-weight:950;letter-spacing:-.035em;line-height:1}
 @media(max-width:760px){.restoreModal{padding:18px}.restoreHeading{gap:8px;margin-bottom:14px}.restoreHeading .modalTitle{font-size:26px}.restoreHint{font-size:12px}.restoreRow{grid-template-columns:32px 1fr 32px;gap:9px;padding:12px 9px}.restoreControl{width:32px;height:32px;font-size:22px}.restorePin span{font-size:22px}.restoreChip{font-size:12px;padding:3px 7px}.restoreList{border-radius:16px}}
 
+@media(min-width:761px){.filterBoard{align-items:stretch}.filterGridNew .filterLabel{line-height:12px}.filterResetRow{padding-top:0;margin-top:15px;justify-content:space-between;gap:4px}.filterResetRow>button{height:36px;flex:0 0 36px}}
+.sampleTable tr.priorEvidence td{background:#fff6e7;color:#9b6423;font-weight:700}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k APT Dashboard v21 · 영등포구 <span id="updatedAt"></span></div>
+    <div class="titlebar">k.apt_v22 · 영등포구 <span id="updatedAt"></span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -262,8 +264,8 @@ footer{font-size:8px;color:#96a0aa;margin:8px 3px 0;line-height:1.5}
     <div class="card detailPanel"><div class="detailPanelTitle" id="confT"></div><ul class="reasonList" id="reasons"></ul></div>
     <div class="card detailPanel featureEvidence" id="farEvidence"></div>
     <div class="card detailPanel"><div class="featureEvidence" id="jeonseEvidence"></div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>전세금</th><th>계약구분</th></tr></thead><tbody id="jeonseSamples"></tbody></table></div><p class="featureEvidence" id="jeonseFootnote"></p></div>
-    <div class="card detailPanel"><div class="detailPanelTitle">시작 기준가 선정월 거래</div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>가격</th><th>월차</th></tr></thead><tbody id="oldSamples"></tbody></table></div></div>
     <div class="card detailPanel"><div class="detailPanelTitle">최근 기준가 선정월 거래</div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>가격</th><th>월차</th></tr></thead><tbody id="newSamples"></tbody></table></div></div>
+    <div class="card detailPanel"><div class="detailPanelTitle">시작 기준가 선정월 거래</div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>가격</th><th>월차</th></tr></thead><tbody id="oldSamples"></tbody></table></div></div>
   </div>
 </div>
 
@@ -808,7 +810,7 @@ function priorHigherTrade(c,e){
     const rows=rowsInMonth(series,m);
     if(!rows.length)continue;
     const high=Math.max(...rows.map(x=>x.price));
-    if(high>e.value)return {month:m,price:high,diffPct:(high/e.value-1)*100};
+    if(high>e.value)return {month:m,price:high,diffPct:(high/e.value-1)*100,samples:rows.filter(t=>t.price>e.value)};
   }
   return null;
 }
@@ -863,7 +865,8 @@ function confidence(c,oldE,newE){
   if(priorHigh){
     severity=Math.max(severity,1);
     shortReasons.unshift(`${Number(priorHigh.month.slice(5))}월 거래가 더 높음`);
-    addReason(`시작가 대표성 주의: ${fmtMonth(priorHigh.month)} 최고 ${money(priorHigh.price)}가 시작 기준가 ${money(oldE.value)}보다 높음`,'important');
+    const alternateChange=newE.value-priorHigh.price,alternateRate=alternateChange/priorHigh.price*100;
+    addReason(`시작가 대표성 주의: ${fmtMonth(priorHigh.month)} 최고 ${money(priorHigh.price)}가 시작 기준가 ${money(oldE.value)}보다 높음 (${money(priorHigh.price)}을 기준으로 할 경우 상승폭 ${signedMoney(alternateChange)}, 상승률 ${signedPct(alternateRate)})`,'important');
   }
 
   if(oldE.selectedMonth===newE.selectedMonth){
@@ -994,7 +997,8 @@ window.openDetail=function(index){
     const cls=item.kind==='important'?'reasonImportant':item.kind==='exclude'?'reasonExclude':item.kind==='muted'?'reasonMuted':'';
     return `<li class="${cls}">${esc(item.text)}</li>`;
   }).join('');
-  $('#oldSamples').innerHTML=sampleHtml(r.oldE,oldTarget);$('#newSamples').innerHTML=sampleHtml(r.newE,newTarget);$('#detailWrap').classList.add('show');
+  const evidence=priorHigherTrade(c,r.oldE);
+  $('#oldSamples').innerHTML=sampleHtml(r.oldE,oldTarget)+(evidence?evidence.samples.map(t=>`<tr class="priorEvidence"><td>${esc(t.date)}</td><td>${t.floor}층${t.aptDong?' · '+esc(t.aptDong)+'동':''}</td><td>${t.area.toFixed(2)}㎡</td><td>${money(t.price)}</td><td>대표성 참고 · 이전 고가${t.price===evidence.price?' · 비교 기준':''}</td></tr>`).join(''):'');$('#newSamples').innerHTML=sampleHtml(r.newE,newTarget);$('#detailWrap').classList.add('show');
 };
 
 async function init(){
