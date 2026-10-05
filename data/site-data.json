@@ -3,7 +3,7 @@
     "status": "live",
     "provider": "seoul_public",
     "source_verified": true,
-    "updated_at": "2026-10-05T16:51:01+09:00",
+    "updated_at": "2026-10-05T23:03:14+09:00",
     "current_month": "2026-09",
     "min_month": "2024-01",
     "loaded_regions": [
@@ -13,7 +13,7 @@
     "minimum_households": 300,
     "metadata_status": "refreshed",
     "refreshed_from": "2024-01",
-    "metadata_checked_at": "2026-10-05T16:51:01+09:00",
+    "metadata_checked_at": "2026-10-05T23:03:14+09:00",
     "older_history_frozen": false,
     "schedule": "매월 1일 04:00 Asia/Seoul",
     "sources": {
@@ -35,7 +35,7 @@
     "jeonse_to": "2026-09",
     "feature_update": {
       "status": "success",
-      "checked_at": "2026-10-05T16:52:19+09:00"
+      "checked_at": "2026-10-05T23:04:00+09:00"
     },
     "catalog_exclusions": [
       {
@@ -70,7 +70,7 @@
       "legal_dong": "여의도동",
       "official_name": "브라이튼여의도아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "브라이튼여의도아파트"
       ],
@@ -1099,7 +1099,7 @@
       "far_info": {
         "status": "verified",
         "value": 960.41,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "1000000000000002263087",
@@ -1628,7 +1628,7 @@
           215000,
           "신규",
           "",
-          "26.09~28.09"
+          "26.10~28.10"
         ],
         [
           "2026-06-01",
@@ -1637,7 +1637,7 @@
           215000,
           "신규",
           "",
-          "26.10~28.10"
+          "26.09~28.09"
         ],
         [
           "2026-06-15",
@@ -1696,7 +1696,7 @@
       "legal_dong": "신길동",
       "official_name": "더샵파크프레스티지",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "더샵파크프레스티지"
       ],
@@ -2512,7 +2512,7 @@
       "far_info": {
         "status": "verified",
         "value": 251.08,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "1000000000000001507817",
@@ -4108,7 +4108,7 @@
       "legal_dong": "양평동1가",
       "official_name": "영등포 중흥S-클래스",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "영등포 중흥S-클래스"
       ],
@@ -4636,7 +4636,7 @@
       "far_info": {
         "status": "verified",
         "value": 399.86,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100276708",
@@ -5629,7 +5629,7 @@
       "legal_dong": "신길동",
       "official_name": "신길파크자이",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길파크자이"
       ],
@@ -6274,7 +6274,7 @@
       "far_info": {
         "status": "verified",
         "value": 254.47,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100278508",
@@ -7492,7 +7492,7 @@
       "legal_dong": "신길동",
       "official_name": "힐스테이트클래시안아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "힐스테이트클래시안아파트"
       ],
@@ -9118,7 +9118,7 @@
       "far_info": {
         "status": "verified",
         "value": 255.35,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100273708",
@@ -11879,7 +11879,7 @@
           68250,
           "갱신",
           "○",
-          "26.03~28.02"
+          "26.03~28.03"
         ],
         [
           "2026-02-06",
@@ -11888,7 +11888,7 @@
           68250,
           "갱신",
           "○",
-          "26.03~28.03"
+          "26.03~28.02"
         ],
         [
           "2026-02-06",
@@ -12451,7 +12451,7 @@
       "legal_dong": "대림동",
       "official_name": "e편한세상 영등포 아델포레",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "e편한세상 영등포 아델포레"
       ],
@@ -13789,7 +13789,7 @@
       "far_info": {
         "status": "verified",
         "value": 248.63,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100263413",
@@ -16384,7 +16384,7 @@
       "legal_dong": "당산동5가",
       "official_name": "당산센트럴아이파크",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산센트럴아이파크"
       ],
@@ -17281,7 +17281,7 @@
       "far_info": {
         "status": "verified",
         "value": 299.99,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100271088",
@@ -19660,7 +19660,7 @@
       "legal_dong": "신길동",
       "official_name": "신길센트럴자이",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길센트럴자이"
       ],
@@ -21106,7 +21106,7 @@
       "far_info": {
         "status": "verified",
         "value": 266.97,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100269608",
@@ -24016,7 +24016,7 @@
       "legal_dong": "신길동",
       "official_name": "보라매 sk뷰",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "보라매 sk뷰"
       ],
@@ -26146,7 +26146,7 @@
       "far_info": {
         "status": "verified",
         "value": 264.48,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100266049",
@@ -29834,7 +29834,7 @@
           88000,
           "신규",
           "",
-          "26.04~28.04"
+          "26.05~28.05"
         ],
         [
           "2026-02-28",
@@ -29843,7 +29843,7 @@
           88000,
           "신규",
           "",
-          "26.05~28.05"
+          "26.04~28.04"
         ],
         [
           "2026-02-28",
@@ -30424,7 +30424,7 @@
       "legal_dong": "신길동",
       "official_name": "신길센트럴아이파크",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길센트럴아이파크"
       ],
@@ -31195,7 +31195,7 @@
       "far_info": {
         "status": "verified",
         "value": 255.66,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100253649",
@@ -32975,7 +32975,7 @@
           75000,
           "신규",
           "",
-          "26.07~28.07"
+          "26.08~28.08"
         ],
         [
           "2026-05-02",
@@ -32984,7 +32984,7 @@
           75000,
           "신규",
           "",
-          "26.08~28.08"
+          "26.07~28.07"
         ],
         [
           "2026-05-14",
@@ -33115,7 +33115,7 @@
       "legal_dong": "영등포동7가",
       "official_name": "아크로타워스퀘어",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "아크로타워스퀘어"
       ],
@@ -34714,7 +34714,7 @@
       "far_info": {
         "status": "verified",
         "value": 369.57,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100244868",
@@ -37849,7 +37849,7 @@
       "legal_dong": "신길동",
       "official_name": "래미안에스티움",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "래미안에스티움"
       ],
@@ -39862,7 +39862,7 @@
       "far_info": {
         "status": "verified",
         "value": 252.83,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100242602",
@@ -41917,7 +41917,7 @@
       "legal_dong": "신길동",
       "official_name": "래미안프레비뉴",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "래미안프레비뉴"
       ],
@@ -42949,7 +42949,7 @@
       "far_info": {
         "status": "verified",
         "value": 232.0,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100236906",
@@ -44545,7 +44545,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도수정",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도수정"
       ],
@@ -44857,7 +44857,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011727",
@@ -45400,7 +45400,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도공작",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도공작"
       ],
@@ -45631,7 +45631,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011392",
@@ -46201,7 +46201,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도대교",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도대교"
       ],
@@ -46666,7 +46666,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201716",
@@ -47659,7 +47659,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도삼부",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도삼부"
       ],
@@ -48322,7 +48322,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "대지·세대수 일치 대장 없음"
       },
@@ -50068,7 +50068,7 @@
       "legal_dong": "영등포동",
       "official_name": "영등포푸르지오",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "영등포푸르지오"
       ],
@@ -52711,7 +52711,7 @@
       "far_info": {
         "status": "verified",
         "value": 249.98,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011244",
@@ -57889,7 +57889,7 @@
       "legal_dong": "영등포동7가",
       "official_name": "영등포경남아너스빌",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "영등포경남아너스빌"
       ],
@@ -58822,7 +58822,7 @@
       "far_info": {
         "status": "verified",
         "value": 360.41,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011714",
@@ -60203,7 +60203,7 @@
       "legal_dong": "영등포동8가",
       "official_name": "영등포삼환",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "영등포삼환"
       ],
@@ -61019,7 +61019,7 @@
       "far_info": {
         "status": "verified",
         "value": 369.91,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011073",
@@ -62471,7 +62471,7 @@
       "legal_dong": "영등포동8가",
       "official_name": "당산푸르지오",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산푸르지오"
       ],
@@ -63035,7 +63035,7 @@
       "far_info": {
         "status": "verified",
         "value": 355.07,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201407",
@@ -63884,7 +63884,7 @@
       "legal_dong": "당산동2가",
       "official_name": "당산동대우",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산동대우"
       ],
@@ -64646,7 +64646,7 @@
       "far_info": {
         "status": "verified",
         "value": 399.45,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201678",
@@ -66358,7 +66358,7 @@
       "legal_dong": "당산동2가",
       "official_name": "당산2가현대",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산2가현대"
       ],
@@ -67264,7 +67264,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201680",
@@ -69112,7 +69112,7 @@
       "legal_dong": "당산동4가",
       "official_name": "당산2차삼성",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산2차삼성"
       ],
@@ -69622,7 +69622,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "대지·세대수 일치 대장 없음"
       },
@@ -70549,7 +70549,7 @@
       "legal_dong": "당산동4가",
       "official_name": "당산현대3차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산현대3차"
       ],
@@ -71203,7 +71203,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201697",
@@ -72610,7 +72610,7 @@
       "legal_dong": "당산동5가",
       "official_name": "당산상아",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산상아"
       ],
@@ -72624,7 +72624,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "단지와 일치하는 총괄표제부 없음"
       },
@@ -72650,7 +72650,7 @@
       "legal_dong": "당산동5가",
       "official_name": "당산유원제일2차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산유원제일2차"
       ],
@@ -73115,7 +73115,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011208",
@@ -73679,7 +73679,7 @@
       "legal_dong": "당산동5가",
       "official_name": "당산동1차효성아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산동1차효성아파트"
       ],
@@ -74342,7 +74342,7 @@
       "far_info": {
         "status": "verified",
         "value": 280.59,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201891",
@@ -75416,7 +75416,7 @@
       "legal_dong": "당산동5가",
       "official_name": "당산삼성래미안",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산삼성래미안"
       ],
@@ -76772,7 +76772,7 @@
       "far_info": {
         "status": "verified",
         "value": 299.71,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102012076",
@@ -78529,7 +78529,7 @@
       "legal_dong": "신길동",
       "official_name": "신길우성4차아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길우성4차아파트"
       ],
@@ -78913,7 +78913,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011440",
@@ -79438,7 +79438,7 @@
       "legal_dong": "신길동",
       "official_name": "신길우성5차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길우성5차"
       ],
@@ -79687,7 +79687,7 @@
       "far_info": {
         "status": "verified",
         "value": 257.15,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011446",
@@ -80131,7 +80131,7 @@
       "legal_dong": "신길동",
       "official_name": "신길건영",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길건영"
       ],
@@ -80434,7 +80434,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011129",
@@ -81148,7 +81148,7 @@
       "legal_dong": "신길동",
       "official_name": "신길1차우성아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길1차우성아파트"
       ],
@@ -82018,7 +82018,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011106",
@@ -83456,7 +83456,7 @@
           40000,
           "신규",
           "",
-          "26.09~28.09"
+          "26.10~28.10"
         ],
         [
           "2026-06-25",
@@ -83465,7 +83465,7 @@
           40000,
           "신규",
           "",
-          "26.10~28.10"
+          "26.09~28.09"
         ],
         [
           "2026-06-27",
@@ -83578,7 +83578,7 @@
       "legal_dong": "신길동",
       "official_name": "신길삼성래미안",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길삼성래미안"
       ],
@@ -84610,7 +84610,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "대지·세대수 일치 대장 없음"
       },
@@ -86149,7 +86149,7 @@
       "legal_dong": "신길동",
       "official_name": "신길삼성",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길삼성"
       ],
@@ -86632,7 +86632,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201414",
@@ -87607,7 +87607,7 @@
       "legal_dong": "신길동",
       "official_name": "신길삼환",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길삼환"
       ],
@@ -89044,7 +89044,7 @@
       "far_info": {
         "status": "verified",
         "value": 246.84,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011442",
@@ -91045,7 +91045,7 @@
       "legal_dong": "문래동2가",
       "official_name": "문래남성",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래남성"
       ],
@@ -91573,7 +91573,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201579",
@@ -92125,7 +92125,7 @@
       "legal_dong": "문래동4가",
       "official_name": "문래삼환",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래삼환"
       ],
@@ -92464,7 +92464,7 @@
       "far_info": {
         "status": "verified",
         "value": 356.73,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201780",
@@ -93052,7 +93052,7 @@
       "legal_dong": "문래동5가",
       "official_name": "문래두산위브",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래두산위브"
       ],
@@ -93346,7 +93346,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102012023",
@@ -93997,7 +93997,7 @@
       "legal_dong": "문래동6가",
       "official_name": "문래베어스타운",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래베어스타운"
       ],
@@ -94408,7 +94408,7 @@
       "far_info": {
         "status": "verified",
         "value": 332.41,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201427",
@@ -94753,7 +94753,7 @@
       "legal_dong": "문래동6가",
       "official_name": "문래현대2차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래현대2차"
       ],
@@ -95479,7 +95479,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201429",
@@ -96376,7 +96376,7 @@
           2,
           43000,
           "갱신",
-          "○",
+          "",
           "26.08~28.08"
         ],
         [
@@ -96385,7 +96385,7 @@
           2,
           43000,
           "갱신",
-          "",
+          "○",
           "26.08~28.08"
         ],
         [
@@ -96481,7 +96481,7 @@
       "legal_dong": "양평동2가",
       "official_name": "양평삼성래미안",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평삼성래미안"
       ],
@@ -97126,7 +97126,7 @@
       "far_info": {
         "status": "verified",
         "value": 361.31,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201542",
@@ -97885,7 +97885,7 @@
       "legal_dong": "양평동2가",
       "official_name": "양평벽산",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평벽산"
       ],
@@ -98485,7 +98485,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201541",
@@ -99559,7 +99559,7 @@
       "legal_dong": "양평동3가",
       "official_name": "양평현대2차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평현대2차"
       ],
@@ -99880,7 +99880,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011780",
@@ -100423,7 +100423,7 @@
       "legal_dong": "양평동3가",
       "official_name": "양평거성파스텔",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평거성파스텔"
       ],
@@ -100978,7 +100978,7 @@
       "far_info": {
         "status": "verified",
         "value": 365.57,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201172",
@@ -101683,7 +101683,7 @@
       "legal_dong": "양평동3가",
       "official_name": "양평동6차현대아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평동6차현대아파트"
       ],
@@ -102958,7 +102958,7 @@
       "far_info": {
         "status": "verified",
         "value": 371.77,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201173",
@@ -104185,7 +104185,7 @@
       "legal_dong": "양평동5가",
       "official_name": "양평한신",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평한신"
       ],
@@ -105811,7 +105811,7 @@
       "far_info": {
         "status": "verified",
         "value": 282.68,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201164",
@@ -108392,7 +108392,7 @@
           52500,
           "갱신",
           "○",
-          "26.08~28.08"
+          "26.06~28.06"
         ],
         [
           "2026-05-02",
@@ -108401,7 +108401,7 @@
           52500,
           "갱신",
           "○",
-          "26.06~28.06"
+          "26.08~28.08"
         ],
         [
           "2026-05-04",
@@ -108766,7 +108766,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도자이",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도자이"
       ],
@@ -109042,7 +109042,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "단지와 일치하는 총괄표제부 없음"
       },
@@ -109474,7 +109474,7 @@
       "legal_dong": "도림동",
       "official_name": "영등포아트자이",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "영등포아트자이"
       ],
@@ -110362,7 +110362,7 @@
       "far_info": {
         "status": "verified",
         "value": 249.31,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201100222087",
@@ -111760,7 +111760,7 @@
       "legal_dong": "당산동1가",
       "official_name": "당산진로",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산진로"
       ],
@@ -112360,7 +112360,7 @@
       "far_info": {
         "status": "verified",
         "value": 353.65,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201855",
@@ -113470,7 +113470,7 @@
       "legal_dong": "당산동3가",
       "official_name": "당산한양",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산한양"
       ],
@@ -113818,7 +113818,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201588",
@@ -114488,7 +114488,7 @@
       "legal_dong": "당산동3가",
       "official_name": "당산동부센트레빌",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산동부센트레빌"
       ],
@@ -114944,7 +114944,7 @@
       "far_info": {
         "status": "verified",
         "value": 276.94,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011978",
@@ -115488,7 +115488,7 @@
       "legal_dong": "당산동4가",
       "official_name": "당산현대5차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산현대5차"
       ],
@@ -116835,7 +116835,7 @@
       "far_info": {
         "status": "verified",
         "value": 373.35,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201696",
@@ -119132,7 +119132,7 @@
       "legal_dong": "당산동4가",
       "official_name": "당산유원제일1차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산유원제일1차"
       ],
@@ -119192,7 +119192,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "단지와 일치하는 총괄표제부 없음"
       },
@@ -119218,7 +119218,7 @@
       "legal_dong": "당산동",
       "official_name": "래미안당산1차아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "래미안당산1차아파트"
       ],
@@ -119458,7 +119458,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "대장 용적률과 산정면적 비율 불일치",
         "ledger_id": "102011221",
@@ -120264,7 +120264,7 @@
       "legal_dong": "당산동",
       "official_name": "당산강변래미안3차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "당산강변래미안3차"
       ],
@@ -121341,7 +121341,7 @@
       "far_info": {
         "status": "verified",
         "value": 336.57,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011222",
@@ -122774,7 +122774,7 @@
       "legal_dong": "대림동",
       "official_name": "대림코오롱",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "대림코오롱"
       ],
@@ -123437,7 +123437,7 @@
       "far_info": {
         "status": "verified",
         "value": 352.56,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011081",
@@ -124151,7 +124151,7 @@
       "legal_dong": "대림동",
       "official_name": "대림현대3차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "대림현대3차"
       ],
@@ -126092,7 +126092,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "대지·세대수 일치 대장 없음"
       },
@@ -128333,7 +128333,7 @@
       "legal_dong": "대림동",
       "official_name": "대림우성",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "대림우성"
       ],
@@ -128870,7 +128870,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011542",
@@ -128981,7 +128981,7 @@
       "legal_dong": "대림동",
       "official_name": "대림3동현대아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "대림3동현대아파트"
       ],
@@ -129698,7 +129698,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011084",
@@ -130214,7 +130214,7 @@
       "legal_dong": "대림동",
       "official_name": "대림신동아",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "대림신동아"
       ],
@@ -130859,7 +130859,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201395",
@@ -131951,7 +131951,7 @@
       "legal_dong": "도림동",
       "official_name": "도림동아에코빌",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "도림동아에코빌"
       ],
@@ -132254,7 +132254,7 @@
       "far_info": {
         "status": "verified",
         "value": 379.48,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201519",
@@ -132815,7 +132815,7 @@
       "legal_dong": "문래동3가",
       "official_name": "문래자이아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래자이아파트"
       ],
@@ -133784,7 +133784,7 @@
       "far_info": {
         "status": "verified",
         "value": 249.79,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011744",
@@ -135308,7 +135308,7 @@
       "legal_dong": "문래동3가",
       "official_name": "문래공원한신",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래공원한신"
       ],
@@ -135935,7 +135935,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011528",
@@ -137027,7 +137027,7 @@
       "legal_dong": "문래동3가",
       "official_name": "문래힐스테이트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "문래힐스테이트"
       ],
@@ -137672,7 +137672,7 @@
       "far_info": {
         "status": "verified",
         "value": 264.57,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011729",
@@ -138611,7 +138611,7 @@
       "legal_dong": "신길동",
       "official_name": "신길경남",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길경남"
       ],
@@ -139166,7 +139166,7 @@
       "far_info": {
         "status": "verified",
         "value": 345.5,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011105",
@@ -139745,7 +139745,7 @@
       "legal_dong": "신길동",
       "official_name": "신길한성",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길한성"
       ],
@@ -140210,7 +140210,7 @@
       "far_info": {
         "status": "verified",
         "value": 251.92,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011441",
@@ -140699,7 +140699,7 @@
       "legal_dong": "신길동",
       "official_name": "신길남서울",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길남서울"
       ],
@@ -140975,7 +140975,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "단지와 일치하는 총괄표제부 없음"
       },
@@ -141001,7 +141001,7 @@
       "legal_dong": "신길동",
       "official_name": "신길우성3차아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길우성3차아파트"
       ],
@@ -141538,7 +141538,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011326",
@@ -142666,7 +142666,7 @@
       "legal_dong": "신길동",
       "official_name": "보라매경남아너스빌",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "보라매경남아너스빌"
       ],
@@ -143455,7 +143455,7 @@
       "far_info": {
         "status": "verified",
         "value": 296.24,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "102011334",
@@ -144376,7 +144376,7 @@
       "legal_dong": "신길동",
       "official_name": "신길우성2차",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "신길우성2차"
       ],
@@ -145561,7 +145561,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201412",
@@ -147139,7 +147139,7 @@
       "legal_dong": "양평동1가",
       "official_name": "양평신동아아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평신동아아파트"
       ],
@@ -147586,7 +147586,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011771",
@@ -149110,7 +149110,7 @@
       "legal_dong": "양평동4가",
       "official_name": "양평성원",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "양평성원"
       ],
@@ -149413,7 +149413,7 @@
       "far_info": {
         "status": "verified",
         "value": 344.6,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "주소·세대수 일치 총괄표제부",
         "ledger_id": "10201971",
@@ -149929,7 +149929,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도목화",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도목화"
       ],
@@ -150115,7 +150115,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "102011397",
@@ -151099,7 +151099,7 @@
       "legal_dong": "여의도동",
       "official_name": "롯데캐슬엠파이어",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "롯데캐슬엠파이어"
       ],
@@ -151303,7 +151303,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "단지와 일치하는 총괄표제부 없음"
       },
@@ -151789,7 +151789,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도미성",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도미성"
       ],
@@ -152056,7 +152056,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "대지·세대수 일치 대장 없음"
       },
@@ -153046,7 +153046,7 @@
       "legal_dong": "여의도동",
       "official_name": "롯데캐슬아이비",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "롯데캐슬아이비"
       ],
@@ -153268,7 +153268,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "단지와 일치하는 총괄표제부 없음"
       },
@@ -153700,7 +153700,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도한양",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도한양"
       ],
@@ -154012,7 +154012,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201850",
@@ -154600,7 +154600,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도삼익",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도삼익"
       ],
@@ -154831,7 +154831,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201851",
@@ -155374,7 +155374,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도시범아파트",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도시범아파트"
       ],
@@ -156658,7 +156658,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "대지·세대수 일치 대장 없음"
       },
@@ -160087,7 +160087,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도은하",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도은하"
       ],
@@ -160246,7 +160246,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "공식 용적률 값 없음 또는 0",
         "ledger_id": "10201852",
@@ -160825,7 +160825,7 @@
       "legal_dong": "여의도동",
       "official_name": "여의도진주",
       "metadata_source": "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
-      "metadata_checked_at": "2026-10-05T16:50:48+09:00",
+      "metadata_checked_at": "2026-10-05T23:03:09+09:00",
       "aliases": [
         "여의도진주"
       ],
@@ -161200,7 +161200,7 @@
       "far_info": {
         "status": "unconfirmed",
         "value": null,
-        "checked_at": "2026-10-05T16:52:19+09:00",
+        "checked_at": "2026-10-05T23:03:59+09:00",
         "source": "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
         "reason": "단지와 일치하는 총괄표제부 없음"
       },
