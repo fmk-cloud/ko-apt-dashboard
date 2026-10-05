@@ -19,7 +19,7 @@
       "lookback_months": 3,
       "same_area_tolerance_m2": 0.1,
       "representative": "median_latest_month",
-      "anchor": "selected_end_month",
+      "anchor": "selected_start_month",
       "sale_max_month_difference": 3
     }
   }
