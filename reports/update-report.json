@@ -1,7 +1,7 @@
 {
   "status": "success",
   "published": true,
-  "finished_at": "2026-10-05T10:32:36+09:00",
+  "finished_at": "2026-10-05T13:36:26+09:00",
   "complex_count": 82,
   "trade_count": 6534,
   "stats": {
@@ -1336,7 +1336,7 @@
   "notice": "제외/미연결 목록에는 300세대 미만과 대상 외 단지도 포함됩니다. 이 목록의 거래 상세는 저장하지 않습니다.",
   "source_sha256": {
     "metadata": "3f9d8ec5c86b7b4437e4d6977abfd6b8f3108d58c56de5362c93d701d03d6cc8",
-    "trades": "936aa0b2d468ff5d0ff6c7e526698cd604bdef2f2970a76a5cc022955309fc31"
+    "trades": "01c2f8328baff006ccea92625ffe5a705340ecdb95df79635347f3b69befd968"
   },
   "catalog_exclusions": [
     {
