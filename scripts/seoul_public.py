@@ -6,6 +6,8 @@ from pathlib import Path
 from pipeline import (DataError,request_bytes,now,read_json,atomic_json,normalize_master,
                       month_range,last_closed_month,validate_dataset,norm)
 from embed_data import embedded_html
+from features_data import enrich
+import copy
 
 EXPORT='https://datafile.seoul.go.kr/bigfile/iot/sheet/json/download.do'
 MASTER='https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do'
@@ -117,7 +119,7 @@ def collect(catalog,raw,bindings,old,start,end):
             'notice':'제외/미연결 목록에는 300세대 미만과 대상 외 단지도 포함됩니다. 이 목록의 거래 상세는 저장하지 않습니다.'}
     return d,report
 
-def run_public(root,fetch=request_bytes,master_rows=None,trade_rows=None):
+def run_public(root,fetch=request_bytes,master_rows=None,trade_rows=None,feature_fixtures=None):
     root=Path(root);old=read_json(root/'data/site-data.json');previous=read_json(root/'data/complexes.json')
     try:
         hashes={}
@@ -130,6 +132,28 @@ def run_public(root,fetch=request_bytes,master_rows=None,trade_rows=None):
         settings=read_json(root/'config/settings.json');end=last_closed_month()
         d,report=collect(catalog,trade_rows,read_json(root/'config/seoul-bindings.json'),old,settings['start_month'],end)
         report['source_sha256']=hashes
+        candidate=copy.deepcopy(d)
+        try:
+            feature_report=enrich(root,candidate,fetch,feature_fixtures)
+            d=candidate
+            d['meta']['feature_update']={'status':'success','checked_at':now()}
+        except DataError as error:
+            if not old.get('meta',{}).get('features',{}).get('gap'):raise
+            old_by_id={c['id']:c for c in old['complexes']}
+            for c in d['complexes']:
+                prior=old_by_id.get(c['id'],{})
+                for key in ('far','far_info','far_source','jeonse_tx','jeonse_status'):
+                    c[key]=copy.deepcopy(prior.get(key,[] if key=='jeonse_tx' else None))
+            for key in ('features','feature_sources','far_verified_count','jeonse_rows','jeonse_from','jeonse_to'):
+                d['meta'][key]=copy.deepcopy(old['meta'].get(key))
+            d['meta']['far_verified_count']=sum(c.get('far_info',{}).get('status')=='verified' for c in d['complexes'] if c.get('far_info'))
+            d['meta']['jeonse_rows']=sum(len(c['jeonse_tx']) for c in d['complexes'])
+            d['meta']['note']='매매 갱신 완료. 전세·용적률은 갱신 실패로 이전 정상 자료를 유지합니다.'
+            d['meta']['feature_update']={'status':'preserved','checked_at':old['meta'].get('feature_update',{}).get('checked_at'),
+                'attempted_at':now(),'reason':str(error)}
+            feature_report={'status':'preserved','reason':str(error)}
+            print('전세·용적률 갱신 실패: 직전 정상 자료 유지 — '+str(error),flush=True)
+        report['features']=feature_report
         report['catalog_exclusions']=exclusions
         d['meta']['catalog_exclusions']=exclusions
         html=embedded_html((root/'index.html').read_text(encoding='utf-8'),d)

@@ -36,8 +36,8 @@ def request_bytes(url, data=None, attempts=3):
     # Do not include exception URLs/messages: those can contain service keys.
     for attempt in range(attempts):
         try:
-            req=urllib.request.Request(url,data=data,headers={'User-Agent':'k-APT-YDP/19'})
-            with urllib.request.urlopen(req,timeout=35) as r: return r.read()
+            req=urllib.request.Request(url,data=data,headers={'User-Agent':'k-APT-YDP/20','Referer':'https://data.seoul.go.kr/'})
+            with urllib.request.urlopen(req,timeout=90) as r: return r.read()
         except urllib.error.HTTPError as e:
             if e.code not in (408,429,500,502,503,504): raise DataError(f'HTTP {e.code}: 인증·이용승인·접속 상태 확인') from None
             reason=f'HTTP {e.code}'
@@ -85,7 +85,7 @@ def normalize_master(rows, previous):
         c['metadata_type']=kind;c['tenure']=tenure
         c.setdefault('completed',''); c.setdefault('far',None); c.setdefault('station',''); c.setdefault('station_display','')
         c.setdefault('naver','https://new.land.naver.com/search?sk='+urllib.parse.quote(c['name']))
-        c.pop('tx',None);result.append(c)
+        c.pop('tx',None);c.pop('jeonse_tx',None);result.append(c)
     if unknown: raise DataError(f'영등포구 {len(unknown)}개 단지 세대수 미확인: 목록을 축소하지 않고 중단')
     if len(result)<max(50,int(len(previous)*.8)): raise DataError('영등포구 기준 단지 목록 급감: 기존 목록 유지')
     return sorted(result,key=lambda c:c['id'])

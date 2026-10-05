@@ -7,8 +7,20 @@
   "update_day": 1,
   "update_hour": 4,
   "strategy": "seoul-public-snapshot",
-  "unsupported_features": [
-    "far",
-    "gap"
-  ]
+  "unsupported_features": [],
+  "features": {
+    "far": {
+      "source": "OA-23051",
+      "require_household_match": true
+    },
+    "jeonse": {
+      "source": "OA-21276",
+      "new_contracts_only_by_default": true,
+      "lookback_months": 3,
+      "same_area_tolerance_m2": 0.1,
+      "representative": "median_latest_month",
+      "anchor": "selected_end_month",
+      "sale_max_month_difference": 3
+    }
+  }
 }
