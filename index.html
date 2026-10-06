@@ -144,15 +144,30 @@ footer{font-size:8px;color:#96a0aa;margin:8px 3px 0;line-height:1.5}
 
 @media(min-width:761px){.filterBoard{align-items:stretch}.filterGridNew .filterLabel{line-height:12px}.filterResetRow{padding-top:0;margin-top:15px;justify-content:space-between;gap:4px}.filterResetRow>button{height:36px;flex:0 0 36px}}
 .sampleTable tr.priorEvidence td{background:#fff6e7;color:#9b6423;font-weight:700}
-/* v23: preserve restore dialog proportions at half size. */
-.restoreModal{zoom:.5}
+/* Restore chooser and dashboard viewport. */
+/* v24: fixed dashboard viewport, anchored restore chooser. */
+html,body{height:100%;overflow:hidden}
+.wrap{height:100vh;height:100dvh;display:flex;flex-direction:column;min-height:0;padding-bottom:10px}
+.topMetaRow,.dataAudit,footer{flex-shrink:0}
+.dashboardTop{flex:0 1 auto;min-height:0;max-height:calc(100dvh - 210px);overflow:auto}
+.rankSection{display:flex;flex-direction:column;flex:1;min-height:100px}
+.rankHeading{flex-shrink:0}
+.tableCard{display:flex;flex:1;min-height:0}
+.tableWrap{flex:1;min-height:0;max-height:none;overscroll-behavior:contain}
+.auditPanel{max-height:min(320px,25vh)}
+.favHeader{justify-content:flex-start;gap:16px;flex-wrap:wrap}
+.favTools{justify-content:flex-start}
+.restoreModal{zoom:.62;position:fixed;width:1080px;max-width:calc((100vw - 16px)/.62);display:flex;flex-direction:column;overflow:hidden}
+.restoreModal .modalHead,.restoreStatus{flex-shrink:0}
+.restoreList{min-height:0;max-height:none;flex-shrink:1}
+@media(max-width:760px){.wrap{padding:10px 12px}.favHeader{flex-direction:row;gap:10px}.dashboardTop{max-height:55dvh}.favoritesCard{min-height:104px}.favoriteHost{min-height:40px;max-height:90px;overflow:auto}.rankSection{min-height:260px}.rankHeading .tableSub{max-width:100%}}
 .referenceMapWrap{border:0;width:100%;cursor:zoom-in}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.apt_v23 · 영등포구 <span id="updatedAt"></span></div>
+    <div class="titlebar">k.apt_v24 · 영등포구 <span id="updatedAt"></span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -191,7 +206,7 @@ footer{font-size:8px;color:#96a0aa;margin:8px 3px 0;line-height:1.5}
       </div>
       <div class="favoriteHost" id="favoriteHost"></div>
       <div class="favHint" id="favHint">클릭: 선택 · 드래그: 순서 변경 · 우클릭: 색상 변경</div>
-      <button class="regionInfo" id="openGradeHelp" title="지역·지하철·APT 참고표">!</button>
+      <button class="regionInfo" id="openGradeHelp" title="지역·지하철 참고표">!</button>
       <div style="display:none"><button id="selectLoadedRegions"></button><button id="selectAllRegions"></button><button id="clearRegions"></button><div id="seoulRegionRows"></div><div id="gyeonggiRegionRows"></div></div>
     </div>
   </section>
@@ -1012,6 +1027,7 @@ $('#periodSummary').onclick=e=>openPopover('period',e.currentTarget);$('#hhSumma
 $('#popCancel').onclick=closePopover;$('#popAll').onclick=()=>setPopupRange('all');$('#popLoad').onclick=loadPopupPresetRange;$('#popApply').onclick=applyPopover;
 document.addEventListener('mousedown',e=>{const p=$('#filterPopover');if(p.classList.contains('show')&&!p.contains(e.target)&&!e.target.classList.contains('summaryBtn'))closePopover();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closePopover();$$('.modalWrap.show').forEach(x=>x.classList.remove('show'));}});
+$$('.modalWrap').forEach(wrap=>wrap.addEventListener('click',e=>{if(e.target===wrap)wrap.classList.remove('show');}));
 $$('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).classList.remove('show'));
 $('#openGradeHelp').onclick=()=>$('#gradeHelpWrap').classList.add('show');
 $('#selectLoadedRegions').onclick=()=>{const loaded=new Set(DATA.meta.loaded_regions||[]);selectedRegions=new Set(loaded);$$('.regionBtn').forEach(b=>b.classList.toggle('active',loaded.has(b.dataset.region)));render();};
@@ -1019,7 +1035,7 @@ $('#selectAllRegions').onclick=()=>{$$('.regionBtn').forEach(b=>{selectedRegions
 $('#clearRegions').onclick=()=>{selectedRegions.clear();$$('.regionBtn').forEach(b=>b.classList.remove('active'));render();};
 $('#areaToggle').querySelectorAll('button').forEach(btn=>btn.onclick=()=>{currentArea=Number(btn.dataset.area);$('#areaToggle').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===btn));render();});
 
-const STATION_RANKINGS=[[1, "압구정역"], [2, "한강진역"], [3, "신반포역"], [4, "구반포역"], [5, "서울숲역"], [6, "잠원역"], [7, "고속터미널역"], [8, "청담역"], [9, "강남역"], [10, "삼성역"], [11, "대치역"], [12, "도곡역"], [13, "압구정로데오역"], [14, "잠실새내역"], [15, "잠실역"], [16, "서초역"], [17, "교대역"], [18, "선릉역"], [19, "역삼역"], [20, "신논현역"], [21, "방배역"], [22, "개포동역"], [23, "성수역"], [24, "이촌역"], [25, "논현역"], [26, "양재역"], [27, "매봉역"], [28, "여의도역"], [29, "여의나루역"], [30, "마포역"], [31, "공덕역"], [32, "옥수역"], [33, "금호역"], [34, "왕십리역"], [35, "용산역"], [36, "서울역"], [37, "광화문역"], [38, "서대문역"], [39, "흑석역"], [40, "목동역"], [41, "올림픽공원역"], [42, "송파역"], [43, "당산역"], [44, "고덕역"], [45, "청량리역"], [46, "아현역"], [47, "신길역"], [48, "마곡나루역"], [49, "노원역"], [49, "건대입구역"], [50, "길음역"]];
+const STATION_RANKINGS=[[1, "압구정역"], [2, "한강진역"], [3, "신반포역"], [4, "구반포역"], [5, "서울숲역"], [6, "잠원역"], [7, "고속터미널역"], [8, "청담역"], [9, "강남역"], [10, "삼성역"], [11, "대치역"], [12, "도곡역"], [13, "압구정로데오역"], [14, "잠실새내역"], [15, "잠실역"], [16, "서초역"], [17, "교대역"], [18, "선릉역"], [19, "역삼역"], [20, "신논현역"], [21, "방배역"], [22, "개포동역"], [23, "성수역"], [24, "이촌역"], [25, "논현역"], [26, "양재역"], [27, "매봉역"], [28, "여의도역"], [29, "여의나루역"], [30, "마포역"], [31, "공덕역"], [32, "옥수역"], [33, "금호역"], [34, "왕십리역"], [35, "용산역"], [36, "서울역"], [37, "광화문역"], [38, "서대문역"], [39, "흑석역"], [40, "목동역"], [41, "올림픽공원역"], [42, "송파역"], [43, "당산역"], [44, "고덕역"], [45, "청량리역"], [46, "아현역"], [47, "신길역"], [48, "마곡나루역"], [49, "노원역"], [50, "건대입구역"]];
 const STATION_META={"압구정역": [1080, 560, ["3"]], "한강진역": [865, 535, ["6"]], "신반포역": [960, 670, ["9"]], "구반포역": [900, 690, ["9"]], "서울숲역": [1105, 475, ["분당"]], "잠원역": [1025, 610, ["3"]], "고속터미널역": [1000, 660, ["3", "7", "9"]], "청담역": [1220, 590, ["7"]], "강남역": [1070, 770, ["2", "신분당"]], "삼성역": [1255, 720, ["2"]], "대치역": [1220, 810, ["3"]], "도곡역": [1150, 850, ["3", "분당"]], "압구정로데오역": [1150, 590, ["분당"]], "잠실새내역": [1330, 670, ["2"]], "잠실역": [1410, 665, ["2", "8"]], "서초역": [980, 800, ["2"]], "교대역": [1025, 810, ["2", "3"]], "선릉역": [1180, 750, ["2", "분당"]], "역삼역": [1125, 780, ["2"]], "신논현역": [1045, 720, ["9", "신분당"]], "방배역": [920, 815, ["2"]], "개포동역": [1250, 875, ["분당"]], "성수역": [1195, 465, ["2"]], "이촌역": [745, 650, ["4", "경의"]], "논현역": [1030, 680, ["7", "신분당"]], "양재역": [1065, 890, ["3", "신분당"]], "매봉역": [1110, 855, ["3"]], "여의도역": [520, 545, ["5", "9"]], "여의나루역": [570, 570, ["5"]], "마포역": [620, 505, ["5"]], "공덕역": [665, 480, ["5", "6", "경의", "공항"]], "옥수역": [1000, 545, ["3", "경의"]], "금호역": [970, 510, ["3"]], "왕십리역": [1045, 420, ["2", "5", "경의", "분당"]], "용산역": [700, 610, ["1", "경의"]], "서울역": [745, 500, ["1", "4", "경의", "공항"]], "광화문역": [790, 360, ["5"]], "서대문역": [720, 405, ["5"]], "흑석역": [805, 705, ["9"]], "목동역": [340, 620, ["5"]], "올림픽공원역": [1510, 625, ["5", "9"]], "송파역": [1435, 735, ["8"]], "당산역": [430, 520, ["2", "9"]], "고덕역": [1490, 430, ["5"]], "청량리역": [1100, 320, ["1", "경의", "분당"]], "아현역": [680, 435, ["2"]], "신길역": [470, 605, ["1", "5"]], "마곡나루역": [250, 445, ["9", "공항"]], "노원역": [1180, 155, ["4", "7"]], "건대입구역": [1280, 440, ["2", "7"]], "길음역": [985, 245, ["4"]]};
 const FAV_STORAGE_KEY='koAptDashboardFavoritesV10';
 const FAV_COLORS=['rose','orange','yellow','green','blue','neutral'];
@@ -1290,7 +1306,16 @@ function renderFilterSaves(){
   $$('#restoreFilterList [data-delete]').forEach(b=>b.onclick=()=>{persistFilterSaves(readFilterSaves().filter(x=>x.id!==b.dataset.delete));renderFilterSaves();});
   $$('#restoreFilterList [data-restore]').forEach(b=>b.onclick=()=>{const row=readFilterSaves().find(x=>x.id===b.dataset.restore);if(row){applyFilterSnapshot(row.preset);$('#restoreFilterWrap').classList.remove('show');flashButton('#loadFilterBtn','복구됨');}});
 }
-function loadFilterPreset(){closePopover();renderFilterSaves();$('#restoreFilterWrap').classList.add('show');}
+function positionRestoreDialog(){
+ const wrap=$('#restoreFilterWrap');if(!wrap.classList.contains('show'))return;
+ const modal=wrap.querySelector('.restoreModal'),anchor=$('#loadFilterBtn').getBoundingClientRect(),scale=Number(getComputedStyle(modal).zoom)||1;
+ const width=Math.min(1080*scale,window.innerWidth-16);
+ const left=Math.max(8,Math.min(anchor.right,window.innerWidth-width-8));
+ const top=Math.max(8,Math.min(anchor.top-anchor.height*1.7,window.innerHeight-100));
+ modal.style.left=(left/scale)+'px';modal.style.top=(top/scale)+'px';modal.style.maxHeight=((window.innerHeight-top-8)/scale)+'px';
+}
+function loadFilterPreset(){closePopover();renderFilterSaves();$('#restoreFilterWrap').classList.add('show');positionRestoreDialog();}
+window.addEventListener('resize',positionRestoreDialog);
 
 function resetDashboardFilters(){state.jeonseMode='new';state.fromMonth='2025-09';state.toMonth=DATA.meta.current_month||'2026-09';state.hhMin='300';state.hhMax='max';state.farMin='min';state.farMax='max';state.yearMin='min';state.yearMax='max';currentArea=59;if(typeof UI_RANGE_STATE!=='undefined'){UI_RANGE_STATE.price={min:'min',max:'15'};UI_RANGE_STATE.gap={min:'min',max:'max'};UI_RANGE_STATE.confidence={min:'lowest',max:'high'};updateExtraSummary('price');updateExtraSummary('gap');updateExtraSummary('confidence');}$('#areaToggle').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.area==='59'));favoriteState.selected={region:[],station:[],apt:[]};saveFavoriteState();syncRegionSelection();updateSummaries();renderFavoriteTabs();render();}
 const UI_RANGE_STATE={
@@ -1325,28 +1350,29 @@ function isGapFilterDefault(){
 }
 function monthNumber(m){const [y,n]=m.split('-').map(Number);return y*12+n-1;}
 function jeonseEstimate(c,saleE){
-  if(!saleE)return {value:null,reason:'시작 매매 기준거래 없음',samples:[]};
-  const target=state.fromMonth||saleE.selectedMonth,area=Number(saleE.areaUsed),mode=state.jeonseMode||'new';
-  const saleAge=monthNumber(saleE.selectedMonth)-monthNumber(target);
-  if(saleAge<0||saleAge>3)return {value:null,reason:'시작 매매 기준거래가 시작월에서 3개월 초과 이후',samples:[]};
-  const source=(c.jeonse_tx||[]).map(t=>({date:t[0],area:t[1],floor:t[2],deposit:t[3],kind:t[4],renewal:t[5],period:t[6]}));
-  if(!source.length)return {value:null,reason:'연결된 전세 자료 없음',samples:[]};
-  const same=source.filter(t=>Math.abs(t.area-area)<=0.100001);
-  if(!same.length)return {value:null,reason:'매매와 같은 면적의 전세 없음',samples:[]};
-  const windowed=same.filter(t=>{const diff=monthNumber(target)-monthNumber(t.date.slice(0,7));return diff>=0&&diff<3});
-  if(!windowed.length)return {value:null,reason:'기준월 포함 이전 3개월 전세 없음',samples:[]};
-  const floorOk=windowed.filter(t=>Number.isFinite(t.floor)&&t.floor>=4);
-  const chosen=floorOk.filter(t=>mode==='all'||(t.kind==='신규'&&!['○','Y','사용','사용함'].includes(t.renewal)));
-  if(!chosen.length)return {value:null,reason:floorOk.length?'조건에 맞는 신규 전세 없음':'4층 이상 전세 없음',samples:[],excluded:windowed.length};
-  const latest=chosen.map(t=>t.date.slice(0,7)).sort().at(-1);
-  const samples=chosen.filter(t=>t.date.slice(0,7)===latest).sort((a,b)=>a.deposit-b.deposit);
-  const n=samples.length,mid=Math.floor(n/2),value=n%2?samples[mid].deposit:(samples[mid-1].deposit+samples[mid].deposit)/2;
-  return {value,month:latest,target,area,samples,mode,monthsBack:monthNumber(target)-monthNumber(latest),reason:'선정월 공개자료 보증금 중앙값'};
+ if(!saleE)return {value:null,reason:'시작 매매 기준거래 없음',samples:[]};
+ const target=state.fromMonth||saleE.selectedMonth,area=Number(saleE.areaUsed),mode=state.jeonseMode||'new';
+ const saleAge=monthNumber(saleE.selectedMonth)-monthNumber(target);
+ if(saleAge<0||saleAge>3)return {value:null,reason:'시작 매매 기준거래가 시작월에서 3개월 초과 이후',samples:[]};
+ const source=(c.jeonse_tx||[]).map(t=>({date:t[0],area:t[1],floor:t[2],deposit:t[3],kind:t[4],renewal:t[5],period:t[6]}));
+ if(!source.length)return {value:null,reason:'연결된 전세 자료 없음',samples:[]};
+ const same=source.filter(t=>Math.abs(t.area-area)<=0.100001&&Number.isFinite(t.deposit)&&t.deposit>0);
+ if(!same.length)return {value:null,reason:'매매와 같은 면적의 전세 없음',samples:[]};
+ const windowed=same.filter(t=>{const diff=monthNumber(target)-monthNumber(t.date.slice(0,7));return diff>=0&&diff<6});
+ if(!windowed.length)return {value:null,reason:'시작월 포함 6개월 전세 없음',samples:[]};
+ const explicit=Number(c.top_floor),observed=[...(c.tx||[]).map(t=>t[2]),...source.map(t=>t.floor)].filter(t=>Number.isFinite(t)&&t>0);
+ const topFloor=Number.isFinite(explicit)&&explicit>0?explicit:observed.length?Math.max(...observed):null;
+ const floorOk=windowed.filter(t=>Number.isFinite(t.floor)&&t.floor>=4&&(topFloor==null||t.floor!==topFloor));
+ const samples=floorOk.filter(t=>mode==='all'||(t.kind==='신규'&&!['○','Y','사용','사용함'].includes(t.renewal))).sort((a,b)=>a.date.localeCompare(b.date)||a.deposit-b.deposit);
+ if(!samples.length)return {value:null,reason:floorOk.length?'조건에 맞는 신규 전세 없음':'저층·최고층·층수 미상 제외 후 전세 없음',samples:[],excluded:windowed.length,topFloor};
+ const selectedTrade=[...samples].sort((a,b)=>b.deposit-a.deposit||b.date.localeCompare(a.date)||a.floor-b.floor)[0];
+ const month=selectedTrade.date.slice(0,7);
+ return {value:selectedTrade.deposit,month,target,area,samples,selectedTrade,mode,topFloor,excluded:windowed.length-samples.length,monthsBack:monthNumber(target)-monthNumber(month),reason:'시작월 포함 6개월 유효 전세 중 최고가'};
 }
 function calcGapEok(c,saleE){const e=jeonseEstimate(c,saleE);return Number.isFinite(e.value)?(saleE.value-e.value)/10000:null;}
 function rentCells(r,idx){
   const j=jeonseEstimate(r.c,r.oldE),gap=Number.isFinite(j.value)&&r.oldE?(r.oldE.value-j.value)/10000:null;
-  const lease=Number.isFinite(j.value)?`<b>${money(j.value)}</b><small>${fmtMonth(j.month)} · ${j.samples.length}행${j.monthsBack?' · 이전월':''}</small>`:`<span class="na">—</span><small>${esc(j.reason)}</small>`;
+  const lease=Number.isFinite(j.value)?`<b>${money(j.value)}</b><small>${fmtMonth(j.month)}<br>${j.samples.length}건 중 최고가</small>`:`<span class="na">—</span><small>${esc(j.reason)}</small>`;
   return `<td><button class="dataValue leaseValue" onclick="openDetail(${idx})" title="시작월 전세 선정 근거 보기">${lease}</button></td><td><button class="dataValue gapValue" onclick="openDetail(${idx})" title="시작월 매매−전세 갭 계산 보기">${Number.isFinite(gap)?money(gap*10000):'—'}</button></td>`;
 }
 function farCell(c,idx){
@@ -1357,14 +1383,14 @@ function renderFeatureDetail(r){
   const c=r.c,f=c.far_info||{},j=jeonseEstimate(c,r.oldE),gap=calcGapEok(c,r.oldE);
   $('#farEvidence').innerHTML=`<b>용적률 ${f.status==='verified'?esc(c.far)+'%':'확인 필요'}</b> · ${esc(f.reason||'확인 가능한 대장 없음')}<br>${esc(f.address||c.address)}${f.ledger_id?' · 대장 '+esc(f.ledger_id):''}<br><a href="https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do" target="_blank" rel="noopener">서울시 건축물대장 총괄표제부</a> · 확인 ${esc((f.checked_at||'').slice(0,10))}`;
   $('#jeonseEvidence').innerHTML=Number.isFinite(j.value)
-    ? `<b>전세 ${money(j.value)} · 매매−전세 갭 ${money(gap*10000)}</b><br>시작 매매 ${money(r.oldE.value)} (${fmtMonth(r.oldE.selectedMonth)}) − 전세 ${money(j.value)} (${fmtMonth(j.month)})<br>매매 면적 ${j.area}㎡와 ±0.1㎡ · 4층 이상 · ${j.mode==='all'?'신규·갱신·미상 포함':'신규 계약만'} · 최신 해당월 중앙값 · ${j.samples.length}개 공개자료 행${j.monthsBack?`<br>전세 자료가 선택한 시작월보다 ${j.monthsBack}개월 이전입니다.`:''}`
+    ? `<b>전세 ${money(j.value)} · 매매−전세 갭 ${money(gap*10000)}</b><br>시작 매매 ${money(r.oldE.value)} (${fmtMonth(r.oldE.selectedMonth)}) − 전세 ${money(j.value)} (${fmtMonth(j.month)})<br>매매 면적 ${j.area}㎡와 ±0.1㎡ · 4층 이상·최고층 제외 · ${j.mode==='all'?'신규·갱신·미상 포함':'신규 계약만'} · 시작월 포함 6개월 ${j.samples.length}건 중 최고가 · 최고층 기준 ${j.topFloor??'미상'}층${j.excluded?` · 제외 ${j.excluded}건`:''}${j.monthsBack?`<br>전세 자료가 선택한 시작월보다 ${j.monthsBack}개월 이전입니다.`:''}`
     : `<b>갭 산정 불가</b> · ${esc(j.reason)}`;
-  $('#jeonseSamples').innerHTML=j.samples.length?j.samples.map(t=>`<tr><td>${esc(t.date)}</td><td>${t.floor}층</td><td>${t.area}㎡</td><td>${money(t.deposit)}</td><td>${esc(t.kind)}${t.renewal?' / 갱신권 '+esc(t.renewal):''}</td></tr>`).join(''):'<tr><td colspan="5">조건에 맞는 자료 없음</td></tr>';
-  $('#jeonseFootnote').textContent='전세는 선택한 시작월 포함 최근 3개월, 매매는 시작월 또는 이후 3개월 이내에 선정된 시작 기준가만 사용합니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.';
+  $('#jeonseSamples').innerHTML=j.samples.length?j.samples.map(t=>`<tr class="${t===j.selectedTrade?'selectedTrade':''}"><td>${esc(t.date)}</td><td>${t.floor}층</td><td>${t.area}㎡</td><td>${money(t.deposit)}${t===j.selectedTrade?' · 기준 최고가':''}</td><td>${esc(t.kind)}${t.renewal?' / 갱신권 '+esc(t.renewal):''}</td></tr>`).join(''):'<tr><td colspan="5">조건에 맞는 자료 없음</td></tr>';
+  $('#jeonseFootnote').textContent='전세는 선택한 시작월과 이전 5개월(총 6개월)의 같은 면적·4층 이상·최고층 제외 유효 거래 중 최고가입니다. 최고층 정보가 없으면 단지의 매매·전세 자료에서 관측한 최고층을 제외합니다. 매매는 시작월 또는 이후 3개월 이내에 선정된 시작 기준가만 사용합니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.';
 }
 function featurePopup(type){
  const note=$('#featureNote'),options=$('#jeonseOptions');options.hidden=type!=='gap';
- note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 시작월 기준 같은 면적의 전세 중앙값. 전세는 선택한 시작월 포함 최근 3개월, 4층 이상. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다. 갭을 클릭하면 근거가 나옵니다.':'';
+ note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 시작월 포함 6개월의 같은 면적 전세 최고가. 저층(1~3층)·최고층·층수 미상 제외. 예: 2025.09 시작 → 2025.04~09 전세 비교. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다. 갭을 클릭하면 근거가 나옵니다.':'';
  note.hidden=!['far','gap'].includes(type);
  if(type==='gap')$('#leaseMode').value=state.jeonseMode||'new';
 }
@@ -1500,7 +1526,7 @@ function renderDataAudit(){
   $('#auditPanel').innerHTML=`<div>대상 목록은 필터와 관계없이 아래에서 확인할 수 있습니다. 300세대 미만·임대 전용 단지는 제외합니다.</div>
     ${(DATA.meta.catalog_exclusions||[]).map(x=>`<div>수집 제외/보류: ${esc(x.name)} — ${esc(x.reason)}</div>`).join('')}
     ${DATA.meta.older_history_frozen?'<div>이전 연도 일부는 원천 제공 기간 밖입니다. 보존된 거래의 취소 여부는 이번 수집에서 재확인하지 못했습니다.</div>':''}
-    <div>전세는 월세 0인 자료만 저장하며, 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·선택한 시작월 포함 최근 3개월 자료를 사용합니다. 기본은 신규 계약만, 최신 해당월 중앙값입니다. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다.</div>
+    <div>전세는 월세 0인 자료만 저장하며, 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·최고층 제외·선택한 시작월 포함 6개월 자료 중 최고가를 사용합니다. 기본은 신규 계약만이며, 건수는 중복 공개행 제거 후 조건을 통과한 자료 수입니다. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다.</div>
     <div>용적률 확인 ${DATA.meta.far_verified_count||0}개, 미확인 ${cs.length-(DATA.meta.far_verified_count||0)}개. 미확인 값을 0으로 취급하지 않습니다.</div>
     ${DATA.meta.feature_update?.status==='preserved'?`<div class="updateIssue">전세·용적률은 이전 정상 자료를 사용 중입니다. 마지막 성공 ${esc(DATA.meta.feature_update.checked_at||'')} · 사유: ${esc(DATA.meta.feature_update.reason||'')}</div>`:''}
     <div>전세 연도 ZIP은 당시 공개본입니다. 이후 정정·해제가 과거 파일에 모두 반영된다고 보장할 수 없으며, 계약해제 필드가 제공되지 않습니다.</div>
