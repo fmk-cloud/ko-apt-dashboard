@@ -3,7 +3,7 @@
     "status": "live",
     "provider": "seoul_gyeonggi_official",
     "source_verified": true,
-    "updated_at": "2026-10-07T10:27:47+09:00",
+    "updated_at": "2026-10-07T21:31:25+09:00",
     "current_month": "2026-09",
     "min_month": "2024-01",
     "loaded_regions": [
@@ -42,7 +42,7 @@
     "minimum_households": 300,
     "metadata_status": "refreshed",
     "refreshed_from": "2024-01",
-    "metadata_checked_at": "2026-10-07T09:14:32+09:00",
+    "metadata_checked_at": "2026-10-07T21:23:54+09:00",
     "older_history_frozen": false,
     "schedule": "매월 1일 04:00 Asia/Seoul",
     "sources": {
@@ -61,12 +61,12 @@
       "jeonse": "https://data.seoul.go.kr/dataList/OA-21276/A/1/datasetView.do"
     },
     "far_verified_count": 872,
-    "jeonse_rows": 268109,
+    "jeonse_rows": 268187,
     "jeonse_from": "2024-01",
     "jeonse_to": "2026-09",
     "feature_update": {
       "status": "success",
-      "checked_at": "2026-10-07T09:18:00+09:00"
+      "checked_at": "2026-10-07T21:31:19+09:00"
     },
     "region_feature_counts": {
       "종로구": {
@@ -75,23 +75,23 @@
       },
       "중구": {
         "far_verified": 3,
-        "jeonse_rows": 2750
+        "jeonse_rows": 2751
       },
       "용산구": {
         "far_verified": 14,
-        "jeonse_rows": 3722
+        "jeonse_rows": 3723
       },
       "성동구": {
         "far_verified": 27,
-        "jeonse_rows": 11679
+        "jeonse_rows": 11681
       },
       "광진구": {
         "far_verified": 23,
-        "jeonse_rows": 3876
+        "jeonse_rows": 3878
       },
       "동대문구": {
         "far_verified": 26,
-        "jeonse_rows": 6672
+        "jeonse_rows": 6675
       },
       "중랑구": {
         "far_verified": 26,
@@ -99,75 +99,75 @@
       },
       "성북구": {
         "far_verified": 63,
-        "jeonse_rows": 7562
+        "jeonse_rows": 7566
       },
       "강북구": {
         "far_verified": 16,
-        "jeonse_rows": 2095
+        "jeonse_rows": 2097
       },
       "도봉구": {
         "far_verified": 24,
-        "jeonse_rows": 5388
+        "jeonse_rows": 5389
       },
       "노원구": {
         "far_verified": 65,
-        "jeonse_rows": 11873
+        "jeonse_rows": 11875
       },
       "은평구": {
         "far_verified": 41,
-        "jeonse_rows": 4828
+        "jeonse_rows": 4831
       },
       "서대문구": {
         "far_verified": 29,
-        "jeonse_rows": 6303
+        "jeonse_rows": 6304
       },
       "마포구": {
         "far_verified": 50,
-        "jeonse_rows": 11765
+        "jeonse_rows": 11768
       },
       "양천구": {
         "far_verified": 30,
-        "jeonse_rows": 12312
+        "jeonse_rows": 12322
       },
       "강서구": {
         "far_verified": 53,
-        "jeonse_rows": 12231
+        "jeonse_rows": 12236
       },
       "구로구": {
         "far_verified": 57,
-        "jeonse_rows": 7386
+        "jeonse_rows": 7388
       },
       "금천구": {
         "far_verified": 10,
-        "jeonse_rows": 2289
+        "jeonse_rows": 2290
       },
       "영등포구": {
         "far_verified": 41,
-        "jeonse_rows": 11099
+        "jeonse_rows": 11103
       },
       "동작구": {
         "far_verified": 39,
-        "jeonse_rows": 7010
+        "jeonse_rows": 7016
       },
       "관악구": {
         "far_verified": 22,
-        "jeonse_rows": 4071
+        "jeonse_rows": 4073
       },
       "서초구": {
         "far_verified": 53,
-        "jeonse_rows": 12646
+        "jeonse_rows": 12649
       },
       "강남구": {
         "far_verified": 56,
-        "jeonse_rows": 13486
+        "jeonse_rows": 13488
       },
       "송파구": {
         "far_verified": 40,
-        "jeonse_rows": 18833
+        "jeonse_rows": 18841
       },
       "강동구": {
         "far_verified": 57,
-        "jeonse_rows": 14359
+        "jeonse_rows": 14369
       },
       "성남시": {
         "far_verified": 0,
@@ -580,189 +580,189 @@
       "url": "https://www.k-apt.go.kr/board/getFileDownload.do?seq=135807&boardType=03",
       "sha256": "d0070c35b9e67e01c3be40d74b7a7abb7e555f5a650e5d736dd5c02a8070382a",
       "rows": 22551,
-      "checked_at": "2026-10-07T09:30:50+09:00"
+      "checked_at": "2026-10-07T21:02:28+09:00"
     }
   },
   "_storage": {
     "format": "regional-js-v1",
     "parts": [
       {
-        "file": "regions/region-00-edddf120c57f.js",
-        "sha256": "edddf120c57f5d6d18a7afe23de23a4af01e737de7fd85580d2d424f830722ab",
+        "file": "regions/region-00-18abd27c554a.js",
+        "sha256": "18abd27c554a27a9e313e63061081839d4833425dc6cd0767be9f40667bedd7b",
         "region": "종로구",
         "count": 10
       },
       {
-        "file": "regions/region-01-04fe43a46c0b.js",
-        "sha256": "04fe43a46c0bf6b891e5dfddc0603488ade02b01f07509f00e7c70cbf37e2c8e",
+        "file": "regions/region-01-3d2d3769c1cd.js",
+        "sha256": "3d2d3769c1cde98642f6f160411d5c67677b83923cf3814781731ac1365033a1",
         "region": "중구",
         "count": 14
       },
       {
-        "file": "regions/region-02-3694d840a119.js",
-        "sha256": "3694d840a119752dcfb7ce246aa0be1f84d28fe88014794ade647161368d05b0",
+        "file": "regions/region-02-ec1480904129.js",
+        "sha256": "ec1480904129fc37937eb79f49d8a2c27708ad3109e320fc0eae69862f29c858",
         "region": "용산구",
         "count": 32
       },
       {
-        "file": "regions/region-03-d19e9a08837f.js",
-        "sha256": "d19e9a08837f6f04b1694593ea39fd5e6965c62f401ada10ca7bf9a120bbb269",
+        "file": "regions/region-03-ca0a55cbed83.js",
+        "sha256": "ca0a55cbed83aa3ad67ad6f1cda80f9a9a818208361320f1d0cefab2bd1d67bc",
         "region": "성동구",
         "count": 61
       },
       {
-        "file": "regions/region-04-364fa9cbd3da.js",
-        "sha256": "364fa9cbd3dad27ce0242266ed96691b910175345e2f87f4f173319522880bf8",
+        "file": "regions/region-04-7252e9feb0ef.js",
+        "sha256": "7252e9feb0ef2cf1589988c2068ba5b8bfeae47aeec4c2027bb6c2f87ccfd3c8",
         "region": "광진구",
         "count": 33
       },
       {
-        "file": "regions/region-05-3e20cb159780.js",
-        "sha256": "3e20cb1597803c834658df73dc129bc24ff1b8a77de1cd31ef976a5bdb041df5",
+        "file": "regions/region-05-042ca07c0bcd.js",
+        "sha256": "042ca07c0bcdb7283ad870301be2a7d0f746f4d049c8d37b8e777503f9631710",
         "region": "동대문구",
         "count": 62
       },
       {
-        "file": "regions/region-06-4ea9abfb8fc1.js",
-        "sha256": "4ea9abfb8fc1a20ac79c72affa390d31ab845a4470575e885c126b9ce564b827",
+        "file": "regions/region-06-83773d6329d8.js",
+        "sha256": "83773d6329d8883d0dd44f39edb73792bddccdc2908ef83fedc776a63fd24816",
         "region": "중랑구",
         "count": 45
       },
       {
-        "file": "regions/region-07-3b0e17a2ea2e.js",
-        "sha256": "3b0e17a2ea2e8427358e7540c7d863535f52c92ca950b4230d82a0ee2dd8ad9e",
+        "file": "regions/region-07-ec9f8f66648b.js",
+        "sha256": "ec9f8f66648b643dd763706d093eba3d9df1aa25ed8e307323bd5caba1ff1711",
         "region": "성북구",
         "count": 78
       },
       {
-        "file": "regions/region-08-a8b028d847b6.js",
-        "sha256": "a8b028d847b66b5a810dd9af679c4c0fe3957d9a91fa710e37ef18f684514113",
+        "file": "regions/region-08-b7aa55f92d16.js",
+        "sha256": "b7aa55f92d160007fcd405e1c3898f87fe9ee77b786e4e68daff1eed135b2245",
         "region": "강북구",
         "count": 21
       },
       {
-        "file": "regions/region-09-171bca8a16d0.js",
-        "sha256": "171bca8a16d0a328afe0db8722e91ee76f39beee546e370a73dafb3387018bb3",
+        "file": "regions/region-09-fefc4a9dfb98.js",
+        "sha256": "fefc4a9dfb9891686f9ef1d374f2e9597f5896ff2a4e4e07c78fd9b262871af1",
         "region": "도봉구",
         "count": 55
       },
       {
-        "file": "regions/region-10-4993dc21abc5.js",
-        "sha256": "4993dc21abc580871851102fd3bfe4afcc10c3a8f2121ca27d9f4b9561a8490d",
+        "file": "regions/region-10-cc41261cbee7.js",
+        "sha256": "cc41261cbee75da0eb18663a7410fae8ad31842ad9acc560a515abda9046d885",
         "region": "노원구",
         "count": 127
       },
       {
-        "file": "regions/region-11-dbeeb9faf195.js",
-        "sha256": "dbeeb9faf1959ad797a986eb14dd1089e7a17ef393f7957366728abab7c11e2a",
+        "file": "regions/region-11-9e54b5121e1c.js",
+        "sha256": "9e54b5121e1c022a842112bba0600d3c9ae685f205534f391cc8d96cb852ae5e",
         "region": "은평구",
         "count": 63
       },
       {
-        "file": "regions/region-12-69b72e5566cf.js",
-        "sha256": "69b72e5566cfc532d9e33ef405f72185534f0aae2771f9a6ff8d10ed014b6b80",
+        "file": "regions/region-12-6ab71a6df73c.js",
+        "sha256": "6ab71a6df73c5883dc429c1d727d219862295636196e9a2edbbeed4df753a07d",
         "region": "서대문구",
         "count": 45
       },
       {
-        "file": "regions/region-13-d5ebcf89c98a.js",
-        "sha256": "d5ebcf89c98a5612daea08912fe75b2f8535a64a4737398d112ed53b68bb2cbe",
+        "file": "regions/region-13-efe7564270ab.js",
+        "sha256": "efe7564270ab4d981da9dc8c4af8851c9b469225f7e9d82e7d162e11b6e22bf8",
         "region": "마포구",
         "count": 65
       },
       {
-        "file": "regions/region-14-6b74db60c57a.js",
-        "sha256": "6b74db60c57ab4a9c9f62d0f8aa45a14531f9814978067abf0014c10aa829b31",
+        "file": "regions/region-14-48975b663f87.js",
+        "sha256": "48975b663f87672247b9f160a21e9336178aaf5f26fdc4bb604259c65da67e60",
         "region": "양천구",
         "count": 62
       },
       {
-        "file": "regions/region-15-c48cd6507efb.js",
-        "sha256": "c48cd6507efbf08b7c25b5ffbe5050a04514bdcd74ac0d1a7d904f47ac8acd1c",
+        "file": "regions/region-15-1fa243e793f1.js",
+        "sha256": "1fa243e793f1bc1745930b2905dd963c87efe7f4570fa626ae4ace19417406b7",
         "region": "강서구",
         "count": 82
       },
       {
-        "file": "regions/region-16-8b480dee5c49.js",
-        "sha256": "8b480dee5c49dc34344adc5b0d42d190d2d86935ab080083988db742b0915a97",
+        "file": "regions/region-16-e1d55edf488e.js",
+        "sha256": "e1d55edf488e2841edab76c4cbc4873b5154e137461526495633dea2456eff01",
         "region": "구로구",
         "count": 78
       },
       {
-        "file": "regions/region-17-2e8d3ac11024.js",
-        "sha256": "2e8d3ac110241884db812f259961aead2efe5bb304d53a2d4bb75ea74ac42747",
+        "file": "regions/region-17-7fb94c61b636.js",
+        "sha256": "7fb94c61b6366f6adbb4ecdb2dce06d6c2a8348d61aad0964dd1c7fda8cef500",
         "region": "금천구",
         "count": 17
       },
       {
-        "file": "regions/region-18-54daa53bfbfb.js",
-        "sha256": "54daa53bfbfbe4fbdccfa07418537abbc7e023f61493a4eb172ab6891e2945df",
+        "file": "regions/region-18-bc37b6473ade.js",
+        "sha256": "bc37b6473adefd98a5e758a3713cbf5706b2d7c1e2e558dddee5d27c1b48e457",
         "region": "영등포구",
         "count": 82
       },
       {
-        "file": "regions/region-19-b71dc3b0dd5f.js",
-        "sha256": "b71dc3b0dd5fdea76a1bf54fdb9e054b15f7ec6d4b63940750285adbf44e4caa",
+        "file": "regions/region-19-cc3de7ab859f.js",
+        "sha256": "cc3de7ab859fb2a62c66addbaeca48ed9b9cc4deffa4f15238c45e85cd6e0694",
         "region": "동작구",
         "count": 61
       },
       {
-        "file": "regions/region-20-2c72af3d6680.js",
-        "sha256": "2c72af3d6680d59a513394ff2c257e61e4b5b57b1a5eb887289d45f356534be9",
+        "file": "regions/region-20-945e69b4d005.js",
+        "sha256": "945e69b4d005690418459ac085dfe07a934cb8ed5633fe2ce96080ef0afb3b92",
         "region": "관악구",
         "count": 32
       },
       {
-        "file": "regions/region-21-6e5204bf0480.js",
-        "sha256": "6e5204bf04807c9124a11d484d28db8dc2a20ece9170524dfca7221225733a21",
+        "file": "regions/region-21-d9741c1b452c.js",
+        "sha256": "d9741c1b452cc1d559f71b0cc208d2966b6f488eda4aad617af0abbe3958528a",
         "region": "서초구",
         "count": 93
       },
       {
-        "file": "regions/region-22-5f966948845a.js",
-        "sha256": "5f966948845a901cbce62efc88d118bbe2646ffa1322b79ead54c8e4e61d49c6",
+        "file": "regions/region-22-3585e6811816.js",
+        "sha256": "3585e6811816eb96228f1936b06f343fe75a8403523877fa229d3e95260b1058",
         "region": "강남구",
         "count": 117
       },
       {
-        "file": "regions/region-23-415438f46628.js",
-        "sha256": "415438f46628423d38b1331ef494cbc0cc41618e84742cc7f88bdcc24a8abe46",
+        "file": "regions/region-23-9e24ba14ee55.js",
+        "sha256": "9e24ba14ee55cb38b4825a56b93b98013fd09000d1b44112e80b73185dafe1a5",
         "region": "송파구",
         "count": 90
       },
       {
-        "file": "regions/region-24-1544d77087cd.js",
-        "sha256": "1544d77087cd41de998e85ebcea974791411305725f9f00695af49b143e734aa",
+        "file": "regions/region-24-64099b03d1fe.js",
+        "sha256": "64099b03d1fe713854aeecfc0bf129ce4e50fe3f3ea8752035145975d184ecb6",
         "region": "강동구",
         "count": 71
       },
       {
-        "file": "regions/region-25-9c13a6554603.js",
-        "sha256": "9c13a6554603485071df379481d7404aa973af1fc81c295164e27bf802f732e8",
+        "file": "regions/region-25-8ac9a99ab186.js",
+        "sha256": "8ac9a99ab1866f8a69cb9d011ae7f89089d4e5e66e7f366608cbd2736c3b8154",
         "region": "성남시",
         "count": 164
       },
       {
-        "file": "regions/region-26-df87b0044036.js",
-        "sha256": "df87b0044036fc975e4829429897022f49fab3df78942450f0ea5ff9d25bb5de",
+        "file": "regions/region-26-231a2aebc05a.js",
+        "sha256": "231a2aebc05aedc946e93a321ada4968d3c77ae1be6f97809e7108820d5ecf98",
         "region": "과천시",
         "count": 15
       },
       {
-        "file": "regions/region-27-0e9878904a97.js",
-        "sha256": "0e9878904a979e9c5b79b172dd269c041b6293119daec72ce2aa7a81e19908f4",
+        "file": "regions/region-27-18a876cb0ea9.js",
+        "sha256": "18a876cb0ea959781e5fec875c8a719da218306724cf8fb7f3f986ec01893ec3",
         "region": "안양시",
         "count": 132
       },
       {
-        "file": "regions/region-28-dd525f26bc5d.js",
-        "sha256": "dd525f26bc5d556f6aaf81e426dc501967c4151e2bfab60e5a30d52674cef4cd",
+        "file": "regions/region-28-4cb89a6771c3.js",
+        "sha256": "4cb89a6771c397ceb3d236a3802b32bf21e9b14a915c91696ff80deef362b21c",
         "region": "화성시",
         "count": 295
       },
       {
-        "file": "regions/region-29-864ddc19b0e3.js",
-        "sha256": "864ddc19b0e31ceb637f7f99e8309051a83be98a00440842be94645124defed8",
+        "file": "regions/region-29-45596d262336.js",
+        "sha256": "45596d262336f4f7a3eeff2e10df104cbe4c4e8585ade724abee49ed0fef2b96",
         "region": "광명시",
         "count": 55
       }
