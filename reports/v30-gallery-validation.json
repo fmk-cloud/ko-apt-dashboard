@@ -1,0 +1,12 @@
+{
+  "version": "k.apt_v30",
+  "checks": [
+    "Old v29 images, selected region image, apartment memos, saved filters and favorites retained on same origin",
+    "Misc upload, title edit, title-only blob retention, reload persistence",
+    "Region and misc images are isolated; default region title edit retains built-in image",
+    "Preview zoom and closing; thumbnail overlay positions; six-row then next-column layout",
+    "Mobile viewport stays within width and height",
+    "Data/updater/workflow/assets byte-identical to v29"
+  ],
+  "cloud_sync": false
+}

@@ -1,0 +1,24 @@
+{
+  "status": "success",
+  "published": true,
+  "finished_at": "2026-10-08T00:10:37+09:00",
+  "checked_at": "2026-10-07",
+  "osm_date": "2026-10-06T20:21:06Z",
+  "distance_limit_m": 1300,
+  "walking_speed_m_per_min": 65,
+  "method": "K-apt coordinates + OSM pedestrian shortest path",
+  "origin": "단지 지도 좌표",
+  "not_measured_from_verified_gate": true,
+  "licence": "Open Database License 1.0 / © OpenStreetMap contributors",
+  "source": "https://download.geofabrik.de/asia/south-korea.html",
+  "source_pbf_sha256": "2f805bdd99ac594f82bbf53db617fd6e7660ac15d2584ce175773f290a66b403",
+  "summary": {
+    "linked": 1540,
+    "no_reachable_station_within_1300m": 586,
+    "walk_network_unconnected": 7,
+    "coordinate_unconfirmed": 24
+  },
+  "graph_nodes": 2320774,
+  "graph_edges": 2560282,
+  "stations": 549
+}

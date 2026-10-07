@@ -1,0 +1,32 @@
+{
+  "version": "k.apt_v31",
+  "live_project_connected": false,
+  "project_config": "URL and public key must be supplied and SQL applied",
+  "protocol_browser_checks": {
+    "passed": true,
+    "real_sdk": "@supabase/supabase-js 2.102.0 (bundled)",
+    "backend": "mock Supabase Auth/PostgREST/Storage",
+    "two_isolated_devices": true,
+    "account_switch_isolation": true,
+    "guest_import": true,
+    "memo_saved_filter_and_image_transfer": true,
+    "image_bytes_and_no_duplicate_upload": true,
+    "offline_changes_survive_reload": true,
+    "optimistic_revision_conflict_merge": true,
+    "remote_memo_survives_open_edit_session": true,
+    "secret_keys_rejected": true,
+    "mobile_viewport": true,
+    "javascript_errors": []
+  },
+  "postgresql_checks": {
+    "passed": true,
+    "engine": "PGlite 0.3.14 PostgreSQL with auth/storage stubs",
+    "setup_sql_rerun": true,
+    "revision_CAS": true,
+    "cross_account_workspace_access_blocked": true,
+    "cross_account_image_access_blocked": true,
+    "anonymous_RPC_blocked": true
+  },
+  "unchanged": "Original apartment data and monthly updater/workflow match v30 byte-for-byte",
+  "sdk_sha256": "c45136a0ba5c7391646869a734db105ba607a9233fd6ec2e7e5bbab447bdc57a"
+}

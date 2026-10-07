@@ -1,0 +1,14 @@
+{
+  "version": "k.APT_v32",
+  "v28_full_overlay_test": {
+    "passed": true,
+    "saved_filters_and_region_images_preserved": true,
+    "misc_images_and_memo": true,
+    "complexes": 2157,
+    "javascript_errors": [],
+    "missing_dependencies": [],
+    "desktop_mobile": true
+  },
+  "cloud_module": "Unchanged from tested v31; actual project configuration still required",
+  "data_and_monthly_updater": "All files included; no intermediate version installation required"
+}
