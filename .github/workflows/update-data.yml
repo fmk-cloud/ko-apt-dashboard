@@ -1,4 +1,4 @@
-name: Update Yeongdeungpo data
+name: Update Seoul three districts data
 on:
   workflow_dispatch:
   schedule:
@@ -7,12 +7,12 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: yeongdeungpo-monthly-update
+  group: seoul-apartment-monthly-update
   cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     permissions:
       contents: write
     steps:
@@ -41,7 +41,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html data/complexes.json data/site-data.json data/site-data.previous.json reports/update-report.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update Yeongdeungpo official apartment data"
+            git commit -m "Update official apartment data for three Seoul districts"
             git push origin HEAD:${{ github.event.repository.default_branch }}
           fi
       - name: Keep collection report
