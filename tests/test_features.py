@@ -7,7 +7,7 @@ from pipeline import DataError
 from seoul_public import run_public
 class FeatureTests(unittest.TestCase):
  def setUp(self):
-  self.c={'id':'A1','name':'검증아파트','official_name':'검증아파트','legal_dong':'당산동','build_year':2000,'households':500,'address':'서울특별시 영등포구 검증로 10'}
+  self.c={'id':'A1','region':'영등포구','name':'검증아파트','official_name':'검증아파트','legal_dong':'당산동','build_year':2000,'households':500,'address':'서울특별시 영등포구 검증로 10'}
   self.b=[{'complex_id':'A1','legal_dong':'당산동','jibun':'1','trade_name':'검증아파트','build_year':2000}]
   self.f={'sgg_cd_nm':'서울특별시 영등포구','stdg_cd_nm':'당산동','mn_lotno':'1','sub_lotno':'0','na_road_cd_nm':'검증로','na_mn_lotno':'10','na_sub_lotno':'0','hh_cnt':500,'use_aprv_ymd':'2000-01-01','fart':'300','siar':'10000','fart_cmpttn_gfa':'30000','mn_usg_cd_nm':'공동주택','bdrg_sn':100000000000000000001,'plat_plc':'서울특별시 영등포구 당산동 1'}
   self.row={'cgg_cd':'11560','bldg_usg':'아파트','rent_se':'전세','rtfe':'0','ctrt_day':'20260915','stdg_nm':'당산동','mno':'0001','sno':'0000','bldg_nm':'검증아파트','arch_yr':'2000','rent_area':'59.9','grfe':'70000','flr':'5','new_updt_yn':'신규','ctrt_prd':'26.09~28.09','ctrt_updt_use_yn':''}
@@ -49,8 +49,8 @@ class FeatureTests(unittest.TestCase):
     root=Path(tmp);(root/'data').mkdir();(root/'config').mkdir()
     c=dict(self.c,far=300,far_info={'status':'verified'},jeonse_tx=[['2026-09-15',59.9,5,70000,'신규','']],tx=[['2026-09-01',59.9,5,100000]])
     old={'meta':{'features':{'far':previously_enabled,'gap':previously_enabled},'far_verified_count':1,'jeonse_rows':1},'complexes':[c]}
-    new={'meta':{},'complexes':[dict(self.c,tx=[['2026-09-01',59.9,5,110000]])]}
-    files={'data/site-data.json':old,'data/complexes.json':[self.c],'config/catalog-exclusions.json':[],'config/seoul-bindings.json':self.b,'config/settings.json':{'start_month':'2026-09'}}
+    new={'meta':{'loaded_regions':['영등포구']},'complexes':[dict(self.c,tx=[['2026-09-01',59.9,5,110000]])]}
+    files={'data/site-data.json':old,'data/complexes.json':[self.c],'config/catalog-exclusions.json':[],'config/seoul-bindings.json':self.b,'config/settings.json':{'start_month':'2026-09','regions':[{'code':'11560','name':'영등포구'}]}}
     for name,value in files.items():(root/name).write_text(json.dumps(value))
     before=(root/'data/site-data.json').read_bytes();html='<script>window.__EMBEDDED_DATA__={};</script>';(root/'index.html').write_text(html)
     report={'complex_count':1,'trade_count':1,'unresolved_complexes':[]}

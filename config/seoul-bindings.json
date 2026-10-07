@@ -1243,5 +1243,2453 @@
       "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
     ],
     "checked_at": "2026-10-05"
+  },
+  {
+    "complex_id": "A10019978",
+    "complex_name": "힐스테이트 마포더퍼스트 아파트",
+    "region": "마포구",
+    "legal_dong": "신수동",
+    "jibun": "91-90",
+    "trade_name": "힐스테이트마포더퍼스트",
+    "build_year": 2026,
+    "metadata_address": "서울특별시 마포구 신수로6길 12",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10023508",
+    "complex_name": "마포더클래시",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "804",
+    "trade_name": "더클래시",
+    "build_year": 2022,
+    "metadata_address": "서울특별시 마포구 신촌로28길 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10024347",
+    "complex_name": "마포프레스티지자이아파트",
+    "region": "마포구",
+    "legal_dong": "염리동",
+    "jibun": "532",
+    "trade_name": "마포프레스티지자이",
+    "build_year": 2021,
+    "metadata_address": "서울특별시 마포구 대흥로24길 24",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10024974",
+    "complex_name": "마포 아이파크 포레 아파트",
+    "region": "마포구",
+    "legal_dong": "신수동",
+    "jibun": "462",
+    "trade_name": "마포아이파크포레",
+    "build_year": 2019,
+    "metadata_address": "서울특별시 마포구 광성로 17",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10024974",
+    "complex_name": "마포 아이파크 포레 아파트",
+    "region": "마포구",
+    "legal_dong": "신수동",
+    "jibun": "462",
+    "trade_name": "신촌숲아이파크",
+    "build_year": 2019,
+    "metadata_address": "서울특별시 마포구 광성로 17",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10025003",
+    "complex_name": "마포그랑자이아파트",
+    "region": "마포구",
+    "legal_dong": "대흥동",
+    "jibun": "806",
+    "trade_name": "마포그랑자이",
+    "build_year": 2020,
+    "metadata_address": "서울특별시 마포구 대흥로 175",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10025003",
+    "complex_name": "마포그랑자이아파트",
+    "region": "마포구",
+    "legal_dong": "대흥동",
+    "jibun": "806",
+    "trade_name": "마포그랑자이(1단지)",
+    "build_year": 2020,
+    "metadata_address": "서울특별시 마포구 대흥로 175",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026053",
+    "complex_name": "마포한강 아이파크",
+    "region": "마포구",
+    "legal_dong": "망원동",
+    "jibun": "521",
+    "trade_name": "마포한강아이파크",
+    "build_year": 2019,
+    "metadata_address": "서울특별시 마포구 희우정로 77",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10027090",
+    "complex_name": "마포센트럴아이파크",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "802",
+    "trade_name": "마포센트럴 아이파크",
+    "build_year": 2017,
+    "metadata_address": "서울특별시 마포구 마포대로 246",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10027090",
+    "complex_name": "마포센트럴아이파크",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "802",
+    "trade_name": "마포센트럴아이파크",
+    "build_year": 2017,
+    "metadata_address": "서울특별시 마포구 마포대로 246",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10027714",
+    "complex_name": "래미안 웰스트림",
+    "region": "마포구",
+    "legal_dong": "현석동",
+    "jibun": "225",
+    "trade_name": "래미안웰스트림",
+    "build_year": 2016,
+    "metadata_address": "서울특별시 마포구 토정로 11",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10027906",
+    "complex_name": "공덕자이 아파트",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "800",
+    "trade_name": "공덕자이",
+    "build_year": 2015,
+    "metadata_address": "서울특별시 마포구 마포대로24길 16",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10028006",
+    "complex_name": "e편한세상마포리버파크",
+    "region": "마포구",
+    "legal_dong": "용강동",
+    "jibun": "508",
+    "trade_name": "이편한세상마포리버파크",
+    "build_year": 2016,
+    "metadata_address": "서울특별시 마포구 토정로31길 24",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10028177",
+    "complex_name": "래미안밤섬리베뉴 Ⅰ",
+    "region": "마포구",
+    "legal_dong": "상수동",
+    "jibun": "402",
+    "trade_name": "래미안밤섬리베뉴Ⅰ",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 마포구 독막로20나길 22",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12102005",
+    "complex_name": "마포현대아파트",
+    "region": "마포구",
+    "legal_dong": "공덕동",
+    "jibun": "188-108",
+    "trade_name": "마포현대",
+    "build_year": 1988,
+    "metadata_address": "서울특별시 마포구 마포대로11길 84",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12102008",
+    "complex_name": "삼성래미안공덕2차",
+    "region": "마포구",
+    "legal_dong": "공덕동",
+    "jibun": "43",
+    "trade_name": "공덕2삼성래미안",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 마포구 마포대로20길 26",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12103002",
+    "complex_name": "신공덕3차삼성래미안",
+    "region": "마포구",
+    "legal_dong": "신공덕동",
+    "jibun": "161",
+    "trade_name": "신공덕래미안3차",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 마포구 만리재로 60",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12104005",
+    "complex_name": "마포삼성",
+    "region": "마포구",
+    "legal_dong": "도화동",
+    "jibun": "550",
+    "trade_name": "삼성",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 마포구 도화길 28",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12104007",
+    "complex_name": "마포도화우성아파트",
+    "region": "마포구",
+    "legal_dong": "도화동",
+    "jibun": "82",
+    "trade_name": "우성",
+    "build_year": 1991,
+    "metadata_address": "서울특별시 마포구 삼개로 38",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12105001",
+    "complex_name": "마포쌍용황금",
+    "region": "마포구",
+    "legal_dong": "마포동",
+    "jibun": "253",
+    "trade_name": "마포쌍용황금아파트",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 마포구 마포대로4라길 30",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12106001",
+    "complex_name": "토정한강삼성",
+    "region": "마포구",
+    "legal_dong": "토정동",
+    "jibun": "138",
+    "trade_name": "한강삼성",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 마포구 토정로32길 11",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12109001",
+    "complex_name": "마포자이",
+    "region": "마포구",
+    "legal_dong": "염리동",
+    "jibun": "521",
+    "trade_name": "마포자이",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 마포구 독막로42길 2",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12109002",
+    "complex_name": "염리삼성래미안",
+    "region": "마포구",
+    "legal_dong": "염리동",
+    "jibun": "520",
+    "trade_name": "염리삼성래미안",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 마포구 숭문길 58",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12112002",
+    "complex_name": "마포강변힐스테이트",
+    "region": "마포구",
+    "legal_dong": "현석동",
+    "jibun": "222",
+    "trade_name": "강변힐스테이트",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 마포구 신수로 15",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12114001",
+    "complex_name": "서강GS",
+    "region": "마포구",
+    "legal_dong": "신정동",
+    "jibun": "30",
+    "trade_name": "서강GS",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 마포구 창전로 26",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12115001",
+    "complex_name": "한강밤섬자이아파트",
+    "region": "마포구",
+    "legal_dong": "하중동",
+    "jibun": "101",
+    "trade_name": "한강밤섬자이",
+    "build_year": 2010,
+    "metadata_address": "서울특별시 마포구 토정로 158",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12119004",
+    "complex_name": "서강해모로",
+    "region": "마포구",
+    "legal_dong": "창전동",
+    "jibun": "443",
+    "trade_name": "해모로",
+    "build_year": 2007,
+    "metadata_address": "서울특별시 마포구 토정로 167",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12119006",
+    "complex_name": "서강쌍용예가",
+    "region": "마포구",
+    "legal_dong": "창전동",
+    "jibun": "444",
+    "trade_name": "서강예가",
+    "build_year": 2007,
+    "metadata_address": "서울특별시 마포구 독막로 145",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12119007",
+    "complex_name": "창전삼성",
+    "region": "마포구",
+    "legal_dong": "창전동",
+    "jibun": "437",
+    "trade_name": "창전래미안",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 마포구 서강로 95",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12125202",
+    "complex_name": "성산월드타운대림",
+    "region": "마포구",
+    "legal_dong": "성산동",
+    "jibun": "601",
+    "trade_name": "성산월드타운대림",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 마포구 월드컵북로30길 9-22",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12127001",
+    "complex_name": "상암월드컵파크5단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1658",
+    "trade_name": "상암월드컵파크5단지",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 마포구 상암산로1길 52",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12127002",
+    "complex_name": "상암월드컵파크6단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1689",
+    "trade_name": "상암월드컵파크6단지",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 마포구 상암산로1길 57",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12127003",
+    "complex_name": "상암월드컵파크3단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1643",
+    "trade_name": "상암월드컵파크3단지",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 마포구 월드컵로 338",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12127004",
+    "complex_name": "상암월드컵파크2단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1637",
+    "trade_name": "상암월드컵파크2단지",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 마포구 월드컵북로47길 46",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12127005",
+    "complex_name": "상암월드컵파크7단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1660",
+    "trade_name": "상암월드컵파크7단지",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 마포구 상암산로1길 92",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12127006",
+    "complex_name": "상암월드컵파크4단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1655",
+    "trade_name": "상암월드컵파크4단지",
+    "build_year": 2006,
+    "metadata_address": "서울특별시 마포구 상암산로1길 24",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12170402",
+    "complex_name": "마포한화오벨리스크",
+    "region": "마포구",
+    "legal_dong": "도화동",
+    "jibun": "555",
+    "trade_name": "한화오벨리스크",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 마포구 마포대로 33",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12170601",
+    "complex_name": "삼성래미안공덕4차",
+    "region": "마포구",
+    "legal_dong": "공덕동",
+    "jibun": "464",
+    "trade_name": "래미안공덕4차",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 마포구 마포대로11길 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12170603",
+    "complex_name": "공덕래미안5차",
+    "region": "마포구",
+    "legal_dong": "공덕동",
+    "jibun": "469",
+    "trade_name": "래미안공덕5차",
+    "build_year": 2011,
+    "metadata_address": "서울특별시 마포구 마포대로 167",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12170702",
+    "complex_name": "래미안밤섬리베뉴 2",
+    "region": "마포구",
+    "legal_dong": "상수동",
+    "jibun": "398",
+    "trade_name": "래미안밤섬리베뉴Ⅱ",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 마포구 독막로20나길 21",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12171101",
+    "complex_name": "월드컵아이파크1단지",
+    "region": "마포구",
+    "legal_dong": "성산동",
+    "jibun": "667",
+    "trade_name": "월드컵아이파크(667)",
+    "build_year": 2009,
+    "metadata_address": "서울특별시 마포구 모래내로9길 6",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12171201",
+    "complex_name": "밤섬경남아너스빌",
+    "region": "마포구",
+    "legal_dong": "신수동",
+    "jibun": "459",
+    "trade_name": "밤섬경남아너스빌",
+    "build_year": 2009,
+    "metadata_address": "서울특별시 마포구 독막로28길 10",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12172201",
+    "complex_name": "신촌포스빌",
+    "region": "마포구",
+    "legal_dong": "노고산동",
+    "jibun": "1-3",
+    "trade_name": "신촌포스빌",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 마포구 신촌로 150",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12172401",
+    "complex_name": "마포자이2차",
+    "region": "마포구",
+    "legal_dong": "대흥동",
+    "jibun": "804",
+    "trade_name": "마포자이2차",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 마포구 서강대길 40",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12174601",
+    "complex_name": "메세나폴리스",
+    "region": "마포구",
+    "legal_dong": "서교동",
+    "jibun": "490",
+    "trade_name": "메세나폴리스",
+    "build_year": 2012,
+    "metadata_address": "서울특별시 마포구 양화로 45",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12175203",
+    "complex_name": "마포래미안푸르지오",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "777",
+    "trade_name": "마포래미안푸르지오1단지",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 마포구 마포대로 195",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12175203",
+    "complex_name": "마포래미안푸르지오",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "777",
+    "trade_name": "마포래미안푸르지오2단지",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 마포구 마포대로 195",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12175203",
+    "complex_name": "마포래미안푸르지오",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "777",
+    "trade_name": "마포래미안푸르지오3단지",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 마포구 마포대로 195",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12175203",
+    "complex_name": "마포래미안푸르지오",
+    "region": "마포구",
+    "legal_dong": "아현동",
+    "jibun": "777",
+    "trade_name": "마포래미안푸르지오4단지",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 마포구 마포대로 195",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12179004",
+    "complex_name": "마포펜트라우스",
+    "region": "마포구",
+    "legal_dong": "신공덕동",
+    "jibun": "172",
+    "trade_name": "펜트라우스",
+    "build_year": 2011,
+    "metadata_address": "서울특별시 마포구 백범로 205",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12179503",
+    "complex_name": "상암월드컵파크11단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1741",
+    "trade_name": "상암월드컵파크11단지",
+    "build_year": 2010,
+    "metadata_address": "서울특별시 마포구 월드컵북로 502-37",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12179504",
+    "complex_name": "상암월드컵파크9단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1752",
+    "trade_name": "상암월드컵파크9단지",
+    "build_year": 2010,
+    "metadata_address": "서울특별시 마포구 월드컵북로 501",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12179505",
+    "complex_name": "상암월드컵파크12단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1743",
+    "trade_name": "상암월드컵파크12단지",
+    "build_year": 2010,
+    "metadata_address": "서울특별시 마포구 월드컵북로 502-7",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12179508",
+    "complex_name": "상암월드컵파크10단지",
+    "region": "마포구",
+    "legal_dong": "상암동",
+    "jibun": "1736",
+    "trade_name": "상암월드컵파크10단지",
+    "build_year": 2010,
+    "metadata_address": "서울특별시 마포구 월드컵북로 502-36",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12180407",
+    "complex_name": "공덕삼성",
+    "region": "마포구",
+    "legal_dong": "공덕동",
+    "jibun": "371",
+    "trade_name": "공덕1삼성래미안",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 마포구 마포대로 115-8",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12180506",
+    "complex_name": "공덕삼성래미안3차",
+    "region": "마포구",
+    "legal_dong": "공덕동",
+    "jibun": "457",
+    "trade_name": "공덕3삼성래미안",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 마포구 마포대로7길 22",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12181103",
+    "complex_name": "마포태영아파트",
+    "region": "마포구",
+    "legal_dong": "대흥동",
+    "jibun": "660",
+    "trade_name": "대흥동태영아파트",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 마포구 독막로 266",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12181103",
+    "complex_name": "마포태영아파트",
+    "region": "마포구",
+    "legal_dong": "대흥동",
+    "jibun": "660",
+    "trade_name": "마포태영",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 마포구 독막로 266",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12181404",
+    "complex_name": "도화현대홈타운",
+    "region": "마포구",
+    "legal_dong": "도화동",
+    "jibun": "353",
+    "trade_name": "현대홈타운",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 마포구 새창로8길 72",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12181406",
+    "complex_name": "도화현대1차아파트",
+    "region": "마포구",
+    "legal_dong": "도화동",
+    "jibun": "357",
+    "trade_name": "도화동현대",
+    "build_year": 1996,
+    "metadata_address": "서울특별시 마포구 새창로 52",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12184201",
+    "complex_name": "서교동대우미래사랑",
+    "region": "마포구",
+    "legal_dong": "서교동",
+    "jibun": "487",
+    "trade_name": "대우미래사랑",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 마포구 월드컵북로5나길 18",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12185004",
+    "complex_name": "성산시영아파트",
+    "region": "마포구",
+    "legal_dong": "성산동",
+    "jibun": "446",
+    "trade_name": "성산시영(대우)",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 마포구 월드컵북로 260",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12185004",
+    "complex_name": "성산시영아파트",
+    "region": "마포구",
+    "legal_dong": "성산동",
+    "jibun": "446",
+    "trade_name": "성산시영(선경)",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 마포구 월드컵북로 260",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12185004",
+    "complex_name": "성산시영아파트",
+    "region": "마포구",
+    "legal_dong": "성산동",
+    "jibun": "446",
+    "trade_name": "성산시영(유원)",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 마포구 월드컵북로 260",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12185303",
+    "complex_name": "신공덕1차삼성래미안아파트",
+    "region": "마포구",
+    "legal_dong": "신공덕동",
+    "jibun": "155",
+    "trade_name": "신공덕1차삼성래미안1아파트",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 마포구 백범로37길 12",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12185304",
+    "complex_name": "신공덕2차삼성래미안",
+    "region": "마포구",
+    "legal_dong": "신공덕동",
+    "jibun": "159",
+    "trade_name": "신공덕래미안2차",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 마포구 만리재로 74",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12185606",
+    "complex_name": "마포신촌삼익아파트",
+    "region": "마포구",
+    "legal_dong": "신수동",
+    "jibun": "450",
+    "trade_name": "신촌삼익",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 마포구 신수로 105",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12186901",
+    "complex_name": "코오롱하늘채",
+    "region": "마포구",
+    "legal_dong": "연남동",
+    "jibun": "573",
+    "trade_name": "코오롱",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 마포구 연남로 52",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12187403",
+    "complex_name": "염리상록",
+    "region": "마포구",
+    "legal_dong": "염리동",
+    "jibun": "515-1",
+    "trade_name": "상록",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 마포구 숭문길 106",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12187501",
+    "complex_name": "래미안마포리버웰",
+    "region": "마포구",
+    "legal_dong": "용강동",
+    "jibun": "502",
+    "trade_name": "래미안마포리버웰",
+    "build_year": 2015,
+    "metadata_address": "서울특별시 마포구 토정로31길 23",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12187602",
+    "complex_name": "래미안용강아파트",
+    "region": "마포구",
+    "legal_dong": "용강동",
+    "jibun": "380",
+    "trade_name": "마포용강삼성래미안",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 마포구 큰우물로 28",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12187904",
+    "complex_name": "DMC마포청구아파트",
+    "region": "마포구",
+    "legal_dong": "중동",
+    "jibun": "390",
+    "trade_name": "DMC마포청구아파트",
+    "build_year": 1994,
+    "metadata_address": "서울특별시 마포구 성암로11길 60",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12187905",
+    "complex_name": "마포중동현대",
+    "region": "마포구",
+    "legal_dong": "중동",
+    "jibun": "392",
+    "trade_name": "마포중동현대",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 마포구 성암로 91",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12187906",
+    "complex_name": "월드컵참누리",
+    "region": "마포구",
+    "legal_dong": "중동",
+    "jibun": "398",
+    "trade_name": "울트라월드컵(참누리)",
+    "build_year": 2006,
+    "metadata_address": "서울특별시 마포구 월드컵북로38길 54",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A12188205",
+    "complex_name": "신촌태영데시앙",
+    "region": "마포구",
+    "legal_dong": "창전동",
+    "jibun": "439",
+    "trade_name": "신촌태영데시앙",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 마포구 서강로9길 45",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10020907",
+    "complex_name": "서울숲아이파크리버포레",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "721",
+    "trade_name": "서울숲아이파크리버포레",
+    "build_year": 2024,
+    "metadata_address": "서울특별시 성동구 왕십리로 137",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10020907",
+    "complex_name": "서울숲아이파크리버포레",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "721",
+    "trade_name": "서울숲아이파크리버포레1차",
+    "build_year": 2024,
+    "metadata_address": "서울특별시 성동구 왕십리로 137",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026207",
+    "complex_name": "서울숲리버뷰자이아파트",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "380",
+    "trade_name": "서울숲리버뷰자이",
+    "build_year": 2018,
+    "metadata_address": "서울특별시 성동구 고산자로2길 65",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026418",
+    "complex_name": "e편한세상금호파크힐스",
+    "region": "성동구",
+    "legal_dong": "금호동1가",
+    "jibun": "1823",
+    "trade_name": "e편한세상신금호파크힐스",
+    "build_year": 2019,
+    "metadata_address": "서울특별시 성동구 금호로 140",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026470",
+    "complex_name": "힐스테이트서울숲리버",
+    "region": "성동구",
+    "legal_dong": "금호동4가",
+    "jibun": "1553",
+    "trade_name": "힐스테이트서울숲리버",
+    "build_year": 2018,
+    "metadata_address": "서울특별시 성동구 독서당로 344",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026748",
+    "complex_name": "옥수파크힐스아파트",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "528",
+    "trade_name": "옥수파크힐스101동~116동",
+    "build_year": 2016,
+    "metadata_address": "서울특별시 성동구 매봉길 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026748",
+    "complex_name": "옥수파크힐스아파트",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "528-1",
+    "trade_name": "옥수파크힐스117동~125동",
+    "build_year": 2016,
+    "metadata_address": "서울특별시 성동구 매봉길 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026900",
+    "complex_name": "왕십리 자이 아파트",
+    "region": "성동구",
+    "legal_dong": "하왕십리동",
+    "jibun": "1071",
+    "trade_name": "왕십리자이",
+    "build_year": 2017,
+    "metadata_address": "서울특별시 성동구 난계로 100",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10026988",
+    "complex_name": "트리마제",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "718",
+    "trade_name": "트리마제",
+    "build_year": 2017,
+    "metadata_address": "서울특별시 성동구 왕십리로 16",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10027602",
+    "complex_name": "신금호파크자이아파트",
+    "region": "성동구",
+    "legal_dong": "금호동2가",
+    "jibun": "1",
+    "trade_name": "신금호파크자이",
+    "build_year": 2016,
+    "metadata_address": "서울특별시 성동구 금호로 173",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A10027920",
+    "complex_name": "텐즈힐1단지",
+    "region": "성동구",
+    "legal_dong": "하왕십리동",
+    "jibun": "1066",
+    "trade_name": "텐즈힐(1단지)",
+    "build_year": 2015,
+    "metadata_address": "서울특별시 성동구 무학로 33",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13302001",
+    "complex_name": "청계벽산",
+    "region": "성동구",
+    "legal_dong": "하왕십리동",
+    "jibun": "258",
+    "trade_name": "벽산",
+    "build_year": 1996,
+    "metadata_address": "서울특별시 성동구 무학로 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13302203",
+    "complex_name": "하왕극동미라주",
+    "region": "성동구",
+    "legal_dong": "하왕십리동",
+    "jibun": "1058",
+    "trade_name": "극동미라주",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 성동구 난계로 73",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13302204",
+    "complex_name": "하왕금호베스트빌",
+    "region": "성동구",
+    "legal_dong": "하왕십리동",
+    "jibun": "1052",
+    "trade_name": "금호베스트빌",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 성동구 난계로 114-31",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13302206",
+    "complex_name": "왕십리풍림아이원",
+    "region": "성동구",
+    "legal_dong": "하왕십리동",
+    "jibun": "1061",
+    "trade_name": "왕십리풍림아이원",
+    "build_year": 2004,
+    "metadata_address": "서울특별시 성동구 난계로 84",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13305006",
+    "complex_name": "왕십리삼성",
+    "region": "성동구",
+    "legal_dong": "마장동",
+    "jibun": "817",
+    "trade_name": "삼성",
+    "build_year": 1996,
+    "metadata_address": "서울특별시 성동구 마장로 271",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13305006",
+    "complex_name": "왕십리삼성",
+    "region": "성동구",
+    "legal_dong": "마장동",
+    "jibun": "817",
+    "trade_name": "왕십리삼성아파트",
+    "build_year": 1996,
+    "metadata_address": "서울특별시 성동구 마장로 271",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13305007",
+    "complex_name": "마장세림",
+    "region": "성동구",
+    "legal_dong": "마장동",
+    "jibun": "784",
+    "trade_name": "세림",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 성동구 마장로42길 16",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13307002",
+    "complex_name": "서울숲행당푸르지오",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "376",
+    "trade_name": "서울숲행당푸르지오",
+    "build_year": 2011,
+    "metadata_address": "서울특별시 성동구 고산자로 177",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13307003",
+    "complex_name": "서울숲더샵",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "377",
+    "trade_name": "서울숲더샵",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 성동구 왕십리로 241",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13307101",
+    "complex_name": "서울숲삼부아파트",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "147",
+    "trade_name": "서울숲삼부",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 성동구 왕십리로 280",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13307101",
+    "complex_name": "서울숲삼부아파트",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "147",
+    "trade_name": "서울숲삼부아파트",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 성동구 왕십리로 280",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13307202",
+    "complex_name": "신동아",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "344",
+    "trade_name": "신동아",
+    "build_year": 1995,
+    "metadata_address": "서울특별시 성동구 독서당로 441",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13307204",
+    "complex_name": "행당대림",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "347",
+    "trade_name": "대림e-편한세상",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 성동구 행당로 79",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13308004",
+    "complex_name": "응봉금호현대",
+    "region": "성동구",
+    "legal_dong": "응봉동",
+    "jibun": "98",
+    "trade_name": "금호현대",
+    "build_year": 1990,
+    "metadata_address": "서울특별시 성동구 독서당로 377",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13308005",
+    "complex_name": "응봉대림1차",
+    "region": "성동구",
+    "legal_dong": "응봉동",
+    "jibun": "100",
+    "trade_name": "대림(1차)",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 성동구 독서당로62길 43",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13309102",
+    "complex_name": "금호삼성래미안",
+    "region": "성동구",
+    "legal_dong": "금호동1가",
+    "jibun": "1500",
+    "trade_name": "금호삼성래미안",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 성동구 독서당로 343",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13309301",
+    "complex_name": "금호한신휴플러스",
+    "region": "성동구",
+    "legal_dong": "금호동3가",
+    "jibun": "1662",
+    "trade_name": "금호한신",
+    "build_year": 2005,
+    "metadata_address": "서울특별시 성동구 금호산길 27",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13309404",
+    "complex_name": "금호대우",
+    "region": "성동구",
+    "legal_dong": "금호동4가",
+    "jibun": "800",
+    "trade_name": "대우",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 성동구 독서당로 272",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13310004",
+    "complex_name": "옥수극동",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "428",
+    "trade_name": "극동",
+    "build_year": 1986,
+    "metadata_address": "서울특별시 성동구 독서당로 191",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13312302",
+    "complex_name": "성수롯데캐슬",
+    "region": "성동구",
+    "legal_dong": "성수동2가",
+    "jibun": "835",
+    "trade_name": "롯데캐슬파크",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 성동구 성수일로8길 47",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13312303",
+    "complex_name": "성수아이파크",
+    "region": "성동구",
+    "legal_dong": "성수동2가",
+    "jibun": "834",
+    "trade_name": "현대I-PARK",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 성동구 성수이로 137",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13370801",
+    "complex_name": "성동삼성쉐르빌",
+    "region": "성동구",
+    "legal_dong": "도선동",
+    "jibun": "69",
+    "trade_name": "삼성쉐르빌",
+    "build_year": 2006,
+    "metadata_address": "서울특별시 성동구 무학로6길 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13372102",
+    "complex_name": "성수쌍용",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "706",
+    "trade_name": "쌍용",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 성동구 상원길 63",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13373301",
+    "complex_name": "텐즈힐2구역",
+    "region": "성동구",
+    "legal_dong": "상왕십리동",
+    "jibun": "811",
+    "trade_name": "텐즈힐(2단지)",
+    "build_year": 2014,
+    "metadata_address": "서울특별시 성동구 마장로 137",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13375901",
+    "complex_name": "한남하이츠",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "220-1",
+    "trade_name": "한남하이츠",
+    "build_year": 1982,
+    "metadata_address": "서울특별시 성동구 독서당로 156",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13375902",
+    "complex_name": "옥수삼성",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "250",
+    "trade_name": "옥수삼성",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 성동구 독서당로 218",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13375907",
+    "complex_name": "래미안옥수리버젠",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "561",
+    "trade_name": "래미안 옥수 리버젠",
+    "build_year": 2012,
+    "metadata_address": "서울특별시 성동구 매봉길 15",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13375907",
+    "complex_name": "래미안옥수리버젠",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "561",
+    "trade_name": "래미안옥수리버젠",
+    "build_year": 2012,
+    "metadata_address": "서울특별시 성동구 매봉길 15",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13376405",
+    "complex_name": "성수한진타운",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "704",
+    "trade_name": "한진타운",
+    "build_year": 1994,
+    "metadata_address": "서울특별시 성동구 뚝섬로 312",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13376702",
+    "complex_name": "옥수현대",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "4",
+    "trade_name": "현대",
+    "build_year": 1990,
+    "metadata_address": "서울특별시 성동구 독서당로40길 25",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13376906",
+    "complex_name": "응봉대림강변",
+    "region": "성동구",
+    "legal_dong": "응봉동",
+    "jibun": "15",
+    "trade_name": "대림강변타운",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 성동구 고산자로 160",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13377703",
+    "complex_name": "행당한진타운",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "346",
+    "trade_name": "행당한진타운",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 성동구 행당로 82",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13377901",
+    "complex_name": "행당두산위브아파트",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "375",
+    "trade_name": "행당두산위브",
+    "build_year": 2009,
+    "metadata_address": "서울특별시 성동구 행당로8길 8",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13378001",
+    "complex_name": "서울숲힐스테이트",
+    "region": "성동구",
+    "legal_dong": "성수동2가",
+    "jibun": "843",
+    "trade_name": "서울숲힐스테이트",
+    "build_year": 2009,
+    "metadata_address": "서울특별시 성동구 성수일로4길 26",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13378001",
+    "complex_name": "서울숲힐스테이트",
+    "region": "성동구",
+    "legal_dong": "성수동2가",
+    "jibun": "843",
+    "trade_name": "힐스테이트",
+    "build_year": 2009,
+    "metadata_address": "서울특별시 성동구 성수일로4길 26",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13378102",
+    "complex_name": "서울숲2차푸르지오",
+    "region": "성동구",
+    "legal_dong": "금호동4가",
+    "jibun": "235",
+    "trade_name": "서울숲2차푸르지오",
+    "build_year": 2012,
+    "metadata_address": "서울특별시 성동구 금호로 17",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13379001",
+    "complex_name": "금호리버힐자이",
+    "region": "성동구",
+    "legal_dong": "금호동3가",
+    "jibun": "700",
+    "trade_name": "금호자이2차",
+    "build_year": 2012,
+    "metadata_address": "서울특별시 성동구 금호산8길 14",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13380104",
+    "complex_name": "금호벽산",
+    "region": "성동구",
+    "legal_dong": "금호동1가",
+    "jibun": "633",
+    "trade_name": "벽산",
+    "build_year": 2001,
+    "metadata_address": "서울특별시 성동구 금호로 100",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13380301",
+    "complex_name": "금호센트럴자이",
+    "region": "성동구",
+    "legal_dong": "금호동2가",
+    "jibun": "1215",
+    "trade_name": "금호자이1차",
+    "build_year": 2012,
+    "metadata_address": "서울특별시 성동구 금호로 117",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13380302",
+    "complex_name": "래미안하이리버",
+    "region": "성동구",
+    "legal_dong": "금호동2가",
+    "jibun": "1217",
+    "trade_name": "래미안하이리버",
+    "build_year": 2012,
+    "metadata_address": "서울특별시 성동구 금호로 107",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13380703",
+    "complex_name": "금호두산",
+    "region": "성동구",
+    "legal_dong": "금호동3가",
+    "jibun": "1331",
+    "trade_name": "두산",
+    "build_year": 1994,
+    "metadata_address": "서울특별시 성동구 동호로 100",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13380803",
+    "complex_name": "서울숲푸르지오",
+    "region": "성동구",
+    "legal_dong": "금호동4가",
+    "jibun": "340",
+    "trade_name": "서울숲푸르지오",
+    "build_year": 2007,
+    "metadata_address": "서울특별시 성동구 금호로 15",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13381604",
+    "complex_name": "왕십리금호어울림아파트",
+    "region": "성동구",
+    "legal_dong": "마장동",
+    "jibun": "820",
+    "trade_name": "왕십리금호어울림",
+    "build_year": 2006,
+    "metadata_address": "서울특별시 성동구 마조로 57",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13381608",
+    "complex_name": "청계현대아파트",
+    "region": "성동구",
+    "legal_dong": "마장동",
+    "jibun": "818",
+    "trade_name": "현대",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 성동구 살곶이길 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13382104",
+    "complex_name": "서울숲대림아파트",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "656-234",
+    "trade_name": "서울숲대림",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 성동구 뚝섬로 311",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13382106",
+    "complex_name": "성수동아",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "656-320",
+    "trade_name": "동아",
+    "build_year": 1983,
+    "metadata_address": "서울특별시 성동구 왕십리로 80-1",
+    "evidence": "공식 공동주택명(상세주소의 기존 이름 포함)과 거래명 별칭·법정동·준공연도 대조 후 명시적 지번 연결. 이름 변경/띄어쓰기/단지 번호 차이 검토.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13383702",
+    "complex_name": "송정건영",
+    "region": "성동구",
+    "legal_dong": "송정동",
+    "jibun": "90",
+    "trade_name": "건영",
+    "build_year": 2000,
+    "metadata_address": "서울특별시 성동구 동일로 263",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13383801",
+    "complex_name": "옥수중앙하이츠",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "100",
+    "trade_name": "옥수하이츠",
+    "build_year": 1998,
+    "metadata_address": "서울특별시 성동구 한림말길 50",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13384304",
+    "complex_name": "성수동아그린",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "708",
+    "trade_name": "동아그린",
+    "build_year": 1999,
+    "metadata_address": "서울특별시 성동구 상원길 76",
+    "evidence": "공식 공동주택 상세주소의 지번·법정동·준공연도와 아파트 거래를 대조.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13384403",
+    "complex_name": "옥수극동그린아파트",
+    "region": "성동구",
+    "legal_dong": "옥수동",
+    "jibun": "436",
+    "trade_name": "극동그린",
+    "build_year": 1997,
+    "metadata_address": "서울특별시 성동구 독서당로 175",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13385202",
+    "complex_name": "응봉대림2차",
+    "region": "성동구",
+    "legal_dong": "응봉동",
+    "jibun": "97",
+    "trade_name": "대림(2차)",
+    "build_year": 1989,
+    "metadata_address": "서울특별시 성동구 독서당로 431",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13385301",
+    "complex_name": "서울숲리버그린동아",
+    "region": "성동구",
+    "legal_dong": "응봉동",
+    "jibun": "276",
+    "trade_name": "서울숲리버그린동아",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 성동구 고산자로4길 34",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13385301",
+    "complex_name": "서울숲리버그린동아",
+    "region": "성동구",
+    "legal_dong": "응봉동",
+    "jibun": "276",
+    "trade_name": "서울숲리버그린동아아파트",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 성동구 고산자로4길 34",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13385303",
+    "complex_name": "응봉신동아",
+    "region": "성동구",
+    "legal_dong": "응봉동",
+    "jibun": "275",
+    "trade_name": "신동아",
+    "build_year": 1996,
+    "metadata_address": "서울특별시 성동구 독서당로 375",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13385705",
+    "complex_name": "한신무학",
+    "region": "성동구",
+    "legal_dong": "하왕십리동",
+    "jibun": "990",
+    "trade_name": "한신무학",
+    "build_year": 1989,
+    "metadata_address": "서울특별시 성동구 왕십리로31나길 22",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13386702",
+    "complex_name": "서울숲한신더휴아파트",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "349",
+    "trade_name": "서울숲 한신 더 휴",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 성동구 고산자로 164",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13386702",
+    "complex_name": "서울숲한신더휴아파트",
+    "region": "성동구",
+    "legal_dong": "행당동",
+    "jibun": "349",
+    "trade_name": "서울숲한신더휴",
+    "build_year": 2003,
+    "metadata_address": "서울특별시 성동구 고산자로 164",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
+  },
+  {
+    "complex_id": "A13392307",
+    "complex_name": "강변건영",
+    "region": "성동구",
+    "legal_dong": "성수동1가",
+    "jibun": "710",
+    "trade_name": "강변건영아파트",
+    "build_year": 2002,
+    "metadata_address": "서울특별시 성동구 왕십리로 36",
+    "evidence": "공식 건축물대장 도로명 주소·법정동을 공동주택 목록과 대조해 지번 확인. 해당 지번의 아파트 거래명·건축연도 연결.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-06"
   }
 ]

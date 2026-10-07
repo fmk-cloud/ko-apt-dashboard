@@ -16,11 +16,29 @@
     "jeonse": {
       "source": "OA-21276",
       "new_contracts_only_by_default": true,
-      "lookback_months": 3,
+      "lookback_months": 6,
       "same_area_tolerance_m2": 0.1,
-      "representative": "median_latest_month",
+      "representative": "max_eligible_in_window",
       "anchor": "selected_start_month",
       "sale_max_month_difference": 3
     }
-  }
+  },
+  "regions": [
+    {
+      "code": "11560",
+      "name": "영등포구",
+      "minimum_expected_complexes": 50
+    },
+    {
+      "code": "11200",
+      "name": "성동구",
+      "minimum_expected_complexes": 40
+    },
+    {
+      "code": "11440",
+      "name": "마포구",
+      "minimum_expected_complexes": 40
+    }
+  ],
+  "minimum_expected_trade_rows_per_region": 500
 }

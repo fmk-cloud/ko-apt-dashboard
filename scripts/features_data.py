@@ -14,8 +14,8 @@ def number(v):
   n=float(clean(v).replace(',',''));return n if math.isfinite(n) else None
  except ValueError:return None
 
-def download_rows(dataset,fetch,allow_empty=False):
- params={'srvType':'S','infId':dataset,'serviceKind':'1','pageNo':'1','ssUserId':'SAMPLE_VIEW','strWhere':'','strOrderby':'','filterCol':'CGG_CD' if dataset=='OA-21276' else '', 'txtFilter':'11560' if dataset=='OA-21276' else ''}
+def download_rows(dataset,fetch,allow_empty=False,region_code="11560"):
+ params={'srvType':'S','infId':dataset,'serviceKind':'1','pageNo':'1','ssUserId':'SAMPLE_VIEW','strWhere':'','strOrderby':'','filterCol':'CGG_CD' if dataset=='OA-21276' else '', 'txtFilter':region_code if dataset=='OA-21276' else ''}
  blob=fetch(EXPORT,urllib.parse.urlencode(params).encode())
  try:obj=json.loads(blob)
  except (ValueError,UnicodeDecodeError):raise DataError('전세/용적률 공개자료 JSON 해석 실패') from None
@@ -31,7 +31,7 @@ def archive_index(html):
    out[int(y[1])]={'seq':seq[1],'published':stamp[1] if stamp else ''}
  return out
 
-def read_archive(blob):
+def read_archive(blob,region_code="11560"):
  try:
   with zipfile.ZipFile(io.BytesIO(blob)) as z:
    csvs=[n for n in z.namelist() if n.lower().endswith('.csv')]
@@ -45,15 +45,15 @@ def read_archive(blob):
  if text is None:raise DataError('전세 CSV 문자 인코딩 변경')
  reader=csv.DictReader(io.StringIO(text))
  if not set(FIELDS).issubset(reader.fieldnames or []):raise DataError('전세 CSV 필드 변경')
- return [{v:r[k] for k,v in FIELDS.items()} for r in reader if clean(r['자치구코드'])=='11560']
+ return [{v:r[k] for k,v in FIELDS.items()} for r in reader if clean(r['자치구코드'])==region_code]
 
 def road(address):
  m=re.search(r'([가-힣A-Za-z0-9·]+(?:대로|로|길))\s+(\d+)(?:-(\d+))?',address)
  return (m[1],int(m[2]),int(m[3] or 0)) if m else None
 
-def assign_far(catalog,rows,bindings):
- district=[r for r in rows if clean(r.get('sgg_cd_nm'))=='서울특별시 영등포구']
- if len(district)<100:raise DataError('용적률 원자료 영등포구 범위 급감')
+def assign_far(catalog,rows,bindings,region_name="영등포구"):
+ district=[r for r in rows if clean(r.get('sgg_cd_nm'))=='서울특별시 '+region_name]
+ if len(district)<100:raise DataError('용적률 원자료 '+region_name+' 범위 급감')
  result=[];verified=0
  for c in catalog:
   parcels={(b['legal_dong'],b['jibun']) for b in bindings if b['complex_id']==c['id']}
@@ -90,13 +90,13 @@ def parcel_key(r):
  a=int(r['mno']);b=int(r.get('sno') or 0)
  return str(a)+('-'+str(b) if b else '')
 
-def collect_rent(catalog,rows,bindings,start,end):
+def collect_rent(catalog,rows,bindings,start,end,region_code="11560"):
  byid={c['id']:c for c in catalog};idx={};counts=collections.Counter();stats=collections.Counter();seen=set();unmatched=collections.Counter()
  for b in bindings:
   if b['complex_id'] in byid:idx[(b['legal_dong'],b['jibun'],norm(b['trade_name']),b['build_year'])]=b['complex_id']
  out={cid:[] for cid in byid}
  for r in rows:
-  if clean(r.get('cgg_cd'))!='11560':raise DataError('전세 원자료 자치구 범위 오류')
+  if clean(r.get('cgg_cd'))!=region_code:raise DataError('전세 원자료 자치구 범위 오류')
   if clean(r.get('bldg_usg'))!='아파트':continue
   if clean(r.get('rent_se'))!='전세':stats['monthly_rent_excluded']+=1;continue
   monthly=number(r.get('rtfe'))
@@ -130,7 +130,7 @@ def collect_rent(catalog,rows,bindings,start,end):
  if total==0:raise DataError('대상 단지 전세 연결 0행')
  return {'rows':total,'complexes_with_rent':sum(bool(v) for v in out.values()),'stats':dict(stats),'raw_month_counts':dict(sorted(counts.items())), 'source':RENT_PAGE,'checked_at':now(),'note':'공개 전세 자료에는 계약해제 필드가 없어 개별 해제 여부는 확인 불가. 동일 공개행 중복 제거 후 자료 행 수를 표시.'}
 
-def enrich(root,d,fetch,fixtures=None):
+def enrich(root,d,fetch,fixtures=None,region_code="11560",region_name="영등포구"):
  """Prepare every feature before the caller publishes files; yearly archives are refreshed too."""
  root=Path(root);cs=d['complexes'];bindings=read_json(root/'config/seoul-bindings.json');start=d['meta']['min_month'];end=d['meta']['current_month'];hashes={}
  if fixtures:
@@ -139,14 +139,14 @@ def enrich(root,d,fetch,fixtures=None):
   far,hashes['far']=download_rows('OA-23051',fetch)
   html=fetch(RENT_PAGE).decode('utf-8');listed=archive_index(html)
   if not listed:raise DataError('전세 연도 파일 목록 확인 실패')
-  current_year=int(now()[:4]);live,hashes['rent_current']=download_rows('OA-21276',fetch,allow_empty=current_year>int(end[:4]));archives={}
+  current_year=int(now()[:4]);live,hashes['rent_current']=download_rows('OA-21276',fetch,allow_empty=current_year>int(end[:4]),region_code=region_code);archives={}
   for year in range(int(start[:4]),min(current_year,int(end[:4])+1)):
    if year not in listed:raise DataError(f'{year}년 전세 연도파일이 아직 공개되지 않았습니다. 기존 정상 자료 유지')
    params={'infId':'OA-21276','infSeq':'3','seq':listed[year]['seq'],'seqNo':''}
-   blob=fetch(ARCHIVE,urllib.parse.urlencode(params).encode());hashes['rent_'+str(year)]=hashlib.sha256(blob).hexdigest();archives[year]=read_archive(blob)
- far_report=assign_far(cs,far,bindings)
+   blob=fetch(ARCHIVE,urllib.parse.urlencode(params).encode());hashes['rent_'+str(year)]=hashlib.sha256(blob).hexdigest();archives[year]=read_archive(blob,region_code)
+ far_report=assign_far(cs,far,bindings,region_name)
  rows=[r for yy,rr in archives.items() for r in rr]+live
- report=collect_rent(cs,rows,bindings,start,end)
+ report=collect_rent(cs,rows,bindings,start,end,region_code)
  missing=[m for m in month_range(start,end) if not report['raw_month_counts'].get(m)]
  if missing:raise DataError('전세 원자료 월 전체 누락: '+', '.join(missing))
  old=read_json(root/'data/site-data.json')
@@ -158,5 +158,5 @@ def enrich(root,d,fetch,fixtures=None):
  report['archives']={str(y):listed[y] for y in archives};report['current_receipt_year']=current_year
  d['meta']['feature_sources']={'far':FAR_PAGE,'jeonse':RENT_PAGE};d['meta']['features']={'far':True,'gap':True}
  d['meta']['far_verified_count']=far_report['verified'];d['meta']['jeonse_rows']=report['rows'];d['meta']['jeonse_from']=start;d['meta']['jeonse_to']=end
- d['meta']['note']='영등포구 300세대 이상. 용적률 공식 대장 검증값, 전세는 순수 전세 공개자료. 미확인 값은 제외 또는 별도 표시.'
+ d['meta']['note']=region_name+' 300세대 이상. 용적률 공식 대장 검증값, 전세는 순수 전세 공개자료. 미확인 값은 제외 또는 별도 표시.'
  return {'far':far_report,'jeonse':report,'sha256':hashes}

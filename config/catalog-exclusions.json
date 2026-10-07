@@ -1,4 +1,67 @@
 [
-  {"id":"A15007201","name":"신대림자이","reason":"서울시 관리단위는 314세대이나 거래단위 1차 155세대·2차 159세대. 300세대 미만 차수를 합산해 수집하지 않도록 제외.","sources":["https://kbland.kr/se/c/15072","https://kbland.kr/se/c/15073"],"checked_at":"2026-10-05"},
-  {"id":"A15001019","name":"여의도광장","reason":"관리단위 744세대에 서로 다른 지번·거래명이 포함됨. 광장(1,2동)과 광장의 분리 세대수를 공식자료로 확정하기 전 수집 보류.","sources":["https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do","https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"],"checked_at":"2026-10-05"}
+  {
+    "id": "A15007201",
+    "name": "신대림자이",
+    "reason": "서울시 관리단위는 314세대이나 거래단위 1차 155세대·2차 159세대. 300세대 미만 차수를 합산해 수집하지 않도록 제외.",
+    "sources": [
+      "https://kbland.kr/se/c/15072",
+      "https://kbland.kr/se/c/15073"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "id": "A15001019",
+    "name": "여의도광장",
+    "reason": "관리단위 744세대에 서로 다른 지번·거래명이 포함됨. 광장(1,2동)과 광장의 분리 세대수를 공식자료로 확정하기 전 수집 보류.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-05"
+  },
+  {
+    "id": "A10024408",
+    "name": "공덕SK리더스뷰 1단지",
+    "region": "마포구",
+    "reason": "거래명 공덕SK리더스뷰에 300세대 미만 2단지가 함께 포함되는지 확정 전 수집 보류.",
+    "checked_at": "2026-10-06",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ]
+  },
+  {
+    "id": "A10026036",
+    "name": "마포자이 더 센트리지 아파트",
+    "region": "마포구",
+    "reason": "공식 단지 준공연도 2018과 거래 건축연도 2022 충돌. 정확한 거래 단위 확인 전 수집 보류.",
+    "checked_at": "2026-10-06",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ]
+  },
+  {
+    "id": "A13380602",
+    "name": "금호1차푸르지오",
+    "region": "성동구",
+    "reason": "공식 단지 상세 지번 971과 실거래 지번 917 충돌. 주소 확인 전 수집 보류.",
+    "checked_at": "2026-10-06",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do"
+    ]
+  },
+  {
+    "id": "A10025003",
+    "region": "마포구",
+    "name": "마포그랑자이",
+    "reason": "관리 세대수 1,248에 300세대 미만 2단지가 포함되는 분리 단위. 1단지 세대수 공식 분리 확인 전 전체 관리단위 수집 보류. 2단지 거래를 합산하지 않음.",
+    "checked_at": "2026-10-06",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do",
+      "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
+      "https://house.ttpk.co.kr/group/11440-%EB%A7%88%ED%8F%AC%EA%B7%B8%EB%9E%91%EC%9E%90%EC%9D%B4"
+    ]
+  }
 ]

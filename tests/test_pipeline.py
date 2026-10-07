@@ -8,7 +8,7 @@ from schedule_due import due
 ROOT=Path(__file__).resolve().parents[1]
 class PipelineTests(unittest.TestCase):
  def setUp(self):
-  self.c={'id':'A1','name':'검증단지','official_name':'검증단지','region':'영등포구','households':300,'legal_dong':'당산동','build_year':2000}
+  self.c={'id':'A1','name':'검증단지','official_name':'검증단지','region':'영등포구','households':300,'legal_dong':'당산동','build_year':2000,'metadata_jibun':'1'}
   self.row={'cgg_cd':'11560','rcpt_yr':'2026','bldg_usg':'아파트','rght_se':None,'ctrt_day':'20260910','stdg_nm':'당산동','mno':'0001','sno':'0000','bldg_nm':'검증단지','arch_yr':'2000','thing_amt':'100000','arch_area':59.9,'flr':5,'rtrcn_day':None}
   self.rows=[dict(self.row) for _ in range(100)]
  def collect(self,rows=None,old=None,start='2026-09',end='2026-09'):
