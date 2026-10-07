@@ -1,13 +1,17 @@
 /* k.apt cloud workspace v1. Stable keys across UI versions; official Supabase SDK. */
 (() => {
  'use strict';
- const $=s=>document.querySelector(s), clone=v=>structuredClone(v), json=v=>JSON.stringify(v), OWNER='kAptCloudOwnerV1',CONFIG='kAptSupabaseConfigV1';
+ const $=s=>document.querySelector(s), clone=v=>structuredClone(v), json=v=>JSON.stringify(v,(_,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.fromEntries(Object.keys(x).sort().map(k=>[k,x[k]])):x), OWNER='kAptCloudOwnerV1',CONFIG='kAptSupabaseConfigV1';
  const local=window.KaptLocal, BUCKET='kapt-private-images',TABLE='kapt_workspaces';
  let db,client,config,user=null,owner='guest',base=null,revision=0,ready=false,suppress=false,dirty=false,bootstrapped=false,importOnEmpty=false,switching=false,syncPromise=null,changeTimer,pollTimer,epoch=0,recovery=false;
  const digests=new WeakMap();
+ function content(snapshot){return {...strip(snapshot),maps:snapshot.maps.map(({blob,cloudPath,mime,bytes,...m})=>m)};}
+ function same(a,b){return json(content(a))===json(content(b));}
+ function pending(){return !!user&&dirty;}
+ function saving(value){for(const id of ['cloudSaveBtn','cloudSyncNow'])$('#'+id).disabled=value;}
  const message=(text,badge)=>{$('#cloudMessage').textContent=text;if(badge)$('#cloudBadge').textContent=badge;};
- function controls(){const logged=!!user;$('#cloudSignedIn').hidden=!logged;$('#cloudSignedOut').hidden=logged;$('#cloudAccountBtn').textContent=logged?'계정':'로그인';$('#cloudEmailLabel').textContent=user?.email||'';$('#cloudRecovery').hidden=!recovery;}
- function errorText(e){const t=e?.message||String(e);if(/invalid login|credentials/i.test(t))return '이메일 또는 비밀번호를 확인해 주세요.';if(/email.*confirm/i.test(t))return '이메일 인증을 완료한 뒤 로그인해 주세요.';if(/fetch|network|timeout|abort/i.test(t))return '연결하지 못했습니다. 이 기기에 보관한 변경은 연결 후 다시 동기화합니다.';if(/42P01|PGRST202|does not exist|schema cache/i.test(t))return '프로젝트에서 supabase/setup.sql을 실행한 뒤 다시 동기화해 주세요.';return t.slice(0,260);}
+ function controls(){const logged=!!user;$('#cloudSignedIn').hidden=!logged;$('#cloudSignedOut').hidden=logged;$('#cloudAccountBtn').textContent=logged?'계정':'로그인';$('#cloudEmailLabel').textContent=user?.email||'';$('#cloudRecovery').hidden=!recovery;$('#cloudSaveBtn').title=logged?'현재 변경 내용을 클라우드에 저장':'로그인 후 클라우드에 저장';}
+ function errorText(e){const t=e?.message||String(e);if(/invalid login|credentials/i.test(t))return '이메일 또는 비밀번호를 확인해 주세요.';if(/email.*confirm/i.test(t))return '이메일 인증을 완료한 뒤 로그인해 주세요.';if(/fetch|network|timeout|abort/i.test(t))return '연결하지 못했습니다. 변경 내용은 이 기기에 보관됩니다. 연결 후 저장을 다시 눌러 주세요.';if(/42P01|PGRST202|does not exist|schema cache/i.test(t))return '프로젝트에서 supabase/setup.sql을 실행한 뒤 다시 동기화해 주세요.';return t.slice(0,260);}
  function getConfig(){let v=window.KAPT_SUPABASE_CONFIG||{};if(!v.url||!v.publishableKey)try{v=JSON.parse(localStorage.getItem(CONFIG)||'{}')}catch{}return v;}
  function validateConfig(v){const u=new URL(v.url);if(u.protocol!=='https:'||u.username||u.password||u.search||u.hash)throw Error('Project URL은 https://로 시작하는 프로젝트 주소를 입력해 주세요.');const key=v.publishableKey.trim();if(key.startsWith('sb_secret_'))throw Error('Secret key는 사용할 수 없습니다. 공개 Publishable key를 입력해 주세요.');if(!key.startsWith('sb_publishable_')){let payload;try{payload=JSON.parse(atob(key.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))}catch{}if(payload?.role!=='anon')throw Error('Publishable key 또는 anon key를 입력해 주세요. service_role 키는 사용할 수 없습니다.');}return {url:u.origin,publishableKey:key};}
  async function openDb(){db=await new Promise((resolve,reject)=>{const r=indexedDB.open('kAptCloudLocalV1',1);r.onupgradeneeded=()=>r.result.createObjectStore('workspaces',{keyPath:'id'});r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
@@ -34,7 +38,7 @@
  async function hydrate(payload,snapshot,ticket){checkPayload(payload);const maps=[];for(const row of payload.maps){guard(ticket);const found=snapshot?.maps?.find(x=>x.id===row.id&&x.cloudPath===row.cloudPath&&x.blob);if(row.cloudPath&&!row.deleted){if(!row.cloudPath.startsWith(user.id+'/'))throw Error('이미지 계정 경로가 일치하지 않습니다.');let blob=found?.blob;if(!blob){const {data,error}=await client.storage.from(BUCKET).download(row.cloudPath);if(error)throw error;blob=data;}maps.push({...row,blob});}else maps.push({...row});}return {...clone(payload),maps};}
  async function pull(ticket){guard(ticket);const {data,error}=await client.from(TABLE).select('revision,payload').eq('user_id',user.id).maybeSingle();if(error)throw error;guard(ticket);if(data)checkPayload(data.payload);return data;}
  async function apply(snapshot){suppress=true;try{await local.apply(snapshot)}finally{suppress=false;}}
- async function sync(){if(!user||switching||!ready)return;if(syncPromise)return syncPromise;syncPromise=syncWork().finally(()=>{syncPromise=null});return syncPromise;}
+ async function sync(){if(!user||switching||!ready)return;if(syncPromise)return syncPromise;if(local.editing()){message('열려 있는 편집창을 닫은 뒤 저장해 주세요.',dirty?'저장할 변경 있음':'저장 완료');return;}clearTimeout(changeTimer);saving(true);message('현재 내용을 클라우드에 저장하고 있습니다.','저장 중');syncPromise=syncWork().finally(()=>{syncPromise=null;saving(false)});return syncPromise;}
  async function syncWork(){const ticket=epoch,uid=user.id;try{
   // Take a new local snapshot, even when an offline edit was made just before closing.
   const start=local.capture();await cache(owner,start);let row=await pull(ticket);guard(ticket);
@@ -66,10 +70,28 @@
    const patched=merge(payload,strip(now),finalPayload);const withBlobs=patched.maps.map(m=>({...m,blob:now.maps.find(x=>x.id===m.id&&(!m.cloudPath||x.cloudPath===m.cloudPath))?.blob||hydrated.maps.find(x=>x.id===m.id)?.blob}));
    if(!local.editing()){await apply({...patched,maps:withBlobs});dirty=json(patched)!==json(finalPayload);}else{base=clone(localBase);dirty=true;}
   }
-  await cache(uid,local.capture(),base,revision,dirty);message(dirty?'최신 변경을 이어서 동기화합니다.':'동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'),dirty?'저장 중':'동기화 완료');if(dirty&&!local.editing())schedule(1200);
- }catch(e){if(ticket!==epoch)return;dirty=true;try{await remember()}catch{}message(errorText(e),'동기화 대기');} }
- function schedule(delay=900){clearTimeout(changeTimer);changeTimer=setTimeout(async()=>{if(!ready||suppress)return;dirty=!!user;try{await remember();if(user)await sync();}catch(e){message(errorText(e),'저장 실패');}},delay);}
- function changed(){if(!ready||suppress||switching)return;if(user){dirty=true;$('#cloudBadge').textContent='저장 중';}schedule();}
+  await cache(uid,local.capture(),base,revision,dirty);message(dirty?'저장 중에 추가로 수정한 내용이 있습니다. 저장을 다시 눌러 주세요.':'저장 완료 · '+new Date().toLocaleTimeString('ko-KR'),dirty?'저장할 변경 있음':'저장 완료');
+ }catch(e){if(ticket!==epoch)return;dirty=true;try{await remember()}catch{}message(errorText(e),'저장할 변경 있음');} }
+ // Local persistence only. User changes never upload from debounce/focus/online/poll.
+ function schedule(delay=200){clearTimeout(changeTimer);changeTimer=setTimeout(async()=>{if(!ready||suppress)return;try{await remember();}catch(e){message(errorText(e),'이 기기 저장 실패');}},delay);}
+ function changed(){if(!ready||suppress||switching)return;if(user){dirty=true;message('이 브라우저에 보관한 변경이 있습니다. 저장을 눌러 주세요.','저장할 변경 있음');}schedule();}
+ async function receive(initial=false){
+  if(!user||switching||!ready||syncPromise||(!initial&&(dirty||local.editing())))return;
+  const ticket=epoch,uid=user.id;try{
+   const row=await pull(ticket);guard(ticket);const current=local.capture();
+   if(!row){if(initial&&importOnEmpty){const guest=await cached('guest');if(guest?.snapshot)await apply(guest.snapshot);}bootstrapped=true;dirty=true;await remember();message('현재 브라우저 자료를 클라우드에 저장하려면 저장을 눌러 주세요.','저장할 변경 있음');return;}
+   // A local edit may have happened while the read was in flight: leave it untouched.
+   if(!initial&&(dirty||local.editing()))return;
+   const payload=initial&&dirty?merge(base||row.payload,strip(current),row.payload):row.payload;
+   const hydrated=await hydrate(payload,current,ticket);guard(ticket);
+   if(!initial&&(dirty||local.editing()))return;
+   const now=local.capture();if(!same(now,current)||now.maps.some((m,i)=>m.blob!==current.maps[i]?.blob))return;
+   if(!same(hydrated,current)||initial)await apply(hydrated);
+   base=clone(row.payload);revision=row.revision;bootstrapped=true;dirty=!same(local.capture(),hydrated)||json(strip(hydrated))!==json(row.payload);
+   await cache(uid,local.capture(),base,revision,dirty);
+   if(initial||!same(hydrated,current))message(dirty?'아직 클라우드에 저장하지 않은 변경이 있습니다.':'저장된 계정 자료를 불러왔습니다.',dirty?'저장할 변경 있음':'저장 완료');
+  }catch(e){if(ticket===epoch)message(errorText(e),dirty?'저장할 변경 있음':'연결 확인 필요');}
+ }
  async function handleSession(session){
   const next=session?.user||null;if((next?.id||'guest')===owner&&ready){user=next;controls();return;}
   if(switching){setTimeout(()=>handleSession(session),100);return;}
@@ -81,13 +103,13 @@
    localStorage.setItem(OWNER,owner);ready=true;controls();message(user?'계정 자료를 확인하는 중입니다.':'로그아웃했습니다. 기존 브라우저 자료는 이 기기에 남아 있습니다.',user?'동기화 중':'이 기기에 저장');
   }catch(e){ready=false;message('계정 전환을 완료하지 못했습니다. '+errorText(e),'확인 필요');}
   finally{switching=false;}
-  try{if(ticket===epoch&&user&&ready)await sync();}finally{local.lock(false);}
+  try{if(ticket===epoch&&user&&ready)await receive(true);}finally{local.lock(false);}
  }
  async function connect(){if(!config?.url||!config?.publishableKey){$('#cloudSetup').open=true;message('Supabase 연결 설정을 먼저 입력해 주세요.','이 기기에 저장');return;}
   if(!window.supabase?.createClient){message('로그인 모듈을 읽지 못했습니다. assets/vendor 폴더가 함께 있는지 확인해 주세요.');return;}
   client=window.supabase.createClient(config.url,config.publishableKey,{auth:{storageKey:'kAptSupabaseAuthV1-'+new URL(config.url).host,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true},global:{fetch:(url,options)=>fetch(url,{...options,signal:options?.signal||AbortSignal.timeout(25000)})}});
   client.auth.onAuthStateChange((event,session)=>{if(event==='PASSWORD_RECOVERY'){recovery=true;$('#cloudAccountWrap').classList.add('show');}if(event==='SIGNED_OUT')recovery=false;setTimeout(()=>handleSession(session),0);});
-  const {data,error}=await client.auth.getSession();if(error)throw error;await handleSession(data.session);clearInterval(pollTimer);pollTimer=setInterval(()=>{if(!document.hidden&&navigator.onLine)sync()},30000);
+  const {data,error}=await client.auth.getSession();if(error)throw error;await handleSession(data.session);clearInterval(pollTimer);pollTimer=setInterval(()=>{if(!document.hidden&&navigator.onLine)receive()},30000);
  }
  async function authAction(action){if(!client){message('Supabase 연결 설정을 먼저 입력해 주세요.');return;}const email=$('#cloudEmail').value.trim(),password=$('#cloudPassword').value;try{
   if(!email)throw Error('이메일을 입력해 주세요.');message('요청 중입니다.');let result;
@@ -97,13 +119,13 @@
   else result=await client.auth.resetPasswordForEmail(email,{redirectTo:redirect});
   if(result.error)throw result.error;$('#cloudPassword').value='';if(action==='signup'&&!result.data.session)message('가입 확인 메일을 보냈습니다. 메일에서 인증한 뒤 로그인해 주세요.');else if(action==='reset')message('등록된 이메일이라면 비밀번호 재설정 메일이 발송됩니다.');
  }catch(e){message(errorText(e));}}
- async function importGuest(){if(!user)return;try{await sync();const guest=await cached('guest');if(!guest?.snapshot){message('가져올 브라우저 자료가 없습니다.');return;}if(!bootstrapped)throw Error('계정 자료를 먼저 확인한 후 가져올 수 있습니다.');const current=local.capture(),incoming=guest.snapshot;
+ async function importGuest(){if(!user)return;try{const guest=await cached('guest');if(!guest?.snapshot){message('가져올 브라우저 자료가 없습니다.');return;}if(!bootstrapped)throw Error('계정 자료를 먼저 확인한 후 가져올 수 있습니다.');const current=local.capture(),incoming=guest.snapshot;
   const storage={...current.storage,...incoming.storage};storage.kAptComplexMemosV1={...(current.storage.kAptComplexMemosV1||{}),...(incoming.storage.kAptComplexMemosV1||{})};const existing=current.storage.koAptDashboardFilterSavesV21||[],added=incoming.storage.koAptDashboardFilterSavesV21||[];storage.koAptDashboardFilterSavesV21=[...new Map([...existing,...added].map(x=>[x.id,x])).values()].sort((a,b)=>a.savedAt-b.savedAt).slice(-10);
-  const maps=[...new Map([...current.maps,...incoming.maps].map(m=>[m.id,m])).values()];await apply({...current,storage,maps});dirty=true;await remember();await sync();
+  const maps=[...new Map([...current.maps,...incoming.maps].map(m=>[m.id,m])).values()];await apply({...current,storage,maps});dirty=true;await remember();message('기존 브라우저 자료를 가져왔습니다. 클라우드에 반영하려면 저장을 눌러 주세요.','저장할 변경 있음');
  }catch(e){message(errorText(e));}}
  async function init(){
-  $('#cloudAccountBtn').onclick=()=>{$('#cloudAccountWrap').classList.add('show');};$('#cloudLoginForm').onsubmit=e=>{e.preventDefault();authAction('login')};$('#cloudSignup').onclick=()=>authAction('signup');$('#cloudReset').onclick=()=>authAction('reset');$('#cloudSyncNow').onclick=()=>sync();$('#cloudImport').onclick=importGuest;
-  $('#cloudLogout').onclick=async()=>{if(!client)return;try{await remember();const {error}=await client.auth.signOut({scope:'local'});if(error)throw error;await handleSession(null);}catch(e){message(errorText(e));}};
+  $('#cloudAccountBtn').onclick=()=>{$('#cloudAccountWrap').classList.add('show');};$('#cloudLoginForm').onsubmit=e=>{e.preventDefault();authAction('login')};$('#cloudSignup').onclick=()=>authAction('signup');$('#cloudReset').onclick=()=>authAction('reset');$('#cloudSyncNow').onclick=()=>sync();$('#cloudSaveBtn').onclick=()=>{if(user)sync();else $('#cloudAccountWrap').classList.add('show');};$('#cloudImport').onclick=importGuest;
+  $('#cloudLogout').onclick=async()=>{if(!client)return;if(dirty&&!confirm('클라우드에 저장하지 않은 변경이 있습니다. 이 브라우저에 보관하고 로그아웃할까요?'))return;try{await remember();const {error}=await client.auth.signOut({scope:'local'});if(error)throw error;await handleSession(null);}catch(e){message(errorText(e));}};
   $('#cloudUpdatePassword').onclick=async()=>{try{const password=$('#cloudNewPassword').value;if(password.length<6)throw Error('비밀번호는 6자 이상 입력해 주세요.');const {error}=await client.auth.updateUser({password});if(error)throw error;recovery=false;$('#cloudNewPassword').value='';controls();message('비밀번호를 변경했습니다.');}catch(e){message(errorText(e));}};
   $('#cloudConfigForm').onsubmit=async e=>{e.preventDefault();try{const next=validateConfig({url:$('#cloudProjectUrl').value.trim(),publishableKey:$('#cloudPublicKey').value.trim()});if(user)throw Error('프로젝트를 바꾸려면 먼저 로그아웃해 주세요.');localStorage.setItem(CONFIG,json(next));message('연결 설정을 저장했습니다. 다시 여는 중입니다.');location.reload();}catch(e){message(errorText(e));}};
   try{await local.ready();await openDb();const oldOwner=localStorage.getItem(OWNER)||'guest';const original=local.capture(),prior=await cached(oldOwner);await cache(oldOwner,original,prior?.base||null,prior?.revision||0,prior?.pending||false);owner=oldOwner;
@@ -113,8 +135,8 @@
    await connect();
   }catch(e){message('연결 준비를 완료하지 못했습니다. '+errorText(e),'이 기기에 저장');}
   window.addEventListener('storage',e=>{if(e.key===OWNER&&e.newValue&&e.newValue!==owner){ready=false;++epoch;location.reload();}});
-  window.addEventListener('online',()=>sync());window.addEventListener('focus',()=>sync());window.addEventListener('pagehide',()=>{if(ready&&!suppress)remember().catch(()=>{})});
+  window.addEventListener('online',()=>receive());window.addEventListener('focus',()=>receive());window.addEventListener('beforeunload',e=>{if(pending()){e.preventDefault();e.returnValue='';}});window.addEventListener('pagehide',()=>{if(ready&&!suppress)remember().catch(()=>{})});
  }
- window.KaptCloud={changed,sync,merge,validateConfig,get user(){return user},get owner(){return owner},get ready(){return ready},get client(){return client}};
+ window.KaptCloud={changed,sync,receive,merge,validateConfig,get pending(){return pending()},get user(){return user},get owner(){return owner},get ready(){return ready},get client(){return client}};
  init();
 })();

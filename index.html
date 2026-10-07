@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v32 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v33 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -210,15 +210,17 @@ html,body{height:100%;overflow:hidden}
 @media(max-width:1180px){.miscImageGallery .referenceMapWrap{min-height:540px}.galleryPreview{height:540px}.miscImageGallery .regionMapRail{grid-template-rows:repeat(5,105px);max-height:550px}}
 @media(max-width:760px){.regionMapThumbWrap,.regionMapAdd{width:62px}.regionMapThumbTools{top:41px;left:2px;right:2px}.regionMapThumbTools button{font-size:9px;padding:1px 2px}.regionMapThumbTitle{font-size:9px;min-height:27px;padding:3px 2px}.miscImageGallery{grid-template-columns:minmax(0,1fr);gap:12px;padding:12px}.miscImageGallery .referenceMapWrap{min-height:250px}.galleryPreview{height:250px}.miscImageGallery .regionMapEmpty{height:250px}.miscImageGallery .regionMapRail{grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(auto-fill,minmax(62px,1fr));grid-auto-columns:auto;max-height:260px;gap:8px}.miscImageGallery .regionMapThumbWrap,.miscImageGallery .regionMapAdd{width:100%}}
 
-.titlebar #cloudAccountBtn{font:inherit;font-size:11px;padding:3px 8px;margin-left:9px;border:1px solid #cbd5df;border-radius:6px;background:#fff;color:#536574;cursor:pointer}.titlebar #cloudBadge{font-size:10px;font-weight:400;margin-left:6px;color:#82909c}.cloudSwitching .dashboardTop,.cloudSwitching .tableWrap,.cloudSwitching #gradeHelpWrap{pointer-events:none;opacity:.65}
+.titlebar #cloudAccountBtn,.titlebar #cloudSaveBtn{font:inherit;font-size:11px;padding:3px 8px;margin-left:9px;border:1px solid #cbd5df;border-radius:6px;background:#fff;color:#536574;cursor:pointer}.titlebar #cloudBadge{font-size:10px;font-weight:400;margin-left:6px;color:#82909c}.cloudSwitching .dashboardTop,.cloudSwitching .tableWrap,.cloudSwitching #gradeHelpWrap{pointer-events:none;opacity:.65}
 #cloudAccountWrap{z-index:100}.cloudModal{width:min(480px,calc(100vw - 32px))}.cloudModal h3{font-size:18px}.cloudModal p{font-size:12px;line-height:1.6;color:#637280}.cloudModal label{display:block;margin:12px 0;font-size:12px;font-weight:700}.cloudModal input{display:block;width:100%;margin-top:6px;padding:10px;border:1px solid #d1dbe4;border-radius:7px;box-sizing:border-box;font:inherit}.cloudActions{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.cloudActions button{background:#f3f6fa;border:1px solid #cfdae4;border-radius:7px;padding:8px 12px;color:#435665;cursor:pointer}.cloudActions button.primary{background:#536e87;color:#fff}.cloudActions button:disabled{opacity:.5;cursor:wait}#cloudMessage{font-size:12px;color:#536d83;line-height:1.6;white-space:pre-line}.cloudModal details{border-top:1px solid #e0e6ec;padding-top:10px;margin-top:16px}.cloudModal summary{font-size:12px;cursor:pointer}.cloudModal [hidden]{display:none!important}#cloudEmailLabel{overflow-wrap:anywhere}.cloudModal a{color:#436e9e}
 
+
+#openGradeHelp{width:27px;height:27px;font-size:13.5px;flex-shrink:0}.titlebar #cloudSaveBtn:disabled{opacity:.5;cursor:wait}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v32 <button id="cloudAccountBtn" type="button">로그인</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v33 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -400,7 +402,7 @@ html,body{height:100%;overflow:hidden}
    <form id="cloudLoginForm"><label>이메일<input id="cloudEmail" type="email" autocomplete="username" required></label><label>비밀번호<input id="cloudPassword" type="password" autocomplete="current-password" minlength="6" required></label>
    <div class="cloudActions"><button class="primary" id="cloudLogin" type="submit">로그인</button><button id="cloudSignup" type="button">회원가입</button><button id="cloudReset" type="button">비밀번호 재설정</button></div></form>
   </div>
-  <div id="cloudSignedIn" hidden><p id="cloudEmailLabel"></p><p>변경한 내용은 자동으로 저장됩니다. 다른 기기의 변경도 주기적으로 가져옵니다.</p><div class="cloudActions"><button id="cloudSyncNow" class="primary" type="button">지금 동기화</button><button id="cloudImport" type="button">기존 브라우저 자료 가져오기</button><button id="cloudLogout" type="button">로그아웃</button></div></div>
+  <div id="cloudSignedIn" hidden><p id="cloudEmailLabel"></p><p>수정 내용은 이 브라우저에 보관됩니다. 저장 버튼을 누르면 클라우드에 저장되며, 다른 기기는 저장된 내용을 자동으로 가져옵니다.</p><div class="cloudActions"><button id="cloudSyncNow" class="primary" type="button">저장</button><button id="cloudImport" type="button">기존 브라우저 자료 가져오기</button><button id="cloudLogout" type="button">로그아웃</button></div></div>
   <div id="cloudRecovery" hidden><label>새 비밀번호<input id="cloudNewPassword" type="password" minlength="6" autocomplete="new-password"></label><div class="cloudActions"><button id="cloudUpdatePassword" class="primary" type="button">비밀번호 변경</button></div></div>
   <div id="cloudMessage" role="status" aria-live="polite"></div>
   <details id="cloudSetup"><summary>Supabase 연결 설정</summary><p>처음 한 번만 설정합니다. 프로젝트에서 설정 SQL을 실행한 후 URL과 공개 키를 입력하세요. 모든 기기에 적용하려면 config/supabase.js에 같은 값을 넣어 사이트에 올리세요.</p>
@@ -1827,8 +1829,8 @@ window.KaptLocal={
 };
 
 </script>
-<script src="config/supabase.js"></script>
+<script src="config/supabase.js?v=33"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js"></script>
+<script src="assets/cloud-sync.js?v=33"></script>
 </body>
 </html>
