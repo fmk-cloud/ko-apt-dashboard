@@ -10,7 +10,12 @@ class DataError(Exception): pass
 
 def now(): return dt.datetime.now(KST).isoformat(timespec='seconds')
 
-def read_json(p): return json.loads(Path(p).read_text(encoding='utf-8'))
+def read_json(p):
+    obj=json.loads(Path(p).read_text(encoding='utf-8'))
+    if isinstance(obj,dict) and '_storage' in obj:
+        from dataset_storage import load_manifest
+        return load_manifest(p,obj)
+    return obj
 
 def atomic_json(p, obj):
     p=Path(p); p.parent.mkdir(parents=True,exist_ok=True)

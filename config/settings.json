@@ -6,7 +6,7 @@
   "timezone": "Asia/Seoul",
   "update_day": 1,
   "update_hour": 4,
-  "strategy": "seoul-public-snapshot",
+  "strategy": "seoul-gyeonggi-public-snapshot",
   "unsupported_features": [],
   "features": {
     "far": {
@@ -25,20 +25,138 @@
   },
   "regions": [
     {
-      "code": "11560",
-      "name": "영등포구",
-      "minimum_expected_complexes": 50
+      "code": "11110",
+      "name": "종로구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11140",
+      "name": "중구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11170",
+      "name": "용산구",
+      "minimum_expected_complexes": 5
     },
     {
       "code": "11200",
       "name": "성동구",
-      "minimum_expected_complexes": 40
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11215",
+      "name": "광진구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11230",
+      "name": "동대문구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11260",
+      "name": "중랑구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11290",
+      "name": "성북구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11305",
+      "name": "강북구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11320",
+      "name": "도봉구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11350",
+      "name": "노원구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11380",
+      "name": "은평구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11410",
+      "name": "서대문구",
+      "minimum_expected_complexes": 5
     },
     {
       "code": "11440",
       "name": "마포구",
-      "minimum_expected_complexes": 40
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11470",
+      "name": "양천구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11500",
+      "name": "강서구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11530",
+      "name": "구로구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11545",
+      "name": "금천구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11560",
+      "name": "영등포구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11590",
+      "name": "동작구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11620",
+      "name": "관악구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11650",
+      "name": "서초구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11680",
+      "name": "강남구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11710",
+      "name": "송파구",
+      "minimum_expected_complexes": 5
+    },
+    {
+      "code": "11740",
+      "name": "강동구",
+      "minimum_expected_complexes": 5
     }
   ],
-  "minimum_expected_trade_rows_per_region": 500
+  "minimum_expected_trade_rows_per_region": 100,
+  "minimum_expected_total_complexes": 1200,
+  "gyeonggi_cities": [
+    "성남시",
+    "과천시",
+    "안양시",
+    "화성시",
+    "광명시"
+  ]
 }

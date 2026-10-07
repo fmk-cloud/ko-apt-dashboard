@@ -1,13 +1,18 @@
 import json,re
 from pathlib import Path
-from pipeline import validate_dataset
+from pipeline import validate_dataset,read_json
 root=Path(__file__).resolve().parents[1]
-d=json.loads((root/'data/site-data.json').read_text())
+d=read_json(root/'data/site-data.json')
 validate_dataset(d)
 s=(root/'index.html').read_text()
 m=re.search(r'window\.__EMBEDDED_DATA__=(\{.*?\});</script>',s,re.S)
-assert m and json.loads(m[1])==d, 'HTML 내장 데이터 불일치'
-assert d['meta']['source_verified'] and d['meta']['provider']=='seoul_public'
+assert m, 'HTML 데이터 블록 누락'
+manifest=json.loads((root/'data/site-data.json').read_text())
+if '_storage' in manifest:
+    assert json.loads(m[1])=={'meta':d['meta'],'complexes':[]}, 'HTML 데이터 메타 불일치'
+    for part in manifest['_storage']['parts']:assert 'src="data/'+part['file']+'"' in s, '지역 데이터 스크립트 누락'
+else:assert json.loads(m[1])==d, 'HTML 내장 데이터 불일치'
+assert d['meta']['source_verified'] and d['meta']['provider'] in ('seoul_public','seoul_gyeonggi_official')
 assert 'id="loadFilterBtn">복구</button>' in s
 assert 'paintUnsupportedPopover(type)' in s
 if d['meta'].get('features',{}).get('gap'):

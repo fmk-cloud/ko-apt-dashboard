@@ -63,5 +63,15 @@
       "https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do",
       "https://house.ttpk.co.kr/group/11440-%EB%A7%88%ED%8F%AC%EA%B7%B8%EB%9E%91%EC%9E%90%EC%9D%B4"
     ]
+  },
+  {
+    "id": "A10021005",
+    "region": "서초구",
+    "name": "래미안신반포팰리스",
+    "reason": "공식 목록 세대수 누락. 300세대 이상 여부를 확정하기 전 수집 보류.",
+    "sources": [
+      "https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do"
+    ],
+    "checked_at": "2026-10-07"
   }
 ]

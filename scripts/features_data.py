@@ -51,7 +51,7 @@ def road(address):
  m=re.search(r'([가-힣A-Za-z0-9·]+(?:대로|로|길))\s+(\d+)(?:-(\d+))?',address)
  return (m[1],int(m[2]),int(m[3] or 0)) if m else None
 
-def assign_far(catalog,rows,bindings,region_name="영등포구"):
+def assign_far(catalog,rows,bindings,region_name="영등포구",allow_unconfirmed=False):
  district=[r for r in rows if clean(r.get('sgg_cd_nm'))=='서울특별시 '+region_name]
  if len(district)<100:raise DataError('용적률 원자료 '+region_name+' 범위 급감')
  result=[];verified=0
@@ -83,7 +83,7 @@ def assign_far(catalog,rows,bindings,region_name="영등포구"):
   elif len(candidates)>1:record['reason']='동일 단지 대장이 여러 개: 확인 필요'
   c['far']=record['value'];c['far_info']=record;c['far_source']='서울시 건축물대장 총괄표제부' if record['value'] is not None else ''
   result.append({'id':c['id'],'name':c['name'],**record})
- if not verified:raise DataError('확인 가능한 용적률 0개')
+ if not verified and not allow_unconfirmed:raise DataError('확인 가능한 용적률 0개')
  return {'verified':verified,'total':len(catalog),'checked_at':now(),'items':result,'source':FAR_PAGE}
 
 def parcel_key(r):
@@ -144,7 +144,9 @@ def enrich(root,d,fetch,fixtures=None,region_code="11560",region_name="영등포
    if year not in listed:raise DataError(f'{year}년 전세 연도파일이 아직 공개되지 않았습니다. 기존 정상 자료 유지')
    params={'infId':'OA-21276','infSeq':'3','seq':listed[year]['seq'],'seqNo':''}
    blob=fetch(ARCHIVE,urllib.parse.urlencode(params).encode());hashes['rent_'+str(year)]=hashlib.sha256(blob).hexdigest();archives[year]=read_archive(blob,region_code)
- far_report=assign_far(cs,far,bindings,region_name)
+ old=read_json(root/'data/site-data.json')
+ prior_verified=any(c.get('region')==region_name and (c.get('far_info') or {}).get('status')=='verified' for c in old.get('complexes',[]))
+ far_report=assign_far(cs,far,bindings,region_name,allow_unconfirmed=not prior_verified)
  rows=[r for yy,rr in archives.items() for r in rr]+live
  report=collect_rent(cs,rows,bindings,start,end,region_code)
  missing=[m for m in month_range(start,end) if not report['raw_month_counts'].get(m)]

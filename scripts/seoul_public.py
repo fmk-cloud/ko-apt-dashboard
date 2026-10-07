@@ -34,7 +34,7 @@ def parcel(r):
         return str(a)+('-'+str(b) if b else '')
     except (KeyError,ValueError,TypeError): raise DataError('거래 지번 필드 오류') from None
 
-def binding_key(r): return (clean(r.get('stdg_nm')),parcel(r),norm(clean(r.get('bldg_nm'))),int(r.get('arch_yr') or 0))
+def binding_key(r): return (clean(r.get('stdg_nm')),parcel(r),norm(clean(r.get('bldg_nm'))),int(0 if clean(r.get('arch_yr')).lower() in ('','null','none') else r['arch_yr']))
 
 def load_bindings(rows,catalog):
     cat={c['id']:c for c in catalog}; result={}
@@ -133,14 +133,17 @@ def collect(catalog,raw,bindings,old,start,end,settings=None):
             'notice':'제외/미연결 목록에는 300세대 미만과 대상 외 단지도 포함될 수 있습니다. 이름이 비슷하다는 이유만으로 임의 합치지 않습니다.'}
     return d,report
 
-def run_public(root,fetch=request_bytes,master_rows=None,trade_rows=None):
+def run_public(root,fetch=request_bytes,master_rows=None,trade_rows=None,kapt_rows=None):
     root=Path(root); old=read_json(root/'data/site-data.json'); previous=read_json(root/'data/complexes.json')
     try:
         hashes={}
         if master_rows is None: master_rows,hashes['metadata']=download('OA-15818',fetch=fetch)
         settings=read_json(root/'config/settings.json'); regions,_,_=region_maps(settings)
-        catalog=normalize_master(master_rows,previous,settings)
-        exclusions=read_json(root/'config/catalog-exclusions.json'); blocked={x['id'] for x in exclusions}; catalog=[c for c in catalog if c['id'] not in blocked]
+        exclusions=read_json(root/'config/catalog-exclusions.json'); blocked={x['id'] for x in exclusions}
+        catalog=normalize_master([r for r in master_rows if clean(lower(r).get('apt_cd')) not in blocked],previous,settings)
+        if kapt_rows is not None:
+            from kapt_public import supplement_seoul
+            hashes['kapt_supplemented_ids']=supplement_seoul(catalog,kapt_rows)
         if trade_rows is None:
             trade_rows=[]
             min_trade_rows=int(settings.get('minimum_expected_trade_rows_per_region',1) or 1)
