@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v34 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v36 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -218,12 +218,12 @@ html,body{height:100%;overflow:hidden}
 
 .restoreChip.isFiltered{border-color:#ff9c2c;background:#fff0d6;color:#111;cursor:pointer;font-family:inherit;text-align:left}.restoreRow:not(.pinned) .restoreChip.isFiltered{border-color:rgba(255,156,44,.5);background:#fff9f0}.restoreChip.isImportant,.restoreRow:not(.pinned) .restoreChip.isImportant{border-color:#d92231;background:#fce2df}.restoreChoice:hover .restoreChip.isFiltered{border-color:#ff9c2c}.restoreChoice:hover .restoreChip.isImportant{border-color:#d92231}
 .restoreRow:not(.pinned) .restoreChoice:hover .restoreChip.isFiltered:not(.isImportant){border-color:rgba(255,156,44,.5)}.restoreChip.isFiltered:hover{box-shadow:0 0 0 1px currentColor}.restoreChip:focus-visible,.restoreChoice:focus-visible{outline:2px solid #4678b1;outline-offset:2px}
-</style>
+.manualPricePanel{background:#f7faff}.manualPriceGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}.manualPricePanel label{font-size:12px;font-weight:700}.manualPricePanel input{width:100%;box-sizing:border-box;margin-top:5px;border:1px solid #cbd7e6;border-radius:8px;padding:10px;font:inherit}.manualPriceActions{display:flex;gap:8px;margin-top:10px}.manualPriceActions button{border:1px solid #cbd7e6;background:white;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}.manualPriceActions .primary{background:#2465b2;color:white}.manualPriceHint{font-size:11px;line-height:1.6;color:#65758b;margin-top:7px}.manualPriceError{font-size:12px;color:#b42318;margin-top:8px;min-height:16px}.manualTag{display:inline-block;font-size:9px;color:#2465b2;background:#edf5ff;border-radius:4px;padding:2px 4px}.priceEditLink{font-size:9px;color:#2465b2;background:transparent;border:0;padding:3px 5px;cursor:pointer;text-decoration:underline}.manualPricePanel[hidden]{display:none}@media(max-width:520px){.manualPriceGrid{grid-template-columns:1fr}.manualPriceActions{flex-wrap:wrap}}.detailTitleRow{display:flex;align-items:center;gap:10px;min-width:0}.detailTitleRow .modalTitle{min-width:0;overflow-wrap:anywhere}.detailFavoriteBtn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:0;background:transparent;color:#e44335;border-radius:7px;padding:3px;cursor:pointer}.detailFavoriteBtn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.detailFavoriteBtn.isFavorite svg{fill:currentColor}.detailFavoriteBtn:hover{background:#fff1ee}.detailFavoriteBtn:focus-visible{outline:2px solid #2465b2;outline-offset:2px}@media(max-width:520px){.detailTitleRow{gap:5px}.detailFavoriteBtn{width:32px;height:32px}}</style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v34 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v36 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -311,7 +311,7 @@ html,body{height:100%;overflow:hidden}
   <div class="popRange">
     <select id="popMin"></select><span class="popSep">~</span><select id="popMax"></select>
   </div>
-  <div id="jeonseOptions" class="leaseOptions" hidden>전세 계약 <select id="leaseMode"><option value="new">신규만</option><option value="all">신규·갱신·미상 모두</option></select></div>
+  <div id="jeonseOptions" class="leaseOptions" hidden>전세 계약 <select id="leaseMode"><option value="new">신규만</option><option value="all">신규·갱신·미상 모두</option></select><div style="margin-top:10px">갭 미확인 단지 <select id="missingGapMode"><option value="exclude">제외</option><option value="include">포함</option></select></div></div>
   <div id="featureNote" class="featureNote" hidden></div>
   <div class="popActions">
     <div class="popActionsLeft">
@@ -328,7 +328,7 @@ html,body{height:100%;overflow:hidden}
 <div class="modalWrap" id="detailWrap">
   <div class="modal modalSm">
     <div class="modalHead">
-      <div><h3 class="modalTitle" id="dTitle">상세</h3><div class="tableSub detailSub" id="dSub"></div></div>
+      <div><div class="detailTitleRow"><h3 class="modalTitle" id="dTitle">상세</h3><button type="button" id="detailFavoriteBtn" class="detailFavoriteBtn" aria-pressed="false" aria-label="APT 즐겨찾기 추가" title="APT 즐겨찾기 추가"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.85 5.78 6.38.93-4.62 4.5 1.09 6.36L12 17.37l-5.7 3 1.09-6.36-4.62-4.5 6.38-.93Z"/></svg></button></div><div class="tableSub detailSub" id="dSub"></div></div>
       <button class="modalClose" data-close="detailWrap">×</button>
     </div>
     <div class="detailCards">
@@ -337,6 +337,17 @@ html,body{height:100%;overflow:hidden}
     </div>
     <div class="card detailPanel"><div class="detailPanelTitle" id="confT"></div><ul class="reasonList" id="reasons"></ul></div>
     <div class="card detailPanel featureEvidence" id="farEvidence"></div>
+    <div class="card detailPanel manualPricePanel" id="manualPricePanel">
+      <div class="detailPanelTitle">기준 시점 가격 직접 입력 <span class="manualTag">개인 입력값</span></div>
+      <div class="manualPriceHint" id="manualPriceContext"></div>
+      <form id="manualPriceForm" novalidate>
+        <div class="manualPriceGrid"><label>당시 매매가 (억, 선택)<input id="manualSalePrice" type="number" min="0.0001" step="0.0001" inputmode="decimal" placeholder="비워두면 실거래 시작가 사용"></label><label>당시 전세가 (억, 선택)<input id="manualLeasePrice" type="number" min="0" step="0.0001" inputmode="decimal" placeholder="예: 7"></label></div>
+        <label>근거·메모 (선택)<input id="manualPriceNote" maxlength="300" placeholder="예: 2025.09 매수 가능 매물, 세입자 전세 7억"></label>
+        <div class="manualPriceHint">빈 항목은 자동 산정값을 사용합니다. 입력값은 시작가·갭 필터와 상승 순위에 반영됩니다. 단지·면적·시작월별로 보관하며, 다른 기기에도 반영하려면 계정 옆 저장을 눌러 주세요.</div>
+        <div class="manualPriceError" id="manualPriceError" role="status"></div>
+        <div class="manualPriceActions"><button type="submit" class="primary">입력값 적용</button><button type="button" id="clearManualPrices">직접 입력 지우기</button></div>
+      </form>
+    </div>
     <div class="card detailPanel"><div class="featureEvidence" id="jeonseEvidence"></div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>전세금</th><th>계약구분</th></tr></thead><tbody id="jeonseSamples"></tbody></table></div><p class="featureEvidence" id="jeonseFootnote"></p></div>
     <div class="card detailPanel"><div class="detailPanelTitle">최근 기준가 선정월 거래</div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>가격</th><th>월차</th></tr></thead><tbody id="newSamples"></tbody></table></div></div>
     <div class="card detailPanel"><div class="detailPanelTitle">시작 기준가 선정월 거래</div><div class="detailTableWrap"><table class="sampleTable"><thead><tr><th>계약일</th><th>층</th><th>전용</th><th>가격</th><th>월차</th></tr></thead><tbody id="oldSamples"></tbody></table></div></div>
@@ -507,6 +518,7 @@ const state = {
   hhMin: '300', hhMax: 'max',
   farMin: 'min', farMax: 'max',
   yearMin: 'min', yearMax: 'max',
+  missingGapMode:'exclude',
 };
 
 // Confirmed special-unit exceptions can be added here without deleting the trade itself.
@@ -730,7 +742,7 @@ function setPopupRange(mode){
   const pair=popupRangeValues(mode);
   if(!pair)return;
   $('#popMin').value=pair[0];
-  $('#popMax').value=pair[1];if(currentPopType()==='gap')$('#leaseMode').value='new';
+  $('#popMax').value=pair[1];if(currentPopType()==='gap'){$('#leaseMode').value='new';$('#missingGapMode').value='exclude';}
 }
 function loadPopupPresetRange(){
   try{
@@ -747,7 +759,7 @@ function loadPopupPresetRange(){
     else if(type==='confidence')pair=[p.ui?.confidence?.min,p.ui?.confidence?.max];
     if(!pair||pair[0]==null||pair[1]==null){alert('저장된 필터에서 이 항목을 찾지 못했습니다.');return;}
     $('#popMin').value=pair[0];
-    $('#popMax').value=pair[1];if(type==='gap')$('#leaseMode').value=p.state?.jeonseMode||'new';
+    $('#popMax').value=pair[1];if(type==='gap'){$('#leaseMode').value=p.state?.jeonseMode||'new';$('#missingGapMode').value=p.state?.missingGapMode||'exclude';}
   }catch(e){alert('저장된 필터 설정을 불러오지 못했습니다.');}
 }
 
@@ -941,7 +953,7 @@ function exactAreaEligibleRows(c,area){
   return eligibleRows(c,rows).rows;
 }
 function priorHigherTrade(c,e){
-  if(!e)return null;
+  if(!e||e.manual)return null;
   const series=exactAreaEligibleRows(c,e.areaUsed);
   for(let offset=1;offset<=2;offset++){
     const m=addMonth(e.selectedMonth,-offset);
@@ -964,6 +976,7 @@ function confidence(c,oldE,newE){
   const addReason=(text,kind='normal')=>reasons.push({text,kind});
 
   for(const [label,e] of [['시작',oldE],['최근',newE]]){
+    if(e.manual){severity=Math.max(severity,1);shortReasons.push('시작가 직접 입력');addReason('시작: 사용자가 직접 입력한 가격으로 비교합니다. 공식 실거래 선정값이 아닙니다.','normal');continue;}
     if(e.areaFallback){
       addReason(`${label}: 59㎡ 거래가 없어 같은 20평대 중 근접 전용 ${e.areaUsed.toFixed(2)}㎡ 사용`,'normal');
     }
@@ -1110,7 +1123,7 @@ function render(){
   const valid=[],missing=[];
   DATA.complexes.filter(filterComplex).forEach(c=>{
     const hasArea=txRows(c,currentArea).length>0;
-    const oldE=estimate(c,currentArea,oldTarget,false);
+    const oldE=effectiveStartEstimate(c,estimate(c,currentArea,oldTarget,false));
     const newE=estimate(c,currentArea,newTarget,true);
     const cf=confidence(c,oldE,newE);
     const comparable=oldE&&newE&&oldE.selectedMonth<=newE.selectedMonth;
@@ -1149,10 +1162,11 @@ function render(){
   tb.innerHTML=shownRows.map((r,idx)=>{
     const c=r.c, name=esc(displayName(c)), naver=esc(c.naver || `https://new.land.naver.com/search?sk=${encodeURIComponent(c.name)}`), far=c.far==null?'—':`${Number(c.far).toFixed(Number(c.far)%1?1:0)}%`, completed=completionCell(c);
     if(!r.ok){const reason=c.data_status==='matching_unconfirmed'?'단지 연결 확인 필요':c.data_status==='legacy_unverified'&&!c.tx.length?'원자료 재수집 전':r.areaMissing?(currentArea===59?'59㎡/대체 20평대 거래 데이터 없음':'84㎡ 거래 데이터 없음'):r.periodInsufficient?'선정 가능한 거래시점 없음':'비교기간 거래 데이터 부족';const favRow=favoriteAptRowClass(c);return `<tr class="emptyRow${favRow?' '+favRow:''}"><td class="rank">—</td><td>${apartmentNameCell(c)}<div class="subline">${reason}</div></td><td>${c.households??'—'}</td>${farCell(c,idx)}<td>${completed}</td><td class="na">기준거래 부족</td><td class="na">기준거래 부족</td>${rentCells(r,idx)}<td>—</td><td>—</td><td><span class="conf lowest" onclick="openDetail(${idx})"><span class="confSymbol">x</span><span class="confReason">거래 부족</span></span></td></tr>`;}
-    const cls=r.change>=0?'up':'down', favRow=favoriteAptRowClass(c);return `<tr${favRow?` class="${favRow}"`:''}><td class="rank">${r.rank}</td><td>${apartmentNameCell(c)}</td><td>${c.households??'—'}</td>${farCell(c,idx)}<td>${completed}</td><td><div class="priceCell"><div class="priceMeta"><b>${fmtMonth(r.oldE.selectedMonth)}</b>${r.oldE.samples.length}건 중 최고가</div><div class="priceMain">${money(r.oldE.value)}</div></div></td><td><div class="priceCell"><div class="priceMeta"><b>${fmtMonth(r.newE.selectedMonth)}</b>${r.newE.samples.length}건 중 최고가</div><div class="priceMain">${money(r.newE.value)}</div></div></td>${rentCells(r,idx)}<td class="${cls} changeAmount">${signedMoney(r.change)}</td><td class="${cls}">${signedPct(r.rate)}</td><td><span class="conf ${r.cf.level}" onclick="openDetail(${idx})" title="${esc(r.cf.short)}"><span class="confSymbol">${r.cf.symbol}</span><span class="confReason">${esc(r.cf.short)}</span></span></td></tr>`;
+    const cls=r.change>=0?'up':'down', favRow=favoriteAptRowClass(c);return `<tr${favRow?` class="${favRow}"`:''}><td class="rank">${r.rank}</td><td>${apartmentNameCell(c)}</td><td>${c.households??'—'}</td>${farCell(c,idx)}<td>${completed}</td><td><div class="priceCell"><div class="priceMeta"><b>${fmtMonth(r.oldE.selectedMonth)}</b>${r.oldE.manual?'직접 입력':r.oldE.samples.length+'건 중 최고가'}</div><div class="priceMain">${money(r.oldE.value)}</div></div></td><td><div class="priceCell"><div class="priceMeta"><b>${fmtMonth(r.newE.selectedMonth)}</b>${r.newE.samples.length}건 중 최고가</div><div class="priceMain">${money(r.newE.value)}</div></div></td>${rentCells(r,idx)}<td class="${cls} changeAmount">${signedMoney(r.change)}</td><td class="${cls}">${signedPct(r.rate)}</td><td><span class="conf ${r.cf.level}" onclick="openDetail(${idx})" title="${esc(r.cf.short)}"><span class="confSymbol">${r.cf.symbol}</span><span class="confReason">${esc(r.cf.short)}</span></span></td></tr>`;
   }).join('');
 }
 function sampleHtml(e,target){
+  if(e?.manual)e=e.officialEstimate;
   if(!e)return'<tr><td colspan="5" class="na">거래 없음</td></tr>';
   const selected=e.selectedTrade;
   const rows=[
@@ -1172,13 +1186,32 @@ function sampleHtml(e,target){
     return `<tr${cls}><td>${esc(x.date)}</td><td>${x.floor}층${x.aptDong?` · ${esc(x.aptDong)}동`:''}</td><td>${x.area.toFixed(2)}㎡</td><td>${money(x.price)}</td><td>${label}</td></tr>`;
   }).join('');
 }
+let detailFavoriteName='';
+function updateDetailFavorite(){
+  const button=$('#detailFavoriteBtn');if(!button)return;
+  const selected=!!detailFavoriteName&&!!favoriteState?.lists?.apt?.includes(detailFavoriteName);
+  button.classList.toggle('isFavorite',selected);button.setAttribute('aria-pressed',String(selected));
+  const label=(detailFavoriteName?detailFavoriteName+' ':'')+'APT 즐겨찾기 '+(selected?'해제':'추가');
+  button.setAttribute('aria-label',label);button.title=label;
+}
+$('#detailFavoriteBtn').onclick=()=>{
+  if(!detailFavoriteName||!favoriteState)return;
+  const name=detailFavoriteName,index=favoriteState.lists.apt.indexOf(name);
+  if(index<0)favoriteState.lists.apt.push(name);
+  else{
+    favoriteState.lists.apt.splice(index,1);
+    favoriteState.selected.apt=favoriteState.selected.apt.filter(x=>x!==name);
+    delete favoriteState.colors.apt[name];
+  }
+  saveFavoriteState();renderFavoriteTabs();render();updateDetailFavorite();
+};
 window.openDetail=function(index){
   $$('.sampleTable').filter(t=>!t.querySelector('#jeonseSamples')).forEach(t=>{const th=t.querySelector('thead th:last-child');if(th)th.textContent='선정'});
   const r=shownRows[index],oldTarget=new Date(`${state.fromMonth}-01T12:00:00+09:00`),newTarget=new Date(`${state.toMonth}-01T12:00:00+09:00`),c=r.c;
-  renderFeatureDetail(r);$('#dTitle').textContent=displayName(c);$('#dSub').textContent=`${c.region} · ${c.households??'—'}세대 · 용적률 ${c.far==null?'—':c.far+'%'} · 준공 ${c.completed||'—'}`;
+  detailFavoriteName=c.name;updateDetailFavorite();renderFeatureDetail(r);$('#dTitle').textContent=displayName(c);$('#dSub').textContent=`${c.region} · ${c.households??'—'}세대 · 용적률 ${c.far==null?'—':c.far+'%'} · 준공 ${c.completed||'—'}`;
   $('#dSub').innerHTML=`${esc(c.region)} · ${c.households??'—'}세대 · 용적률 ${c.far==null?'확인 필요':esc(c.far)+'%'} · 준공 ${esc(c.completed||'—')}`;
   $('#oldP').textContent=r.oldE?money(r.oldE.value):'계산 불가';$('#newP').textContent=r.newE?money(r.newE.value):'계산 불가';
-  $('#oldT').textContent=r.oldE?`대표 전용 ${r.oldE.areaUsed.toFixed(2)}㎡ · 기준월 ${fmtMonth(r.oldE.selectedMonth)} · 계산포함 ${r.oldE.samples.length}건 · 특수제외 ${(r.oldE.specialExcluded||[]).length}건 · ${money(r.oldE.low)}~${money(r.oldE.high)}`:'4층 이상 표본 없음';
+  $('#oldT').textContent=r.oldE?.manual?`개인 입력값 · ${fmtMonth(state.fromMonth)} · 공식 시작가 ${r.oldE.officialEstimate?money(r.oldE.officialEstimate.value):'산정 불가'}`:r.oldE?`대표 전용 ${r.oldE.areaUsed.toFixed(2)}㎡ · 기준월 ${fmtMonth(r.oldE.selectedMonth)} · 계산포함 ${r.oldE.samples.length}건 · 특수제외 ${(r.oldE.specialExcluded||[]).length}건 · ${money(r.oldE.low)}~${money(r.oldE.high)}`:'4층 이상 표본 없음';
   $('#newT').textContent=r.newE?`대표 전용 ${r.newE.areaUsed.toFixed(2)}㎡ · 기준월 ${fmtMonth(r.newE.selectedMonth)} · 계산포함 ${r.newE.samples.length}건 · 특수제외 ${(r.newE.specialExcluded||[]).length}건 · ${money(r.newE.low)}~${money(r.newE.high)}`:'4층 이상 표본 없음';
   $('#confT').textContent=`신뢰도 ${r.cf.symbol} · ${r.cf.short}`;
   const reasonItems=(r.cf.reasons&&r.cf.reasons.length)?r.cf.reasons:[{text:'별도 주의사항 없음',kind:'muted'}];
@@ -1252,6 +1285,7 @@ function favLabel(mode,item){
   return item;
 }
 function renderFavoriteTabs(){
+  updateDetailFavorite();
   $$('.favTab').forEach(b=>b.classList.toggle('active',b.dataset.favTab===favMode));
   const host=$('#favoriteHost');host.innerHTML='';
   const list=favoriteState.lists[favMode]||[];const selected=new Set(favoriteState.selected[favMode]||[]);
@@ -1446,7 +1480,7 @@ function saveFilterPreset(){
   if(writeFilterPreset(filterPresetSnapshot()))flashButton('#saveFilterBtn',FILTER_STORAGE_OK?'저장됨':'임시저장');
 }
 function applyFilterSnapshot(p){
-  Object.assign(state,p.state||{});
+  Object.assign(state,p.state||{});state.missingGapMode=p.state?.missingGapMode==='include'?'include':'exclude';
   if(p.ui?.price)UI_RANGE_STATE.price={...p.ui.price};
   if(p.ui?.gap)UI_RANGE_STATE.gap={...p.ui.gap};
   if(p.ui?.confidence)UI_RANGE_STATE.confidence={...p.ui.confidence};
@@ -1477,13 +1511,14 @@ function savedFilterLabels(p){
   labels.push(s.jeonseMode==='all'?'전세 갱신 포함':'전세 신규만');
   const mode=p.favMode||'region',selected=p.selected?.[mode]||[];
   labels.push(`${({region:'지역',station:'역',apt:'APT'})[mode]} ${selected.length?selected.join(' · '):'전체'}`);
+  labels.push(s.missingGapMode==='include'?'갭 미확인 포함':'갭 미확인 제외');
   return labels;
 }
 function savedFilterItems(p){
  const s=p.state||{},u=p.ui||{};
  const restricted=(a,b)=>!(a==='min'&&b==='max');
- const flags=[true,true,restricted(s.yearMin??'min',s.yearMax??'max'),restricted(s.hhMin??'min',s.hhMax??'max'),restricted(s.farMin??'min',s.farMax??'max'),!!u.confidence&&!(u.confidence.min==='lowest'&&u.confidence.max==='high'),restricted(u.price?.min??'min',u.price?.max??'max'),restricted(u.gap?.min??'min',u.gap?.max??'max'),s.jeonseMode!=='all',!!p.selected?.[p.favMode||'region']?.length];
- const keys=['period','area','year','households','far','confidence','price','gap','jeonse','selection'];
+ const flags=[true,true,restricted(s.yearMin??'min',s.yearMax??'max'),restricted(s.hhMin??'min',s.hhMax??'max'),restricted(s.farMin??'min',s.farMax??'max'),!!u.confidence&&!(u.confidence.min==='lowest'&&u.confidence.max==='high'),restricted(u.price?.min??'min',u.price?.max??'max'),restricted(u.gap?.min??'min',u.gap?.max??'max'),s.jeonseMode!=='all',!!p.selected?.[p.favMode||'region']?.length,s.missingGapMode==='include'];
+ const keys=['period','area','year','households','far','confidence','price','gap','jeonse','selection','missingGap'];
  return savedFilterLabels(p).map((label,i)=>({key:keys[i],label,active:flags[i]}));
 }
 function savedFilterChips(row){return savedFilterItems(row.preset).map(item=>{
@@ -1512,7 +1547,7 @@ function positionRestoreDialog(){
 function loadFilterPreset(){clearTimeout(restoreHoverTimer);closePopover();renderFilterSaves();$('#restoreFilterWrap').classList.add('show');positionRestoreDialog();}
 window.addEventListener('resize',positionRestoreDialog);
 
-function resetDashboardFilters(){state.jeonseMode='new';state.fromMonth='2025-09';state.toMonth=DATA.meta.current_month||'2026-09';state.hhMin='300';state.hhMax='max';state.farMin='min';state.farMax='max';state.yearMin='min';state.yearMax='max';currentArea=59;if(typeof UI_RANGE_STATE!=='undefined'){UI_RANGE_STATE.price={min:'min',max:'15'};UI_RANGE_STATE.gap={min:'min',max:'max'};UI_RANGE_STATE.confidence={min:'lowest',max:'high'};updateExtraSummary('price');updateExtraSummary('gap');updateExtraSummary('confidence');}$('#areaToggle').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.area==='59'));favoriteState.selected={region:[],station:[],apt:[]};saveFavoriteState();syncRegionSelection();updateSummaries();renderFavoriteTabs();render();}
+function resetDashboardFilters(){state.missingGapMode='exclude';state.jeonseMode='new';state.fromMonth='2025-09';state.toMonth=DATA.meta.current_month||'2026-09';state.hhMin='300';state.hhMax='max';state.farMin='min';state.farMax='max';state.yearMin='min';state.yearMax='max';currentArea=59;if(typeof UI_RANGE_STATE!=='undefined'){UI_RANGE_STATE.price={min:'min',max:'15'};UI_RANGE_STATE.gap={min:'min',max:'max'};UI_RANGE_STATE.confidence={min:'lowest',max:'high'};updateExtraSummary('price');updateExtraSummary('gap');updateExtraSummary('confidence');}$('#areaToggle').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.area==='59'));favoriteState.selected={region:[],station:[],apt:[]};saveFavoriteState();syncRegionSelection();updateSummaries();renderFavoriteTabs();render();}
 const UI_RANGE_STATE={
   price:{min:'min',max:'15'},
   gap:{min:'min',max:'max'},
@@ -1543,8 +1578,79 @@ function uiRangeLabel(type,v){
 function isGapFilterDefault(){
   return UI_RANGE_STATE.gap.min==='min'&&UI_RANGE_STATE.gap.max==='max';
 }
+const MANUAL_PRICE_KEY='kAptManualPricesV1';
+let manualPrices={};
+let manualPriceEditing=false,manualPriceContext=null;
+function normalizeManualPrices(value){
+  if(!value||typeof value!=='object'||Array.isArray(value))return {};
+  const out={};
+  for(const [key,row] of Object.entries(value)){
+    if(!row||typeof row!=='object')continue;
+    if(row.deleted){out[key]={deleted:true,updatedAt:Number(row.updatedAt)||0};continue;}
+    const sale=Number.isFinite(row.sale)&&row.sale>0?row.sale:null;
+    const lease=Number.isFinite(row.lease)&&row.lease>=0?row.lease:null;
+    if(sale===null&&lease===null)continue;
+    out[key]={sale,lease,note:String(row.note||'').slice(0,300),updatedAt:Number(row.updatedAt)||0};
+  }
+  return out;
+}
+try{manualPrices=normalizeManualPrices(JSON.parse(localStorage.getItem(MANUAL_PRICE_KEY)||'{}'));}catch{}
+function manualPriceId(c,area=currentArea,month=state.fromMonth){return JSON.stringify([String(c.id||c.kapt_code||[c.region,c.name,c.address||c.legal_dong||''].join('|')),Number(area),month]);}
+function manualPriceFor(c){const row=manualPrices[manualPriceId(c)];return row&&!row.deleted?row:null;}
+function effectiveStartEstimate(c,official){
+  const row=manualPriceFor(c);if(!row||!Number.isFinite(row.sale))return official;
+  const area=official?.areaUsed||areaClusters(c,currentArea)[0]?.area||currentArea;
+  return {value:row.sale,low:row.sale,high:row.sale,samples:[],selectedTrade:null,selectedMonth:state.fromMonth,direction:'future',gap:0,topFloor:null,lowFloorExcluded:[],topFloorExcluded:[],areaUsed:area,primaryArea:area,areaFallback:false,manual:true,officialEstimate:official};
+}
+function fillManualPriceEditor(r){
+  manualPriceContext={c:r.c,area:currentArea,month:state.fromMonth,key:manualPriceId(r.c)};
+  const row=manualPriceFor(r.c);
+  $('#manualPriceContext').textContent=`${r.c.name} · ${currentArea}㎡ · ${fmtMonth(state.fromMonth)} 기준`;
+  $('#manualSalePrice').value=Number.isFinite(row?.sale)?String(row.sale/10000):'';
+  $('#manualLeasePrice').value=Number.isFinite(row?.lease)?String(row.lease/10000):'';
+  $('#manualPriceNote').value=row?.note||'';
+  $('#manualPriceError').textContent='';manualPriceEditing=false;
+  $('#clearManualPrices').disabled=!row;
+}
+function parsePersonalEok(input,allowZero){
+  const raw=input.value.trim();if(!raw&&!input.validity.badInput)return null;
+  const n=Number(raw);
+  if(input.validity.badInput||!Number.isFinite(n)||n<0||(!allowZero&&n===0)||n>1000)throw Error('매매가는 0보다 크게, 전세가는 0 이상으로 입력해 주세요. 단위는 억입니다.');
+  const value=Math.round(n*10000);if(!Number.isSafeInteger(value)||(!allowZero&&value<=0))throw Error('매매가를 0.0001억 이상 입력해 주세요.');return value;
+}
+function persistManualPrices(next){
+  try{localStorage.setItem(MANUAL_PRICE_KEY,JSON.stringify(next));}
+  catch{throw Error('브라우저 저장 공간이 부족해 입력값을 보관하지 못했습니다.');}
+  manualPrices=next;manualPriceEditing=false;window.KaptCloud?.changed();
+}
+function repaintPersonalPrice(context){
+  render();const idx=shownRows.findIndex(r=>manualPriceId(r.c,context.area,context.month)===context.key);
+  if(idx>=0)openDetail(idx);
+  else{$('#detailWrap').classList.remove('show');manualPriceContext=null;alert('입력값을 반영했습니다. 이 단지는 현재 필터 조건에 맞지 않아 목록에서 제외되었습니다.');}
+}
+$('#manualPriceForm').addEventListener('submit',e=>{
+  e.preventDefault();const context=manualPriceContext;if(!context)return;
+  try{
+    const sale=parsePersonalEok($('#manualSalePrice'),false),lease=parsePersonalEok($('#manualLeasePrice'),true);
+    if(sale===null&&lease===null)throw Error('매매가 또는 전세가를 입력해 주세요. 자동값으로 돌아가려면 직접 입력 지우기를 누르세요.');
+    persistManualPrices({...manualPrices,[context.key]:{sale,lease,note:$('#manualPriceNote').value.trim().slice(0,300),updatedAt:Date.now()}});
+    repaintPersonalPrice(context);
+  }catch(err){$('#manualPriceError').textContent=err.message;}
+});
+$('#clearManualPrices').onclick=()=>{
+  const context=manualPriceContext;if(!context)return;
+  try{persistManualPrices({...manualPrices,[context.key]:{deleted:true,updatedAt:Date.now()}});repaintPersonalPrice(context);}
+  catch(err){$('#manualPriceError').textContent=err.message;}
+};
+$('#manualPriceForm').addEventListener('input',()=>{manualPriceEditing=true;});
+document.addEventListener('click',e=>{if(e.target===$('#detailWrap')||e.target.closest('[data-close="detailWrap"]')){manualPriceEditing=false;manualPriceContext=null;}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){manualPriceEditing=false;manualPriceContext=null;}});
+window.openManualPriceEditor=index=>{openDetail(index);$('#manualPricePanel').scrollIntoView({block:'nearest'});$('#manualLeasePrice').focus({preventScroll:true});};
+
 function monthNumber(m){const [y,n]=m.split('-').map(Number);return y*12+n-1;}
 function jeonseEstimate(c,saleE){
+ const manual=manualPriceFor(c);
+ if(manual&&Number.isFinite(manual.lease))return {value:manual.lease,month:state.fromMonth,target:state.fromMonth,area:saleE?.areaUsed||currentArea,samples:[],manual:true,note:manual.note||'',reason:'개인 입력 전세가'};
  if(!saleE)return {value:null,reason:'시작 매매 기준거래 없음',samples:[]};
  const target=state.fromMonth||saleE.selectedMonth,area=Number(saleE.areaUsed),mode=state.jeonseMode||'new';
  if(c.jeonse_contract_kind_available===false&&mode==='new')return {value:null,reason:'신규·갱신 구분 미제공 · 전세 조건을 전체 계약으로 선택하세요',samples:[]};
@@ -1565,37 +1671,37 @@ function jeonseEstimate(c,saleE){
  const month=selectedTrade.date.slice(0,7);
  return {value:selectedTrade.deposit,month,target,area,samples,selectedTrade,mode,topFloor,excluded:windowed.length-samples.length,monthsBack:monthNumber(target)-monthNumber(month),reason:'시작월과 이전 12개월 유효 전세 중 최고가'};
 }
-function calcGapEok(c,saleE){const e=jeonseEstimate(c,saleE);return Number.isFinite(e.value)?(saleE.value-e.value)/10000:null;}
+function calcGapEok(c,saleE){const e=jeonseEstimate(c,saleE);return saleE&&Number.isFinite(e.value)?(saleE.value-e.value)/10000:null;}
 function rentCells(r,idx){
   const j=jeonseEstimate(r.c,r.oldE),gap=Number.isFinite(j.value)&&r.oldE?(r.oldE.value-j.value)/10000:null;
-  const lease=Number.isFinite(j.value)?`<b>${money(j.value)}</b><small>${fmtMonth(j.month)}<br>${j.samples.length}건 중 최고가</small>`:`<span class="na">—</span><small>${esc(j.reason)}</small>`;
-  return `<td><button class="dataValue leaseValue" onclick="openDetail(${idx})" title="시작월 전세 선정 근거 보기">${lease}</button></td><td><button class="dataValue gapValue" onclick="openDetail(${idx})" title="시작월 매매−전세 갭 계산 보기">${Number.isFinite(gap)?money(gap*10000):'—'}</button></td>`;
+  const lease=Number.isFinite(j.value)?`<b>${money(j.value)}</b><small>${fmtMonth(j.month)}<br>${j.manual?'직접 입력':j.samples.length+'건 중 최고가'}</small>`:`<span class="na">—</span><small>${esc(j.reason)}</small>`;
+  return `<td><button class="dataValue leaseValue" onclick="openDetail(${idx})" title="시작월 전세 선정 근거 보기">${lease}</button></td><td><button class="dataValue gapValue" onclick="openDetail(${idx})" title="시작월 매매−전세 갭 계산 보기">${Number.isFinite(gap)?money(gap*10000):'—'}${Number.isFinite(gap)&&(j.manual||r.oldE?.manual)?'<small>직접 입력 반영</small>':''}</button><button type="button" class="priceEditLink" onclick="openManualPriceEditor(${idx})" title="당시 매매가·전세가 직접 입력">직접 입력</button></td>`;
 }
 function farCell(c,idx){
   const f=c.far_info||{},v=f.status==='verified'&&Number.isFinite(c.far)?`${Number(c.far).toFixed(2).replace(/\.?0+$/,'')}%`:'확인 필요';
   return `<td><button class="dataValue ${f.status==='verified'?'':'dataMissing'}" onclick="openDetail(${idx})" title="${esc(f.reason||'용적률 확인 필요')}">${v}</button></td>`;
 }
 function renderFeatureDetail(r){
-  const c=r.c,f=c.far_info||{},j=jeonseEstimate(c,r.oldE),gap=calcGapEok(c,r.oldE);
+  const c=r.c,f=c.far_info||{},j=jeonseEstimate(c,r.oldE),gap=calcGapEok(c,r.oldE);fillManualPriceEditor(r);
   const ggRegion=(DATA.meta.gyeonggi_regions||[]).includes(c.region),farHref=ggRegion?'https://www.data.go.kr/data/15073271/fileData.do':'https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do',farLabel=ggRegion?'K-apt 기본정보 · 용적률 수치 미확보':'서울시 건축물대장 총괄표제부';
   $('#farEvidence').innerHTML=`<b>용적률 ${f.status==='verified'?esc(c.far)+'%':'확인 필요'}</b> · ${esc(f.reason||'확인 가능한 대장 없음')}<br>${esc(f.address||c.address)}${f.ledger_id?' · 대장 '+esc(f.ledger_id):''}<br><a href="${farHref}" target="_blank" rel="noopener">${farLabel}</a> · 확인 ${esc((f.checked_at||'').slice(0,10))}`;
-  $('#jeonseEvidence').innerHTML=Number.isFinite(j.value)
+  $('#jeonseEvidence').innerHTML=j.manual?`<b>전세 ${money(j.value)} · 매매−전세 갭 ${Number.isFinite(gap)?money(gap*10000):'산정 불가'}</b> <span class="manualTag">직접 입력</span><br>선택 시작월 ${fmtMonth(state.fromMonth)} · ${currentArea}㎡<br>시작 매매 ${r.oldE?money(r.oldE.value):'산정 불가'} ${r.oldE?.manual?'(직접 입력)':'(자동 산정)'} − 개인 입력 전세 ${money(j.value)}${j.note?'<br>근거: '+esc(j.note):''}`:Number.isFinite(j.value)
     ? `<b>전세 ${money(j.value)} · 매매−전세 갭 ${money(gap*10000)}</b><br>시작 매매 ${money(r.oldE.value)} (${fmtMonth(r.oldE.selectedMonth)}) − 전세 ${money(j.value)} (${fmtMonth(j.month)})<br>매매 면적 ${j.area}㎡와 ±0.1㎡ · 4층 이상·최고층 제외 · ${j.mode==='all'?'신규·갱신·미상 포함':'신규 계약만'} · 시작월과 이전 12개월 ${j.samples.length}건 중 최고가 · 최고층 기준 ${j.topFloor??'미상'}층${j.excluded?` · 제외 ${j.excluded}건`:''}${j.monthsBack?`<br>전세 자료가 선택한 시작월보다 ${j.monthsBack}개월 이전입니다.`:''}`
     : `<b>갭 산정 불가</b> · ${esc(j.reason)}`;
-  $('#jeonseSamples').innerHTML=j.samples.length?j.samples.map(t=>`<tr class="${t===j.selectedTrade?'selectedTrade':''}"><td>${esc(t.date)}</td><td>${t.floor}층</td><td>${t.area}㎡</td><td>${money(t.deposit)}${t===j.selectedTrade?' · 기준 최고가':''}</td><td>${esc(t.kind)}${t.renewal?' / 갱신권 '+esc(t.renewal):''}</td></tr>`).join(''):'<tr><td colspan="5">조건에 맞는 자료 없음</td></tr>';
-  $('#jeonseFootnote').textContent='전세는 선택한 시작월과 이전 12개월의 같은 면적·4층 이상·최고층 제외 유효 거래 중 최고가입니다. 최고층 정보가 없으면 단지의 매매·전세 자료에서 관측한 최고층을 제외합니다. 매매는 시작월 또는 이후 3개월 이내에 선정된 시작 기준가만 사용합니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.'+(ggRegion?' 경기부동산포털은 전세 신규·갱신 구분을 제공하지 않아 전체 계약 조건에서 비교합니다.':'');
+  $('#jeonseSamples').innerHTML=j.manual?'<tr><td colspan="5">직접 입력값입니다. 공식 전세 거래 내역으로 등록하지 않습니다.</td></tr>':j.samples.length?j.samples.map(t=>`<tr class="${t===j.selectedTrade?'selectedTrade':''}"><td>${esc(t.date)}</td><td>${t.floor}층</td><td>${t.area}㎡</td><td>${money(t.deposit)}${t===j.selectedTrade?' · 기준 최고가':''}</td><td>${esc(t.kind)}${t.renewal?' / 갱신권 '+esc(t.renewal):''}</td></tr>`).join(''):'<tr><td colspan="5">조건에 맞는 자료 없음</td></tr>';
+  $('#jeonseFootnote').textContent=(j.manual||r.oldE?.manual?'직접 입력값을 비교에 사용 중입니다. 개인 확인값이며 공식 거래 검증이나 같은 호수 계약 확인을 의미하지 않습니다. 아래 원래 실거래 자료는 보존됩니다. ':'')+'전세는 선택한 시작월과 이전 12개월의 같은 면적·4층 이상·최고층 제외 유효 거래 중 최고가입니다. 최고층 정보가 없으면 단지의 매매·전세 자료에서 관측한 최고층을 제외합니다. 매매는 시작월 또는 이후 3개월 이내에 선정된 시작 기준가만 사용합니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.'+(ggRegion?' 경기부동산포털은 전세 신규·갱신 구분을 제공하지 않아 전체 계약 조건에서 비교합니다.':'');
 }
 function featurePopup(type){
  const note=$('#featureNote'),options=$('#jeonseOptions');options.hidden=type!=='gap';
- note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 시작월과 이전 12개월의 같은 면적 전세 최고가. 저층(1~3층)·최고층·층수 미상 제외. 예: 2025.09 시작 → 2024.09~2025.09 전세 비교. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다. 갭을 클릭하면 근거가 나옵니다.':'';
+ note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 시작월과 이전 12개월의 같은 면적 전세 최고가. 저층(1~3층)·최고층·층수 미상 제외. 예: 2025.09 시작 → 2024.09~2025.09 전세 비교. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다. 갭 미확인 단지의 포함 여부를 선택할 수 있습니다. 갭을 클릭하면 근거와 직접 입력란이 나옵니다.':'';
  note.hidden=!['far','gap'].includes(type);
- if(type==='gap')$('#leaseMode').value=state.jeonseMode||'new';
+ if(type==='gap'){$('#leaseMode').value=state.jeonseMode||'new';$('#missingGapMode').value=state.missingGapMode||'exclude';}
 }
 
 function passesGapFilter(gapEok){
   if(!FEATURES.gap)return true;
   if(isGapFilterDefault())return true;
-  if(!Number.isFinite(gapEok))return false;
+  if(!Number.isFinite(gapEok))return state.missingGapMode==='include';
   const st=UI_RANGE_STATE.gap;
   const lo=st.min==='min'?-Infinity:Number(st.min),hi=st.max==='max'?Infinity:Number(st.max);
   return gapEok>=Math.min(lo,hi)&&gapEok<=Math.max(lo,hi);
@@ -1620,7 +1726,7 @@ function updateExtraSummary(type){
     el.title='';
     return;
   }
-  el.textContent=`${uiRangeLabel(type,st.min)} ~ ${uiRangeLabel(type,st.max)}`;
+  el.textContent=`${uiRangeLabel(type,st.min)} ~ ${uiRangeLabel(type,st.max)}`+(type==='gap'&&state.missingGapMode==='include'?' · 미확인 포함':'');
   el.title='';
 }
 function openExtraFilter(anchor,title,type){
@@ -1648,7 +1754,7 @@ applyPopover=function(){
       const bv=b==='max'?Infinity:Number(b);
       if(av>bv){const t=a;a=b;b=t;}
     }
-    st.min=a;st.max=b;if(type==='gap')state.jeonseMode=$('#leaseMode').value;
+    st.min=a;st.max=b;if(type==='gap'){state.jeonseMode=$('#leaseMode').value;state.missingGapMode=$('#missingGapMode').value;}
     updateExtraSummary(type);closePopover();render();return;
   }
   oldApplyPopover();
@@ -1830,12 +1936,12 @@ for(const [id,key] of [['farSummary','far'],['gapSummary','gap']]){
 // Explicit bridge; the cloud module never hooks browser storage globally.
 window.KaptLocal={
  async ready(){for(let i=0;i<200&&regionMapBusy;i++)await new Promise(r=>setTimeout(r,50));if(regionMapBusy)throw Error('이미지 저장소가 아직 준비되지 않았습니다.');},
- capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=localStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
- editing(){return aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
+ capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=localStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
+ editing(){return manualPriceEditing||aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
  async apply(snapshot){
-  closeApartmentMemo();closePopover();for(const id of ['imageEditWrap','restoreFilterWrap'])$('#'+id).classList.remove('show');
-  const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))localStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else localStorage.removeItem(key);}
-  FILTER_SAVES_MEMORY=null;FILTER_STORAGE_OK=true;FILTER_HISTORY_READY=false;FILTER_UNDO_STACK=[];FILTER_HISTORY_CURRENT=null;aptMemos=storage[APT_MEMO_KEY]||{};
+  closeApartmentMemo();closePopover();manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap'])$('#'+id).classList.remove('show');
+  const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))localStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else localStorage.removeItem(key);}
+  FILTER_SAVES_MEMORY=null;FILTER_STORAGE_OK=true;FILTER_HISTORY_READY=false;FILTER_UNDO_STACK=[];FILTER_HISTORY_CURRENT=null;aptMemos=storage[APT_MEMO_KEY]||{};manualPrices=normalizeManualPrices(storage[MANUAL_PRICE_KEY]);
   if(regionMapDb){await new Promise((resolve,reject)=>{const tx=regionMapDb.transaction('maps','readwrite'),store=tx.objectStore('maps');store.clear();for(const m of snapshot?.maps||[])store.put(m);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
   regionMapOverrides=(snapshot?.maps||[]).map(m=>({...m}));
   for(const [category,g] of Object.entries(imageGalleries)){g.selected=storage[g.key]||(category==='region'?'builtin-region':'');renderImageGallery(category);}
@@ -1845,8 +1951,8 @@ window.KaptLocal={
 };
 
 </script>
-<script src="config/supabase.js?v=34"></script>
+<script src="config/supabase.js?v=36"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js?v=34"></script>
+<script src="assets/cloud-sync.js?v=36"></script>
 </body>
 </html>
