@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v36 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v38 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -218,12 +218,12 @@ html,body{height:100%;overflow:hidden}
 
 .restoreChip.isFiltered{border-color:#ff9c2c;background:#fff0d6;color:#111;cursor:pointer;font-family:inherit;text-align:left}.restoreRow:not(.pinned) .restoreChip.isFiltered{border-color:rgba(255,156,44,.5);background:#fff9f0}.restoreChip.isImportant,.restoreRow:not(.pinned) .restoreChip.isImportant{border-color:#d92231;background:#fce2df}.restoreChoice:hover .restoreChip.isFiltered{border-color:#ff9c2c}.restoreChoice:hover .restoreChip.isImportant{border-color:#d92231}
 .restoreRow:not(.pinned) .restoreChoice:hover .restoreChip.isFiltered:not(.isImportant){border-color:rgba(255,156,44,.5)}.restoreChip.isFiltered:hover{box-shadow:0 0 0 1px currentColor}.restoreChip:focus-visible,.restoreChoice:focus-visible{outline:2px solid #4678b1;outline-offset:2px}
-.manualPricePanel{background:#f7faff}.manualPriceGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}.manualPricePanel label{font-size:12px;font-weight:700}.manualPricePanel input{width:100%;box-sizing:border-box;margin-top:5px;border:1px solid #cbd7e6;border-radius:8px;padding:10px;font:inherit}.manualPriceActions{display:flex;gap:8px;margin-top:10px}.manualPriceActions button{border:1px solid #cbd7e6;background:white;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}.manualPriceActions .primary{background:#2465b2;color:white}.manualPriceHint{font-size:11px;line-height:1.6;color:#65758b;margin-top:7px}.manualPriceError{font-size:12px;color:#b42318;margin-top:8px;min-height:16px}.manualTag{display:inline-block;font-size:9px;color:#2465b2;background:#edf5ff;border-radius:4px;padding:2px 4px}.priceEditLink{font-size:9px;color:#2465b2;background:transparent;border:0;padding:3px 5px;cursor:pointer;text-decoration:underline}.manualPricePanel[hidden]{display:none}@media(max-width:520px){.manualPriceGrid{grid-template-columns:1fr}.manualPriceActions{flex-wrap:wrap}}.detailTitleRow{display:flex;align-items:center;gap:10px;min-width:0}.detailTitleRow .modalTitle{min-width:0;overflow-wrap:anywhere}.detailFavoriteBtn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:0;background:transparent;color:#e44335;border-radius:7px;padding:3px;cursor:pointer}.detailFavoriteBtn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.detailFavoriteBtn.isFavorite svg{fill:currentColor}.detailFavoriteBtn:hover{background:#fff1ee}.detailFavoriteBtn:focus-visible{outline:2px solid #2465b2;outline-offset:2px}@media(max-width:520px){.detailTitleRow{gap:5px}.detailFavoriteBtn{width:32px;height:32px}}</style>
+.manualPricePanel{background:#f7faff}.manualPriceGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}.manualPricePanel label{font-size:12px;font-weight:700}.manualPricePanel input{width:100%;box-sizing:border-box;margin-top:5px;border:1px solid #cbd7e6;border-radius:8px;padding:10px;font:inherit}.manualPriceActions{display:flex;gap:8px;margin-top:10px}.manualPriceActions button{border:1px solid #cbd7e6;background:white;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}.manualPriceActions .primary{background:#2465b2;color:white}.manualPriceHint{font-size:11px;line-height:1.6;color:#65758b;margin-top:7px}.manualPriceError{font-size:12px;color:#b42318;margin-top:8px;min-height:16px}.manualTag{display:inline-block;font-size:9px;color:#2465b2;background:#edf5ff;border-radius:4px;padding:2px 4px}.priceEditLink{font-size:9px;color:#2465b2;background:transparent;border:0;padding:3px 5px;cursor:pointer;text-decoration:underline}.manualPricePanel[hidden]{display:none}@media(max-width:520px){.manualPriceGrid{grid-template-columns:1fr}.manualPriceActions{flex-wrap:wrap}}.detailTitleRow{display:flex;align-items:center;gap:10px;min-width:0}.detailTitleRow .modalTitle{min-width:0;overflow-wrap:anywhere}.detailFavoriteBtn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:0;background:transparent;color:#e44335;border-radius:7px;padding:3px;cursor:pointer}.detailFavoriteBtn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.detailFavoriteBtn.isFavorite svg{fill:currentColor}.detailFavoriteBtn:hover{background:#fff1ee}.detailFavoriteBtn:focus-visible{outline:2px solid #2465b2;outline-offset:2px}@media(max-width:520px){.detailTitleRow{gap:5px}.detailFavoriteBtn{width:32px;height:32px}}#tbody .dataValue small.manualPriceApplied{color:#d92231;font-weight:800}.clipboardImageZone{display:block;width:100%;box-sizing:border-box;text-align:left;padding:8px 10px;margin:0 0 10px;background:#f5f8fc;border:1px dashed #b8c9dc;border-radius:8px;color:#526d8b;font:inherit;font-size:11px;cursor:pointer}.clipboardImageZone:focus-visible{outline:2px solid #2465b2;outline-offset:2px}.imageEditPastePreview{display:block;max-width:100%;max-height:180px;object-fit:contain;margin:7px auto}.imageEditPastePreview[hidden]{display:none}</style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v36 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v38 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -365,6 +365,7 @@ html,body{height:100%;overflow:hidden}
     </div>
     <div id="gradeText" style="display:none"></div>
     <div class="referencePane active" data-ref-pane="region">
+      <button type="button" class="clipboardImageZone" data-image-paste="region">클립보드 이미지 붙여넣기 · 이 창에서 Ctrl+V / ⌘V</button>
       <div class="regionReferenceGrid">
         <div>
           <div class="referenceCaption">사용자 기준 구분 · 참고용</div>
@@ -384,6 +385,7 @@ html,body{height:100%;overflow:hidden}
       </div>
     </div>
     <div class="referencePane" data-ref-pane="misc">
+      <button type="button" class="clipboardImageZone" data-image-paste="misc">클립보드 이미지 붙여넣기 · 이 창에서 Ctrl+V / ⌘V</button>
       <div class="miscImageGallery regionMapGallery" id="miscImageGallery">
         <div class="regionMapStage"><button type="button" class="referenceMapWrap" id="openMiscZoom" title="클릭해서 확대" aria-label="저장 이미지 확대" hidden><img id="miscImagePreview" class="galleryPreview" alt=""></button><div class="regionMapEmpty" id="miscImageEmpty">＋ 버튼으로 캡처 이미지를 추가해 주세요.</div></div>
         <div class="regionMapRail" id="miscImageRail" aria-label="기타 이미지 목록"></div>
@@ -430,6 +432,8 @@ html,body{height:100%;overflow:hidden}
   <div class="modalHead"><h3 class="modalTitle" id="imageEditTitle">이미지 편집</h3><button type="button" class="modalClose" data-close="imageEditWrap" aria-label="이미지 편집 닫기">×</button></div>
   <label>제목<input id="imageEditName" type="text" maxlength="120" placeholder="제목 없음" autocomplete="off"></label>
   <label>이미지 교체 <span>(선택)</span><input id="imageEditFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif"></label>
+  <button type="button" class="clipboardImageZone" data-image-paste="edit">이미지 붙여넣기 · Ctrl+V / ⌘V로 교체</button>
+  <img id="imageEditPastePreview" class="imageEditPastePreview" hidden alt="붙여넣은 교체 이미지 미리보기">
   <div id="imageEditStatus" role="status" aria-live="polite"></div>
   <div class="imageEditActions"><button type="button" data-close="imageEditWrap">닫기</button><button type="submit" id="imageEditSave">저장</button></div>
  </form>
@@ -1655,27 +1659,33 @@ function jeonseEstimate(c,saleE){
  const target=state.fromMonth||saleE.selectedMonth,area=Number(saleE.areaUsed),mode=state.jeonseMode||'new';
  if(c.jeonse_contract_kind_available===false&&mode==='new')return {value:null,reason:'신규·갱신 구분 미제공 · 전세 조건을 전체 계약으로 선택하세요',samples:[]};
  const saleAge=monthNumber(saleE.selectedMonth)-monthNumber(target);
- if(saleAge<0||saleAge>3)return {value:null,reason:'시작 매매 기준거래가 시작월에서 3개월 초과 이후',samples:[]};
+ if(saleAge<0)return {value:null,reason:'시작 매매 기준거래가 선택 시작월보다 이전',samples:[]};
  const source=(c.jeonse_tx||[]).map(t=>({date:t[0],area:t[1],floor:t[2],deposit:t[3],kind:t[4],renewal:t[5],period:t[6]}));
  if(!source.length)return {value:null,reason:'연결된 전세 자료 없음',samples:[]};
  const same=source.filter(t=>Math.abs(t.area-area)<=0.100001&&Number.isFinite(t.deposit)&&t.deposit>0);
  if(!same.length)return {value:null,reason:'매매와 같은 면적의 전세 없음',samples:[]};
- const windowed=same.filter(t=>{const diff=monthNumber(target)-monthNumber(t.date.slice(0,7));return diff>=0&&diff<=12});
- if(!windowed.length)return {value:null,reason:'시작월과 이전 12개월 전세 없음',samples:[]};
+ const past=same.filter(t=>monthNumber(target)-monthNumber(t.date.slice(0,7))>=0);
+ if(!past.length)return {value:null,reason:'선택 시작월 또는 그 이전의 전세 없음',samples:[]};
  const explicit=Number(c.top_floor),observed=[...(c.tx||[]).map(t=>t[2]),...source.map(t=>t.floor)].filter(t=>Number.isFinite(t)&&t>0);
  const topFloor=Number.isFinite(explicit)&&explicit>0?explicit:observed.length?Math.max(...observed):null;
- const floorOk=windowed.filter(t=>Number.isFinite(t.floor)&&t.floor>=4&&(topFloor==null||t.floor!==topFloor));
- const samples=floorOk.filter(t=>mode==='all'||(t.kind==='신규'&&!['○','Y','사용','사용함'].includes(t.renewal))).sort((a,b)=>a.date.localeCompare(b.date)||a.deposit-b.deposit);
- if(!samples.length)return {value:null,reason:floorOk.length?'조건에 맞는 신규 전세 없음':'저층·최고층·층수 미상 제외 후 전세 없음',samples:[],excluded:windowed.length,topFloor};
+ const floorOk=past.filter(t=>Number.isFinite(t.floor)&&t.floor>=4&&(topFloor==null||t.floor!==topFloor));
+ const valid=floorOk.filter(t=>mode==='all'||(t.kind==='신규'&&!['○','Y','사용','사용함'].includes(t.renewal)));
+ if(!valid.length)return {value:null,reason:floorOk.length?'이전 전체 자료에도 조건에 맞는 신규 전세 없음':'저층·최고층·층수 미상 제외 후 전세 없음',samples:[],excluded:past.length,topFloor};
+ let samples=valid.filter(t=>monthNumber(target)-monthNumber(t.date.slice(0,7))<=12),extended=false;
+ if(!samples.length){
+   extended=true;const latest=valid.map(t=>t.date.slice(0,7)).sort().at(-1);
+   samples=valid.filter(t=>t.date.slice(0,7)===latest);
+ }
+ samples.sort((a,b)=>a.date.localeCompare(b.date)||a.deposit-b.deposit);
  const selectedTrade=[...samples].sort((a,b)=>b.deposit-a.deposit||b.date.localeCompare(a.date)||a.floor-b.floor)[0];
- const month=selectedTrade.date.slice(0,7);
- return {value:selectedTrade.deposit,month,target,area,samples,selectedTrade,mode,topFloor,excluded:windowed.length-samples.length,monthsBack:monthNumber(target)-monthNumber(month),reason:'시작월과 이전 12개월 유효 전세 중 최고가'};
+ const month=selectedTrade.date.slice(0,7),scope=extended?`${fmtMonth(month)} 거래월`: '시작월과 이전 12개월';
+ return {value:selectedTrade.deposit,month,target,area,samples,selectedTrade,mode,topFloor,extended,scope,saleMonthsAfterStart:saleAge,excluded:past.filter(t=>extended?t.date.slice(0,7)===month:monthNumber(target)-monthNumber(t.date.slice(0,7))<=12).length-samples.length,monthsBack:monthNumber(target)-monthNumber(month),reason:extended?'최근 12개월 유효 전세 없음 · 이전 유효 거래월까지 조회':'시작월과 이전 12개월 유효 전세 중 최고가'};
 }
 function calcGapEok(c,saleE){const e=jeonseEstimate(c,saleE);return saleE&&Number.isFinite(e.value)?(saleE.value-e.value)/10000:null;}
 function rentCells(r,idx){
   const j=jeonseEstimate(r.c,r.oldE),gap=Number.isFinite(j.value)&&r.oldE?(r.oldE.value-j.value)/10000:null;
   const lease=Number.isFinite(j.value)?`<b>${money(j.value)}</b><small>${fmtMonth(j.month)}<br>${j.manual?'직접 입력':j.samples.length+'건 중 최고가'}</small>`:`<span class="na">—</span><small>${esc(j.reason)}</small>`;
-  return `<td><button class="dataValue leaseValue" onclick="openDetail(${idx})" title="시작월 전세 선정 근거 보기">${lease}</button></td><td><button class="dataValue gapValue" onclick="openDetail(${idx})" title="시작월 매매−전세 갭 계산 보기">${Number.isFinite(gap)?money(gap*10000):'—'}${Number.isFinite(gap)&&(j.manual||r.oldE?.manual)?'<small>직접 입력 반영</small>':''}</button><button type="button" class="priceEditLink" onclick="openManualPriceEditor(${idx})" title="당시 매매가·전세가 직접 입력">직접 입력</button></td>`;
+  return `<td><button class="dataValue leaseValue" onclick="openManualPriceEditor(${idx})" title="아파트 정보 · 당시 가격 수정">${lease}</button></td><td><button class="dataValue gapValue" onclick="openManualPriceEditor(${idx})" title="아파트 정보 · 당시 가격 수정">${Number.isFinite(gap)?money(gap*10000):'—'}${Number.isFinite(gap)&&(j.manual||r.oldE?.manual)?'<small class="manualPriceApplied">직접 입력 반영</small>':''}</button></td>`;
 }
 function farCell(c,idx){
   const f=c.far_info||{},v=f.status==='verified'&&Number.isFinite(c.far)?`${Number(c.far).toFixed(2).replace(/\.?0+$/,'')}%`:'확인 필요';
@@ -1686,14 +1696,14 @@ function renderFeatureDetail(r){
   const ggRegion=(DATA.meta.gyeonggi_regions||[]).includes(c.region),farHref=ggRegion?'https://www.data.go.kr/data/15073271/fileData.do':'https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do',farLabel=ggRegion?'K-apt 기본정보 · 용적률 수치 미확보':'서울시 건축물대장 총괄표제부';
   $('#farEvidence').innerHTML=`<b>용적률 ${f.status==='verified'?esc(c.far)+'%':'확인 필요'}</b> · ${esc(f.reason||'확인 가능한 대장 없음')}<br>${esc(f.address||c.address)}${f.ledger_id?' · 대장 '+esc(f.ledger_id):''}<br><a href="${farHref}" target="_blank" rel="noopener">${farLabel}</a> · 확인 ${esc((f.checked_at||'').slice(0,10))}`;
   $('#jeonseEvidence').innerHTML=j.manual?`<b>전세 ${money(j.value)} · 매매−전세 갭 ${Number.isFinite(gap)?money(gap*10000):'산정 불가'}</b> <span class="manualTag">직접 입력</span><br>선택 시작월 ${fmtMonth(state.fromMonth)} · ${currentArea}㎡<br>시작 매매 ${r.oldE?money(r.oldE.value):'산정 불가'} ${r.oldE?.manual?'(직접 입력)':'(자동 산정)'} − 개인 입력 전세 ${money(j.value)}${j.note?'<br>근거: '+esc(j.note):''}`:Number.isFinite(j.value)
-    ? `<b>전세 ${money(j.value)} · 매매−전세 갭 ${money(gap*10000)}</b><br>시작 매매 ${money(r.oldE.value)} (${fmtMonth(r.oldE.selectedMonth)}) − 전세 ${money(j.value)} (${fmtMonth(j.month)})<br>매매 면적 ${j.area}㎡와 ±0.1㎡ · 4층 이상·최고층 제외 · ${j.mode==='all'?'신규·갱신·미상 포함':'신규 계약만'} · 시작월과 이전 12개월 ${j.samples.length}건 중 최고가 · 최고층 기준 ${j.topFloor??'미상'}층${j.excluded?` · 제외 ${j.excluded}건`:''}${j.monthsBack?`<br>전세 자료가 선택한 시작월보다 ${j.monthsBack}개월 이전입니다.`:''}`
+    ? `<b>전세 ${money(j.value)} · 매매−전세 갭 ${money(gap*10000)}</b><br>시작 매매 ${money(r.oldE.value)} (${fmtMonth(r.oldE.selectedMonth)}) − 전세 ${money(j.value)} (${fmtMonth(j.month)})<br>매매 면적 ${j.area}㎡와 ±0.1㎡ · 4층 이상·최고층 제외 · ${j.mode==='all'?'신규·갱신·미상 포함':'신규 계약만'} · ${esc(j.scope||'시작월과 이전 12개월')} ${j.samples.length}건 중 최고가 · 최고층 기준 ${j.topFloor??'미상'}층${j.excluded?` · 제외 ${j.excluded}건`:''}${j.monthsBack?`<br>전세 자료가 선택한 시작월보다 ${j.monthsBack}개월 이전입니다.${j.extended?' 최근 12개월에 유효 전세가 없어 이전 거래월까지 조회했습니다.':''}`:''}${j.saleMonthsAfterStart>3?`<br><span style="color:#d64242">시작 매매 기준거래는 선택 시작월보다 ${j.saleMonthsAfterStart}개월 이후입니다.</span>`:''}`
     : `<b>갭 산정 불가</b> · ${esc(j.reason)}`;
   $('#jeonseSamples').innerHTML=j.manual?'<tr><td colspan="5">직접 입력값입니다. 공식 전세 거래 내역으로 등록하지 않습니다.</td></tr>':j.samples.length?j.samples.map(t=>`<tr class="${t===j.selectedTrade?'selectedTrade':''}"><td>${esc(t.date)}</td><td>${t.floor}층</td><td>${t.area}㎡</td><td>${money(t.deposit)}${t===j.selectedTrade?' · 기준 최고가':''}</td><td>${esc(t.kind)}${t.renewal?' / 갱신권 '+esc(t.renewal):''}</td></tr>`).join(''):'<tr><td colspan="5">조건에 맞는 자료 없음</td></tr>';
-  $('#jeonseFootnote').textContent=(j.manual||r.oldE?.manual?'직접 입력값을 비교에 사용 중입니다. 개인 확인값이며 공식 거래 검증이나 같은 호수 계약 확인을 의미하지 않습니다. 아래 원래 실거래 자료는 보존됩니다. ':'')+'전세는 선택한 시작월과 이전 12개월의 같은 면적·4층 이상·최고층 제외 유효 거래 중 최고가입니다. 최고층 정보가 없으면 단지의 매매·전세 자료에서 관측한 최고층을 제외합니다. 매매는 시작월 또는 이후 3개월 이내에 선정된 시작 기준가만 사용합니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.'+(ggRegion?' 경기부동산포털은 전세 신규·갱신 구분을 제공하지 않아 전체 계약 조건에서 비교합니다.':'');
+  $('#jeonseFootnote').textContent=(j.manual||r.oldE?.manual?'직접 입력값을 비교에 사용 중입니다. 개인 확인값이며 공식 거래 검증이나 같은 호수 계약 확인을 의미하지 않습니다. 아래 원래 실거래 자료는 보존됩니다. ':'')+'전세는 선택 시작월과 이전 12개월의 같은 면적·4층 이상·최고층 제외 유효 거래 중 최고가입니다. 없으면 기간 제한 없이 수집된 이전 기록에서 가장 최근 유효 거래월을 찾아 그 달 최고가를 사용합니다. 선택 시작월 이후 전세는 사용하지 않습니다. 최고층 정보가 없으면 단지의 매매·전세 자료에서 관측한 최고층을 제외합니다. 매매는 기존에 선정된 시작 기준가를 사용하며 선정월이 늦으면 신뢰도와 거래월에서 확인할 수 있습니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.'+(ggRegion?' 경기부동산포털은 전세 신규·갱신 구분을 제공하지 않아 전체 계약 조건에서 비교합니다.':'');
 }
 function featurePopup(type){
  const note=$('#featureNote'),options=$('#jeonseOptions');options.hidden=type!=='gap';
- note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 시작월과 이전 12개월의 같은 면적 전세 최고가. 저층(1~3층)·최고층·층수 미상 제외. 예: 2025.09 시작 → 2024.09~2025.09 전세 비교. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다. 갭 미확인 단지의 포함 여부를 선택할 수 있습니다. 갭을 클릭하면 근거와 직접 입력란이 나옵니다.':'';
+ note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 같은 면적 전세 기준가. 시작월과 이전 12개월 유효 전세 중 최고가를 사용하고, 없으면 더 오래된 기록의 최근 유효 거래월까지 계속 조회합니다. 저층(1~3층)·최고층·층수 미상과 시작월 이후 전세는 제외합니다. 갭 미확인 단지의 포함 여부를 선택할 수 있습니다. 갭을 클릭하면 근거와 직접 입력란이 나옵니다.':'';
  note.hidden=!['far','gap'].includes(type);
  if(type==='gap'){$('#leaseMode').value=state.jeonseMode||'new';$('#missingGapMode').value=state.missingGapMode||'exclude';}
 }
@@ -1797,6 +1807,7 @@ let regionMapDb=null,regionMapOverrides=[],regionMapSelected='builtin-region',re
 const REGION_MAP_DEFAULTS=[{id:'builtin-region',name:'지역 생활권 지도',src:$('.referenceMap').getAttribute('src')},{id:'builtin-price',name:'서울 가격 참고 지도',src:'assets/region-price-map.png'}];
 const imageGalleries={region:{rail:'#regionMapRail',preview:'.referenceMap',zoom:'#openRegionZoom',empty:'#regionMapEmpty',input:'#regionMapUpload',status:'#regionMapStatus',key:'kAptSelectedRegionMapV1',selected:'builtin-region',urls:[]},misc:{rail:'#miscImageRail',preview:'#miscImagePreview',zoom:'#openMiscZoom',empty:'#miscImageEmpty',input:'#miscImageUpload',status:'#miscImageStatus',key:'kAptSelectedMiscImageV1',selected:'',urls:[]}};
 let imageEditTarget=null;
+let imageEditClipboardFile=null,imageEditClipboardUrl=null;
 function availableGalleryImages(category){const extras=regionMapOverrides.filter(x=>(x.category==='misc'?'misc':'region')===category&&!REGION_MAP_DEFAULTS.some(d=>d.id===x.id)).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)||a.id.localeCompare(b.id));return [...(category==='region'?REGION_MAP_DEFAULTS.map(d=>({...d,...regionMapOverrides.find(x=>x.id===d.id)})):[]),...extras].filter(x=>!x.deleted);}
 function availableRegionMaps(){return availableGalleryImages('region');}
 function regionMapTransaction(action,value){return new Promise((resolve,reject)=>{if(!regionMapDb){resolve();return;}const tx=regionMapDb.transaction('maps','readwrite');if(action==='delete')tx.objectStore('maps').delete(value);else tx.objectStore('maps').put(value);tx.oncomplete=()=>{resolve();setTimeout(()=>window.KaptCloud?.changed(),0)};tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||new Error('이미지 저장 실패'));});}
@@ -1822,12 +1833,68 @@ async function validateGalleryImage(file){if(!['image/png','image/jpeg','image/w
 async function uploadGalleryImages(category,files){if(regionMapBusy)return;regionMapBusy=true;const errors=[],added=[];try{for(const file of [...files]){try{await validateGalleryImage(file);const row={id:(category==='misc'?'misc-':'user-')+crypto.randomUUID(),category,name:file.name.replace(/\.[^.]+$/,''),blob:file,createdAt:Math.max(Date.now(),...regionMapOverrides.map(m=>(m.createdAt||0)+1))};await regionMapTransaction('put',row);regionMapOverrides.push(row);added.push(row.id);}catch(e){errors.push(file.name+': '+e.message);}}
  if(added.length)selectGalleryImage(category,added.at(-1));setGalleryStatus(category,(added.length?`${added.length}개 이미지 추가 완료.${regionMapDb?'':' 현재 탭에만 보관됩니다.'}`:'')+(errors.length?' '+errors.join(' '):''));
  }finally{regionMapBusy=false;$(imageGalleries[category].input).value='';}if(added.length===1)openImageEditor(category,added[0]);}
-function openImageEditor(category,id){if(regionMapBusy)return;const row=availableGalleryImages(category).find(m=>m.id===id);if(!row)return;imageEditTarget={category,id};$('#imageEditName').value=row.name||'';$('#imageEditFile').value='';$('#imageEditStatus').textContent='';$('#imageEditWrap').classList.add('show');requestAnimationFrame(()=>{$('#imageEditName').focus();$('#imageEditName').select();});}
-async function saveImageEditor(e){e.preventDefault();if(regionMapBusy||!imageEditTarget)return;const {category,id}=imageEditTarget,prior=availableGalleryImages(category).find(m=>m.id===id);if(!prior)return;regionMapBusy=true;$('#imageEditSave').disabled=true;try{const file=$('#imageEditFile').files[0];if(file)await validateGalleryImage(file);const row={...prior,name:$('#imageEditName').value.trim().slice(0,120)||'제목 없음',category,createdAt:prior.createdAt||Date.now()};if(file){row.blob=file;delete row.src;}
+function openImageEditor(category,id){if(regionMapBusy)return;const row=availableGalleryImages(category).find(m=>m.id===id);if(!row)return;clearImagePastePending();imageEditTarget={category,id};$('#imageEditName').value=row.name||'';$('#imageEditFile').value='';$('#imageEditStatus').textContent='';$('#imageEditWrap').classList.add('show');requestAnimationFrame(()=>{$('#imageEditName').focus();$('#imageEditName').select();});}
+async function saveImageEditor(e){e.preventDefault();if(regionMapBusy||!imageEditTarget)return;const {category,id}=imageEditTarget,prior=availableGalleryImages(category).find(m=>m.id===id);if(!prior)return;regionMapBusy=true;$('#imageEditSave').disabled=true;try{const file=$('#imageEditFile').files[0]||imageEditClipboardFile;if(file)await validateGalleryImage(file);const row={...prior,name:$('#imageEditName').value.trim().slice(0,120)||'제목 없음',category,createdAt:prior.createdAt||Date.now()};if(file){row.blob=file;delete row.src;}
  // Default embedded sources stay in code; overrides keep only their title or replacement blob.
  if(REGION_MAP_DEFAULTS.some(d=>d.id===id))delete row.src;
- await regionMapTransaction('put',row);regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);regionMapOverrides.push(row);renderImageGallery(category);$('#imageEditWrap').classList.remove('show');setGalleryStatus(category,regionMapDb?'이미지를 저장했습니다.':'이미지를 저장했습니다. 현재 탭에만 적용됩니다.');imageEditTarget=null;
+ await regionMapTransaction('put',row);regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);regionMapOverrides.push(row);renderImageGallery(category);$('#imageEditWrap').classList.remove('show');setGalleryStatus(category,regionMapDb?'이미지를 저장했습니다.':'이미지를 저장했습니다. 현재 탭에만 적용됩니다.');imageEditTarget=null;clearImagePastePending();
  }catch(error){$('#imageEditStatus').textContent=error.message||'이미지를 저장하지 못했습니다. 다시 시도해 주세요.';}finally{regionMapBusy=false;$('#imageEditSave').disabled=false;}}
+function clearImagePastePending(){
+ imageEditClipboardFile=null;
+ if(imageEditClipboardUrl){URL.revokeObjectURL(imageEditClipboardUrl);imageEditClipboardUrl=null;}
+ const preview=$('#imageEditPastePreview');if(preview){preview.hidden=true;preview.removeAttribute('src');}
+}
+function galleryClipboardFiles(data){
+ if(!data)return [];
+ const fromItems=Array.from(data.items||[]).filter(item=>item.kind==='file'&&item.type.startsWith('image/')).map(item=>item.getAsFile()).filter(Boolean);
+ return fromItems.length?fromItems:Array.from(data.files||[]).filter(file=>file.type.startsWith('image/'));
+}
+function galleryPasteContext(target){
+ if(document.body.classList.contains('cloudSwitching'))return null;
+ if($('#cloudAccountWrap').classList.contains('show')||$('#favoriteAddWrap').classList.contains('show')||$('#subwayZoomWrap').classList.contains('show')||$('#detailWrap').classList.contains('show')||$('#restoreFilterWrap').classList.contains('show'))return null;
+ if($('#imageEditWrap').classList.contains('show')&&imageEditTarget)return {category:imageEditTarget.category,edit:true,id:imageEditTarget.id};
+ if(!$('#gradeHelpWrap').classList.contains('show'))return null;
+ if(target?.closest?.('input,textarea,[contenteditable="true"]'))return null;
+ const category=$('.referenceTab.active')?.dataset.refTab;
+ return ['region','misc'].includes(category)?{category,edit:false}:null;
+}
+function clipboardImageFile(file,index){
+ const ext=({'image/png':'png','image/jpeg':'jpg','image/webp':'webp','image/gif':'gif'})[file.type]||'image';
+ const stamp=new Date().toLocaleString('ko-KR',{timeZone:'Asia/Seoul',hour12:false}).replace(/[/:]/g,'-');
+ return new File([file],`붙여넣은 이미지 ${stamp}${index?' '+(index+1):''}.${ext}`,{type:file.type,lastModified:Date.now()});
+}
+function imagePasteMessage(context,message){
+ if(context.edit)$('#imageEditStatus').textContent=message;else setGalleryStatus(context.category,message);
+}
+document.addEventListener('paste',async event=>{
+ const context=galleryPasteContext(event.target),files=galleryClipboardFiles(event.clipboardData);
+ if(!context||!files.length)return;
+ event.preventDefault();
+ if(regionMapBusy){imagePasteMessage(context,'이미지를 처리하는 중입니다. 완료 후 다시 붙여넣어 주세요.');return;}
+ try{
+  if(context.edit){
+   if(files.length!==1){imagePasteMessage(context,'이미지 교체는 한 장씩 붙여넣어 주세요.');return;}
+   regionMapBusy=true;
+   try{
+    const file=clipboardImageFile(files[0],0);await validateGalleryImage(file);
+    if(!$('#imageEditWrap').classList.contains('show')||imageEditTarget?.id!==context.id||imageEditTarget?.category!==context.category)return;
+    clearImagePastePending();imageEditClipboardFile=file;$('#imageEditFile').value='';
+    imageEditClipboardUrl=URL.createObjectURL(file);$('#imageEditPastePreview').src=imageEditClipboardUrl;$('#imageEditPastePreview').hidden=false;
+    imagePasteMessage(context,'붙여넣은 이미지로 교체 준비가 되었습니다. 저장을 누르면 반영됩니다.');
+   }finally{regionMapBusy=false;}
+  }else await uploadGalleryImages(context.category,files.map(clipboardImageFile));
+ }catch(error){imagePasteMessage(context,error.message||'이미지를 붙여넣지 못했습니다. 다시 시도해 주세요.');}
+});
+$$('[data-image-paste]').forEach(button=>button.onclick=()=>{
+ button.focus();const context=galleryPasteContext(button);
+ if(context)imagePasteMessage(context,'이미지를 복사한 뒤 Ctrl+V 또는 ⌘V를 눌러 주세요.');
+});
+$('#imageEditFile').addEventListener('change',()=>{clearImagePastePending();$('#imageEditStatus').textContent='';});
+document.addEventListener('click',event=>{
+ if(event.target===$('#imageEditWrap')||event.target.closest?.('[data-close="imageEditWrap"]')){clearImagePastePending();imageEditTarget=null;}
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){clearImagePastePending();imageEditTarget=null;}});
+
 async function initRegionMapGallery(){regionMapBusy=true;$('#imageEditForm').onsubmit=saveImageEditor;for(const [category,g] of Object.entries(imageGalleries)){$(g.input).onchange=e=>uploadGalleryImages(category,e.target.files);try{g.selected=localStorage.getItem(g.key)||g.selected;}catch{}}const selections=Object.fromEntries(Object.entries(imageGalleries).map(([c,g])=>[c,g.selected]));for(const category of Object.keys(imageGalleries))renderImageGallery(category);
  $('#openMiscZoom').onclick=async()=>{const img=$('#miscImagePreview');if(!img.getAttribute('src'))return;try{await img.decode();openReferenceZoom(img.src,img.alt||'저장 이미지',img.naturalWidth,img.naturalHeight);}catch{setGalleryStatus('misc','이미지를 열지 못했습니다.');}};
  try{regionMapDb=await new Promise((resolve,reject)=>{const request=indexedDB.open(REGION_MAP_DB,1);request.onupgradeneeded=()=>request.result.createObjectStore('maps',{keyPath:'id'});request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);request.onblocked=()=>reject(new Error('이미지 저장소 사용 중'));});regionMapOverrides=await new Promise((resolve,reject)=>{const request=regionMapDb.transaction('maps','readonly').objectStore('maps').getAll();request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);});for(const [category,g] of Object.entries(imageGalleries)){g.selected=selections[category];renderImageGallery(category);}}
@@ -1874,7 +1941,7 @@ function renderDataAudit(){
   $('#auditPanel').innerHTML=`<div>대상 목록은 필터와 관계없이 아래에서 확인할 수 있습니다. 300세대 미만·임대 전용 단지는 제외합니다.</div>
     ${(DATA.meta.catalog_exclusions||[]).map(x=>`<div>수집 제외/보류: ${esc(x.name)} — ${esc(x.reason)}</div>`).join('')}
     ${DATA.meta.older_history_frozen?'<div>이전 연도 일부는 원천 제공 기간 밖입니다. 보존된 거래의 취소 여부는 이번 수집에서 재확인하지 못했습니다.</div>':''}
-    <div>전세는 월세 0인 자료만 저장하며, 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·최고층 제외·선택한 시작월과 이전 12개월 자료 중 최고가를 사용합니다. 기본은 신규 계약만이며, 건수는 중복 공개행 제거 후 조건을 통과한 자료 수입니다. 시작 매매 기준월이 시작월보다 3개월 넘게 늦으면 갭을 계산하지 않습니다.</div>
+    <div>전세는 월세 0인 자료만 저장하며, 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·최고층 제외·선택한 시작월과 이전 12개월 자료 중 최고가를 사용합니다. 기본은 신규 계약만이며, 건수는 중복 공개행 제거 후 조건을 통과한 자료 수입니다. 최근 12개월에 유효 전세가 없으면 기간 제한 없이 수집된 이전 기록의 최근 유효 거래월 최고가를 사용합니다. 시작 매매 선정월이 늦다는 이유만으로 갭을 비우지 않습니다.</div>
     <div>추가 지역 단지는 지하철 도보 경로를 아직 검증하지 않았습니다. 지역·APT 비교는 가능하며, 역 필터에서는 도보 정보가 확인된 단지만 표시합니다.</div>
     <div>경기도는 성남시(분당 포함)·과천시·안양시(평촌 포함)·화성시(동탄 포함)·광명시를 수집합니다. 경기 전세는 원자료가 신규·갱신 구분을 제공하지 않아 ‘전체 계약’ 선택 시에만 갭을 계산합니다. 경기도 용적률은 아직 확인하지 못했습니다.</div>
     <div>용적률 확인 ${DATA.meta.far_verified_count||0}개, 미확인 ${cs.length-(DATA.meta.far_verified_count||0)}개. 미확인 값을 0으로 취급하지 않습니다.</div>
@@ -1939,7 +2006,7 @@ window.KaptLocal={
  capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=localStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
  editing(){return manualPriceEditing||aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
  async apply(snapshot){
-  closeApartmentMemo();closePopover();manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap'])$('#'+id).classList.remove('show');
+  closeApartmentMemo();closePopover();clearImagePastePending();imageEditTarget=null;manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap'])$('#'+id).classList.remove('show');
   const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))localStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else localStorage.removeItem(key);}
   FILTER_SAVES_MEMORY=null;FILTER_STORAGE_OK=true;FILTER_HISTORY_READY=false;FILTER_UNDO_STACK=[];FILTER_HISTORY_CURRENT=null;aptMemos=storage[APT_MEMO_KEY]||{};manualPrices=normalizeManualPrices(storage[MANUAL_PRICE_KEY]);
   if(regionMapDb){await new Promise((resolve,reject)=>{const tx=regionMapDb.transaction('maps','readwrite'),store=tx.objectStore('maps');store.clear();for(const m of snapshot?.maps||[])store.put(m);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
@@ -1951,8 +2018,8 @@ window.KaptLocal={
 };
 
 </script>
-<script src="config/supabase.js?v=36"></script>
+<script src="config/supabase.js?v=38"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js?v=36"></script>
+<script src="assets/cloud-sync.js?v=38"></script>
 </body>
 </html>
