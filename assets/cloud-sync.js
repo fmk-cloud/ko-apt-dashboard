@@ -5,6 +5,12 @@
  const local=window.KaptLocal, BUCKET='kapt-private-images',TABLE='kapt_workspaces';
  let db,client,config,user=null,owner='guest',base=null,revision=0,ready=false,suppress=false,dirty=false,bootstrapped=false,importOnEmpty=false,switching=false,syncPromise=null,changeTimer,pollTimer,epoch=0,recovery=false;
  const digests=new WeakMap();
+ const TAB_KEY='kAptWorkspaceTabV46';
+ let sourceTab=null;try{sourceTab=sessionStorage.getItem(TAB_KEY);}catch{}
+ const tabId=crypto.randomUUID();try{sessionStorage.setItem(TAB_KEY,tabId);}catch{}
+ const tabKey=(id,tab=tabId)=>'tab:'+tab+':'+id;
+ let sourceWorkspace=null;
+
  function content(snapshot){return {...strip(snapshot),maps:snapshot.maps.map(({blob,cloudPath,mime,bytes,...m})=>m)};}
  function same(a,b){return json(content(a))===json(content(b));}
  function pending(){return !!user&&dirty;}
@@ -16,7 +22,7 @@
  function validateConfig(v){const u=new URL(v.url);if(u.protocol!=='https:'||u.username||u.password||u.search||u.hash)throw Error('Project URL은 https://로 시작하는 프로젝트 주소를 입력해 주세요.');const key=v.publishableKey.trim();if(key.startsWith('sb_secret_'))throw Error('Secret key는 사용할 수 없습니다. 공개 Publishable key를 입력해 주세요.');if(!key.startsWith('sb_publishable_')){let payload;try{payload=JSON.parse(atob(key.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))}catch{}if(payload?.role!=='anon')throw Error('Publishable key 또는 anon key를 입력해 주세요. service_role 키는 사용할 수 없습니다.');}return {url:u.origin,publishableKey:key};}
  async function openDb(){db=await new Promise((resolve,reject)=>{const r=indexedDB.open('kAptCloudLocalV1',1);r.onupgradeneeded=()=>r.result.createObjectStore('workspaces',{keyPath:'id'});r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
  function cached(id){return new Promise((resolve,reject)=>{const tx=db.transaction('workspaces','readonly'),r=tx.objectStore('workspaces').get(id);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
- function cache(id,snapshot,b=base,r=revision,pending=dirty){return new Promise((resolve,reject)=>{const tx=db.transaction('workspaces','readwrite');tx.objectStore('workspaces').put({id,snapshot:clone(snapshot),base:clone(b),revision:r,pending,updatedAt:Date.now()});tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
+ function cache(id,snapshot,b=base,r=revision,pending=dirty){return new Promise((resolve,reject)=>{const tx=db.transaction('workspaces','readwrite');const store=tx.objectStore('workspaces'),record={id,snapshot:clone(snapshot),base:clone(b),revision:r,pending,updatedAt:Date.now()};store.put(record);if(id===owner)store.put({...record,id:tabKey(id),owner:id});tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
  async function remember(){await cache(owner,local.capture());}
  function strip(snapshot){return {...snapshot,maps:snapshot.maps.map(({blob,...m})=>m)};}
  function merge(baseValue,localValue,remoteValue){
@@ -35,7 +41,7 @@
  async function sha(blob){if(!digests.has(blob))digests.set(blob,crypto.subtle.digest('SHA-256',await blob.arrayBuffer()).then(a=>[...new Uint8Array(a)].map(b=>b.toString(16).padStart(2,'0')).join('')));return digests.get(blob);}
  function guard(ticket){if(ticket!==epoch||!user)throw Error('계정이 변경되어 이전 작업을 중단했습니다.');}
  async function upload(snapshot,ticket){const result=strip(snapshot);for(let i=0;i<snapshot.maps.length;i++){const row=snapshot.maps[i],out=result.maps[i];if(row.deleted){delete out.cloudPath;continue;}if(row.blob){const hash=await sha(row.blob),path=user.id+'/'+encodeURIComponent(row.id)+'/'+hash;guard(ticket);if(row.cloudPath!==path){const {error}=await client.storage.from(BUCKET).upload(path,row.blob,{contentType:row.blob.type,upsert:true});if(error)throw error;}guard(ticket);out.cloudPath=path;out.mime=row.blob.type;out.bytes=row.blob.size;}else if(out.cloudPath&&!out.cloudPath.startsWith(user.id+'/'))throw Error('다른 계정의 이미지는 가져올 수 없습니다.');}return result;}
- async function hydrate(payload,snapshot,ticket){checkPayload(payload);const maps=[];for(const row of payload.maps){guard(ticket);const found=snapshot?.maps?.find(x=>x.id===row.id&&x.cloudPath===row.cloudPath&&x.blob);if(row.cloudPath&&!row.deleted){if(!row.cloudPath.startsWith(user.id+'/'))throw Error('이미지 계정 경로가 일치하지 않습니다.');let blob=found?.blob;if(!blob){const {data,error}=await client.storage.from(BUCKET).download(row.cloudPath);if(error)throw error;blob=data;}maps.push({...row,blob});}else maps.push({...row});}return {...clone(payload),maps};}
+ async function hydrate(payload,snapshot,ticket){checkPayload(payload);const maps=[];for(const row of payload.maps){guard(ticket);const found=snapshot?.maps?.find(x=>x.id===row.id&&x.cloudPath===row.cloudPath&&x.blob);if(row.cloudPath&&!row.deleted){if(!row.cloudPath.startsWith(user.id+'/'))throw Error('이미지 계정 경로가 일치하지 않습니다.');let blob=found?.blob;if(!blob){const {data,error}=await client.storage.from(BUCKET).download(row.cloudPath);if(error)throw error;blob=data;}maps.push({...row,blob});}else maps.push({...row,...(!row.deleted&&found?.blob?{blob:found.blob}:{})});}return {...clone(payload),maps};}
  async function pull(ticket){guard(ticket);const {data,error}=await client.from(TABLE).select('revision,payload').eq('user_id',user.id).maybeSingle();if(error)throw error;guard(ticket);if(data)checkPayload(data.payload);return data;}
  async function apply(snapshot){suppress=true;try{await local.apply(snapshot)}finally{suppress=false;}}
  async function sync(){if(!user||switching||!ready)return;if(syncPromise)return syncPromise;if(local.editing()){message('열려 있는 편집창을 닫은 뒤 저장해 주세요.',dirty?'저장할 변경 있음':'저장 완료');return;}clearTimeout(changeTimer);saving(true);message('현재 내용을 클라우드에 저장하고 있습니다.','저장 중');syncPromise=syncWork().finally(()=>{syncPromise=null;saving(false)});return syncPromise;}
@@ -74,7 +80,11 @@
  }catch(e){if(ticket!==epoch)return;dirty=true;try{await remember()}catch{}message(errorText(e),'저장할 변경 있음');} }
  // Local persistence only. User changes never upload from debounce/focus/online/poll.
  function schedule(delay=200){clearTimeout(changeTimer);changeTimer=setTimeout(async()=>{if(!ready||suppress)return;try{await remember();}catch(e){message(errorText(e),'이 기기 저장 실패');}},delay);}
- function changed(){if(!ready||suppress||switching)return;if(user){dirty=true;message('이 브라우저에 보관한 변경이 있습니다. 저장을 눌러 주세요.','저장할 변경 있음');}schedule();}
+ function changed(){if(!ready||suppress||switching)return;if(user){dirty=true;message('이 브라우저에 보관한 변경이 있습니다. 저장을 눌러 주세요.','저장할 변경 있음');}
+  // Queue the snapshot immediately, so a duplicated tab includes the latest click.
+  // IndexedDB serializes this write ahead of the duplicate's read, including image blobs.
+  remember().catch(e=>message(errorText(e),'이 기기 저장 실패'));schedule();}
+
  async function receive(initial=false){
   if(!user||switching||!ready||syncPromise||(!initial&&(dirty||local.editing())))return;
   const ticket=epoch,uid=user.id;try{
@@ -98,15 +108,15 @@
   switching=true;local.lock(true);clearTimeout(changeTimer);const ticket=++epoch;
   try{
    await local.ready();if(ready)await remember();user=next;owner=next?.id||'guest';base=null;revision=0;dirty=false;bootstrapped=false;
-   const saved=await cached(owner);importOnEmpty=!saved;if(saved){base=saved.base;revision=saved.revision||0;dirty=!!saved.pending;await apply(saved.snapshot);}else await apply({schema:1,storage:{},filter:null,maps:[]});
+   const saved=(sourceWorkspace?.owner===owner?sourceWorkspace:null)||await cached(tabKey(owner))||await cached(owner);sourceWorkspace=null;importOnEmpty=!saved;if(saved){base=saved.base;revision=saved.revision||0;dirty=!!saved.pending;await apply(saved.snapshot);}else await apply({schema:1,storage:{},filter:null,maps:[]});
    base=base||strip(local.capture());
-   localStorage.setItem(OWNER,owner);ready=true;controls();message(user?'계정 자료를 확인하는 중입니다.':'로그아웃했습니다. 기존 브라우저 자료는 이 기기에 남아 있습니다.',user?'동기화 중':'이 기기에 저장');
+   localStorage.setItem(OWNER,owner);await remember();ready=true;controls();message(user?'계정 자료를 확인하는 중입니다.':'로그아웃했습니다. 기존 브라우저 자료는 이 기기에 남아 있습니다.',user?'동기화 중':'이 기기에 저장');
   }catch(e){ready=false;message('계정 전환을 완료하지 못했습니다. '+errorText(e),'확인 필요');}
   finally{switching=false;}
   try{if(ticket===epoch&&user&&ready)await receive(true);}finally{local.lock(false);}
  }
  async function connect(){if(!config?.url||!config?.publishableKey){$('#cloudSetup').open=true;message('Supabase 연결 설정을 먼저 입력해 주세요.','이 기기에 저장');return;}
-  if(!window.supabase?.createClient){message('로그인 모듈을 읽지 못했습니다. assets/vendor 폴더가 함께 있는지 확인해 주세요.');return;}
+  if(!window.supabase?.createClient){await handleSession(null);message('로그인 모듈을 읽지 못했습니다. assets/vendor 폴더가 함께 있는지 확인해 주세요.');return;}
   client=window.supabase.createClient(config.url,config.publishableKey,{auth:{storageKey:'kAptSupabaseAuthV1-'+new URL(config.url).host,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true},global:{fetch:(url,options)=>fetch(url,{...options,signal:options?.signal||AbortSignal.timeout(25000)})}});
   client.auth.onAuthStateChange((event,session)=>{if(event==='PASSWORD_RECOVERY'){recovery=true;$('#cloudAccountWrap').classList.add('show');}if(event==='SIGNED_OUT')recovery=false;setTimeout(()=>handleSession(session),0);});
   const {data,error}=await client.auth.getSession();if(error)throw error;await handleSession(data.session);clearInterval(pollTimer);pollTimer=setInterval(()=>{if(!document.hidden&&navigator.onLine)receive()},30000);
@@ -124,17 +134,20 @@
   const maps=[...new Map([...current.maps,...incoming.maps].map(m=>[m.id,m])).values()];await apply({...current,storage,maps});dirty=true;await remember();message('기존 브라우저 자료를 가져왔습니다. 클라우드에 반영하려면 저장을 눌러 주세요.','저장할 변경 있음');
  }catch(e){message(errorText(e));}}
  async function init(){
+  local.lock(true);
   $('#cloudAccountBtn').onclick=()=>{$('#cloudAccountWrap').classList.add('show');};$('#cloudLoginForm').onsubmit=e=>{e.preventDefault();authAction('login')};$('#cloudSignup').onclick=()=>authAction('signup');$('#cloudReset').onclick=()=>authAction('reset');$('#cloudSyncNow').onclick=()=>sync();$('#cloudSaveBtn').onclick=()=>{if(user)sync();else $('#cloudAccountWrap').classList.add('show');};$('#cloudImport').onclick=importGuest;
   $('#cloudLogout').onclick=async()=>{if(!client)return;if(dirty&&!confirm('클라우드에 저장하지 않은 변경이 있습니다. 이 브라우저에 보관하고 로그아웃할까요?'))return;try{await remember();const {error}=await client.auth.signOut({scope:'local'});if(error)throw error;await handleSession(null);}catch(e){message(errorText(e));}};
   $('#cloudUpdatePassword').onclick=async()=>{try{const password=$('#cloudNewPassword').value;if(password.length<6)throw Error('비밀번호는 6자 이상 입력해 주세요.');const {error}=await client.auth.updateUser({password});if(error)throw error;recovery=false;$('#cloudNewPassword').value='';controls();message('비밀번호를 변경했습니다.');}catch(e){message(errorText(e));}};
   $('#cloudConfigForm').onsubmit=async e=>{e.preventDefault();try{const next=validateConfig({url:$('#cloudProjectUrl').value.trim(),publishableKey:$('#cloudPublicKey').value.trim()});if(user)throw Error('프로젝트를 바꾸려면 먼저 로그아웃해 주세요.');localStorage.setItem(CONFIG,json(next));message('연결 설정을 저장했습니다. 다시 여는 중입니다.');location.reload();}catch(e){message(errorText(e));}};
-  try{await local.ready();await openDb();const oldOwner=localStorage.getItem(OWNER)||'guest';const original=local.capture(),prior=await cached(oldOwner);await cache(oldOwner,original,prior?.base||null,prior?.revision||0,prior?.pending||false);owner=oldOwner;
-   // Keep queued account metadata across reload; the active legacy workspace has newest offline edits.
-   ready=true;config=getConfig();if(config.url&&config.publishableKey)config=validateConfig(config);$('#cloudProjectUrl').value=config.url||'';$('#cloudPublicKey').value=config.publishableKey||'';
-   if(oldOwner!=='guest'){const guest=await cached('guest');await apply(guest?.snapshot||{schema:1,storage:{},filter:null,maps:[]});owner='guest';localStorage.setItem(OWNER,'guest');}
-   await connect();
-  }catch(e){message('연결 준비를 완료하지 못했습니다. '+errorText(e),'이 기기에 저장');}
-  window.addEventListener('storage',e=>{if(e.key===OWNER&&e.newValue&&e.newValue!==owner){ready=false;++epoch;location.reload();}});
+  try{await local.ready();await openDb();const oldOwner=localStorage.getItem(OWNER)||'guest';
+   // Migrate v45 once. Never overwrite a saved account with the dashboard's startup defaults.
+   if(!await cached(oldOwner))await cache(oldOwner,local.capture(),null,0,false);
+   if(sourceTab)sourceWorkspace=await cached(tabKey(oldOwner,sourceTab));
+   config=getConfig();if(config.url&&config.publishableKey)config=validateConfig(config);$('#cloudProjectUrl').value=config.url||'';$('#cloudPublicKey').value=config.publishableKey||'';
+   // Resolve the real SDK session directly: no transient guest owner and no storage-event reload.
+   if(!config.url||!config.publishableKey){await handleSession(null);await connect();}
+   else await connect();
+  }catch(e){if(db&&!ready)try{await handleSession(null);}catch{}local.lock(false);message('연결 준비를 완료하지 못했습니다. '+errorText(e),'이 기기에 저장');}
   window.addEventListener('online',()=>receive());window.addEventListener('focus',()=>receive());window.addEventListener('beforeunload',e=>{if(pending()){e.preventDefault();e.returnValue='';}});window.addEventListener('pagehide',()=>{if(ready&&!suppress)remember().catch(()=>{})});
  }
  window.KaptCloud={changed,sync,receive,merge,validateConfig,get pending(){return pending()},get user(){return user},get owner(){return owner},get ready(){return ready},get client(){return client}};

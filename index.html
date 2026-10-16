@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v44 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v46 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -254,12 +254,13 @@ html,body{height:100%;overflow:hidden}
 .miscImageGallery .galleryPreview,.miscImageGallery .referenceMapWrap,.miscImageGallery .regionMapEmpty{height:clamp(240px,calc(100dvh - 330px),650px);min-height:0}.regionMapStage .referenceMapWrap{flex:none}
 @media(max-width:760px){.albumStrip{max-height:130px;gap:8px}.albumThumbWrap{flex-basis:62px;width:62px}.albumThumb,.albumAdd{width:62px;height:60px}.albumAdd{flex-basis:62px}.albumThumbTools{top:42px}.albumThumbTools button{font-size:8px}.miscImageGallery .galleryPreview,.miscImageGallery .referenceMapWrap,.miscImageGallery .regionMapEmpty{height:clamp(220px,calc(100dvh - 410px),400px);min-height:0}}
 
+#galleryAddWrap{z-index:175}#galleryAddWrap .galleryAddModal{width:min(360px,calc(100vw - 32px));padding:20px;border-radius:16px}#galleryAddWrap .modalHead{margin-bottom:14px}#galleryAddWrap .modalTitle{font-size:19px}.galleryAddOptions{display:flex;flex-direction:column;gap:10px}.galleryAddOptions button{display:block;width:100%;padding:14px 12px;border:1px solid #d4deea;border-radius:10px;background:#f7faff;color:#294967;font:inherit;font-size:14px;font-weight:800;text-align:left;cursor:pointer}.galleryAddOptions button:hover{background:#eaf2fb}.galleryAddOptions button:disabled{opacity:.5;cursor:wait}#galleryAddStatus{font-size:12px;line-height:1.65;color:#65798e;margin-top:12px;white-space:pre-wrap}#galleryAddStatus:empty{display:none}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v44 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v46 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -490,6 +491,11 @@ html,body{height:100%;overflow:hidden}
 </div>
 
 <div class="colorMenu" id="colorMenu"></div>
+<div class="modalWrap" id="galleryAddWrap" role="dialog" aria-modal="true" aria-labelledby="galleryAddTitle">
+  <div class="modal galleryAddModal"><div class="modalHead"><h3 class="modalTitle" id="galleryAddTitle">이미지 추가</h3><button type="button" class="modalClose" data-close="galleryAddWrap" aria-label="이미지 추가 닫기">×</button></div>
+    <div class="galleryAddOptions"><button type="button" id="galleryAddClipboard">클립보드에서 붙여넣기</button><button type="button" id="galleryAddDevice">기기에서 찾기</button></div><div id="galleryAddStatus" role="status" aria-live="polite"></div>
+  </div>
+</div>
 <div id="imageMemoPanel" class="aptMemoPanel" role="dialog" aria-label="이미지 메모"><img class="aptMemoPaper" src="assets/memo-active.svg" alt=""><textarea id="imageMemoText" class="aptMemoText" aria-label="이미지 메모 내용" spellcheck="false"></textarea><div id="imageMemoStatus" role="status"></div></div>
 <div id="aptMemoPanel" class="aptMemoPanel" role="dialog" aria-label="아파트 메모"><img class="aptMemoPaper" src="assets/memo-active.svg" alt=""><textarea id="aptMemoText" class="aptMemoText" aria-label="메모 내용" spellcheck="false"></textarea></div>
 
@@ -547,6 +553,18 @@ html,body{height:100%;overflow:hidden}
 
 <script>
 'use strict';
+
+// Each live tab owns its workspace view. Auth/config use native localStorage in cloud-sync.js.
+// Shared legacy keys remain a migration fallback; storage events never replace this tab's view.
+const workspaceStorage=(()=>{
+ const values=new Map();
+ for(const key of ['koAptDashboardFavoritesV10','koAptDashboardFilterSavesV21','koAptDashboardFilterPresetV18','kAptComplexMemosV1','kAptManualPricesV1','kAptComplexCompareOptionsV1','kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){
+  const value=localStorage.getItem(key);if(value!==null)values.set(key,value);
+ }
+ return {getItem:key=>values.has(key)?values.get(key):null,
+ setItem(key,value){const text=String(value);localStorage.setItem(key,text);values.set(key,text);},
+ removeItem(key){localStorage.removeItem(key);values.delete(key);}};
+})();
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
@@ -839,7 +857,7 @@ function normalizeComparisonOptions(value){
  }
  return out;
 }
-try{comparisonOptions=normalizeComparisonOptions(JSON.parse(localStorage.getItem(COMPARISON_OPTIONS_KEY)||'{}'));}catch{}
+try{comparisonOptions=normalizeComparisonOptions(JSON.parse(workspaceStorage.getItem(COMPARISON_OPTIONS_KEY)||'{}'));}catch{}
 function comparisonOption(c,group=currentArea){return comparisonOptions[comparisonOptionKey(c,group)]||{area:null,includeLowFloors:false};}
 function manualPriceArea(c,group=currentArea){return comparisonOption(c,group).area??group;}
 function includeLowFloors(c,group=currentArea){return comparisonOption(c,group).includeLowFloors;}
@@ -880,7 +898,7 @@ function applyComparisonChoice(patch,preservePriceDraft=false){
  const draft=preservePriceDraft&&manualPriceEditing?{sale:$('#manualSalePrice').value,lease:$('#manualLeasePrice').value,note:$('#manualPriceNote').value}:null;
  const key=comparisonOptionKey(c),prior=comparisonOption(c),next={...comparisonOptions,[key]:{...prior,...patch,updatedAt:Date.now()}};
  try{
-  localStorage.setItem(COMPARISON_OPTIONS_KEY,JSON.stringify(next));comparisonOptions=next;window.KaptCloud?.changed();
+  workspaceStorage.setItem(COMPARISON_OPTIONS_KEY,JSON.stringify(next));comparisonOptions=next;window.KaptCloud?.changed();
   render();const row=shownRows.find(r=>comparisonComplexId(r.c)===comparisonComplexId(c));renderApartmentDetail(row||currentComparisonRow(c));
   if(!row)$('#complexComparisonHint').textContent+=' 현재 필터 조건에서는 순위 목록에 표시되지 않습니다.';
   if(draft){$('#manualSalePrice').value=draft.sale;$('#manualLeasePrice').value=draft.lease;$('#manualPriceNote').value=draft.note;manualPriceEditing=true;}
@@ -1393,7 +1411,7 @@ let dragFavorite=null;
 let colorTarget=null;
 
 function loadFavoriteState(){
-  let saved=null;try{saved=JSON.parse(localStorage.getItem(FAV_STORAGE_KEY)||'null')}catch(e){}
+  let saved=null;try{saved=JSON.parse(workspaceStorage.getItem(FAV_STORAGE_KEY)||'null')}catch(e){}
   const aptExisting=new Set((DATA.complexes||[]).map(c=>c.name));
   favoriteState=saved&&saved.version===1?saved:{version:1,mode:'region',lists:{region:[...DEFAULT_REGION_FAVORITES],station:[...DEFAULT_STATION_FAVORITES],apt:DEFAULT_APT_FAVORITES.filter(x=>aptExisting.has(x))},selected:{region:['영등포구'],station:[],apt:[]},colors:{region:{},station:{},apt:{}}};
   for(const k of ['region','station','apt']){ favoriteState.lists[k]||=[];favoriteState.selected[k]||=[];favoriteState.colors[k]||={}; }
@@ -1402,7 +1420,7 @@ function loadFavoriteState(){
   if(favoriteState.orderVersion!==29){favoriteState.lists.region.sort((a,b)=>favoriteRegionRank(a)-favoriteRegionRank(b));favoriteState.lists.station.sort((a,b)=>favoriteStationRank(a)-favoriteStationRank(b));favoriteState.orderVersion=29;favoriteState.stationPositions={};}
   favMode=favoriteState.mode||'region';saveFavoriteState();
 }
-function saveFavoriteState(){favoriteState.mode=favMode;try{localStorage.setItem(FAV_STORAGE_KEY,JSON.stringify(favoriteState))}catch(e){}window.KaptCloud?.changed();}
+function saveFavoriteState(){favoriteState.mode=favMode;try{workspaceStorage.setItem(FAV_STORAGE_KEY,JSON.stringify(favoriteState))}catch(e){}window.KaptCloud?.changed();}
 function defaultFavColor(mode,item){
   if(mode==='region')return REGION_META[item]||'neutral';
   if(mode==='station'){const r=(STATION_RANKINGS.find(x=>x[1]===item)||[50])[0];return r<=5?'rose':r<=10?'orange':r<=20?'yellow':r<=35?'green':'blue';}
@@ -1583,17 +1601,17 @@ const cloneFilter=p=>JSON.parse(JSON.stringify(p));
 function readFilterSaves(){
   if(!FILTER_STORAGE_OK&&FILTER_SAVES_MEMORY!==null)return cloneFilter(FILTER_SAVES_MEMORY);
   try{
-    const raw=localStorage.getItem(FILTER_SAVES_KEY);
+    const raw=workspaceStorage.getItem(FILTER_SAVES_KEY);
     if(raw!==null){const rows=JSON.parse(raw);if(!Array.isArray(rows))throw Error('bad saves');return rows.filter(x=>x?.preset?.state&&x.id).slice(-10);}
     if(FILTER_SAVES_MEMORY!==null)return cloneFilter(FILTER_SAVES_MEMORY);
-    const old=localStorage.getItem(FILTER_PRESET_KEY);
+    const old=workspaceStorage.getItem(FILTER_PRESET_KEY);
     if(old){const preset=JSON.parse(old);if(preset?.state){const rows=[{id:'legacy-v18',savedAt:Date.now(),pinned:false,preset}];persistFilterSaves(rows);return rows;}}
   }catch(e){FILTER_STORAGE_OK=false;}
   return cloneFilter(FILTER_SAVES_MEMORY||[]);
 }
 function persistFilterSaves(rows){
   FILTER_SAVES_MEMORY=cloneFilter(rows);
-  try{localStorage.setItem(FILTER_SAVES_KEY,JSON.stringify(rows));FILTER_STORAGE_OK=true;window.KaptCloud?.changed();return true;}
+  try{workspaceStorage.setItem(FILTER_SAVES_KEY,JSON.stringify(rows));FILTER_STORAGE_OK=true;window.KaptCloud?.changed();return true;}
   catch(e){FILTER_STORAGE_OK=false;return false;}
 }
 function writeFilterPreset(p){
@@ -1727,7 +1745,7 @@ function normalizeManualPrices(value){
   }
   return out;
 }
-try{manualPrices=normalizeManualPrices(JSON.parse(localStorage.getItem(MANUAL_PRICE_KEY)||'{}'));}catch{}
+try{manualPrices=normalizeManualPrices(JSON.parse(workspaceStorage.getItem(MANUAL_PRICE_KEY)||'{}'));}catch{}
 function manualPriceId(c,area=manualPriceArea(c),month=state.fromMonth){return JSON.stringify([String(c.id||c.kapt_code||[c.region,c.name,c.address||c.legal_dong||''].join('|')),Number(area),month]);}
 function manualPriceFor(c){const row=manualPrices[manualPriceId(c)];return row&&!row.deleted?row:null;}
 function effectiveStartEstimate(c,official){
@@ -1754,7 +1772,7 @@ function parsePersonalEok(input,allowZero){
   const value=Math.round(n*10000);if(!Number.isSafeInteger(value)||(!allowZero&&value<=0))throw Error('매매가를 0.0001억 이상 입력해 주세요.');return value;
 }
 function persistManualPrices(next){
-  try{localStorage.setItem(MANUAL_PRICE_KEY,JSON.stringify(next));}
+  try{workspaceStorage.setItem(MANUAL_PRICE_KEY,JSON.stringify(next));}
   catch{throw Error('브라우저 저장 공간이 부족해 입력값을 보관하지 못했습니다.');}
   manualPrices=next;manualPriceEditing=false;window.KaptCloud?.changed();
 }
@@ -2025,9 +2043,51 @@ function availableRegionMaps(){return availableGalleryImages('region');}
 function regionMapTransaction(action,value){return new Promise((resolve,reject)=>{if(!regionMapDb){resolve();return;}const tx=regionMapDb.transaction('maps','readwrite');if(action==='delete')tx.objectStore('maps').delete(value);else tx.objectStore('maps').put(value);tx.oncomplete=()=>{resolve();setTimeout(()=>window.KaptCloud?.changed(),0)};tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||new Error('이미지 저장 실패'));});}
 function setGalleryStatus(category,message){$(imageGalleries[category].status).textContent=message;}
 function setRegionMapStatus(message){setGalleryStatus('region',message);}
-function selectGalleryImage(category,id){const g=imageGalleries[category];g.selected=id;if(category==='region')regionMapSelected=id;try{localStorage.setItem(g.key,id)}catch{}renderImageGallery(category);window.KaptCloud?.changed();}
+function selectGalleryImage(category,id){const g=imageGalleries[category];g.selected=id;if(category==='region')regionMapSelected=id;try{workspaceStorage.setItem(g.key,id)}catch{}renderImageGallery(category);window.KaptCloud?.changed();}
 function selectRegionMap(id){selectGalleryImage('region',id);}
 function renderRegionMapGallery(){renderImageGallery('region');}
+let galleryAddTarget=null,galleryAddAnchor=null,galleryAddEpoch=0,galleryAddReading=false;
+function closeGalleryAdd(){
+ galleryAddEpoch++;galleryAddTarget=null;galleryAddReading=false;
+ $('#galleryAddWrap').classList.remove('show');$('#galleryAddClipboard').disabled=false;$('#galleryAddDevice').disabled=false;
+ const anchor=galleryAddAnchor;galleryAddAnchor=null;if(anchor?.isConnected&&$('#gradeHelpWrap').classList.contains('show'))anchor.focus({preventScroll:true});
+}
+function openGalleryAdd(category,albumId=null,anchor=null){
+ if(regionMapBusy||document.body.classList.contains('cloudSwitching'))return;
+ closeImageMemo();closeGalleryAdd();galleryAddTarget={category,...(albumId?{albumId}:{})};galleryAddAnchor=anchor;
+ $('#galleryAddTitle').textContent=albumId?'이 갤러리에 이미지 추가':'새 갤러리 추가';
+ $('#galleryAddStatus').textContent='';$('#galleryAddWrap').classList.add('show');$('#galleryAddClipboard').focus({preventScroll:true});
+}
+function galleryAddContextValid(context,ticket){return galleryAddTarget===context&&galleryAddEpoch===ticket&&$('#galleryAddWrap').classList.contains('show')&&!document.body.classList.contains('cloudSwitching');}
+async function pasteFromGalleryClipboard(){
+ const context=galleryAddTarget;if(!context||galleryAddReading)return;
+ const ticket=galleryAddEpoch;galleryAddReading=true;$('#galleryAddClipboard').disabled=true;$('#galleryAddDevice').disabled=true;
+ $('#galleryAddStatus').textContent='클립보드 이미지를 확인하고 있습니다.';
+ try{
+  if(!navigator.clipboard?.read)throw Error('keyboard-paste');
+  const items=await navigator.clipboard.read();if(!galleryAddContextValid(context,ticket))return;
+  const files=[];
+  for(const item of items){const type=item.types.find(t=>['image/png','image/jpeg','image/webp','image/gif'].includes(t));if(type){const blob=await item.getType(type);files.push(clipboardImageFile(new File([blob],'clipboard',{type:blob.type||type}),files.length));}}
+  if(!galleryAddContextValid(context,ticket))return;
+  if(!files.length){$('#galleryAddStatus').textContent='클립보드에 이미지가 없습니다. 이미지를 복사한 뒤 다시 눌러 주세요.';return;}
+  closeGalleryAdd();
+  if(context.albumId)await uploadAlbumImages(context.category,context.albumId,files);else await uploadGalleryImages(context.category,files);
+ }catch(error){
+  if(galleryAddContextValid(context,ticket)){$('#galleryAddStatus').textContent='Ctrl+V(Windows) 또는 ⌘V(Mac)를 눌러 여기에 이미지를 붙여넣어 주세요.';$('#galleryAddClipboard').focus({preventScroll:true});}
+ }finally{
+  if(galleryAddContextValid(context,ticket)){galleryAddReading=false;$('#galleryAddClipboard').disabled=false;$('#galleryAddDevice').disabled=false;$('#galleryAddClipboard').focus({preventScroll:true});}
+ }
+}
+$('#galleryAddClipboard').addEventListener('click',pasteFromGalleryClipboard);
+$('#galleryAddDevice').addEventListener('click',()=>{
+ const context=galleryAddTarget;if(!context)return;closeGalleryAdd();
+ const input=context.albumId?$(albumInputSelector(context.category)):$(imageGalleries[context.category].input);
+ if(context.albumId)input.dataset.albumId=context.albumId;
+ input.click();
+});
+$('#galleryAddWrap').addEventListener('click',event=>{if(event.target===$('#galleryAddWrap')||event.target.closest('[data-close="galleryAddWrap"]'))closeGalleryAdd();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&$('#galleryAddWrap').classList.contains('show')){event.preventDefault();event.stopImmediatePropagation();closeGalleryAdd();}},true);
+
 // Albums reuse the flat maps store: each extra image carries its parent gallery id.
 const albumSelections={region:{},misc:{}};
 function galleryImageRow(category,id){
@@ -2104,14 +2164,14 @@ function renderImageGallery(category){
  $$(g.rail+' [data-map-select]').forEach(button=>button.onclick=()=>{if(Date.now()<gallerySuppressClickUntil)return;const root=albums.find(m=>m.id===button.dataset.mapSelect);albumSelections[category][root.id]=galleryAlbumCover(category,root)?.id||'';selectGalleryImage(category,root.id);});
  $$(g.rail+' [data-map-edit]').forEach(button=>button.onclick=()=>openImageEditor(category,button.dataset.mapEdit));
  $$(g.rail+' [data-map-delete]').forEach(button=>button.onclick=()=>deleteGalleryImage(category,button.dataset.mapDelete));
- $(category==='region'?'#addRegionMap':'#addMiscImage').onclick=()=>{if(!regionMapBusy)$(g.input).click();};
+ $(category==='region'?'#addRegionMap':'#addMiscImage').onclick=event=>openGalleryAdd(category,null,event.currentTarget);
  const strip=$(albumStripSelector(category));strip.hidden=!album;strip.dataset.albumId=album?.id||'';
  strip.innerHTML=album?images.map(m=>{const source=withSource(m),isCover=m.id===cover?.id;return `<div class="albumThumbWrap" data-album-image-id="${esc(m.id)}"><button type="button" draggable="true" class="albumThumb${m.id===active?.id?' selected':''}" data-album-select="${esc(m.id)}" aria-label="${esc(m.name||'제목 없음')} 이미지 선택" aria-pressed="${m.id===active?.id}"><img draggable="false" src="${esc(source.src)}" alt="${esc(m.name||'제목 없음')}"></button><button type="button" class="albumCoverBtn${isCover?' isCover':''}" data-album-cover="${esc(m.id)}" title="${isCover?'대표이미지':'대표이미지로 지정'}" aria-pressed="${isCover}">${isCover?'대표':'대표로'}</button><div class="albumThumbTools"><button type="button" data-album-edit="${esc(m.id)}">편집</button><button type="button" data-album-delete="${esc(m.id)}">삭제</button></div><div class="albumThumbCaption">${esc(m.name||'제목 없음')}</div></div>`;}).join('')+`<button type="button" class="albumAdd" data-album-add="${category}" data-album-paste="${category}" aria-label="이 갤러리에 이미지 추가" title="이 갤러리에 이미지 추가 · Ctrl+V / ⌘V">＋</button>`:'';
  strip.querySelectorAll('[data-album-select]').forEach(button=>button.onclick=()=>{if(Date.now()<albumSuppressClickUntil)return;selectAlbumImage(category,album.id,button.dataset.albumSelect);});
  strip.querySelectorAll('[data-album-edit]').forEach(button=>button.onclick=()=>openImageEditor(category,button.dataset.albumEdit));
  strip.querySelectorAll('[data-album-delete]').forEach(button=>button.onclick=()=>deleteAlbumImage(category,album.id,button.dataset.albumDelete));
  strip.querySelectorAll('[data-album-cover]').forEach(button=>button.onclick=()=>setAlbumCover(category,album.id,button.dataset.albumCover));
- const add=strip.querySelector('[data-album-add]');if(add)add.onclick=()=>{if(regionMapBusy)return;const input=$(albumInputSelector(category));input.dataset.albumId=album.id;input.click();};
+ const add=strip.querySelector('[data-album-add]');if(add)add.onclick=event=>openGalleryAdd(category,album.id,event.currentTarget);
 }
 let albumDrag=null,albumSuppressClickUntil=0;
 async function moveAlbumImage(category,albumId,sourceId,targetId,after=false){
@@ -2151,6 +2211,7 @@ function galleryClipboardFiles(data){
 }
 function galleryPasteContext(target){
  if(document.body.classList.contains('cloudSwitching'))return null;
+ if(galleryAddTarget&&$('#galleryAddWrap').classList.contains('show'))return {...galleryAddTarget,edit:false,fromAddMenu:true};
  if($('#cloudAccountWrap').classList.contains('show')||$('#favoriteAddWrap').classList.contains('show')||$('#subwayZoomWrap').classList.contains('show')||$('#detailWrap').classList.contains('show')||$('#restoreFilterWrap').classList.contains('show'))return null;
  if($('#imageEditWrap').classList.contains('show')&&imageEditTarget)return {category:imageEditTarget.category,edit:true,id:imageEditTarget.id};
  if(!$('#gradeHelpWrap').classList.contains('show'))return null;
@@ -2173,6 +2234,7 @@ document.addEventListener('paste',async event=>{
  if(!context||!files.length)return;
  event.preventDefault();
  if(regionMapBusy){imagePasteMessage(context,'이미지를 처리하는 중입니다. 완료 후 다시 붙여넣어 주세요.');return;}
+ if(context.fromAddMenu)closeGalleryAdd();
  try{
   if(context.edit){
    if(files.length!==1){imagePasteMessage(context,'이미지 교체는 한 장씩 붙여넣어 주세요.');return;}
@@ -2198,7 +2260,7 @@ document.addEventListener('click',event=>{
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'){clearImagePastePending();imageEditTarget=null;}});
 
-async function initRegionMapGallery(){regionMapBusy=true;$('#imageEditForm').onsubmit=saveImageEditor;for(const [category,g] of Object.entries(imageGalleries)){$(g.input).onchange=e=>uploadGalleryImages(category,e.target.files);try{g.selected=localStorage.getItem(g.key)||g.selected;}catch{}}const selections=Object.fromEntries(Object.entries(imageGalleries).map(([c,g])=>[c,g.selected]));for(const category of Object.keys(imageGalleries))renderImageGallery(category);
+async function initRegionMapGallery(){regionMapBusy=true;$('#imageEditForm').onsubmit=saveImageEditor;for(const [category,g] of Object.entries(imageGalleries)){$(g.input).onchange=e=>uploadGalleryImages(category,e.target.files);try{g.selected=workspaceStorage.getItem(g.key)||g.selected;}catch{}}const selections=Object.fromEntries(Object.entries(imageGalleries).map(([c,g])=>[c,g.selected]));for(const category of Object.keys(imageGalleries))renderImageGallery(category);
  $('#openMiscZoom').onclick=async()=>{const img=$('#miscImagePreview');if(!img.getAttribute('src'))return;try{await img.decode();openReferenceZoom(img.src,img.alt||'저장 이미지',img.naturalWidth,img.naturalHeight);}catch{setGalleryStatus('misc','이미지를 열지 못했습니다.');}};
  try{regionMapDb=await new Promise((resolve,reject)=>{const request=indexedDB.open(REGION_MAP_DB,1);request.onupgradeneeded=()=>request.result.createObjectStore('maps',{keyPath:'id'});request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);request.onblocked=()=>reject(new Error('이미지 저장소 사용 중'));});regionMapOverrides=await new Promise((resolve,reject)=>{const request=regionMapDb.transaction('maps','readonly').objectStore('maps').getAll();request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);});for(const [category,g] of Object.entries(imageGalleries)){g.selected=selections[category];renderImageGallery(category);}}
  catch{for(const category of Object.keys(imageGalleries))setGalleryStatus(category,'브라우저 이미지 저장을 사용할 수 없습니다. 추가한 이미지는 현재 탭에만 보관됩니다.');}finally{regionMapBusy=false;}}
@@ -2271,11 +2333,11 @@ function sortAddedFavorites(mode){
  for(const [id,index] of Object.entries(favoriteState.stationPositions||{}).sort((a,b)=>a[1]-b[1])){const i=a.indexOf(id);if(i<0)continue;a.splice(i,1);a.splice(Math.min(Math.max(0,index),a.length),0,id);}
 }
 const APT_MEMO_KEY='kAptComplexMemosV1';
-let aptMemos={};try{const saved=JSON.parse(localStorage.getItem(APT_MEMO_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))aptMemos=saved;}catch{}
+let aptMemos={};try{const saved=JSON.parse(workspaceStorage.getItem(APT_MEMO_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))aptMemos=saved;}catch{}
 let aptMemoActive=null,aptMemoEditing=false,aptMemoAnchor=null,aptMemoTimer=null;
 function apartmentMemoButton(c){const filled=Boolean(String(aptMemos[c.id]||'').trim());return `<button type="button" class="aptMemoBtn${filled?' filled':''}" data-memo-id="${esc(c.id)}" aria-label="${esc(c.name)} 메모${filled?' 보기':' 쓰기'}" title="메모"><img src="assets/memo-${filled?'filled':'empty'}.svg" alt=""></button>`;}
 function updateMemoButtons(){for(const b of $$('.aptMemoBtn')){const filled=Boolean(String(aptMemos[b.dataset.memoId]||'').trim());b.classList.toggle('filled',filled);b.querySelector('img').src=`assets/memo-${filled?'filled':'empty'}.svg`;}}
-function saveActiveMemo(){if(!aptMemoActive)return;const value=$('#aptMemoText').value;if(value.trim())aptMemos[aptMemoActive]=value;else delete aptMemos[aptMemoActive];try{localStorage.setItem(APT_MEMO_KEY,JSON.stringify(aptMemos));$('#aptMemoPanel').removeAttribute('data-save-error');window.KaptCloud?.changed();}catch{$('#aptMemoPanel').dataset.saveError='브라우저 저장 공간이 부족합니다. 이 탭을 닫기 전에 메모를 복사해 주세요.';}updateMemoButtons();}
+function saveActiveMemo(){if(!aptMemoActive)return;const value=$('#aptMemoText').value;if(value.trim())aptMemos[aptMemoActive]=value;else delete aptMemos[aptMemoActive];try{workspaceStorage.setItem(APT_MEMO_KEY,JSON.stringify(aptMemos));$('#aptMemoPanel').removeAttribute('data-save-error');window.KaptCloud?.changed();}catch{$('#aptMemoPanel').dataset.saveError='브라우저 저장 공간이 부족합니다. 이 탭을 닫기 전에 메모를 복사해 주세요.';}updateMemoButtons();}
 function closeApartmentMemo(){clearTimeout(aptMemoTimer);saveActiveMemo();$('#aptMemoPanel').classList.remove('show','isEditing');aptMemoActive=null;aptMemoAnchor=null;aptMemoEditing=false;}
 function positionApartmentMemo(){if(!aptMemoAnchor||!aptMemoAnchor.isConnected){if(aptMemoActive)closeApartmentMemo();return;}const r=aptMemoAnchor.getBoundingClientRect(),panel=$('#aptMemoPanel');const w=Math.min(310,innerWidth-16),h=Math.min(405,innerHeight-16);let left=r.right+5;if(left+w>innerWidth-8)left=Math.max(8,r.left-w-5);panel.style.left=left+'px';panel.style.top=Math.min(Math.max(8,r.top),innerHeight-h-8)+'px';}
 function openApartmentMemo(button,edit=false){clearTimeout(aptMemoTimer);const id=button.dataset.memoId;if(aptMemoActive&&aptMemoActive!==id){if(aptMemoEditing&&!edit)return;closeApartmentMemo();}aptMemoActive=id;aptMemoAnchor=button;$('#aptMemoText').value=String(aptMemos[id]||'');aptMemoEditing=aptMemoEditing||edit;$('#aptMemoPanel').classList.add('show');$('#aptMemoPanel').classList.toggle('isEditing',aptMemoEditing);positionApartmentMemo();if(edit)$('#aptMemoText').focus();}
@@ -2306,11 +2368,11 @@ for(const [id,key] of [['farSummary','far'],['gapSummary','gap']]){
 // Explicit bridge; the cloud module never hooks browser storage globally.
 window.KaptLocal={
  async ready(){await flushImageMemo();if(imageMemoError)throw Error(imageMemoError);for(let i=0;i<200&&regionMapBusy;i++)await new Promise(r=>setTimeout(r,50));if(regionMapBusy)throw Error('이미지 저장소가 아직 준비되지 않았습니다.');},
- capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,COMPARISON_OPTIONS_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=localStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
- editing(){return imageMemoEditing||manualPriceEditing||aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
+ capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,COMPARISON_OPTIONS_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=workspaceStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
+ editing(){return galleryAddReading||$('#galleryAddWrap').classList.contains('show')||imageMemoEditing||manualPriceEditing||aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
  async apply(snapshot){
-  closeImageMemo();await flushImageMemo();closeApartmentMemo();closePopover();clearImagePastePending();imageEditTarget=null;manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap','subwayZoomWrap'])$('#'+id).classList.remove('show');
-  const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,COMPARISON_OPTIONS_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))localStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else localStorage.removeItem(key);}
+  closeGalleryAdd();closeImageMemo();await flushImageMemo();closeApartmentMemo();closePopover();clearImagePastePending();imageEditTarget=null;manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap','subwayZoomWrap'])$('#'+id).classList.remove('show');
+  const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,COMPARISON_OPTIONS_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))workspaceStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else workspaceStorage.removeItem(key);}
   FILTER_SAVES_MEMORY=null;FILTER_STORAGE_OK=true;FILTER_HISTORY_READY=false;FILTER_UNDO_STACK=[];FILTER_HISTORY_CURRENT=null;aptMemos=storage[APT_MEMO_KEY]||{};manualPrices=normalizeManualPrices(storage[MANUAL_PRICE_KEY]);comparisonOptions=normalizeComparisonOptions(storage[COMPARISON_OPTIONS_KEY]);detailComparisonComplex=null;
   if(regionMapDb){await new Promise((resolve,reject)=>{const tx=regionMapDb.transaction('maps','readwrite'),store=tx.objectStore('maps');store.clear();for(const m of snapshot?.maps||[])store.put(m);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
   regionMapOverrides=(snapshot?.maps||[]).map(m=>({...m}));
@@ -2321,8 +2383,8 @@ window.KaptLocal={
 };
 
 </script>
-<script src="config/supabase.js?v=44"></script>
+<script src="config/supabase.js?v=46"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js?v=44"></script>
+<script src="assets/cloud-sync.js?v=46"></script>
 </body>
 </html>
