@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v41 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v42 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -240,7 +240,7 @@ html,body{height:100%;overflow:hidden}
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v41 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v42 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -1525,22 +1525,27 @@ function undoFilterChange(){
   try{applyFilterSnapshot(prior);}finally{FILTER_HISTORY_SUPPRESS=false;}
   flashButton('#undoFilterBtn','되돌림');
 }
+function savedFilterSelection(p){
+  const mode=p.favMode||'region',selected=p.selected?.[mode]||[];
+  const loaded=DATA.meta.loaded_regions||[];
+  const allRegions=mode==='region'&&loaded.length>0&&loaded.every(region=>selected.some(item=>dataRegion(item)===region));
+  const active=selected.length>0&&!allRegions;
+  const names=mode==='region'?selected.slice(0,3).join(', ')+(selected.length>3?' 등':''):selected.join(' · ');
+  return {label:`${({region:'지역',station:'역',apt:'APT'})[mode]} ${active?names:'전체'}`,active};
+}
 function savedFilterLabels(p){
   const s=p.state||{},u=p.ui||{};
   const range=(a,b,unit)=>a==='min'&&b==='max'?'전체':`${a==='min'?'이하':a+unit} ~ ${b==='max'?'이상':b+unit}`;
   const conf=x=>({lowest:'최하×',low:'하−',medium:'중○',high:'상●'})[x]||x;
   const labels=[`${fmtMonth(s.fromMonth)} ~ ${fmtMonth(s.toMonth)}`,`${p.currentArea||59}m²`,s.yearMin==='min'&&s.yearMax==='max'?'준공 전체':range(s.yearMin,s.yearMax,'년'),s.hhMin==='min'&&s.hhMax==='max'?'세대수 전체':range(s.hhMin,s.hhMax,'세대'),s.farMin==='min'&&s.farMax==='max'?'용적률 전체':range(s.farMin,s.farMax,'%'),!u.confidence||u.confidence.min==='lowest'&&u.confidence.max==='high'?'신뢰도 전체':`신뢰도 ${conf(u.confidence.min)} ~ ${conf(u.confidence.max)}`,`시작가 ${range(u.price?.min||'min',u.price?.max||'max','억')}`,`갭 ${range(u.gap?.min||'min',u.gap?.max||'max','억')}`];
-  labels.push(s.jeonseMode==='all'?'전세 갱신 포함':'전세 신규만');
-  const mode=p.favMode||'region',selected=p.selected?.[mode]||[];
-  labels.push(`${({region:'지역',station:'역',apt:'APT'})[mode]} ${selected.length?selected.join(' · '):'전체'}`);
-  labels.push(s.missingGapMode==='include'?'갭 미확인 포함':'갭 미확인 제외');
+  labels.push(savedFilterSelection(p).label);
   return labels;
 }
 function savedFilterItems(p){
  const s=p.state||{},u=p.ui||{};
  const restricted=(a,b)=>!(a==='min'&&b==='max');
- const flags=[true,true,restricted(s.yearMin??'min',s.yearMax??'max'),restricted(s.hhMin??'min',s.hhMax??'max'),restricted(s.farMin??'min',s.farMax??'max'),!!u.confidence&&!(u.confidence.min==='lowest'&&u.confidence.max==='high'),restricted(u.price?.min??'min',u.price?.max??'max'),restricted(u.gap?.min??'min',u.gap?.max??'max'),s.jeonseMode!=='all',!!p.selected?.[p.favMode||'region']?.length,s.missingGapMode==='include'];
- const keys=['period','area','year','households','far','confidence','price','gap','jeonse','selection','missingGap'];
+ const flags=[true,true,restricted(s.yearMin??'min',s.yearMax??'max'),restricted(s.hhMin??'min',s.hhMax??'max'),restricted(s.farMin??'min',s.farMax??'max'),!!u.confidence&&!(u.confidence.min==='lowest'&&u.confidence.max==='high'),restricted(u.price?.min??'min',u.price?.max??'max'),restricted(u.gap?.min??'min',u.gap?.max??'max'),savedFilterSelection(p).active];
+ const keys=['period','area','year','households','far','confidence','price','gap','selection'];
  return savedFilterLabels(p).map((label,i)=>({key:keys[i],label,active:flags[i]}));
 }
 function savedFilterChips(row){return savedFilterItems(row.preset).map(item=>{
@@ -1754,7 +1759,7 @@ function updateExtraSummary(type){
     el.title='';
     return;
   }
-  el.textContent=`${uiRangeLabel(type,st.min)} ~ ${uiRangeLabel(type,st.max)}`+(type==='gap'&&state.missingGapMode==='include'?' · 미확인 포함':'');
+  el.textContent=`${uiRangeLabel(type,st.min)} ~ ${uiRangeLabel(type,st.max)}`;
   el.title='';
 }
 function openExtraFilter(anchor,title,type){
@@ -2117,8 +2122,8 @@ window.KaptLocal={
 };
 
 </script>
-<script src="config/supabase.js?v=41"></script>
+<script src="config/supabase.js?v=42"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js?v=41"></script>
+<script src="assets/cloud-sync.js?v=42"></script>
 </body>
 </html>
