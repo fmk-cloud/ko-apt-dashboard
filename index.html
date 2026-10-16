@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v38 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v40 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -218,12 +218,29 @@ html,body{height:100%;overflow:hidden}
 
 .restoreChip.isFiltered{border-color:#ff9c2c;background:#fff0d6;color:#111;cursor:pointer;font-family:inherit;text-align:left}.restoreRow:not(.pinned) .restoreChip.isFiltered{border-color:rgba(255,156,44,.5);background:#fff9f0}.restoreChip.isImportant,.restoreRow:not(.pinned) .restoreChip.isImportant{border-color:#d92231;background:#fce2df}.restoreChoice:hover .restoreChip.isFiltered{border-color:#ff9c2c}.restoreChoice:hover .restoreChip.isImportant{border-color:#d92231}
 .restoreRow:not(.pinned) .restoreChoice:hover .restoreChip.isFiltered:not(.isImportant){border-color:rgba(255,156,44,.5)}.restoreChip.isFiltered:hover{box-shadow:0 0 0 1px currentColor}.restoreChip:focus-visible,.restoreChoice:focus-visible{outline:2px solid #4678b1;outline-offset:2px}
-.manualPricePanel{background:#f7faff}.manualPriceGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}.manualPricePanel label{font-size:12px;font-weight:700}.manualPricePanel input{width:100%;box-sizing:border-box;margin-top:5px;border:1px solid #cbd7e6;border-radius:8px;padding:10px;font:inherit}.manualPriceActions{display:flex;gap:8px;margin-top:10px}.manualPriceActions button{border:1px solid #cbd7e6;background:white;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}.manualPriceActions .primary{background:#2465b2;color:white}.manualPriceHint{font-size:11px;line-height:1.6;color:#65758b;margin-top:7px}.manualPriceError{font-size:12px;color:#b42318;margin-top:8px;min-height:16px}.manualTag{display:inline-block;font-size:9px;color:#2465b2;background:#edf5ff;border-radius:4px;padding:2px 4px}.priceEditLink{font-size:9px;color:#2465b2;background:transparent;border:0;padding:3px 5px;cursor:pointer;text-decoration:underline}.manualPricePanel[hidden]{display:none}@media(max-width:520px){.manualPriceGrid{grid-template-columns:1fr}.manualPriceActions{flex-wrap:wrap}}.detailTitleRow{display:flex;align-items:center;gap:10px;min-width:0}.detailTitleRow .modalTitle{min-width:0;overflow-wrap:anywhere}.detailFavoriteBtn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:0;background:transparent;color:#e44335;border-radius:7px;padding:3px;cursor:pointer}.detailFavoriteBtn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.detailFavoriteBtn.isFavorite svg{fill:currentColor}.detailFavoriteBtn:hover{background:#fff1ee}.detailFavoriteBtn:focus-visible{outline:2px solid #2465b2;outline-offset:2px}@media(max-width:520px){.detailTitleRow{gap:5px}.detailFavoriteBtn{width:32px;height:32px}}#tbody .dataValue small.manualPriceApplied{color:#d92231;font-weight:800}.clipboardImageZone{display:block;width:100%;box-sizing:border-box;text-align:left;padding:8px 10px;margin:0 0 10px;background:#f5f8fc;border:1px dashed #b8c9dc;border-radius:8px;color:#526d8b;font:inherit;font-size:11px;cursor:pointer}.clipboardImageZone:focus-visible{outline:2px solid #2465b2;outline-offset:2px}.imageEditPastePreview{display:block;max-width:100%;max-height:180px;object-fit:contain;margin:7px auto}.imageEditPastePreview[hidden]{display:none}</style>
+.manualPricePanel{background:#f7faff}.manualPriceGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}.manualPricePanel label{font-size:12px;font-weight:700}.manualPricePanel input{width:100%;box-sizing:border-box;margin-top:5px;border:1px solid #cbd7e6;border-radius:8px;padding:10px;font:inherit}.manualPriceActions{display:flex;gap:8px;margin-top:10px}.manualPriceActions button{border:1px solid #cbd7e6;background:white;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}.manualPriceActions .primary{background:#2465b2;color:white}.manualPriceHint{font-size:11px;line-height:1.6;color:#65758b;margin-top:7px}.manualPriceError{font-size:12px;color:#b42318;margin-top:8px;min-height:16px}.manualTag{display:inline-block;font-size:9px;color:#2465b2;background:#edf5ff;border-radius:4px;padding:2px 4px}.priceEditLink{font-size:9px;color:#2465b2;background:transparent;border:0;padding:3px 5px;cursor:pointer;text-decoration:underline}.manualPricePanel[hidden]{display:none}@media(max-width:520px){.manualPriceGrid{grid-template-columns:1fr}.manualPriceActions{flex-wrap:wrap}}.detailTitleRow{display:flex;align-items:center;gap:10px;min-width:0}.detailTitleRow .modalTitle{min-width:0;overflow-wrap:anywhere}.detailFavoriteBtn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;position:relative;top:3px;border:0;background:transparent;color:#2eae43;border-radius:7px;padding:3px;cursor:pointer}.detailFavoriteBtn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.detailFavoriteBtn.isFavorite svg{fill:currentColor}.detailFavoriteBtn:hover{background:#e2f4e6}.detailFavoriteBtn:focus-visible{outline:2px solid #2465b2;outline-offset:2px}@media(max-width:520px){.detailTitleRow{gap:5px}.detailFavoriteBtn{width:29px;height:29px}}#tbody .dataValue small.manualPriceApplied{color:#d92231;font-weight:800}.clipboardImageZone{display:block;width:100%;box-sizing:border-box;text-align:left;padding:8px 10px;margin:0 0 10px;background:#f5f8fc;border:1px dashed #b8c9dc;border-radius:8px;color:#526d8b;font:inherit;font-size:11px;cursor:pointer}.clipboardImageZone:focus-visible{outline:2px solid #2465b2;outline-offset:2px}.imageEditPastePreview{display:block;max-width:100%;max-height:180px;object-fit:contain;margin:7px auto}.imageEditPastePreview[hidden]{display:none}.imageEditModal textarea{display:block;width:100%;box-sizing:border-box;min-height:78px;resize:vertical;margin-top:8px;padding:9px;border:1px solid #d8e0e8;border-radius:8px;font:inherit;line-height:1.5}
+.regionMapThumbTitle{display:block;-webkit-line-clamp:unset;white-space:pre-wrap;overflow:visible;min-height:0;padding-bottom:3px;overflow-wrap:anywhere}
+.miscImageGallery .regionMapRail{grid-template-rows:repeat(6,minmax(110px,max-content));row-gap:6px;align-items:start}
+.regionMapThumb{cursor:grab}.regionMapThumb:active{cursor:grabbing}.regionMapThumbWrap.galleryDragging{opacity:.35}
+.regionMapThumbWrap.galleryDropBefore{box-shadow:0 -3px #6086b2}.regionMapThumbWrap.galleryDropAfter{box-shadow:0 3px #6086b2}
+.imageMemoBtn{position:absolute;right:4px;top:4px;z-index:2;display:flex;align-items:center;justify-content:center;width:22px;height:24px;border:0;border-radius:4px;background:rgba(255,255,255,.9);padding:3px;cursor:pointer}
+.imageMemoBtn img{display:block;width:13px;height:17px}.imageMemoBtn:hover,.imageMemoBtn:focus-visible{background:#fff;outline:1px solid #8aa4c4}
+#imageMemoPanel .aptMemoText{height:77%;font-size:15px}#imageMemoStatus{position:absolute;left:8%;right:8%;bottom:5%;font-size:10px;line-height:1.4;color:#b42318}
+#favoriteHost.aptFavorites{height:106px;min-height:0;max-height:106px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;gap:3px 10px;padding-right:12px}
+#favoriteHost.aptFavorites .favChip{height:auto;min-height:23px;max-width:100%;display:inline-block;white-space:normal;text-align:left;line-height:1.75;padding:0 2px;border:0;border-radius:0;box-shadow:none;background:transparent;color:#6d7884;font-size:11px;transform:none}
+#favoriteHost.aptFavorites .favChip.selected{color:#111;font-weight:950;border:0;box-shadow:none;background:transparent}
+#favoriteHost.aptFavorites .favChip:focus-visible{outline:2px solid #6086b2;outline-offset:2px}
+.aptFavoriteMark{background:linear-gradient(transparent 28%,var(--aptFavMark,#f4f6f8) 28%,var(--aptFavMark,#f4f6f8) 88%,transparent 88%);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 2px;overflow-wrap:anywhere}
+#favoriteHost.aptFavorites .rose{--aptFavMark:var(--rose)}#favoriteHost.aptFavorites .orange{--aptFavMark:var(--orange)}#favoriteHost.aptFavorites .yellow{--aptFavMark:var(--yellow)}#favoriteHost.aptFavorites .green{--aptFavMark:var(--green)}#favoriteHost.aptFavorites .blue{--aptFavMark:var(--blue)}#favoriteHost.aptFavorites .neutral{--aptFavMark:#f4f6f8}
+#favoriteHost.aptFavorites .selected.rose{--aptFavMark:var(--roseOn)}#favoriteHost.aptFavorites .selected.orange{--aptFavMark:var(--orangeOn)}#favoriteHost.aptFavorites .selected.yellow{--aptFavMark:var(--yellowOn)}#favoriteHost.aptFavorites .selected.green{--aptFavMark:var(--greenOn)}#favoriteHost.aptFavorites .selected.blue{--aptFavMark:var(--blueOn)}
+@media(max-width:1180px) and (min-width:761px){.miscImageGallery .regionMapRail{grid-template-rows:repeat(5,minmax(105px,max-content))}}
+@media(max-width:760px){.miscImageGallery .regionMapRail{grid-template-rows:none;grid-auto-rows:minmax(90px,max-content)}#favoriteHost.aptFavorites{height:90px;max-height:90px}.imageMemoBtn{width:20px;height:22px;top:2px;right:2px}}
+</style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v38 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v40 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -430,7 +447,7 @@ html,body{height:100%;overflow:hidden}
 <div class="modalWrap" id="imageEditWrap" role="dialog" aria-modal="true" aria-labelledby="imageEditTitle" style="z-index:90">
  <form class="modal imageEditModal" id="imageEditForm">
   <div class="modalHead"><h3 class="modalTitle" id="imageEditTitle">이미지 편집</h3><button type="button" class="modalClose" data-close="imageEditWrap" aria-label="이미지 편집 닫기">×</button></div>
-  <label>제목<input id="imageEditName" type="text" maxlength="120" placeholder="제목 없음" autocomplete="off"></label>
+  <label>제목·캡션<textarea id="imageEditName" maxlength="1000" rows="3" placeholder="제목 없음 · Enter로 줄바꿈"></textarea></label>
   <label>이미지 교체 <span>(선택)</span><input id="imageEditFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif"></label>
   <button type="button" class="clipboardImageZone" data-image-paste="edit">이미지 붙여넣기 · Ctrl+V / ⌘V로 교체</button>
   <img id="imageEditPastePreview" class="imageEditPastePreview" hidden alt="붙여넣은 교체 이미지 미리보기">
@@ -447,6 +464,7 @@ html,body{height:100%;overflow:hidden}
 </div>
 
 <div class="colorMenu" id="colorMenu"></div>
+<div id="imageMemoPanel" class="aptMemoPanel" role="dialog" aria-label="이미지 메모"><img class="aptMemoPaper" src="assets/memo-active.svg" alt=""><textarea id="imageMemoText" class="aptMemoText" aria-label="이미지 메모 내용" spellcheck="false"></textarea><div id="imageMemoStatus" role="status"></div></div>
 <div id="aptMemoPanel" class="aptMemoPanel" role="dialog" aria-label="아파트 메모"><img class="aptMemoPaper" src="assets/memo-active.svg" alt=""><textarea id="aptMemoText" class="aptMemoText" aria-label="메모 내용" spellcheck="false"></textarea></div>
 
 <div class="modalWrap" id="subwayZoomWrap">
@@ -1291,11 +1309,11 @@ function favLabel(mode,item){
 function renderFavoriteTabs(){
   updateDetailFavorite();
   $$('.favTab').forEach(b=>b.classList.toggle('active',b.dataset.favTab===favMode));
-  const host=$('#favoriteHost');host.innerHTML='';
+  const host=$('#favoriteHost');host.classList.toggle('aptFavorites',favMode==='apt');host.innerHTML='';
   const list=favoriteState.lists[favMode]||[];const selected=new Set(favoriteState.selected[favMode]||[]);
   if(!list.length){host.innerHTML='<div class="favoriteEmpty">즐겨찾기가 없습니다. 오른쪽의 ‘추가’를 눌러 등록하세요.</div>';return;}
   list.forEach((item,idx)=>{
-    const b=document.createElement('button');b.className=`favChip ${favoriteState.colors[favMode][item]||defaultFavColor(favMode,item)}${selected.has(item)?' selected':''}`;b.textContent=favLabel(favMode,item);b.draggable=true;b.dataset.item=item;b.dataset.index=idx;
+    const b=document.createElement('button');b.className=`favChip ${favoriteState.colors[favMode][item]||defaultFavColor(favMode,item)}${selected.has(item)?' selected':''}`;b.textContent=favLabel(favMode,item);if(favMode==='apt')b.innerHTML=`<span class="aptFavoriteMark">${esc(favLabel(favMode,item))}</span>`;b.draggable=true;b.dataset.item=item;b.dataset.index=idx;
     b.onclick=e=>{if(e.detail>1)return;toggleFavoriteSelection(item)};
     b.oncontextmenu=e=>{e.preventDefault();openColorMenu(e.clientX,e.clientY,item)};
     b.ondragstart=e=>{dragFavorite={mode:favMode,item,index:idx};b.classList.add('dragging');e.dataTransfer.effectAllowed='move';};
@@ -1808,7 +1826,88 @@ const REGION_MAP_DEFAULTS=[{id:'builtin-region',name:'지역 생활권 지도',s
 const imageGalleries={region:{rail:'#regionMapRail',preview:'.referenceMap',zoom:'#openRegionZoom',empty:'#regionMapEmpty',input:'#regionMapUpload',status:'#regionMapStatus',key:'kAptSelectedRegionMapV1',selected:'builtin-region',urls:[]},misc:{rail:'#miscImageRail',preview:'#miscImagePreview',zoom:'#openMiscZoom',empty:'#miscImageEmpty',input:'#miscImageUpload',status:'#miscImageStatus',key:'kAptSelectedMiscImageV1',selected:'',urls:[]}};
 let imageEditTarget=null;
 let imageEditClipboardFile=null,imageEditClipboardUrl=null;
-function availableGalleryImages(category){const extras=regionMapOverrides.filter(x=>(x.category==='misc'?'misc':'region')===category&&!REGION_MAP_DEFAULTS.some(d=>d.id===x.id)).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)||a.id.localeCompare(b.id));return [...(category==='region'?REGION_MAP_DEFAULTS.map(d=>({...d,...regionMapOverrides.find(x=>x.id===d.id)})):[]),...extras].filter(x=>!x.deleted);}
+let galleryDrag=null,gallerySuppressClickUntil=0;
+let imageMemoActive=null,imageMemoAnchor=null,imageMemoEditing=false,imageMemoTimer=null;
+let imageMemoWrites=Promise.resolve(),imageMemoError='';
+function galleryStoredRow(category,id){
+ const row=regionMapOverrides.find(m=>m.id===id);if(row)return {...row};
+ const base=REGION_MAP_DEFAULTS.find(m=>m.id===id);return base?{id:base.id,name:base.name,category}:null;
+}
+function imageMemoButton(category,row){const filled=!!String(row.memo||'').trim();return `<button type="button" class="imageMemoBtn${filled?' filled':''}" data-image-memo="${esc(row.id)}" data-category="${category}" aria-label="${esc(row.name||'이미지')} 메모" title="메모"><img draggable="false" src="assets/memo-${filled?'filled':'empty'}.svg" alt=""></button>`;}
+function updateImageMemoButtons(){
+ $$('.imageMemoBtn').forEach(button=>{const filled=!!String(galleryStoredRow(button.dataset.category,button.dataset.imageMemo)?.memo||'').trim();button.classList.toggle('filled',filled);button.querySelector('img').src=`assets/memo-${filled?'filled':'empty'}.svg`;});
+}
+async function flushImageMemo(){await imageMemoWrites;}
+function saveImageMemo(){
+ if(!imageMemoActive)return;
+ const {category,id}=imageMemoActive,prior=galleryStoredRow(category,id),memo=$('#imageMemoText').value;
+ if(!prior||prior.deleted||String(prior.memo||'')===memo)return;
+ const row={...prior,memo,memoUpdatedAt:Date.now()};regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);regionMapOverrides.push(row);
+ updateImageMemoButtons();window.KaptCloud?.changed();
+ imageMemoWrites=imageMemoWrites.then(async()=>{
+  const current=galleryStoredRow(category,id);if(!current||current.deleted)return;
+  try{await regionMapTransaction('put',current);imageMemoError='';$('#imageMemoStatus').textContent='';}
+  catch(error){imageMemoError='이미지 메모를 브라우저에 저장하지 못했습니다. 저장 공간을 확인해 주세요.';$('#imageMemoStatus').textContent=imageMemoError;setGalleryStatus(category,imageMemoError);}
+ });
+}
+function closeImageMemo(){clearTimeout(imageMemoTimer);saveImageMemo();$('#imageMemoPanel').classList.remove('show','isEditing');imageMemoActive=null;imageMemoAnchor=null;imageMemoEditing=false;}
+function positionImageMemo(){
+ if(!imageMemoAnchor?.isConnected){if(imageMemoActive)closeImageMemo();return;}
+ const r=imageMemoAnchor.getBoundingClientRect(),panel=$('#imageMemoPanel'),w=Math.min(310,innerWidth-16),h=Math.min(405,innerHeight-16);
+ let left=r.right+8;if(left+w>innerWidth-8)left=Math.max(8,r.left-w-8);
+ panel.style.left=left+'px';panel.style.top=Math.min(Math.max(8,r.top),innerHeight-h-8)+'px';
+}
+function openImageMemo(button,edit=false){
+ clearTimeout(imageMemoTimer);const category=button.dataset.category,id=button.dataset.imageMemo;
+ if(imageMemoActive&&(imageMemoActive.id!==id||imageMemoActive.category!==category)){if(imageMemoEditing&&!edit)return;closeImageMemo();}
+ if(!imageMemoActive){const row=galleryStoredRow(category,id);if(!row||row.deleted)return;imageMemoActive={category,id};$('#imageMemoText').value=String(row.memo||'');$('#imageMemoStatus').textContent=imageMemoError;}
+ imageMemoAnchor=button;imageMemoEditing=imageMemoEditing||edit;$('#imageMemoPanel').classList.add('show');$('#imageMemoPanel').classList.toggle('isEditing',imageMemoEditing);positionImageMemo();if(edit)$('#imageMemoText').focus();
+}
+function scheduleImageMemoClose(){clearTimeout(imageMemoTimer);if(!imageMemoEditing)imageMemoTimer=setTimeout(()=>{if(!$('#imageMemoPanel').matches(':hover')&&!imageMemoAnchor?.matches(':hover'))closeImageMemo();},250);}
+document.addEventListener('pointerover',event=>{const button=event.target.closest?.('.imageMemoBtn');if(button&&!button.contains(event.relatedTarget))openImageMemo(button);});
+document.addEventListener('pointerout',event=>{const button=event.target.closest?.('.imageMemoBtn');if(button&&!button.contains(event.relatedTarget))scheduleImageMemoClose();});
+document.addEventListener('click',event=>{const button=event.target.closest?.('.imageMemoBtn');if(button){event.preventDefault();event.stopPropagation();openImageMemo(button,true);}});
+document.addEventListener('pointerdown',event=>{if(imageMemoActive&&!$('#imageMemoPanel').contains(event.target)&&!event.target.closest?.('.imageMemoBtn'))closeImageMemo();});
+$('#imageMemoPanel').addEventListener('mouseenter',()=>clearTimeout(imageMemoTimer));$('#imageMemoPanel').addEventListener('mouseleave',scheduleImageMemoClose);
+$('#imageMemoText').addEventListener('focus',()=>{imageMemoEditing=true;clearTimeout(imageMemoTimer);$('#imageMemoPanel').classList.add('isEditing');});$('#imageMemoText').addEventListener('input',saveImageMemo);
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeImageMemo();});
+window.addEventListener('resize',positionImageMemo);document.addEventListener('scroll',positionImageMemo,true);
+async function moveGalleryImage(category,sourceId,targetId,after=false){
+ closeImageMemo();await flushImageMemo();if(regionMapBusy||sourceId===targetId)return;
+ const ids=availableGalleryImages(category).map(m=>m.id),from=ids.indexOf(sourceId);if(from<0)return;
+ ids.splice(from,1);const target=targetId==null?ids.length:ids.indexOf(targetId);if(target<0)return;
+ ids.splice(target+(targetId!=null&&after?1:0),0,sourceId);const rows=ids.map((id,order)=>({...galleryStoredRow(category,id),category,order}));
+ regionMapBusy=true;
+ try{
+  if(regionMapDb)await new Promise((resolve,reject)=>{const tx=regionMapDb.transaction('maps','readwrite');for(const row of rows)tx.objectStore('maps').put(row);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});
+  const updated=new Map(rows.map(row=>[row.id,row]));regionMapOverrides=regionMapOverrides.filter(row=>!updated.has(row.id));regionMapOverrides.push(...rows);
+  renderImageGallery(category);setGalleryStatus(category,regionMapDb?'이미지 순서를 변경했습니다.':'이미지 순서를 변경했습니다. 현재 탭에만 적용됩니다.');window.KaptCloud?.changed();
+ }catch{setGalleryStatus(category,'이미지 순서를 저장하지 못했습니다. 다시 시도해 주세요.');}
+ finally{regionMapBusy=false;}
+}
+function clearGalleryDragStyles(){$$('.regionMapThumbWrap').forEach(row=>row.classList.remove('galleryDragging','galleryDropBefore','galleryDropAfter'));}
+for(const category of ['region','misc']){
+ const rail=$(category==='region'?'#regionMapRail':'#miscImageRail');
+ rail.addEventListener('dragstart',event=>{
+  const button=event.target.closest?.('button.regionMapThumb');if(!button||regionMapBusy)return;
+  const row=button.closest('[data-gallery-id]');if(!row)return;closeImageMemo();galleryDrag={category,id:row.dataset.galleryId};
+  event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/x-kapt-gallery',galleryDrag.id);row.classList.add('galleryDragging');event.stopPropagation();
+ });
+ rail.addEventListener('dragover',event=>{
+  if(!galleryDrag||galleryDrag.category!==category)return;event.preventDefault();event.dataTransfer.dropEffect='move';
+  $$('.galleryDropBefore,.galleryDropAfter').forEach(row=>row.classList.remove('galleryDropBefore','galleryDropAfter'));
+  const target=event.target.closest?.('[data-gallery-id]');if(target&&target.dataset.galleryId!==galleryDrag.id){const r=target.getBoundingClientRect();target.classList.add(event.clientY<r.top+r.height/2?'galleryDropBefore':'galleryDropAfter');}
+  const r=rail.getBoundingClientRect();if(event.clientY<r.top+18)rail.scrollTop-=18;else if(event.clientY>r.bottom-18)rail.scrollTop+=18;if(event.clientX<r.left+18)rail.scrollLeft-=18;else if(event.clientX>r.right-18)rail.scrollLeft+=18;
+ });
+ rail.addEventListener('drop',event=>{
+  if(!galleryDrag||galleryDrag.category!==category)return;event.preventDefault();event.stopPropagation();
+  const source=galleryDrag,target=event.target.closest?.('[data-gallery-id]'),r=target?.getBoundingClientRect(),after=!!r&&event.clientY>=r.top+r.height/2;
+  galleryDrag=null;gallerySuppressClickUntil=Date.now()+350;clearGalleryDragStyles();moveGalleryImage(category,source.id,target?.dataset.galleryId||null,after);
+ });
+ rail.addEventListener('dragend',()=>{galleryDrag=null;gallerySuppressClickUntil=Date.now()+350;clearGalleryDragStyles();});
+}
+
+function availableGalleryImages(category){const extras=regionMapOverrides.filter(x=>(x.category==='misc'?'misc':'region')===category&&!REGION_MAP_DEFAULTS.some(d=>d.id===x.id)).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)||a.id.localeCompare(b.id));return [...(category==='region'?REGION_MAP_DEFAULTS.map(d=>({...d,...regionMapOverrides.find(x=>x.id===d.id)})):[]),...extras].filter(x=>!x.deleted).sort((a,b)=>(Number.isFinite(a.order)?a.order:Infinity)-(Number.isFinite(b.order)?b.order:Infinity));}
 function availableRegionMaps(){return availableGalleryImages('region');}
 function regionMapTransaction(action,value){return new Promise((resolve,reject)=>{if(!regionMapDb){resolve();return;}const tx=regionMapDb.transaction('maps','readwrite');if(action==='delete')tx.objectStore('maps').delete(value);else tx.objectStore('maps').put(value);tx.oncomplete=()=>{resolve();setTimeout(()=>window.KaptCloud?.changed(),0)};tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||new Error('이미지 저장 실패'));});}
 function setGalleryStatus(category,message){$(imageGalleries[category].status).textContent=message;}
@@ -1822,19 +1921,19 @@ function renderImageGallery(category){
  if(!maps.some(m=>m.id===g.selected))g.selected=maps[0]?.id||'';if(category==='region')regionMapSelected=g.selected;
  const active=maps.find(m=>m.id===g.selected),img=$(g.preview);$(g.zoom).hidden=!active;$(g.empty).hidden=!!active;
  if(active){img.src=active.src;img.alt=active.name||'제목 없음';}else img.removeAttribute('src');
- $(g.rail).innerHTML=maps.map(m=>`<div class="regionMapThumbWrap"><button type="button" class="regionMapThumb${m.id===g.selected?' selected':''}" data-map-select="${esc(m.id)}" aria-label="${esc(m.name||'제목 없음')} 선택" aria-pressed="${m.id===g.selected}" title="${esc(m.name||'제목 없음')}"><img src="${esc(m.src)}" alt="${esc(m.name||'제목 없음')}"></button><div class="regionMapThumbTools"><button type="button" data-map-edit="${esc(m.id)}" aria-label="${esc(m.name||'제목 없음')} 편집">편집</button><button type="button" data-map-delete="${esc(m.id)}" aria-label="${esc(m.name||'제목 없음')} 삭제">삭제</button></div><div class="regionMapThumbTitle" title="${esc(m.name||'제목 없음')}">${esc(m.name||'제목 없음')}</div></div>`).join('')+`<button type="button" class="regionMapAdd" id="${category==='region'?'addRegionMap':'addMiscImage'}" aria-label="이미지 추가" title="이미지 추가">＋</button>`;
- $$(g.rail+' [data-map-select]').forEach(b=>b.onclick=()=>selectGalleryImage(category,b.dataset.mapSelect));
+ $(g.rail).innerHTML=maps.map(m=>`<div class="regionMapThumbWrap" data-gallery-id="${esc(m.id)}" data-gallery-category="${category}"><button type="button" draggable="true" class="regionMapThumb${m.id===g.selected?' selected':''}" data-map-select="${esc(m.id)}" aria-label="${esc(m.name||'제목 없음')} 선택" aria-pressed="${m.id===g.selected}" title="${esc(m.name||'제목 없음')}"><img draggable="false" src="${esc(m.src)}" alt="${esc(m.name||'제목 없음')}"></button>${imageMemoButton(category,m)}<div class="regionMapThumbTools"><button type="button" data-map-edit="${esc(m.id)}" aria-label="${esc(m.name||'제목 없음')} 편집">편집</button><button type="button" data-map-delete="${esc(m.id)}" aria-label="${esc(m.name||'제목 없음')} 삭제">삭제</button></div><div class="regionMapThumbTitle" title="${esc(m.name||'제목 없음')}">${esc(m.name||'제목 없음')}</div></div>`).join('')+`<button type="button" class="regionMapAdd" id="${category==='region'?'addRegionMap':'addMiscImage'}" aria-label="이미지 추가" title="이미지 추가">＋</button>`;
+ $$(g.rail+' [data-map-select]').forEach(b=>b.onclick=()=>{if(Date.now()<gallerySuppressClickUntil)return;selectGalleryImage(category,b.dataset.mapSelect)});
  $$(g.rail+' [data-map-edit]').forEach(b=>b.onclick=()=>openImageEditor(category,b.dataset.mapEdit));
  $$(g.rail+' [data-map-delete]').forEach(b=>b.onclick=()=>deleteGalleryImage(category,b.dataset.mapDelete));
  $(category==='region'?'#addRegionMap':'#addMiscImage').onclick=()=>{if(!regionMapBusy)$(g.input).click();};
 }
-async function deleteGalleryImage(category,id){if(regionMapBusy)return;regionMapBusy=true;try{if(REGION_MAP_DEFAULTS.some(d=>d.id===id)){const row={id,deleted:true};await regionMapTransaction('put',row);regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);regionMapOverrides.push(row);}else{await regionMapTransaction('delete',id);regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);}renderImageGallery(category);setGalleryStatus(category,regionMapDb?'이미지를 삭제했습니다.':'이미지를 삭제했습니다. 현재 탭에만 적용됩니다.');}catch{setGalleryStatus(category,'이미지를 삭제하지 못했습니다. 다시 시도해 주세요.');}finally{regionMapBusy=false;}}
+async function deleteGalleryImage(category,id){closeImageMemo();await flushImageMemo();if(regionMapBusy)return;regionMapBusy=true;try{if(REGION_MAP_DEFAULTS.some(d=>d.id===id)){const row={id,deleted:true};await regionMapTransaction('put',row);regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);regionMapOverrides.push(row);}else{await regionMapTransaction('delete',id);regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);}renderImageGallery(category);setGalleryStatus(category,regionMapDb?'이미지를 삭제했습니다.':'이미지를 삭제했습니다. 현재 탭에만 적용됩니다.');}catch{setGalleryStatus(category,'이미지를 삭제하지 못했습니다. 다시 시도해 주세요.');}finally{regionMapBusy=false;}}
 async function validateGalleryImage(file){if(!['image/png','image/jpeg','image/webp','image/gif'].includes(file.type))throw new Error('PNG·JPG·WEBP·GIF 이미지를 선택해 주세요.');if(file.size>30*1024*1024)throw new Error('이미지는 파일당 30MB 이하로 선택해 주세요.');const url=URL.createObjectURL(file),img=new Image();try{img.src=url;await img.decode();}catch{throw new Error('읽을 수 없는 이미지입니다.');}finally{URL.revokeObjectURL(url);}}
-async function uploadGalleryImages(category,files){if(regionMapBusy)return;regionMapBusy=true;const errors=[],added=[];try{for(const file of [...files]){try{await validateGalleryImage(file);const row={id:(category==='misc'?'misc-':'user-')+crypto.randomUUID(),category,name:file.name.replace(/\.[^.]+$/,''),blob:file,createdAt:Math.max(Date.now(),...regionMapOverrides.map(m=>(m.createdAt||0)+1))};await regionMapTransaction('put',row);regionMapOverrides.push(row);added.push(row.id);}catch(e){errors.push(file.name+': '+e.message);}}
+async function uploadGalleryImages(category,files){closeImageMemo();await flushImageMemo();if(regionMapBusy)return;regionMapBusy=true;const errors=[],added=[];try{for(const file of [...files]){try{await validateGalleryImage(file);const row={id:(category==='misc'?'misc-':'user-')+crypto.randomUUID(),category,name:file.name.replace(/\.[^.]+$/,''),blob:file,createdAt:Math.max(Date.now(),...regionMapOverrides.map(m=>(m.createdAt||0)+1))};await regionMapTransaction('put',row);regionMapOverrides.push(row);added.push(row.id);}catch(e){errors.push(file.name+': '+e.message);}}
  if(added.length)selectGalleryImage(category,added.at(-1));setGalleryStatus(category,(added.length?`${added.length}개 이미지 추가 완료.${regionMapDb?'':' 현재 탭에만 보관됩니다.'}`:'')+(errors.length?' '+errors.join(' '):''));
  }finally{regionMapBusy=false;$(imageGalleries[category].input).value='';}if(added.length===1)openImageEditor(category,added[0]);}
-function openImageEditor(category,id){if(regionMapBusy)return;const row=availableGalleryImages(category).find(m=>m.id===id);if(!row)return;clearImagePastePending();imageEditTarget={category,id};$('#imageEditName').value=row.name||'';$('#imageEditFile').value='';$('#imageEditStatus').textContent='';$('#imageEditWrap').classList.add('show');requestAnimationFrame(()=>{$('#imageEditName').focus();$('#imageEditName').select();});}
-async function saveImageEditor(e){e.preventDefault();if(regionMapBusy||!imageEditTarget)return;const {category,id}=imageEditTarget,prior=availableGalleryImages(category).find(m=>m.id===id);if(!prior)return;regionMapBusy=true;$('#imageEditSave').disabled=true;try{const file=$('#imageEditFile').files[0]||imageEditClipboardFile;if(file)await validateGalleryImage(file);const row={...prior,name:$('#imageEditName').value.trim().slice(0,120)||'제목 없음',category,createdAt:prior.createdAt||Date.now()};if(file){row.blob=file;delete row.src;}
+function openImageEditor(category,id){closeImageMemo();if(regionMapBusy)return;const row=availableGalleryImages(category).find(m=>m.id===id);if(!row)return;clearImagePastePending();imageEditTarget={category,id};$('#imageEditName').value=row.name||'';$('#imageEditFile').value='';$('#imageEditStatus').textContent='';$('#imageEditWrap').classList.add('show');requestAnimationFrame(()=>{$('#imageEditName').focus();$('#imageEditName').select();});}
+async function saveImageEditor(e){e.preventDefault();await flushImageMemo();if(regionMapBusy||!imageEditTarget)return;const {category,id}=imageEditTarget,prior=availableGalleryImages(category).find(m=>m.id===id);if(!prior)return;regionMapBusy=true;$('#imageEditSave').disabled=true;try{const file=$('#imageEditFile').files[0]||imageEditClipboardFile;if(file)await validateGalleryImage(file);const row={...prior,name:$('#imageEditName').value.trim().slice(0,1000)||'제목 없음',category,createdAt:prior.createdAt||Date.now()};if(file){row.blob=file;delete row.src;}
  // Default embedded sources stay in code; overrides keep only their title or replacement blob.
  if(REGION_MAP_DEFAULTS.some(d=>d.id===id))delete row.src;
  await regionMapTransaction('put',row);regionMapOverrides=regionMapOverrides.filter(m=>m.id!==id);regionMapOverrides.push(row);renderImageGallery(category);$('#imageEditWrap').classList.remove('show');setGalleryStatus(category,regionMapDb?'이미지를 저장했습니다.':'이미지를 저장했습니다. 현재 탭에만 적용됩니다.');imageEditTarget=null;clearImagePastePending();
@@ -2002,11 +2101,11 @@ for(const [id,key] of [['farSummary','far'],['gapSummary','gap']]){
 
 // Explicit bridge; the cloud module never hooks browser storage globally.
 window.KaptLocal={
- async ready(){for(let i=0;i<200&&regionMapBusy;i++)await new Promise(r=>setTimeout(r,50));if(regionMapBusy)throw Error('이미지 저장소가 아직 준비되지 않았습니다.');},
+ async ready(){await flushImageMemo();if(imageMemoError)throw Error(imageMemoError);for(let i=0;i<200&&regionMapBusy;i++)await new Promise(r=>setTimeout(r,50));if(regionMapBusy)throw Error('이미지 저장소가 아직 준비되지 않았습니다.');},
  capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=localStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
- editing(){return manualPriceEditing||aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
+ editing(){return imageMemoEditing||manualPriceEditing||aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
  async apply(snapshot){
-  closeApartmentMemo();closePopover();clearImagePastePending();imageEditTarget=null;manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap'])$('#'+id).classList.remove('show');
+  closeImageMemo();await flushImageMemo();closeApartmentMemo();closePopover();clearImagePastePending();imageEditTarget=null;manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap'])$('#'+id).classList.remove('show');
   const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))localStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else localStorage.removeItem(key);}
   FILTER_SAVES_MEMORY=null;FILTER_STORAGE_OK=true;FILTER_HISTORY_READY=false;FILTER_UNDO_STACK=[];FILTER_HISTORY_CURRENT=null;aptMemos=storage[APT_MEMO_KEY]||{};manualPrices=normalizeManualPrices(storage[MANUAL_PRICE_KEY]);
   if(regionMapDb){await new Promise((resolve,reject)=>{const tx=regionMapDb.transaction('maps','readwrite'),store=tx.objectStore('maps');store.clear();for(const m of snapshot?.maps||[])store.put(m);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
@@ -2018,8 +2117,8 @@ window.KaptLocal={
 };
 
 </script>
-<script src="config/supabase.js?v=38"></script>
+<script src="config/supabase.js?v=40"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js?v=38"></script>
+<script src="assets/cloud-sync.js?v=40"></script>
 </body>
 </html>
