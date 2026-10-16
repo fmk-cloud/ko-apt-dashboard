@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v42 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v43 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -235,12 +235,22 @@ html,body{height:100%;overflow:hidden}
 #favoriteHost.aptFavorites .selected.rose{--aptFavMark:var(--roseOn)}#favoriteHost.aptFavorites .selected.orange{--aptFavMark:var(--orangeOn)}#favoriteHost.aptFavorites .selected.yellow{--aptFavMark:var(--yellowOn)}#favoriteHost.aptFavorites .selected.green{--aptFavMark:var(--greenOn)}#favoriteHost.aptFavorites .selected.blue{--aptFavMark:var(--blueOn)}
 @media(max-width:1180px) and (min-width:761px){.miscImageGallery .regionMapRail{grid-template-rows:repeat(5,minmax(105px,max-content))}}
 @media(max-width:760px){.miscImageGallery .regionMapRail{grid-template-rows:none;grid-auto-rows:minmax(90px,max-content)}#favoriteHost.aptFavorites{height:90px;max-height:90px}.imageMemoBtn{width:20px;height:22px;top:2px;right:2px}}
+.comparisonPanel{margin:14px 0;padding:13px;background:#f7faff;border:1px solid #dbe5f1;border-radius:12px}
+.comparisonControls{display:flex;align-items:flex-end;gap:9px;flex-wrap:wrap;margin-top:8px}
+.comparisonControls label{flex:1;min-width:210px;font-size:12px;font-weight:800}
+.comparisonControls select{display:block;width:100%;margin-top:6px;padding:8px;border:1px solid #ccd8e7;border-radius:8px;background:white;color:#1b2c41;font:inherit}
+.comparisonControls button{padding:9px 11px;border:1px solid #ccd8e7;border-radius:8px;background:#fff;font:inherit;font-size:12px;cursor:pointer;min-height:35px}
+#complexLowFloorBtn[aria-pressed="true"]{background:#e2f4e6;color:#18792a;border-color:#72b97f;font-weight:800}
+.comparisonHint{font-size:11px;line-height:1.6;color:#61748b;margin-top:7px}.comparisonError{font-size:11px;color:#b42318;line-height:1.5}.comparisonError:empty{display:none}
+.comparisonBadge{font-size:9px;line-height:1.5;color:#2465b2;margin-top:2px}
+@media(max-width:520px){.comparisonControls label{min-width:100%;}.comparisonPanel{padding:10px}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v42 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v43 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -288,7 +298,7 @@ html,body{height:100%;overflow:hidden}
   <section class="rankSection">
     <div class="rankHeading">
       <h2 class="tableTitle">상승 순위</h2>
-      <div class="tableSub">시작가 = 기준월부터 이후 첫 거래월의 최고가 · 최근가 = 기준월부터 이전 첫 거래월의 최고가 · 4층 이상·최고층 제외 · 신뢰도 클릭 → 선정 근거</div>
+      <div class="tableSub">시작가 = 기준월부터 이후 첫 거래월의 최고가 · 최근가 = 기준월부터 이전 첫 거래월의 최고가 · 기본 4층 이상·최고층 제외 · 단지별 예외 가능 · 신뢰도 클릭 → 선정 근거</div>
       <div class="rowCount" id="rowCount"></div>
     </div>
     <div class="card tableCard">
@@ -319,7 +329,7 @@ html,body{height:100%;overflow:hidden}
   </section>
 
   <footer>
-    실거래 원천: 서울 열린데이터광장(국토교통부 연계) · 단지 정보: 서울시 공동주택 아파트 정보 · 공공누리 1유형 · 시작/최근 기준가는 해당 월 조건 충족 거래 중 최고 신고가입니다. 저층(1~3층)과 관측 최고층은 제외합니다.
+    실거래 원천: 서울 열린데이터광장(국토교통부 연계) · 단지 정보: 서울시 공동주택 아파트 정보 · 공공누리 1유형 · 시작/최근 기준가는 해당 월 조건 충족 거래 중 최고 신고가입니다. 기본은 저층(1~3층)과 관측 최고층 제외이며, 단지별 저층 포함 설정은 정보창에서 선택합니다.
   </footer>
 </div>
 
@@ -347,6 +357,11 @@ html,body{height:100%;overflow:hidden}
     <div class="modalHead">
       <div><div class="detailTitleRow"><h3 class="modalTitle" id="dTitle">상세</h3><button type="button" id="detailFavoriteBtn" class="detailFavoriteBtn" aria-pressed="false" aria-label="APT 즐겨찾기 추가" title="APT 즐겨찾기 추가"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.85 5.78 6.38.93-4.62 4.5 1.09 6.36L12 17.37l-5.7 3 1.09-6.36-4.62-4.5 6.38-.93Z"/></svg></button></div><div class="tableSub detailSub" id="dSub"></div></div>
       <button class="modalClose" data-close="detailWrap">×</button>
+    </div>
+    <div class="comparisonPanel" id="complexComparisonPanel">
+      <div class="detailPanelTitle">이 단지 비교 설정</div>
+      <div class="comparisonControls"><label>비교할 전용면적<select id="complexAreaSelect" aria-label="이 단지 비교 전용면적"></select></label><button type="button" id="complexLowFloorBtn" aria-pressed="false">저층 포함: 꺼짐</button><button type="button" id="complexComparisonReset">기본값으로</button></div>
+      <div class="comparisonHint" id="complexAreaNote"></div><div class="comparisonHint" id="complexComparisonHint"></div><div class="comparisonError" id="complexComparisonError" role="status"></div>
     </div>
     <div class="detailCards">
       <div class="card detailCard"><div class="detailLabel">시작 기준가</div><div class="detailPrice" id="oldP">—</div><div class="rangeLine" id="oldT"></div></div>
@@ -795,8 +810,83 @@ function applyPopover(){
   closePopover();updateSummaries();render();
 }
 
+const COMPARISON_OPTIONS_KEY='kAptComplexCompareOptionsV1';
+let comparisonOptions={};
+let detailComparisonComplex=null;
+function comparisonComplexId(c){return String(c.id||c.kapt_code||[c.region,c.name,c.address||c.legal_dong||''].join('|'));}
+function comparisonOptionKey(c,group=currentArea){return JSON.stringify([comparisonComplexId(c),Number(group)]);}
+function comparisonAreaInBand(area,group){return Number.isFinite(area)&&(group===59?area>=45&&area<75:area>=82&&area<=86.5);}
+function normalizeComparisonOptions(value){
+ if(!value||typeof value!=='object'||Array.isArray(value))return {};
+ const out={};
+ for(const [key,row] of Object.entries(value)){
+  if(!row||typeof row!=='object')continue;
+  let parts;try{parts=JSON.parse(key);}catch{continue;}
+  if(!Array.isArray(parts)||parts.length!==2||typeof parts[0]!=='string'||![59,84].includes(parts[1]))continue;
+  const area=typeof row.area==='number'&&comparisonAreaInBand(row.area,parts[1])?Number(row.area.toFixed(2)):null;
+  out[key]={area,includeLowFloors:row.includeLowFloors===true,updatedAt:Number(row.updatedAt)||0};
+ }
+ return out;
+}
+try{comparisonOptions=normalizeComparisonOptions(JSON.parse(localStorage.getItem(COMPARISON_OPTIONS_KEY)||'{}'));}catch{}
+function comparisonOption(c,group=currentArea){return comparisonOptions[comparisonOptionKey(c,group)]||{area:null,includeLowFloors:false};}
+function manualPriceArea(c,group=currentArea){return comparisonOption(c,group).area??group;}
+function includeLowFloors(c,group=currentArea){return comparisonOption(c,group).includeLowFloors;}
+function floorPolicyLabel(c){return includeLowFloors(c)?'저층(1~3층) 포함 · 최고층 제외':'4층 이상 · 최고층 제외';}
+function comparisonAreaOptions(c,group=currentArea){
+ const byArea=new Map();
+ for(const [field,countKey] of [['tx','sales'],['jeonse_tx','leases']])for(const tx of c[field]||[]){
+  const n=Number(tx[1]);if(!comparisonAreaInBand(n,group))continue;
+  const area=Number(n.toFixed(2));if(!byArea.has(area))byArea.set(area,{area,sales:0,leases:0});byArea.get(area)[countKey]++;
+ }
+ return [...byArea.values()].sort((a,b)=>a.area-b.area);
+}
+function comparisonOptionBadge(c){
+ const option=comparisonOption(c),labels=[];
+ if(option.area!==null)labels.push(`전용 ${option.area.toFixed(2)}㎡`);
+ if(option.includeLowFloors)labels.push('저층 포함');
+ return labels.length?`<div class="comparisonBadge">${labels.join(' · ')}</div>`:'';
+}
+function fillComparisonControls(c){
+ const option=comparisonOption(c),areas=comparisonAreaOptions(c),select=$('#complexAreaSelect');
+ const defaultLabel=currentArea===59?'기본 59㎡ 우선 · 없으면 근접 20평대':'기본 84㎡ 대표 타입';
+ if(option.area!==null&&!areas.some(a=>a.area===option.area))areas.push({area:option.area,sales:0,leases:0});
+ select.innerHTML=`<option value="auto">${defaultLabel}</option>`+areas.map(a=>`<option value="${a.area.toFixed(2)}">전용 ${a.area.toFixed(2)}㎡ · 매매 ${a.sales}건 · 전세 ${a.leases}건</option>`).join('');
+ select.value=option.area===null?'auto':option.area.toFixed(2);
+ const button=$('#complexLowFloorBtn');button.setAttribute('aria-pressed',String(option.includeLowFloors));button.textContent=option.includeLowFloors?'저층 포함: 켜짐':'저층 포함: 꺼짐';
+ $('#complexComparisonHint').textContent=`이 단지의 ${currentArea===59?'59㎡·20평대':'84㎡'} 비교에 적용합니다. 면적을 바꾸면 해당 면적의 거래·저장한 가격을 불러옵니다. 저층 포함은 매매·전세의 1~3층에 적용하며 최고층·층수 미상은 제외합니다.`;
+ $('#complexAreaNote').textContent='수집된 실거래의 전용면적입니다. 공급면적·평수는 제공되지 않습니다.';
+ $('#complexComparisonError').textContent='';
+}
+function currentComparisonRow(c){
+ const oldE=effectiveStartEstimate(c,estimate(c,currentArea,monthDate(state.fromMonth),false));
+ const newE=estimate(c,currentArea,monthDate(state.toMonth),true),cf=confidence(c,oldE,newE);
+ const ok=!!(oldE&&newE&&oldE.selectedMonth<=newE.selectedMonth);
+ return {c,oldE,newE,cf,gapEok:calcGapEok(c,oldE),ok,areaMissing:!txRows(c,currentArea).length,periodInsufficient:!!(oldE&&newE&&!ok),...(ok?{change:newE.value-oldE.value,rate:(newE.value-oldE.value)/oldE.value*100}:{})};
+}
+function applyComparisonChoice(patch,preservePriceDraft=false){
+ const c=detailComparisonComplex;if(!c)return;
+ const draft=preservePriceDraft&&manualPriceEditing?{sale:$('#manualSalePrice').value,lease:$('#manualLeasePrice').value,note:$('#manualPriceNote').value}:null;
+ const key=comparisonOptionKey(c),prior=comparisonOption(c),next={...comparisonOptions,[key]:{...prior,...patch,updatedAt:Date.now()}};
+ try{
+  localStorage.setItem(COMPARISON_OPTIONS_KEY,JSON.stringify(next));comparisonOptions=next;window.KaptCloud?.changed();
+  render();const row=shownRows.find(r=>comparisonComplexId(r.c)===comparisonComplexId(c));renderApartmentDetail(row||currentComparisonRow(c));
+  if(!row)$('#complexComparisonHint').textContent+=' 현재 필터 조건에서는 순위 목록에 표시되지 않습니다.';
+  if(draft){$('#manualSalePrice').value=draft.sale;$('#manualLeasePrice').value=draft.lease;$('#manualPriceNote').value=draft.note;manualPriceEditing=true;}
+ }catch(error){fillComparisonControls(c);$('#complexComparisonError').textContent='비교 설정을 저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요.';}
+}
+$('#complexAreaSelect').addEventListener('change',event=>{
+ const value=event.target.value;
+ if(value==='auto')applyComparisonChoice({area:null});
+ else {const area=Number(value);if(comparisonAreaOptions(detailComparisonComplex).some(a=>a.area===area))applyComparisonChoice({area});}
+});
+$('#complexLowFloorBtn').addEventListener('click',()=>{if(detailComparisonComplex)applyComparisonChoice({includeLowFloors:!includeLowFloors(detailComparisonComplex)},true);});
+$('#complexComparisonReset').addEventListener('click',()=>applyComparisonChoice({area:null,includeLowFloors:false}));
+
 function areaClusters(c,group){
   const raw=(c.tx || []).map(txRecord);
+  const chosen=comparisonOption(c,group).area;
+  if(chosen!==null){const rows=raw.filter(t=>t.area.toFixed(2)===chosen.toFixed(2));return [{area:chosen,rows,count:rows.length,groupFallback:false}];}
   let band, fallbackBand=false;
   if(group===59){
     // 원칙: 59㎡(57~61.5㎡)를 우선한다.
@@ -836,11 +926,11 @@ function observedTopFloor(c){
   const floors=(c.tx||[]).map(x=>Number(x[2])).filter(Number.isFinite);
   return floors.length?Math.max(...floors):null;
 }
-function eligibleRows(c,rows){
-  const top=observedTopFloor(c);
-  const lowFloorExcluded=rows.filter(t=>t.floor<=3);
-  const topFloorExcluded=top==null?[]:rows.filter(t=>t.floor>=4 && t.floor===top);
-  const filtered=rows.filter(t=>t.floor>=4 && (top==null || t.floor!==top));
+function eligibleRows(c,rows,group=currentArea){
+  const top=observedTopFloor(c),minimum=includeLowFloors(c,group)?1:4;
+  const lowFloorExcluded=includeLowFloors(c,group)?[]:rows.filter(t=>Number.isFinite(t.floor)&&t.floor>=1&&t.floor<=3);
+  const topFloorExcluded=top==null?[]:rows.filter(t=>t.floor>=minimum && t.floor===top);
+  const filtered=rows.filter(t=>Number.isFinite(t.floor)&&t.floor>=minimum && (top==null || t.floor!==top));
   return {rows:filtered,topFloor:top,lowFloorExcluded,topFloorExcluded};
 }
 function median(vals){
@@ -923,9 +1013,9 @@ function buildEstimate(rows,selectedMonth,target,direction,topFloor,lowFloorExcl
     topFloorExcluded:[...topFloorExcluded].sort((a,b)=>dateObj(b.date)-dateObj(a.date))
   };
 }
-function estimateSeries(c,series,target,isEnd){
+function estimateSeries(c,series,target,isEnd,group=currentArea){
   if(!series.length)return null;
-  const eligible=eligibleRows(c,series);
+  const eligible=eligibleRows(c,series,group);
   if(!eligible.rows.length)return null;
   const targetMonth=monthKeyFromDate(target);
   const byMonth=new Map();
@@ -958,11 +1048,11 @@ function estimate(c,group,target,isEnd){
   const clusters=areaClusters(c,group);
   if(!clusters.length)return null;
   const primary=clusters[0];
-  let e=estimateSeries(c,primary.rows,target,isEnd);
+  let e=estimateSeries(c,primary.rows,target,isEnd,group);
   if(e)return {...e,areaUsed:primary.area,primaryArea:primary.area,areaFallback:!!primary.groupFallback};
   const alternates=clusters.slice(1).sort((a,b)=>Math.abs(a.area-primary.area)-Math.abs(b.area-primary.area) || b.count-a.count);
   for(const cl of alternates){
-    e=estimateSeries(c,cl.rows,target,isEnd);
+    e=estimateSeries(c,cl.rows,target,isEnd,group);
     if(e)return {...e,areaUsed:cl.area,primaryArea:primary.area,areaFallback:true};
   }
   return null;
@@ -997,6 +1087,8 @@ function confidence(c,oldE,newE){
   const reasons=[];
   const addReason=(text,kind='normal')=>reasons.push({text,kind});
 
+  if(comparisonOption(c).area!==null)addReason(`사용자 선택 전용 ${comparisonOption(c).area.toFixed(2)}㎡로 매매·전세를 비교합니다.`,'normal');
+  if(includeLowFloors(c))addReason('이 단지의 저층(1~3층)을 포함해 매매·전세를 산정합니다. 최고층·층수 미상은 제외합니다.','normal');
   for(const [label,e] of [['시작',oldE],['최근',newE]]){
     if(e.manual){severity=Math.max(severity,1);shortReasons.push('시작가 직접 입력');addReason('시작: 사용자가 직접 입력한 가격으로 비교합니다. 공식 실거래 선정값이 아닙니다.','normal');continue;}
     if(e.areaFallback){
@@ -1095,7 +1187,7 @@ function apartmentMapUrl(c){
 }
 function apartmentNameCell(c){
   const href=c.naver||'https://new.land.naver.com/search?sk='+encodeURIComponent(c.name),grade=apartmentLocationGrade(c),place=apartmentLocation(c);
-  return `<a class="name aptNameLink" target="_blank" rel="noopener" href="${esc(href)}" data-map-url="${esc(apartmentMapUrl(c))}" title="${esc(apartmentLinkTitle(c))}">${esc(displayName(c))}</a>${apartmentMemoButton(c)}<div class="aptLocality"><span class="aptLocationMark" data-grade="${grade||''}" title="${grade?grade+'급지 · 현재 급지표 기준':'급지 미분류'}">${esc(place||'주소 확인 필요')}</span></div>`;
+  return `<a class="name aptNameLink" target="_blank" rel="noopener" href="${esc(href)}" data-map-url="${esc(apartmentMapUrl(c))}" title="${esc(apartmentLinkTitle(c))}">${esc(displayName(c))}</a>${apartmentMemoButton(c)}<div class="aptLocality"><span class="aptLocationMark" data-grade="${grade||''}" title="${grade?grade+'급지 · 현재 급지표 기준':'급지 미분류'}">${esc(place||'주소 확인 필요')}</span></div>${comparisonOptionBadge(c)}`;
 }
 const apartmentContextOpens=new WeakMap();
 function apartmentModifiedLink(event){
@@ -1201,7 +1293,8 @@ function sampleHtml(e,target){
     const chosen=x._detailStatus==='included' && selected &&
       x.date===selected.date && x.floor===selected.floor && x.price===selected.price;
     let label='같은 달 거래';
-    if(chosen)label='기준 최고가';
+    if(chosen)label=x.floor<=3?'기준 최고가 · 저층 포함':'기준 최고가';
+    else if(x._detailStatus==='included'&&x.floor<=3)label='저층 포함';
     else if(x._detailStatus==='low')label='저층 제외';
     else if(x._detailStatus==='top')label='최고층 제외';
     const cls=(x._detailStatus==='low'||x._detailStatus==='top')?' class="excludedTrade"':(chosen?' class="selectedTrade"':'');
@@ -1227,14 +1320,15 @@ $('#detailFavoriteBtn').onclick=()=>{
   }
   saveFavoriteState();renderFavoriteTabs();render();updateDetailFavorite();
 };
-window.openDetail=function(index){
+function renderApartmentDetail(r){
   $$('.sampleTable').filter(t=>!t.querySelector('#jeonseSamples')).forEach(t=>{const th=t.querySelector('thead th:last-child');if(th)th.textContent='선정'});
-  const r=shownRows[index],oldTarget=new Date(`${state.fromMonth}-01T12:00:00+09:00`),newTarget=new Date(`${state.toMonth}-01T12:00:00+09:00`),c=r.c;
+  const oldTarget=new Date(`${state.fromMonth}-01T12:00:00+09:00`),newTarget=new Date(`${state.toMonth}-01T12:00:00+09:00`),c=r.c;
+  detailComparisonComplex=c;fillComparisonControls(c);
   detailFavoriteName=c.name;updateDetailFavorite();renderFeatureDetail(r);$('#dTitle').textContent=displayName(c);$('#dSub').textContent=`${c.region} · ${c.households??'—'}세대 · 용적률 ${c.far==null?'—':c.far+'%'} · 준공 ${c.completed||'—'}`;
   $('#dSub').innerHTML=`${esc(c.region)} · ${c.households??'—'}세대 · 용적률 ${c.far==null?'확인 필요':esc(c.far)+'%'} · 준공 ${esc(c.completed||'—')}`;
   $('#oldP').textContent=r.oldE?money(r.oldE.value):'계산 불가';$('#newP').textContent=r.newE?money(r.newE.value):'계산 불가';
-  $('#oldT').textContent=r.oldE?.manual?`개인 입력값 · ${fmtMonth(state.fromMonth)} · 공식 시작가 ${r.oldE.officialEstimate?money(r.oldE.officialEstimate.value):'산정 불가'}`:r.oldE?`대표 전용 ${r.oldE.areaUsed.toFixed(2)}㎡ · 기준월 ${fmtMonth(r.oldE.selectedMonth)} · 계산포함 ${r.oldE.samples.length}건 · 특수제외 ${(r.oldE.specialExcluded||[]).length}건 · ${money(r.oldE.low)}~${money(r.oldE.high)}`:'4층 이상 표본 없음';
-  $('#newT').textContent=r.newE?`대표 전용 ${r.newE.areaUsed.toFixed(2)}㎡ · 기준월 ${fmtMonth(r.newE.selectedMonth)} · 계산포함 ${r.newE.samples.length}건 · 특수제외 ${(r.newE.specialExcluded||[]).length}건 · ${money(r.newE.low)}~${money(r.newE.high)}`:'4층 이상 표본 없음';
+  $('#oldT').textContent=r.oldE?.manual?`개인 입력값 · ${fmtMonth(state.fromMonth)} · 공식 시작가 ${r.oldE.officialEstimate?money(r.oldE.officialEstimate.value):'산정 불가'}`:r.oldE?`대표 전용 ${r.oldE.areaUsed.toFixed(2)}㎡ · 기준월 ${fmtMonth(r.oldE.selectedMonth)} · 계산포함 ${r.oldE.samples.length}건 · 특수제외 ${(r.oldE.specialExcluded||[]).length}건 · ${money(r.oldE.low)}~${money(r.oldE.high)}`:includeLowFloors(c)?'저층 포함 후에도 표본 없음':'4층 이상 표본 없음';
+  $('#newT').textContent=r.newE?`대표 전용 ${r.newE.areaUsed.toFixed(2)}㎡ · 기준월 ${fmtMonth(r.newE.selectedMonth)} · 계산포함 ${r.newE.samples.length}건 · 특수제외 ${(r.newE.specialExcluded||[]).length}건 · ${money(r.newE.low)}~${money(r.newE.high)}`:includeLowFloors(c)?'저층 포함 후에도 표본 없음':'4층 이상 표본 없음';
   $('#confT').textContent=`신뢰도 ${r.cf.symbol} · ${r.cf.short}`;
   const reasonItems=(r.cf.reasons&&r.cf.reasons.length)?r.cf.reasons:[{text:'별도 주의사항 없음',kind:'muted'}];
   $('#reasons').innerHTML=reasonItems.map(x=>{
@@ -1244,7 +1338,8 @@ window.openDetail=function(index){
   }).join('');
   const evidence=priorHigherTrade(c,r.oldE);
   $('#oldSamples').innerHTML=sampleHtml(r.oldE,oldTarget)+(evidence?evidence.samples.map(t=>`<tr class="priorEvidence"><td>${esc(t.date)}</td><td>${t.floor}층${t.aptDong?' · '+esc(t.aptDong)+'동':''}</td><td>${t.area.toFixed(2)}㎡</td><td>${money(t.price)}</td><td>대표성 참고 · 이전 고가${t.price===evidence.price?' · 비교 기준':''}</td></tr>`).join(''):'');$('#newSamples').innerHTML=sampleHtml(r.newE,newTarget);$('#detailWrap').classList.add('show');
-};
+}
+window.openDetail=function(index){const row=shownRows[index];if(row)renderApartmentDetail(row);};
 
 async function init(){
   state.toMonth=DATA.meta.current_month || '2026-09';
@@ -1622,17 +1717,19 @@ function normalizeManualPrices(value){
   return out;
 }
 try{manualPrices=normalizeManualPrices(JSON.parse(localStorage.getItem(MANUAL_PRICE_KEY)||'{}'));}catch{}
-function manualPriceId(c,area=currentArea,month=state.fromMonth){return JSON.stringify([String(c.id||c.kapt_code||[c.region,c.name,c.address||c.legal_dong||''].join('|')),Number(area),month]);}
+function manualPriceId(c,area=manualPriceArea(c),month=state.fromMonth){return JSON.stringify([String(c.id||c.kapt_code||[c.region,c.name,c.address||c.legal_dong||''].join('|')),Number(area),month]);}
 function manualPriceFor(c){const row=manualPrices[manualPriceId(c)];return row&&!row.deleted?row:null;}
 function effectiveStartEstimate(c,official){
   const row=manualPriceFor(c);if(!row||!Number.isFinite(row.sale))return official;
-  const area=official?.areaUsed||areaClusters(c,currentArea)[0]?.area||currentArea;
+  const area=official?.areaUsed||areaClusters(c,currentArea)[0]?.area||manualPriceArea(c);
   return {value:row.sale,low:row.sale,high:row.sale,samples:[],selectedTrade:null,selectedMonth:state.fromMonth,direction:'future',gap:0,topFloor:null,lowFloorExcluded:[],topFloorExcluded:[],areaUsed:area,primaryArea:area,areaFallback:false,manual:true,officialEstimate:official};
 }
 function fillManualPriceEditor(r){
-  manualPriceContext={c:r.c,area:currentArea,month:state.fromMonth,key:manualPriceId(r.c)};
+  manualPriceContext={c:r.c,area:manualPriceArea(r.c),month:state.fromMonth,key:manualPriceId(r.c)};
   const row=manualPriceFor(r.c);
-  $('#manualPriceContext').textContent=`${r.c.name} · ${currentArea}㎡ · ${fmtMonth(state.fromMonth)} 기준`;
+  $('#manualPriceContext').textContent=`${r.c.name} · 전용 ${(r.oldE?.areaUsed||r.newE?.areaUsed||areaClusters(r.c,currentArea)[0]?.area||manualPriceArea(r.c)).toFixed(2)}㎡ · ${fmtMonth(state.fromMonth)} 기준`;
+  $('#manualSalePrice').placeholder=r.oldE?`자동 기준 ${money(r.oldE.manual?r.oldE.officialEstimate?.value:r.oldE.value)} · 비우면 자동`:'비워두면 실거래 시작가 사용';
+  const autoLease=jeonseEstimate(r.c,r.oldE);$('#manualLeasePrice').placeholder=Number.isFinite(autoLease.value)?`현재 기준 ${money(autoLease.value)} · 비우면 자동`:'예: 7';
   $('#manualSalePrice').value=Number.isFinite(row?.sale)?String(row.sale/10000):'';
   $('#manualLeasePrice').value=Number.isFinite(row?.lease)?String(row.lease/10000):'';
   $('#manualPriceNote').value=row?.note||'';
@@ -1677,7 +1774,7 @@ window.openManualPriceEditor=index=>{openDetail(index);$('#manualPricePanel').sc
 function monthNumber(m){const [y,n]=m.split('-').map(Number);return y*12+n-1;}
 function jeonseEstimate(c,saleE){
  const manual=manualPriceFor(c);
- if(manual&&Number.isFinite(manual.lease))return {value:manual.lease,month:state.fromMonth,target:state.fromMonth,area:saleE?.areaUsed||currentArea,samples:[],manual:true,note:manual.note||'',reason:'개인 입력 전세가'};
+ if(manual&&Number.isFinite(manual.lease))return {value:manual.lease,month:state.fromMonth,target:state.fromMonth,area:saleE?.areaUsed||manualPriceArea(c),samples:[],manual:true,note:manual.note||'',reason:'개인 입력 전세가'};
  if(!saleE)return {value:null,reason:'시작 매매 기준거래 없음',samples:[]};
  const target=state.fromMonth||saleE.selectedMonth,area=Number(saleE.areaUsed),mode=state.jeonseMode||'new';
  if(c.jeonse_contract_kind_available===false&&mode==='new')return {value:null,reason:'신규·갱신 구분 미제공 · 전세 조건을 전체 계약으로 선택하세요',samples:[]};
@@ -1685,15 +1782,15 @@ function jeonseEstimate(c,saleE){
  if(saleAge<0)return {value:null,reason:'시작 매매 기준거래가 선택 시작월보다 이전',samples:[]};
  const source=(c.jeonse_tx||[]).map(t=>({date:t[0],area:t[1],floor:t[2],deposit:t[3],kind:t[4],renewal:t[5],period:t[6]}));
  if(!source.length)return {value:null,reason:'연결된 전세 자료 없음',samples:[]};
- const same=source.filter(t=>Math.abs(t.area-area)<=0.100001&&Number.isFinite(t.deposit)&&t.deposit>0);
+ const same=source.filter(t=>(comparisonOption(c).area!==null?Number(t.area).toFixed(2)===area.toFixed(2):Math.abs(t.area-area)<=0.100001)&&Number.isFinite(t.deposit)&&t.deposit>0);
  if(!same.length)return {value:null,reason:'매매와 같은 면적의 전세 없음',samples:[]};
  const past=same.filter(t=>monthNumber(target)-monthNumber(t.date.slice(0,7))>=0);
  if(!past.length)return {value:null,reason:'선택 시작월 또는 그 이전의 전세 없음',samples:[]};
  const explicit=Number(c.top_floor),observed=[...(c.tx||[]).map(t=>t[2]),...source.map(t=>t.floor)].filter(t=>Number.isFinite(t)&&t>0);
  const topFloor=Number.isFinite(explicit)&&explicit>0?explicit:observed.length?Math.max(...observed):null;
- const floorOk=past.filter(t=>Number.isFinite(t.floor)&&t.floor>=4&&(topFloor==null||t.floor!==topFloor));
+ const floorOk=past.filter(t=>Number.isFinite(t.floor)&&t.floor>=(includeLowFloors(c)?1:4)&&(topFloor==null||t.floor!==topFloor));
  const valid=floorOk.filter(t=>mode==='all'||(t.kind==='신규'&&!['○','Y','사용','사용함'].includes(t.renewal)));
- if(!valid.length)return {value:null,reason:floorOk.length?'이전 전체 자료에도 조건에 맞는 신규 전세 없음':'저층·최고층·층수 미상 제외 후 전세 없음',samples:[],excluded:past.length,topFloor};
+ if(!valid.length)return {value:null,reason:floorOk.length?'이전 전체 자료에도 조건에 맞는 신규 전세 없음':includeLowFloors(c)?'최고층·층수 미상 제외 후 전세 없음':'저층·최고층·층수 미상 제외 후 전세 없음',samples:[],excluded:past.length,topFloor};
  let samples=valid.filter(t=>monthNumber(target)-monthNumber(t.date.slice(0,7))<=12),extended=false;
  if(!samples.length){
    extended=true;const latest=valid.map(t=>t.date.slice(0,7)).sort().at(-1);
@@ -1718,15 +1815,15 @@ function renderFeatureDetail(r){
   const c=r.c,f=c.far_info||{},j=jeonseEstimate(c,r.oldE),gap=calcGapEok(c,r.oldE);fillManualPriceEditor(r);
   const ggRegion=(DATA.meta.gyeonggi_regions||[]).includes(c.region),farHref=ggRegion?'https://www.data.go.kr/data/15073271/fileData.do':'https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do',farLabel=ggRegion?'K-apt 기본정보 · 용적률 수치 미확보':'서울시 건축물대장 총괄표제부';
   $('#farEvidence').innerHTML=`<b>용적률 ${f.status==='verified'?esc(c.far)+'%':'확인 필요'}</b> · ${esc(f.reason||'확인 가능한 대장 없음')}<br>${esc(f.address||c.address)}${f.ledger_id?' · 대장 '+esc(f.ledger_id):''}<br><a href="${farHref}" target="_blank" rel="noopener">${farLabel}</a> · 확인 ${esc((f.checked_at||'').slice(0,10))}`;
-  $('#jeonseEvidence').innerHTML=j.manual?`<b>전세 ${money(j.value)} · 매매−전세 갭 ${Number.isFinite(gap)?money(gap*10000):'산정 불가'}</b> <span class="manualTag">직접 입력</span><br>선택 시작월 ${fmtMonth(state.fromMonth)} · ${currentArea}㎡<br>시작 매매 ${r.oldE?money(r.oldE.value):'산정 불가'} ${r.oldE?.manual?'(직접 입력)':'(자동 산정)'} − 개인 입력 전세 ${money(j.value)}${j.note?'<br>근거: '+esc(j.note):''}`:Number.isFinite(j.value)
-    ? `<b>전세 ${money(j.value)} · 매매−전세 갭 ${money(gap*10000)}</b><br>시작 매매 ${money(r.oldE.value)} (${fmtMonth(r.oldE.selectedMonth)}) − 전세 ${money(j.value)} (${fmtMonth(j.month)})<br>매매 면적 ${j.area}㎡와 ±0.1㎡ · 4층 이상·최고층 제외 · ${j.mode==='all'?'신규·갱신·미상 포함':'신규 계약만'} · ${esc(j.scope||'시작월과 이전 12개월')} ${j.samples.length}건 중 최고가 · 최고층 기준 ${j.topFloor??'미상'}층${j.excluded?` · 제외 ${j.excluded}건`:''}${j.monthsBack?`<br>전세 자료가 선택한 시작월보다 ${j.monthsBack}개월 이전입니다.${j.extended?' 최근 12개월에 유효 전세가 없어 이전 거래월까지 조회했습니다.':''}`:''}${j.saleMonthsAfterStart>3?`<br><span style="color:#d64242">시작 매매 기준거래는 선택 시작월보다 ${j.saleMonthsAfterStart}개월 이후입니다.</span>`:''}`
+  $('#jeonseEvidence').innerHTML=j.manual?`<b>전세 ${money(j.value)} · 매매−전세 갭 ${Number.isFinite(gap)?money(gap*10000):'산정 불가'}</b> <span class="manualTag">직접 입력</span><br>선택 시작월 ${fmtMonth(state.fromMonth)} · 전용 ${Number(j.area).toFixed(2)}㎡<br>시작 매매 ${r.oldE?money(r.oldE.value):'산정 불가'} ${r.oldE?.manual?'(직접 입력)':'(자동 산정)'} − 개인 입력 전세 ${money(j.value)}${j.note?'<br>근거: '+esc(j.note):''}`:Number.isFinite(j.value)
+    ? `<b>전세 ${money(j.value)} · 매매−전세 갭 ${money(gap*10000)}</b><br>시작 매매 ${money(r.oldE.value)} (${fmtMonth(r.oldE.selectedMonth)}) − 전세 ${money(j.value)} (${fmtMonth(j.month)})<br>매매 면적 ${j.area}㎡${comparisonOption(c).area!==null?' 동일 전용':'와 ±0.1㎡'} · ${floorPolicyLabel(c)} · ${j.mode==='all'?'신규·갱신·미상 포함':'신규 계약만'} · ${esc(j.scope||'시작월과 이전 12개월')} ${j.samples.length}건 중 최고가 · 최고층 기준 ${j.topFloor??'미상'}층${j.excluded?` · 제외 ${j.excluded}건`:''}${j.monthsBack?`<br>전세 자료가 선택한 시작월보다 ${j.monthsBack}개월 이전입니다.${j.extended?' 최근 12개월에 유효 전세가 없어 이전 거래월까지 조회했습니다.':''}`:''}${j.saleMonthsAfterStart>3?`<br><span style="color:#d64242">시작 매매 기준거래는 선택 시작월보다 ${j.saleMonthsAfterStart}개월 이후입니다.</span>`:''}`
     : `<b>갭 산정 불가</b> · ${esc(j.reason)}`;
   $('#jeonseSamples').innerHTML=j.manual?'<tr><td colspan="5">직접 입력값입니다. 공식 전세 거래 내역으로 등록하지 않습니다.</td></tr>':j.samples.length?j.samples.map(t=>`<tr class="${t===j.selectedTrade?'selectedTrade':''}"><td>${esc(t.date)}</td><td>${t.floor}층</td><td>${t.area}㎡</td><td>${money(t.deposit)}${t===j.selectedTrade?' · 기준 최고가':''}</td><td>${esc(t.kind)}${t.renewal?' / 갱신권 '+esc(t.renewal):''}</td></tr>`).join(''):'<tr><td colspan="5">조건에 맞는 자료 없음</td></tr>';
-  $('#jeonseFootnote').textContent=(j.manual||r.oldE?.manual?'직접 입력값을 비교에 사용 중입니다. 개인 확인값이며 공식 거래 검증이나 같은 호수 계약 확인을 의미하지 않습니다. 아래 원래 실거래 자료는 보존됩니다. ':'')+'전세는 선택 시작월과 이전 12개월의 같은 면적·4층 이상·최고층 제외 유효 거래 중 최고가입니다. 없으면 기간 제한 없이 수집된 이전 기록에서 가장 최근 유효 거래월을 찾아 그 달 최고가를 사용합니다. 선택 시작월 이후 전세는 사용하지 않습니다. 최고층 정보가 없으면 단지의 매매·전세 자료에서 관측한 최고층을 제외합니다. 매매는 기존에 선정된 시작 기준가를 사용하며 선정월이 늦으면 신뢰도와 거래월에서 확인할 수 있습니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.'+(ggRegion?' 경기부동산포털은 전세 신규·갱신 구분을 제공하지 않아 전체 계약 조건에서 비교합니다.':'');
+  $('#jeonseFootnote').textContent=(j.manual||r.oldE?.manual?'직접 입력값을 비교에 사용 중입니다. 개인 확인값이며 공식 거래 검증이나 같은 호수 계약 확인을 의미하지 않습니다. 아래 원래 실거래 자료는 보존됩니다. ':'')+`전세는 선택 시작월과 이전 12개월의 같은 면적·${floorPolicyLabel(c)} 유효 거래 중 최고가입니다. 없으면 기간 제한 없이 수집된 이전 기록에서 가장 최근 유효 거래월을 찾아 그 달 최고가를 사용합니다. 선택 시작월 이후 전세는 사용하지 않습니다. 최고층 정보가 없으면 단지의 매매·전세 자료에서 관측한 최고층을 제외합니다. 매매는 기존에 선정된 시작 기준가를 사용하며 선정월이 늦으면 신뢰도와 거래월에서 확인할 수 있습니다. 서로 다른 계약의 비교값으로, 실제 매수 시 필요한 자금과 다릅니다. 월세·반전세는 제외합니다. 행 수는 동일 공개행 중복 제거 후 수치이며, 원천에 계약해제 필드가 없어 개별 해제 여부는 확인할 수 없습니다.`+(ggRegion?' 경기부동산포털은 전세 신규·갱신 구분을 제공하지 않아 전체 계약 조건에서 비교합니다.':'');
 }
 function featurePopup(type){
  const note=$('#featureNote'),options=$('#jeonseOptions');options.hidden=type!=='gap';
- note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 같은 면적 전세 기준가. 시작월과 이전 12개월 유효 전세 중 최고가를 사용하고, 없으면 더 오래된 기록의 최근 유효 거래월까지 계속 조회합니다. 저층(1~3층)·최고층·층수 미상과 시작월 이후 전세는 제외합니다. 갭 미확인 단지의 포함 여부를 선택할 수 있습니다. 갭을 클릭하면 근거와 직접 입력란이 나옵니다.':'';
+ note.textContent=type==='far'?'공식 대장의 주소·세대수를 검증한 값입니다. 숫자 범위를 정하면 미확인 단지는 제외하며, 전체에서는 표시합니다.':type==='gap'?'시작 매매 기준가 − 같은 면적 전세 기준가. 시작월과 이전 12개월 유효 전세 중 최고가를 사용하고, 없으면 더 오래된 기록의 최근 유효 거래월까지 계속 조회합니다. 기본은 저층(1~3층) 제외이며 단지별 저층 포함 설정을 따릅니다. 최고층·층수 미상과 시작월 이후 전세는 제외합니다. 갭 미확인 단지의 포함 여부를 선택할 수 있습니다. 갭을 클릭하면 근거와 직접 입력란이 나옵니다.':'';
  note.hidden=!['far','gap'].includes(type);
  if(type==='gap'){$('#leaseMode').value=state.jeonseMode||'new';$('#missingGapMode').value=state.missingGapMode||'exclude';}
 }
@@ -2045,7 +2142,7 @@ function renderDataAudit(){
   $('#auditPanel').innerHTML=`<div>대상 목록은 필터와 관계없이 아래에서 확인할 수 있습니다. 300세대 미만·임대 전용 단지는 제외합니다.</div>
     ${(DATA.meta.catalog_exclusions||[]).map(x=>`<div>수집 제외/보류: ${esc(x.name)} — ${esc(x.reason)}</div>`).join('')}
     ${DATA.meta.older_history_frozen?'<div>이전 연도 일부는 원천 제공 기간 밖입니다. 보존된 거래의 취소 여부는 이번 수집에서 재확인하지 못했습니다.</div>':''}
-    <div>전세는 월세 0인 자료만 저장하며, 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·최고층 제외·선택한 시작월과 이전 12개월 자료 중 최고가를 사용합니다. 기본은 신규 계약만이며, 건수는 중복 공개행 제거 후 조건을 통과한 자료 수입니다. 최근 12개월에 유효 전세가 없으면 기간 제한 없이 수집된 이전 기록의 최근 유효 거래월 최고가를 사용합니다. 시작 매매 선정월이 늦다는 이유만으로 갭을 비우지 않습니다.</div>
+    <div>단지 정보창에서 전용면적을 직접 선택하고 저층 포함을 켤 수 있습니다. 이 경우 해당 단지의 매매·전세에만 예외를 적용합니다. 전세는 월세 0인 자료만 저장하며, 기본 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·최고층 제외·선택한 시작월과 이전 12개월 자료 중 최고가를 사용합니다. 기본은 신규 계약만이며, 건수는 중복 공개행 제거 후 조건을 통과한 자료 수입니다. 최근 12개월에 유효 전세가 없으면 기간 제한 없이 수집된 이전 기록의 최근 유효 거래월 최고가를 사용합니다. 시작 매매 선정월이 늦다는 이유만으로 갭을 비우지 않습니다.</div>
     <div>추가 지역 단지는 지하철 도보 경로를 아직 검증하지 않았습니다. 지역·APT 비교는 가능하며, 역 필터에서는 도보 정보가 확인된 단지만 표시합니다.</div>
     <div>경기도는 성남시(분당 포함)·과천시·안양시(평촌 포함)·화성시(동탄 포함)·광명시를 수집합니다. 경기 전세는 원자료가 신규·갱신 구분을 제공하지 않아 ‘전체 계약’ 선택 시에만 갭을 계산합니다. 경기도 용적률은 아직 확인하지 못했습니다.</div>
     <div>용적률 확인 ${DATA.meta.far_verified_count||0}개, 미확인 ${cs.length-(DATA.meta.far_verified_count||0)}개. 미확인 값을 0으로 취급하지 않습니다.</div>
@@ -2060,7 +2157,7 @@ function renderDataAudit(){
 }
 // Cache deterministic price calculations while preserving the v18 algorithm.
 const estimateOriginal=estimate,estimateCache=new Map();
-estimate=function(c,g,t,end){const k=[c.id,g,+t,end].join('|');if(!estimateCache.has(k))estimateCache.set(k,estimateOriginal(c,g,t,end));return estimateCache.get(k)};
+estimate=function(c,g,t,end){const option=comparisonOption(c,g),k=[c.id,g,option.area??'auto',option.includeLowFloors,+t,end].join('|');if(!estimateCache.has(k))estimateCache.set(k,estimateOriginal(c,g,t,end));return estimateCache.get(k)};
 
 function completionCell(c){const year=parseYear(c.completed),text=esc(c.completed||'—');return year>=2020?`<span class="completionMark new">${text}</span>`:year>=2010?`<span class="completionMark semiNew">${text}</span>`:text;}
 function favoriteRegionRank(x){const i=REGION_FAVORITE_ORDER.indexOf(x);return i<0?1000:i;}
@@ -2107,12 +2204,12 @@ for(const [id,key] of [['farSummary','far'],['gapSummary','gap']]){
 // Explicit bridge; the cloud module never hooks browser storage globally.
 window.KaptLocal={
  async ready(){await flushImageMemo();if(imageMemoError)throw Error(imageMemoError);for(let i=0;i<200&&regionMapBusy;i++)await new Promise(r=>setTimeout(r,50));if(regionMapBusy)throw Error('이미지 저장소가 아직 준비되지 않았습니다.');},
- capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=localStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
+ capture(){const storage={};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,COMPARISON_OPTIONS_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){const raw=localStorage.getItem(key);if(raw!==null)storage[key]=JSON.parse(key.startsWith('kAptSelected')?JSON.stringify(raw):raw);}return {schema:1,storage,filter:filterPresetSnapshot(),maps:regionMapOverrides.map(m=>({...m}))};},
  editing(){return imageMemoEditing||manualPriceEditing||aptMemoEditing||regionMapBusy||$('#imageEditWrap').classList.contains('show')||!!currentPop;},
  async apply(snapshot){
   closeImageMemo();await flushImageMemo();closeApartmentMemo();closePopover();clearImagePastePending();imageEditTarget=null;manualPriceEditing=false;manualPriceContext=null;$('#detailWrap').classList.remove('show');for(const id of ['imageEditWrap','restoreFilterWrap'])$('#'+id).classList.remove('show');
-  const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))localStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else localStorage.removeItem(key);}
-  FILTER_SAVES_MEMORY=null;FILTER_STORAGE_OK=true;FILTER_HISTORY_READY=false;FILTER_UNDO_STACK=[];FILTER_HISTORY_CURRENT=null;aptMemos=storage[APT_MEMO_KEY]||{};manualPrices=normalizeManualPrices(storage[MANUAL_PRICE_KEY]);
+  const storage=snapshot?.storage||{};for(const key of [FAV_STORAGE_KEY,FILTER_SAVES_KEY,FILTER_PRESET_KEY,APT_MEMO_KEY,MANUAL_PRICE_KEY,COMPARISON_OPTIONS_KEY,'kAptSelectedRegionMapV1','kAptSelectedMiscImageV1']){if(Object.hasOwn(storage,key))localStorage.setItem(key,key.startsWith('kAptSelected')?storage[key]:JSON.stringify(storage[key]));else localStorage.removeItem(key);}
+  FILTER_SAVES_MEMORY=null;FILTER_STORAGE_OK=true;FILTER_HISTORY_READY=false;FILTER_UNDO_STACK=[];FILTER_HISTORY_CURRENT=null;aptMemos=storage[APT_MEMO_KEY]||{};manualPrices=normalizeManualPrices(storage[MANUAL_PRICE_KEY]);comparisonOptions=normalizeComparisonOptions(storage[COMPARISON_OPTIONS_KEY]);detailComparisonComplex=null;
   if(regionMapDb){await new Promise((resolve,reject)=>{const tx=regionMapDb.transaction('maps','readwrite'),store=tx.objectStore('maps');store.clear();for(const m of snapshot?.maps||[])store.put(m);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
   regionMapOverrides=(snapshot?.maps||[]).map(m=>({...m}));
   for(const [category,g] of Object.entries(imageGalleries)){g.selected=storage[g.key]||(category==='region'?'builtin-region':'');renderImageGallery(category);}
@@ -2122,8 +2219,8 @@ window.KaptLocal={
 };
 
 </script>
-<script src="config/supabase.js?v=42"></script>
+<script src="config/supabase.js?v=43"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js?v=42"></script>
+<script src="assets/cloud-sync.js?v=43"></script>
 </body>
 </html>
