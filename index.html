@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v46 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v47 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -255,16 +255,148 @@ html,body{height:100%;overflow:hidden}
 @media(max-width:760px){.albumStrip{max-height:130px;gap:8px}.albumThumbWrap{flex-basis:62px;width:62px}.albumThumb,.albumAdd{width:62px;height:60px}.albumAdd{flex-basis:62px}.albumThumbTools{top:42px}.albumThumbTools button{font-size:8px}.miscImageGallery .galleryPreview,.miscImageGallery .referenceMapWrap,.miscImageGallery .regionMapEmpty{height:clamp(220px,calc(100dvh - 410px),400px);min-height:0}}
 
 #galleryAddWrap{z-index:175}#galleryAddWrap .galleryAddModal{width:min(360px,calc(100vw - 32px));padding:20px;border-radius:16px}#galleryAddWrap .modalHead{margin-bottom:14px}#galleryAddWrap .modalTitle{font-size:19px}.galleryAddOptions{display:flex;flex-direction:column;gap:10px}.galleryAddOptions button{display:block;width:100%;padding:14px 12px;border:1px solid #d4deea;border-radius:10px;background:#f7faff;color:#294967;font:inherit;font-size:14px;font-weight:800;text-align:left;cursor:pointer}.galleryAddOptions button:hover{background:#eaf2fb}.galleryAddOptions button:disabled{opacity:.5;cursor:wait}#galleryAddStatus{font-size:12px;line-height:1.65;color:#65798e;margin-top:12px;white-space:pre-wrap}#galleryAddStatus:empty{display:none}
+/* v47: mobile presentation only; desktop selectors and geometry stay intact. */
+.mobileOnly{display:none}
+@media (max-width:760px), (max-width:1000px) and (pointer:coarse){
+ html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none}
+ .wrap{width:100%;height:100dvh;min-height:0;padding:max(12px,env(safe-area-inset-top)) 14px 0;gap:0}
+ .topMetaRow{display:block;margin:0 0 12px;flex:none}
+ .titlebar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;width:100%;font-size:18px;color:#223346;letter-spacing:-.035em}
+ .titlebar #cloudAccountBtn,.titlebar #cloudSaveBtn{margin:0;height:40px;min-width:52px;padding:0 12px;border-radius:12px;font-size:12px;font-weight:750}
+ .titlebar #cloudAccountBtn{margin-left:auto}
+ .titlebar #cloudSaveBtn{color:#fff;background:#263c53;border-color:#263c53}
+ .titlebar #cloudBadge{flex-basis:100%;margin:0;text-align:right;font-size:10px;min-height:14px;line-height:1.4}
+ .dataNotice{display:none!important}
+ .mobileOnly{display:block}
+ .mobileToolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:none;background:#fff;border:1px solid #e0e6ee;border-radius:16px;padding:12px 13px;margin-bottom:8px}
+ .mobileScope{min-width:0}.mobileScope strong{display:block;font-size:13px;font-weight:850;color:#263c53;line-height:1.5}.mobileScope span{display:block;font-size:11px;color:#778695;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+ #mobileFilterOpen{display:flex;align-items:center;justify-content:center;gap:6px;flex:none;min-height:44px;border:0;border-radius:11px;padding:0 12px;background:#edf3fa;color:#2d5278;font-size:12px;font-weight:850}
+ #mobileFilterOpen svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+ #mobileFilterShade{display:none;position:fixed;inset:0;background:rgba(15,28,44,.38);z-index:35;border:0;padding:0}
+ body.mobileFiltersOpen #mobileFilterShade{display:block}
+ .dashboardTop{display:none;position:fixed;inset:auto 0 0;z-index:40;width:100%;max-height:89dvh;overflow:auto;overscroll-behavior:contain;background:#f7f9fc;border-radius:23px 23px 0 0;padding:0 16px max(16px,env(safe-area-inset-bottom));box-shadow:0 -12px 60px rgba(20,40,60,.15);gap:16px}
+ body.mobileFiltersOpen .dashboardTop{display:flex;flex-direction:column;min-height:0}
+ .mobileDrawerHead{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:3;background:#f7f9fc;padding:17px 0 9px;flex:none}
+ .mobileDrawerHead h2{font-size:19px;margin:0;color:#223346}.mobileDrawerHead button{border:0;background:#eaf0f6;color:#526577;border-radius:50%;font-size:25px;width:40px;height:40px}
+ .filterBoard{display:flex;flex-direction:column;gap:15px;padding:0;flex:none}
+ .filterResetRow{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;width:100%;margin:0;padding:0}
+ .filterResetRow>button{height:42px;font-size:12px;border-radius:10px;min-width:0}
+ .filterGridNew{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px 10px}
+ .filterGridNew .filterGroup{min-width:0}.filterGridNew .filterLabel{text-align:left;margin:0 0 5px 3px;font-size:11px;color:#748596}
+ .filterGridNew .summaryBtn,.filterGridNew .dual{height:45px;border-radius:11px;font-size:12px;min-width:0}
+ .filterGridNew .dual button{font-size:13px;min-height:44px}.filterGridNew .summaryBtn{padding:0 5px;white-space:normal}
+ .favoritesCard{padding:13px 12px 48px;flex:none;min-height:0;box-shadow:none;border-radius:15px}
+ .favHeader{gap:10px;margin-bottom:10px;flex-direction:column;align-items:stretch}
+ .favTabs{justify-content:space-between;gap:6px;padding:0}.favTab{font-size:13px;min-height:40px;padding:0 5px}.favDivider{font-size:10px;color:#c4ccd5}
+ .favTools{gap:6px;flex-wrap:wrap}.favTool{font-size:11px;min-height:36px;padding:0 11px;background:#f6f8fb}
+ .favoriteHost,#favoriteHost.aptFavorites{padding:0;gap:7px;min-height:0;height:auto;max-height:160px;overflow:auto;overscroll-behavior:contain}
+ .favChip{min-height:36px;height:auto;font-size:12px;padding:8px 10px;border-radius:8px}
+ #favoriteHost.aptFavorites .favChip{min-height:36px;line-height:1.6;font-size:12px;padding:8px 3px}
+ #openGradeHelp{width:36px;height:36px;font-size:18px;right:11px;bottom:7px}
+ .mobileDrawerFoot{position:sticky;bottom:0;z-index:3;background:#f7f9fc;padding-top:8px;flex:none}
+ #mobileFilterDone{width:100%;height:48px;border:0;border-radius:13px;background:#263c53;color:#fff;font-size:14px;font-weight:800}
+ .dataAudit{margin:0 0 4px;flex:none;font-size:10px;line-height:1.5}.auditHeader{gap:4px}.auditToggle{width:32px;height:32px}.auditHeader>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:550}
+ .auditPanel{max-height:24dvh;padding:10px;font-size:11px}.auditList{grid-template-columns:1fr}
+ .rankSection{margin:4px 0 0;min-height:0;flex:1;gap:10px}
+ .rankHeading{margin:0 2px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+ .tableTitle{font-size:20px;letter-spacing:-.05em}.rowCount{font-size:10px;margin:0 0 0 auto;padding:0;color:#7e8d9d}
+ #mobileRankInfo{border:0;background:transparent;color:#6c8095;font-size:11px;padding:0;min-height:32px;text-decoration:underline}
+ .rankHeading>.tableSub{display:none;flex-basis:100%;font-size:11px;line-height:1.6;color:#738294;white-space:normal;order:5}
+ .rankSection.mobileNotesOpen .rankHeading>.tableSub{display:block}
+ .tableCard{background:transparent;border:0;border-radius:0;box-shadow:none;min-height:0}
+ .tableWrap{overflow-x:hidden;overflow-y:auto;min-height:0;overscroll-behavior:contain;padding-bottom:max(18px,env(safe-area-inset-bottom));scrollbar-width:thin}
+ .tableWrap>table{display:block;min-width:0;width:100%;border:0}
+ .tableWrap>table>thead{display:none}
+ #tbody{display:flex;flex-direction:column;gap:12px}
+ #tbody>tr{position:relative;display:grid;height:auto;flex-shrink:0;grid-template-columns:repeat(6,minmax(0,1fr));gap:0 12px;background:#fff;border:1px solid #dfe6ef;border-radius:17px;padding:15px 15px 0;overflow:hidden;content-visibility:auto;contain-intrinsic-size:auto 335px}
+ #tbody>tr>td{display:block;min-width:0;white-space:normal;border:0;padding:0;text-align:left;background:transparent!important;color:#293c50;font-size:12px;line-height:1.45}
+ #tbody>tr>td.rank{position:absolute;left:14px;top:16px;width:25px;height:25px;border-radius:8px;background:#edf3f9!important;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:850;color:#58738f}
+ #tbody>tr>td:nth-child(2){grid-column:1/-1;order:1;padding:0 0 12px 34px;min-height:51px}
+ #tbody .name{font-size:16px;font-weight:850;line-height:1.5;letter-spacing:-.045em;overflow-wrap:anywhere;color:#1d3044}
+ #tbody .aptMemoBtn{width:28px;height:30px;margin-left:3px;padding:5px;vertical-align:middle}#tbody .aptMemoBtn img{width:17px;height:21px}
+ #tbody .aptLocality{font-size:11px;line-height:1.7;margin-top:3px}.comparisonBadge{font-size:10px}
+ #tbody>tr>td:nth-child(n+6):nth-child(-n+11){grid-column:span 3;padding:8px 0;border-top:1px solid #edf1f5}
+ #tbody>tr>td:nth-child(7){order:2}#tbody>tr>td:nth-child(6){order:3}#tbody>tr>td:nth-child(8){order:4}#tbody>tr>td:nth-child(9){order:5}#tbody>tr>td:nth-child(10){order:6}#tbody>tr>td:nth-child(11){order:7}
+ #tbody>tr>td:nth-child(n+3):nth-child(-n+11)::before{display:block;font-size:10px;font-weight:550;color:#8290a0;line-height:1.4;margin-bottom:5px;letter-spacing:0}
+ #tbody>tr>td:nth-child(6)::before{content:'시작 기준가'}#tbody>tr>td:nth-child(7)::before{content:'최근 기준가'}#tbody>tr>td:nth-child(8)::before{content:'전세 기준가'}#tbody>tr>td:nth-child(9)::before{content:'매매 − 전세 갭'}#tbody>tr>td:nth-child(10)::before{content:'상승액'}#tbody>tr>td:nth-child(11)::before{content:'상승률'}
+ #tbody .priceCell{min-width:0;display:flex;flex-direction:column-reverse;align-items:flex-start;gap:4px}
+ #tbody .priceMain,#tbody .leaseValue b,#tbody .gapValue,#tbody .changeAmount{font-size:21px!important;line-height:1.25!important;font-weight:850!important;letter-spacing:-.04em}
+ #tbody .priceMeta{text-align:left;font-size:9px;min-width:0;color:#7d8a99!important;line-height:1.5}
+ #tbody .priceMeta b{display:inline;margin-right:5px;font-size:10px;color:#63778b!important}
+ #tbody .dataValue{display:block;width:100%;min-height:32px;text-align:left;white-space:normal;padding:0;font-size:13px;line-height:1.4}
+ #tbody .dataValue small{font-size:10px;font-weight:450;line-height:1.5;white-space:normal;margin-top:4px;letter-spacing:0}
+ #tbody .dataValue small br{display:block}#tbody .dataValue small br::after{content:' '}
+ #tbody>tr>td:nth-child(11){font-size:21px;font-weight:850;line-height:1.25}
+ #tbody>tr>td.up,#tbody>tr>td .up{color:#0f846e!important}#tbody>tr>td.down,#tbody>tr>td .down{color:#b42318!important}
+ #tbody>tr>td:nth-child(3),#tbody>tr>td:nth-child(4),#tbody>tr>td:nth-child(5){grid-column:span 2;order:8;padding:10px 0 7px;border-top:1px solid #edf1f5;font-size:11px;color:#627489}
+ #tbody>tr>td:nth-child(3)::before{content:'세대수'}#tbody>tr>td:nth-child(4)::before{content:'용적률'}#tbody>tr>td:nth-child(5)::before{content:'준공일자'}
+ #tbody>tr>td:nth-child(4) .dataValue{font-size:11px;min-height:24px}#tbody .dataMissing{border:0}
+ #tbody>tr>td:nth-child(12){grid-column:1/-1;order:9;border-top:1px solid #edf1f5;margin:0 -15px;background:#fafcfe!important;padding:0 15px}
+ #tbody .conf{display:flex;align-items:center;flex-wrap:wrap;gap:5px;min-height:44px;padding:6px 0;width:100%;cursor:pointer;font-size:11px}
+ #tbody .confReason{font-size:10px;color:#7d8a99!important;flex:1;min-width:0;overflow-wrap:anywhere}
+ #tbody .conf::after{content:'정보 보기 ›';font-size:11px;font-weight:750;color:#486b91;flex:none;margin-left:auto}
+ #tbody>tr.favoriteRankRow{border-left:3px solid #d4deeb}
+ #tbody>tr.emptyRow>td[colspan]{grid-column:1/-1;padding:24px 6px;font-size:13px;text-align:center;color:#7b8b9c}
+ .wrap>footer{display:none}
+ .modalWrap{align-items:flex-end;padding:0;overscroll-behavior:contain}
+ .modalWrap .modal{width:100%;max-width:100%;max-height:92dvh;border-radius:22px 22px 0 0;padding:18px 16px max(22px,env(safe-area-inset-bottom));overflow:auto;overscroll-behavior:contain}
+ .modalHead{gap:10px;align-items:center}.modalTitle{font-size:21px;line-height:1.4}.modalClose{flex:none;width:40px;height:40px;border-radius:50%;background:#f0f4f8;font-size:28px}
+ .detailTitleRow{gap:5px}.detailTitleRow .modalTitle{font-size:20px}.detailFavoriteBtn{width:34px;height:34px}
+ .detailSub{font-size:11px;line-height:1.6}.detailCards{grid-template-columns:1fr 1fr;gap:8px}.detailCard{padding:12px 10px}.detailPrice{font-size:22px}.detailCards .rangeLine{white-space:normal;line-height:1.6}
+ .detailPanel{padding:12px 10px}.featureEvidence,.reasonList{font-size:12px;line-height:1.8;overflow-wrap:anywhere}.featureEvidence{max-width:100%}
+ .detailTableWrap{max-width:100%;overflow:auto}.sampleTable{min-width:440px}.sampleTable td,.sampleTable th{font-size:11px;padding:9px 8px}
+ .modalWrap input:not([type=file]),.modalWrap textarea,.modalWrap select,.aptMemoText{font-size:16px!important}
+ .comparisonControls{gap:8px}.comparisonControls button{min-height:42px}.manualPriceGrid{grid-template-columns:1fr}.manualPriceActions button{min-height:44px;font-size:12px}.manualPriceActions{flex-wrap:wrap}
+ #filterPopover{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:100%!important;max-width:100%;min-width:0;max-height:85dvh;border-radius:22px 22px 0 0;padding:20px 16px max(20px,env(safe-area-inset-bottom));z-index:140;overscroll-behavior:contain}
+ .popTitle{font-size:18px;color:#223346}.popRange{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:5px}.popRange select{padding:0 5px;font-size:16px}.popActions{gap:6px}.popActionsLeft,.popActionsRight{gap:5px}.popActions button{padding:0 10px;min-width:52px;height:44px;font-size:12px}
+ #mobilePopoverShade{display:none;position:fixed;inset:0;z-index:130;background:rgba(15,28,44,.38);border:0;padding:0}body:has(#filterPopover.show) #mobilePopoverShade{display:block}
+ .leaseOptions{font-size:13px;line-height:1.7}.leaseOptions select{font-size:16px;max-width:65%;margin-left:3px}.featureNote{max-width:100%;line-height:1.7}
+ #restoreFilterWrap{pointer-events:auto;background:rgba(15,28,44,.38)}
+ #restoreFilterWrap .restoreModal{zoom:1;position:relative;inset:auto!important;width:100%;max-width:100%;max-height:85dvh!important;box-shadow:none;display:flex;flex-direction:column}
+ .restoreHeading{gap:8px;margin:0}.restoreHeading .modalTitle{font-size:21px}.restoreHint{font-size:11px}.restoreList{margin-top:14px;max-height:60dvh;min-height:0;border:1px solid #dfe6ed;border-radius:12px;overflow:auto}
+ .restoreRow{grid-template-columns:32px minmax(0,1fr) 32px;gap:5px;padding:12px 7px;border-bottom:1px solid #dfe6ed}.restoreControl{width:32px;height:38px;border:0;border-radius:8px;background:#f1f4f7;font-size:24px}.restoreRow.pinned .restorePin{background:#fff1ad}
+ .restoreChoice{gap:5px}.restoreChoice::after{content:'이 필터 적용 ›';flex-basis:100%;padding:5px 0 1px;font-size:11px;font-weight:750;color:#486b91}.restoreChip{font-size:10px;padding:5px 7px;max-width:100%;white-space:normal;line-height:1.5}.restoreStatus{font-size:11px;line-height:1.6}
+ .referenceHead{gap:8px;margin-bottom:14px}.referenceTabs{gap:12px;min-width:0}.referenceTab{font-size:17px;min-height:42px}.referenceTabs span{font-size:12px}.referenceCaption{font-size:11px}
+ .regionReferenceGrid,.stationReferenceGrid{display:flex;flex-direction:column;gap:18px;min-width:0}.regionReferenceGrid>div,.stationReferenceGrid>div{width:100%;min-width:0}
+ .gradeList{font-size:12px;line-height:1.9}.gradeGroup{grid-template-columns:45px minmax(0,1fr)}
+ .regionMapGallery,.miscImageGallery{display:flex;flex-direction:column;gap:10px;padding:0;width:100%;min-width:0}
+ .regionMapStage{order:1;width:100%}.regionMapStage .referenceMapWrap,.miscImageGallery .referenceMapWrap{min-height:0;height:35dvh;max-height:350px;border-radius:12px;background:#f4f7fb}
+ .regionMapStage .referenceMap,.galleryPreview,.miscImageGallery .galleryPreview{height:100%;max-height:35dvh;width:100%;object-fit:contain}
+ .regionMapRail,.miscImageGallery .regionMapRail{order:2;display:flex;flex-direction:row;align-items:flex-start;gap:10px;width:100%;max-height:180px;overflow:auto;padding:4px 0 9px;overscroll-behavior:contain;min-height:0}
+ .regionMapThumbWrap,.miscImageGallery .regionMapThumbWrap{flex:0 0 100px;width:100px}.regionMapThumb{width:100px;height:92px}.regionMapAdd,.miscImageGallery .regionMapAdd{width:64px;height:92px;flex:0 0 64px}
+ .regionMapThumbTools{top:63px;left:3px;right:3px}.regionMapThumbTools button{font-size:11px;min-height:27px;padding:2px 5px}.regionMapThumbTitle{font-size:11px;padding:4px 2px}
+ .regionMapStatus{order:3;margin:0;line-height:1.6}.regionMapEmpty,.miscImageGallery .regionMapEmpty{height:200px;min-height:0}.imageMemoBtn{width:30px;height:30px;right:3px;top:3px}.imageMemoBtn img{width:16px;height:20px}
+ .albumStrip{gap:9px;max-height:160px;padding:9px 0}.albumThumbWrap{width:96px;flex:0 0 96px}.albumThumb,.albumAdd{width:96px;height:88px}.albumAdd{flex-basis:64px;width:64px}.albumThumbTools{top:60px}.albumThumbTools button{font-size:11px;min-height:27px;padding:2px 4px}.albumCoverBtn{font-size:10px;min-height:25px}.albumThumbCaption{font-size:11px}
+ .clipboardImageZone{font-size:12px;min-height:44px;line-height:1.6}.imageEditActions button{min-height:44px;font-size:13px}
+ .stationRankList{grid-template-columns:1fr 1fr;gap:0 10px}.stationRankRow{font-size:11px;gap:4px;padding:9px 0}.stationRankNo{width:24px}.subwayMapCard{height:40dvh;padding:8px}.subwayMapPreview{height:calc(40dvh - 45px)}.subwayMapTitle{font-size:11px}.subwayMapTitle span{font-size:9px}
+ #subwayZoomWrap .subwayZoomModal{height:90dvh;overflow:hidden;display:flex}.subwayZoomViewport{touch-action:none;min-height:0}.subwayZoomInner{touch-action:none}
+ #galleryAddWrap .galleryAddModal{width:100%;max-width:100%;border-radius:22px 22px 0 0;padding:20px 16px max(22px,env(safe-area-inset-bottom))}
+ .cloudActions button{min-height:44px}.favoriteSearch{font-size:16px;height:46px}.favoriteSearchItem{padding:14px 4px;align-items:center}.favoriteSearchItem b{font-size:13px}.favoriteSearchItem span{font-size:10px}.favoriteSearchResults{max-height:55dvh}
+ .aptMemoPanel{left:50%!important;top:50%!important;transform:translate(-50%,-50%);width:min(330px,calc(100vw - 20px));height:min(420px,70dvh);max-height:70dvh}
+ .colorMenu{max-width:calc(100vw - 16px);flex-wrap:wrap}.colorSwatch{width:32px;height:32px}
+}
+
+
+@media (max-width:760px), (max-width:1000px) and (pointer:coarse){
+ #tbody>tr.favoriteRankRow td{box-shadow:none!important}
+ #tbody>tr.favoriteRankRow.rose{border-left-color:#e9a29c}#tbody>tr.favoriteRankRow.orange{border-left-color:#e9b789}#tbody>tr.favoriteRankRow.yellow{border-left-color:#e1ca78}#tbody>tr.favoriteRankRow.green{border-left-color:#a7c99a}#tbody>tr.favoriteRankRow.blue{border-left-color:#91bdd8}#tbody>tr.favoriteRankRow.neutral{border-left-color:#bbc3ce}
+ #mobileZoomTools{display:flex;align-items:center;justify-content:center;gap:10px;padding-top:12px;flex:none}
+ #mobileZoomTools button{height:42px;min-width:48px;border:1px solid #d5dfe9;border-radius:10px;background:#f3f7fb;color:#3f5b78;font-size:18px;font-weight:750}
+ #mobileZoomTools button[data-mobile-zoom="fit"]{font-size:12px;padding:0 14px}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v46 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v47 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
-  <section class="dashboardTop">
+  <div class="mobileOnly mobileToolbar"><div class="mobileScope"><strong id="mobilePeriod"></strong><span id="mobileSelection"></span></div><button id="mobileFilterOpen" type="button" aria-controls="mobileFilterPanel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M9 4v6M15 14v6"/></svg>필터·지역</button></div>
+  <button type="button" id="mobileFilterShade" class="mobileOnly" aria-label="필터 닫기" tabindex="-1"></button>
+  <section class="dashboardTop" id="mobileFilterPanel" aria-label="필터와 즐겨찾기">
+    <div class="mobileOnly mobileDrawerHead"><h2>필터 · 지역</h2><button type="button" id="mobileFilterClose" aria-label="필터 닫기">×</button></div>
     <div class="filterBoard">
       <div class="filterResetRow">
         <button class="filterAllBtn" id="allFilterBtn">전체</button>
@@ -302,6 +434,7 @@ html,body{height:100%;overflow:hidden}
       <button class="regionInfo" id="openGradeHelp" title="지역·지하철 참고표">!</button>
       <div style="display:none"><button id="selectLoadedRegions"></button><button id="selectAllRegions"></button><button id="clearRegions"></button><div id="seoulRegionRows"></div><div id="gyeonggiRegionRows"></div></div>
     </div>
+    <div class="mobileOnly mobileDrawerFoot"><button type="button" id="mobileFilterDone">목록 보기</button></div>
   </section>
 
   <div class="dataAudit" id="dataAudit"><div class="auditHeader"><button type="button" class="auditToggle" id="auditToggle" aria-expanded="false" aria-controls="auditPanel" aria-label="수집 현황 펼치기">▶</button><span id="auditSummary">수집 현황</span></div><div class="auditPanel" id="auditPanel" hidden></div></div>
@@ -309,7 +442,7 @@ html,body{height:100%;overflow:hidden}
     <div class="rankHeading">
       <h2 class="tableTitle">상승 순위</h2>
       <div class="tableSub">시작가 = 기준월부터 이후 첫 거래월의 최고가 · 최근가 = 기준월부터 이전 첫 거래월의 최고가 · 기본 4층 이상·최고층 제외 · 단지별 예외 가능 · 신뢰도 클릭 → 선정 근거</div>
-      <div class="rowCount" id="rowCount"></div>
+      <div class="rowCount" id="rowCount"></div><button type="button" id="mobileRankInfo" class="mobileOnly" aria-expanded="false">기준 안내</button>
     </div>
     <div class="card tableCard">
       <div class="tableWrap">
@@ -343,6 +476,7 @@ html,body{height:100%;overflow:hidden}
   </footer>
 </div>
 
+<button type="button" id="mobilePopoverShade" class="mobileOnly" aria-label="필터 입력 닫기" tabindex="-1"></button>
 <div class="popover" id="filterPopover">
   <div class="popTitle" id="popTitle">필터</div>
   <div class="popRange">
@@ -502,7 +636,7 @@ html,body{height:100%;overflow:hidden}
 <div class="modalWrap" id="subwayZoomWrap">
   <div class="modal subwayZoomModal">
     <div class="modalHead"><div><h3 class="modalTitle" id="mapZoomTitle">지하철 노선도</h3><div class="detailSub tableSub">휠: 확대/축소 · 드래그: 이동 · 더블클릭: 초기화</div></div><button class="modalClose" data-close="subwayZoomWrap">×</button></div>
-    <div class="subwayZoomViewport" id="subwayZoomViewport"><div class="subwayZoomInner" id="subwayZoomInner"></div></div>
+    <div class="subwayZoomViewport" id="subwayZoomViewport"><div class="subwayZoomInner" id="subwayZoomInner"></div></div><div class="mobileOnly" id="mobileZoomTools"><button type="button" data-mobile-zoom="out" aria-label="이미지 축소">−</button><button type="button" data-mobile-zoom="fit">화면에 맞춤</button><button type="button" data-mobile-zoom="in" aria-label="이미지 확대">＋</button></div>
   </div>
 </div>
 
@@ -1943,7 +2077,7 @@ function renderSubwayMapPreview(){
 let subwayPan={scale:1,x:0,y:0,drag:false,sx:0,sy:0,bx:0,by:0};
 let subwayNatural={w:SUBWAY_MAP_SIZE.w,h:SUBWAY_MAP_SIZE.h};
 function applySubwayPan(){$('#subwayZoomInner').style.transform=`translate(${subwayPan.x}px,${subwayPan.y}px) scale(${subwayPan.scale})`;}
-function resetSubwayPan(){const v=$('#subwayZoomViewport').getBoundingClientRect();const fit=Math.min(v.width/subwayNatural.w,v.height/subwayNatural.h);subwayPan.scale=Math.max(.25,fit);subwayPan.x=(v.width-subwayNatural.w*subwayPan.scale)/2;subwayPan.y=(v.height-subwayNatural.h*subwayPan.scale)/2;applySubwayPan();}
+function resetSubwayPan(){const v=$('#subwayZoomViewport').getBoundingClientRect();const fit=Math.min(v.width/subwayNatural.w,v.height/subwayNatural.h);subwayPan.scale=Math.max(matchMedia('(max-width:760px), (max-width:1000px) and (pointer:coarse)').matches?.01:.25,fit);subwayPan.x=(v.width-subwayNatural.w*subwayPan.scale)/2;subwayPan.y=(v.height-subwayNatural.h*subwayPan.scale)/2;applySubwayPan();}
 function openReferenceZoom(src,title,width,height){subwayNatural={w:width,h:height};subwayPan.drag=false;const inner=$('#subwayZoomInner');inner.style.width=width+'px';inner.style.height=height+'px';const img=document.createElement('img');img.src=src;img.alt=title;img.draggable=false;inner.replaceChildren(img);$('#mapZoomTitle').textContent=title;$('#subwayZoomWrap').classList.add('show');requestAnimationFrame(resetSubwayPan);}
 function openSubwayZoom(){openReferenceZoom(SUBWAY_MAP_IMAGE,'지하철 노선도',SUBWAY_MAP_SIZE.w,SUBWAY_MAP_SIZE.h);}
 async function openRegionZoom(){const img=$('.referenceMap');if(!img.getAttribute('src'))return;try{await img.decode();openReferenceZoom(img.src,'지역 지도',img.naturalWidth,img.naturalHeight);}catch{setRegionMapStatus('이미지를 열지 못했습니다. 파일을 다시 선택해 주세요.');}}
@@ -2350,8 +2484,8 @@ $('#aptMemoText').addEventListener('focus',()=>{aptMemoEditing=true;$('#aptMemoP
 document.addEventListener('pointerdown',e=>{if(aptMemoActive&&!$('#aptMemoPanel').contains(e.target)&&!e.target.closest('.aptMemoBtn'))closeApartmentMemo();});
 window.addEventListener('pagehide',saveActiveMemo);window.addEventListener('resize',positionApartmentMemo);document.addEventListener('scroll',()=>{if(aptMemoActive){if(aptMemoEditing)positionApartmentMemo();else closeApartmentMemo();}},true);
 let restoreHoverTimer=null;
-function scheduleRestoreClose(){clearTimeout(restoreHoverTimer);restoreHoverTimer=setTimeout(()=>{if(!$('#loadFilterBtn').matches(':hover')&&!$('#restoreFilterWrap .restoreModal').matches(':hover'))$('#restoreFilterWrap').classList.remove('show');},250);}
-$('#loadFilterBtn').addEventListener('mouseenter',loadFilterPreset);$('#loadFilterBtn').addEventListener('mouseleave',scheduleRestoreClose);
+function scheduleRestoreClose(){if(matchMedia('(max-width:760px), (max-width:1000px) and (pointer:coarse)').matches)return;clearTimeout(restoreHoverTimer);restoreHoverTimer=setTimeout(()=>{if(!$('#loadFilterBtn').matches(':hover')&&!$('#restoreFilterWrap .restoreModal').matches(':hover'))$('#restoreFilterWrap').classList.remove('show');},250);}
+$('#loadFilterBtn').addEventListener('mouseenter',()=>{if(!matchMedia('(max-width:760px), (max-width:1000px) and (pointer:coarse)').matches)loadFilterPreset();});$('#loadFilterBtn').addEventListener('mouseleave',scheduleRestoreClose);
 $('#restoreFilterWrap .restoreModal').addEventListener('mouseenter',()=>clearTimeout(restoreHoverTimer));$('#restoreFilterWrap .restoreModal').addEventListener('mouseleave',scheduleRestoreClose);
 document.addEventListener('pointerdown',e=>{if(!$('#loadFilterBtn').contains(e.target)&&!$('#restoreFilterWrap .restoreModal').contains(e.target))$('#restoreFilterWrap').classList.remove('show');});
 $('#subwayZoomWrap .modalHead').addEventListener('click',e=>{if(e.target!==e.currentTarget)return;$('#subwayZoomWrap').classList.remove('show');});
@@ -2382,9 +2516,50 @@ window.KaptLocal={
  lock(locked){document.body.classList.toggle('cloudSwitching',locked);},
 };
 
+// Mobile presentation controls deliberately do not modify stored filters or cloud state.
+(()=>{
+ const media=matchMedia('(max-width:760px), (max-width:1000px) and (pointer:coarse)');
+ const panel=$('.dashboardTop'),open=$('#mobileFilterOpen'),shade=$('#mobileFilterShade');
+ function drawer(show){
+  if(!media.matches)show=false;
+  document.body.classList.toggle('mobileFiltersOpen',show);open.setAttribute('aria-expanded',String(show));
+  if(show){panel.scrollTop=0;$('#mobileFilterClose').focus({preventScroll:true});}
+  else if(media.matches)open.focus({preventScroll:true});
+ }
+ function refresh(){
+  if(!media.matches)return;
+  $('#mobilePeriod').textContent=`${fmtMonth(state.fromMonth)} ~ ${fmtMonth(state.toMonth)} · ${currentArea}㎡`;
+  $('#mobileSelection').textContent=savedFilterSelection(filterPresetSnapshot()).label;
+  $('#mobileFilterDone').textContent=`${shownRows.length.toLocaleString('ko-KR')}개 단지 목록 보기`;
+  $$('#tbody .conf[onclick]').forEach(el=>{el.setAttribute('role','button');el.tabIndex=0;el.setAttribute('aria-label','아파트 정보와 거래 내역 보기');});
+ }
+ open.onclick=()=>drawer(true);$('#mobileFilterClose').onclick=()=>drawer(false);$('#mobileFilterDone').onclick=()=>drawer(false);shade.onclick=()=>drawer(false);
+ $('#mobilePopoverShade').onclick=()=>{closePopover();};
+ $('#mobileRankInfo').onclick=()=>{const expanded=$('.rankSection').classList.toggle('mobileNotesOpen');$('#mobileRankInfo').setAttribute('aria-expanded',String(expanded));};
+ document.addEventListener('keydown',e=>{if(!media.matches)return;if(e.key==='Escape'&&!currentPop&&!$('.modalWrap.show')&&document.body.classList.contains('mobileFiltersOpen'))drawer(false);if((e.key==='Enter'||e.key===' ')&&e.target.matches('#tbody .conf[role=button]')){e.preventDefault();e.target.click();}});
+ // Touch taps must not start the desktop hover-dismiss timer on the restore sheet.
+ $('#loadFilterBtn').addEventListener('touchstart',()=>clearTimeout(restoreHoverTimer),{passive:true});
+ $('#restoreFilterWrap').addEventListener('touchstart',()=>clearTimeout(restoreHoverTimer),{passive:true});
+ const observer=new MutationObserver(refresh);observer.observe($('#rowCount'),{childList:true,characterData:true,subtree:true});
+ media.addEventListener('change',()=>{if(!media.matches){document.body.classList.remove('mobileFiltersOpen');open.setAttribute('aria-expanded','false');}refresh();});
+
+ const mobileLabels=[...$$('.clipboardImageZone'),$('#subwayZoomWrap .detailSub')].map(el=>[el,el.textContent]);
+ function labels(){for(const [el,original] of mobileLabels)el.textContent=media.matches?(el.matches('.clipboardImageZone')?'클립보드에서 이미지 붙여넣기':'한 손가락: 이동 · 두 손가락: 확대/축소'):original;}
+ media.addEventListener('change',labels);labels();
+ const vp=$('#subwayZoomViewport'),points=new Map();let gesture=null;
+ function basis(){const ps=[...points.values()];gesture=ps.length?{x:subwayPan.x,y:subwayPan.y,scale:subwayPan.scale,cx:ps.reduce((n,p)=>n+p.x,0)/ps.length,cy:ps.reduce((n,p)=>n+p.y,0)/ps.length,d:ps.length>1?Math.hypot(ps[1].x-ps[0].x,ps[1].y-ps[0].y):0}:null;}
+ function zoomAt(factor,x,y){const old=subwayPan.scale,n=Math.min(6.5,Math.max(.01,old*factor));subwayPan.x=x-(x-subwayPan.x)*n/old;subwayPan.y=y-(y-subwayPan.y)*n/old;subwayPan.scale=n;applySubwayPan();}
+ $$('[data-mobile-zoom]').forEach(button=>button.onclick=()=>{if(!media.matches)return;if(button.dataset.mobileZoom==='fit'){resetSubwayPan();return;}zoomAt(button.dataset.mobileZoom==='in'?1.3:1/1.3,vp.clientWidth/2,vp.clientHeight/2);});
+ vp.addEventListener('pointerdown',e=>{if(!media.matches||e.pointerType!=='touch')return;e.preventDefault();e.stopImmediatePropagation();if(points.size>=2)return;const r=vp.getBoundingClientRect();points.set(e.pointerId,{x:e.clientX-r.left,y:e.clientY-r.top});vp.setPointerCapture(e.pointerId);basis();},{capture:true});
+ vp.addEventListener('pointermove',e=>{if(!media.matches||!points.has(e.pointerId)||!gesture)return;e.preventDefault();e.stopImmediatePropagation();const r=vp.getBoundingClientRect();points.set(e.pointerId,{x:e.clientX-r.left,y:e.clientY-r.top});const ps=[...points.values()],cx=ps.reduce((n,p)=>n+p.x,0)/ps.length,cy=ps.reduce((n,p)=>n+p.y,0)/ps.length,ratio=ps.length>1&&gesture.d?Math.hypot(ps[1].x-ps[0].x,ps[1].y-ps[0].y)/gesture.d:1;subwayPan.scale=Math.min(6.5,Math.max(.01,gesture.scale*ratio));const scale=subwayPan.scale/gesture.scale;subwayPan.x=cx-(gesture.cx-gesture.x)*scale;subwayPan.y=cy-(gesture.cy-gesture.y)*scale;applySubwayPan();},{capture:true});
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])vp.addEventListener(type,e=>{if(!points.has(e.pointerId))return;e.stopImmediatePropagation();points.delete(e.pointerId);basis();},{capture:true});
+ new MutationObserver(()=>{if(!$('#subwayZoomWrap').classList.contains('show')){points.clear();gesture=null;}}).observe($('#subwayZoomWrap'),{attributes:true,attributeFilter:['class']});
+ refresh();
+})();
+
 </script>
-<script src="config/supabase.js?v=46"></script>
+<script src="config/supabase.js?v=47"></script>
 <script src="assets/vendor/supabase-2.102.0.js"></script>
-<script src="assets/cloud-sync.js?v=46"></script>
+<script src="assets/cloud-sync.js?v=47"></script>
 </body>
 </html>
