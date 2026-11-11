@@ -1,249 +1,249 @@
 {
-  "period": "2024-01~2026-09",
+  "period": "2024-01~2026-10",
   "regions": [
     {
       "region": "종로구",
       "complexes": 10,
-      "sale_rows": 755,
-      "jeonse_rows": 1329,
+      "sale_rows": 774,
+      "jeonse_rows": 1359,
       "far_verified": 7,
       "unresolved": 1
     },
     {
       "region": "중구",
       "complexes": 14,
-      "sale_rows": 1574,
-      "jeonse_rows": 2750,
+      "sale_rows": 1607,
+      "jeonse_rows": 2816,
       "far_verified": 3,
       "unresolved": 3
     },
     {
       "region": "용산구",
       "complexes": 32,
-      "sale_rows": 1387,
-      "jeonse_rows": 3722,
+      "sale_rows": 1416,
+      "jeonse_rows": 3815,
       "far_verified": 14,
       "unresolved": 8
     },
     {
       "region": "성동구",
       "complexes": 61,
-      "sale_rows": 6356,
-      "jeonse_rows": 11679,
+      "sale_rows": 6425,
+      "jeonse_rows": 11945,
       "far_verified": 27,
       "unresolved": 0
     },
     {
       "region": "광진구",
       "complexes": 33,
-      "sale_rows": 2000,
-      "jeonse_rows": 3876,
+      "sale_rows": 2029,
+      "jeonse_rows": 3991,
       "far_verified": 23,
       "unresolved": 5
     },
     {
       "region": "동대문구",
       "complexes": 62,
-      "sale_rows": 4769,
-      "jeonse_rows": 6672,
+      "sale_rows": 4860,
+      "jeonse_rows": 6866,
       "far_verified": 26,
-      "unresolved": 10
+      "unresolved": 9
     },
     {
       "region": "중랑구",
       "complexes": 45,
-      "sale_rows": 2256,
-      "jeonse_rows": 4089,
+      "sale_rows": 2333,
+      "jeonse_rows": 4156,
       "far_verified": 26,
       "unresolved": 13
     },
     {
       "region": "성북구",
       "complexes": 78,
-      "sale_rows": 5714,
-      "jeonse_rows": 7562,
+      "sale_rows": 5827,
+      "jeonse_rows": 7718,
       "far_verified": 63,
       "unresolved": 24
     },
     {
       "region": "강북구",
       "complexes": 21,
-      "sale_rows": 1901,
-      "jeonse_rows": 2095,
+      "sale_rows": 1959,
+      "jeonse_rows": 2155,
       "far_verified": 16,
       "unresolved": 5
     },
     {
       "region": "도봉구",
       "complexes": 55,
-      "sale_rows": 3335,
-      "jeonse_rows": 5388,
+      "sale_rows": 3475,
+      "jeonse_rows": 5537,
       "far_verified": 24,
       "unresolved": 14
     },
     {
       "region": "노원구",
       "complexes": 127,
-      "sale_rows": 7440,
-      "jeonse_rows": 11873,
+      "sale_rows": 7724,
+      "jeonse_rows": 12197,
       "far_verified": 65,
       "unresolved": 45
     },
     {
       "region": "은평구",
-      "complexes": 63,
-      "sale_rows": 2884,
-      "jeonse_rows": 4828,
+      "complexes": 64,
+      "sale_rows": 2963,
+      "jeonse_rows": 4923,
       "far_verified": 41,
-      "unresolved": 31
+      "unresolved": 32
     },
     {
       "region": "서대문구",
       "complexes": 45,
-      "sale_rows": 4281,
-      "jeonse_rows": 6303,
+      "sale_rows": 4376,
+      "jeonse_rows": 6457,
       "far_verified": 29,
       "unresolved": 8
     },
     {
       "region": "마포구",
       "complexes": 65,
-      "sale_rows": 5515,
-      "jeonse_rows": 11765,
+      "sale_rows": 5589,
+      "jeonse_rows": 12090,
       "far_verified": 50,
       "unresolved": 0
     },
     {
       "region": "양천구",
       "complexes": 62,
-      "sale_rows": 4315,
-      "jeonse_rows": 12312,
+      "sale_rows": 4370,
+      "jeonse_rows": 12623,
       "far_verified": 30,
       "unresolved": 12
     },
     {
       "region": "강서구",
-      "complexes": 82,
-      "sale_rows": 4988,
-      "jeonse_rows": 12231,
-      "far_verified": 53,
-      "unresolved": 20
+      "complexes": 83,
+      "sale_rows": 5115,
+      "jeonse_rows": 12624,
+      "far_verified": 54,
+      "unresolved": 21
     },
     {
       "region": "구로구",
       "complexes": 78,
-      "sale_rows": 4951,
-      "jeonse_rows": 7386,
+      "sale_rows": 5098,
+      "jeonse_rows": 7535,
       "far_verified": 57,
       "unresolved": 16
     },
     {
       "region": "금천구",
       "complexes": 17,
-      "sale_rows": 1663,
-      "jeonse_rows": 2289,
+      "sale_rows": 1723,
+      "jeonse_rows": 2348,
       "far_verified": 10,
       "unresolved": 2
     },
     {
       "region": "영등포구",
       "complexes": 82,
-      "sale_rows": 6534,
-      "jeonse_rows": 11099,
+      "sale_rows": 6627,
+      "jeonse_rows": 11364,
       "far_verified": 41,
       "unresolved": 1
     },
     {
       "region": "동작구",
       "complexes": 61,
-      "sale_rows": 3949,
-      "jeonse_rows": 7010,
+      "sale_rows": 3995,
+      "jeonse_rows": 7179,
       "far_verified": 39,
       "unresolved": 17
     },
     {
       "region": "관악구",
       "complexes": 32,
-      "sale_rows": 2611,
-      "jeonse_rows": 4071,
+      "sale_rows": 2686,
+      "jeonse_rows": 4148,
       "far_verified": 22,
       "unresolved": 10
     },
     {
       "region": "서초구",
-      "complexes": 93,
-      "sale_rows": 4010,
-      "jeonse_rows": 12646,
-      "far_verified": 53,
-      "unresolved": 21
+      "complexes": 92,
+      "sale_rows": 3963,
+      "jeonse_rows": 12672,
+      "far_verified": 51,
+      "unresolved": 22
     },
     {
       "region": "강남구",
       "complexes": 117,
-      "sale_rows": 4286,
-      "jeonse_rows": 13486,
+      "sale_rows": 4353,
+      "jeonse_rows": 13775,
       "far_verified": 56,
       "unresolved": 49
     },
     {
       "region": "송파구",
       "complexes": 90,
-      "sale_rows": 7831,
-      "jeonse_rows": 18833,
+      "sale_rows": 7958,
+      "jeonse_rows": 19306,
       "far_verified": 40,
       "unresolved": 22
     },
     {
       "region": "강동구",
       "complexes": 71,
-      "sale_rows": 6302,
-      "jeonse_rows": 14359,
+      "sale_rows": 6401,
+      "jeonse_rows": 14792,
       "far_verified": 57,
       "unresolved": 20
     },
     {
       "region": "성남시",
       "complexes": 164,
-      "sale_rows": 12689,
-      "jeonse_rows": 21923,
+      "sale_rows": 12928,
+      "jeonse_rows": 22492,
       "far_verified": 0,
       "unresolved": 44
     },
     {
       "region": "과천시",
       "complexes": 15,
-      "sale_rows": 1012,
-      "jeonse_rows": 2472,
+      "sale_rows": 1025,
+      "jeonse_rows": 2530,
       "far_verified": 0,
-      "unresolved": 2
+      "unresolved": 4
     },
     {
       "region": "안양시",
-      "complexes": 132,
-      "sale_rows": 10008,
-      "jeonse_rows": 13598,
+      "complexes": 133,
+      "sale_rows": 10315,
+      "jeonse_rows": 14029,
       "far_verified": 0,
-      "unresolved": 39
+      "unresolved": 40
     },
     {
       "region": "화성시",
       "complexes": 295,
-      "sale_rows": 17405,
-      "jeonse_rows": 19772,
+      "sale_rows": 18027,
+      "jeonse_rows": 20352,
       "far_verified": 0,
-      "unresolved": 125
+      "unresolved": 127
     },
     {
       "region": "광명시",
       "complexes": 55,
-      "sale_rows": 5845,
-      "jeonse_rows": 10691,
+      "sale_rows": 5948,
+      "jeonse_rows": 10912,
       "far_verified": 0,
       "unresolved": 12
     }
   ],
-  "total_complexes": 2157,
-  "sale_rows": 148566,
-  "jeonse_rows": 268109,
-  "unresolved_complexes": 579
+  "total_complexes": 2159,
+  "sale_rows": 151889,
+  "jeonse_rows": 274706,
+  "unresolved_complexes": 586
 }
