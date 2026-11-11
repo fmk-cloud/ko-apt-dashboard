@@ -48,4 +48,4 @@ if __name__ == '__main__':
     print(f'갱신 필요: {value} (공개 {published_month() or "미확인"} / 마감 {last_closed_month()})')
     if os.getenv('GITHUB_OUTPUT'):
         with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
-            out.write('due=' + value + '\n')
+            out.write('due=' + value + '\n' + 'target_month=' + last_closed_month() + '\n')

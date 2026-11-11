@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v49 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v50 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -389,7 +389,7 @@ html,body{height:100%;overflow:hidden}
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v49 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v50 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -2474,6 +2474,7 @@ function renderDataAudit(){
     ${DATA.meta.older_history_frozen?'<div>이전 연도 일부는 원천 제공 기간 밖입니다. 보존된 거래의 취소 여부는 이번 수집에서 재확인하지 못했습니다.</div>':''}
     <div>단지 정보창에서 전용면적을 직접 선택하고 저층 포함을 켤 수 있습니다. 이 경우 해당 단지의 매매·전세에만 예외를 적용합니다. 전세는 월세 0인 자료만 저장하며, 기본 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·최고층 제외·선택한 시작월과 이전 12개월 자료 중 최고가를 사용합니다. 기본은 신규 계약만이며, 건수는 중복 공개행 제거 후 조건을 통과한 자료 수입니다. 최근 12개월에 유효 전세가 없으면 기간 제한 없이 수집된 이전 기록의 최근 유효 거래월 최고가를 사용합니다. 시작 매매 선정월이 늦다는 이유만으로 갭을 비우지 않습니다.</div>
     <div>추가 지역 단지는 지하철 도보 경로를 아직 검증하지 않았습니다. 지역·APT 비교는 가능하며, 역 필터에서는 도보 정보가 확인된 단지만 표시합니다.</div>
+    ${DATA.meta.gyeonggi_refresh?.history_preserved?`<div>경기도는 ${esc(DATA.meta.gyeonggi_refresh.from)}~${esc(DATA.meta.gyeonggi_refresh.to)}를 재조회했습니다. 그 이전 거래는 마지막 검증 자료를 보존하며 이번 갱신에서 과거 정정·취소를 다시 확인하지 않았습니다. 실패 후 이어받기는 최대 48시간 내 성공 응답을 재사용합니다.</div>`:''}
     <div>경기도는 성남시(분당 포함)·과천시·안양시(평촌 포함)·화성시(동탄 포함)·광명시를 수집합니다. 경기 전세는 원자료가 신규·갱신 구분을 제공하지 않아 ‘전체 계약’ 선택 시에만 갭을 계산합니다. 경기도 용적률은 아직 확인하지 못했습니다.</div>
     <div>용적률 확인 ${DATA.meta.far_verified_count||0}개, 미확인 ${cs.length-(DATA.meta.far_verified_count||0)}개. 미확인 값을 0으로 취급하지 않습니다.</div>
     ${DATA.meta.feature_update?.status==='preserved'?`<div class="updateIssue">전세·용적률은 이전 정상 자료를 사용 중입니다. 마지막 성공 ${esc(DATA.meta.feature_update.checked_at||'')} · 사유: ${esc(DATA.meta.feature_update.reason||'')}</div>`:''}
