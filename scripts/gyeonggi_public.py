@@ -1,10 +1,11 @@
 """경기부동산포털 공개 아파트 실거래 화면의 자료. 공개 세션과 CSRF만 사용.
 매매/전세/월세가 한 표 행에 나란히 있으므로 각각 독립적으로 처리한다.
 """
-import collections,copy,datetime as dt,hashlib,http.cookiejar,json,re,threading,time,urllib.parse,urllib.request,urllib.error
+import calendar,collections,copy,datetime as dt,hashlib,http.cookiejar,json,re,threading,time,urllib.parse,urllib.request,urllib.error
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from pathlib import Path
 from pipeline import DataError,norm,now,atomic_json,month_range
+from collection_cache import load_response, save_response
 BASE='https://gris.gg.go.kr'
 VIEW=BASE+'/rtlp/selectRtlpView.do'
 CITIES=['성남시','과천시','안양시','화성시','광명시']
@@ -13,22 +14,37 @@ class PublicClient:
     def __init__(self):
         self.client=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
         self.client.addheaders=[('User-Agent','Mozilla/5.0 k-apt-public/27')]
-        try:html=self.client.open(VIEW,timeout=35).read().decode()
-        except (OSError,urllib.error.URLError):raise DataError('경기도 공개 실거래 화면 접속 실패') from None
+        failure=''
+        for attempt in range(3):
+            try:
+                with self.client.open(VIEW,timeout=35) as response:
+                    html=response.read().decode()
+                break
+            except urllib.error.HTTPError as error:
+                failure='HTTP '+str(error.code)
+                if error.code not in (408,429,500,502,503,504):
+                    raise DataError('경기도 공개 실거래 화면 접속 실패: '+failure) from None
+            except (OSError,urllib.error.URLError,UnicodeError) as error:
+                failure=type(error).__name__
+            if attempt<2:time.sleep(2**(attempt+1))
+        else:
+            raise DataError('경기도 공개 실거래 화면 접속 실패 (3회 재시도): '+failure) from None
         hit=re.search(r'name="_csrf"\s+value="([^"]+)"',html)
         if not hit:raise DataError('경기도 공개 화면 형식 변경')
         self.token=hit[1]
     def post(self,path,args,timeout=50):
         args=dict(args,_csrf=self.token)
         req=urllib.request.Request(BASE+path,urllib.parse.urlencode(args).encode(),headers={'Referer':VIEW,'X-CSRF-TOKEN':self.token,'X-Requested-With':'XMLHttpRequest'})
+        failure=''
         for attempt in range(2):
             try:
                 b=self.client.open(req,timeout=timeout).read();return json.loads(b),b
             except urllib.error.HTTPError as error:
+                failure='HTTP '+str(error.code)
                 if error.code not in (408,429,500,502,503,504):raise DataError('경기도 공개 화면 HTTP '+str(error.code)) from None
-            except (OSError,urllib.error.URLError,ValueError):pass
+            except (OSError,urllib.error.URLError,ValueError) as error:failure=type(error).__name__
             if attempt==0:time.sleep(2)
-        raise DataError('경기도 공개 실거래 응답 실패: '+path) from None
+        raise DataError('경기도 공개 실거래 응답 실패: '+path+' / '+failure) from None
     def addresses(self,code=None,old=False):
         endpoint='/cmm/adr/selectOldUmdList.do' if old else '/cmm/adr/selectUmdRiList.do'
         if code is None:endpoint='/cmm/adr/selectOldSigunguList.do' if old else '/cmm/adr/selectSigunguList.do'
@@ -38,26 +54,31 @@ class PublicClient:
     def trades(self,code,dong,year,start=None,end=None,old=False):
         cache=getattr(self,'range_cache',None)
         path=Path(cache)/f"{code}-{dong}-{year}-{start or 'annual'}-{end or 'annual'}-{old}.json" if cache else None
-        if path and path.exists():
-            saved=json.loads(path.read_text());return {'rtlpList':saved['rows']},saved['sha256']
+        query={'code':code,'dong':dong,'year':year,'start':start,'end':end,'old':old}
+        saved=load_response(path,query) if path else None
+        if saved:
+            self.cache_hits=getattr(self,'cache_hits',0)+1
+            self.cache_times=getattr(self,'cache_times',[])+[saved['checked_at']]
+            return {'rtlpList':saved['rows']},saved['sha256']
+        cache_index=len(getattr(self,'cache_times',[]))
         args={'tabKind':'tab1','aptCd':'','aptNm':'','sggCd':code,'umdCd':dong,'daytype':'DEAL','selDate':'2' if start is None else '1','searchYear':str(year),'startDate':start or f'{year}0101','endDate':end or f'{year}1231','accYear':str(year),'exuseArea1':'0','exuseArea2':'0','minAmount':'','maxAmount':''}
         if old:args['old']='old'
         try:
             obj,b=self.post('/rtlp/selectRtlpList.do',args,timeout=45 if start is None else 60)
             if not isinstance(obj,dict) or not isinstance(obj.get('rtlpList'),list):raise DataError('경기도 실거래 목록 형식 변경')
             h=hashlib.sha256(b).hexdigest()
-        except DataError:
-            if start is not None and int(start[4:6])==int(end[4:6]):raise
+        except DataError as error:
+            first=dt.date.fromisoformat(f'{start[:4]}-{start[4:6]}-{start[6:8]}') if start else dt.date(year,1,1)
+            last=dt.date.fromisoformat(f'{end[:4]}-{end[4:6]}-{end[6:8]}') if end else dt.date(year,12,31)
+            if (last-first).days<7:
+                raise DataError(f'{code}/{dong} {first}~{last}: {error}') from None
+            middle=first+(last-first)//2
             parts=[];hashes=[]
-            if start is None:
-                periods=[(f'{year}{a}',f'{year}{b}') for a,b in [('0101','0331'),('0401','0630'),('0701','0930'),('1001','1231')]]
-            else:
-                import calendar
-                periods=[(f'{year}{m:02}01',f'{year}{m:02}{calendar.monthrange(year,m)[1]:02}') for m in range(int(start[4:6]),int(end[4:6])+1)]
-            for first,last in periods:
-                piece,ph=self.trades(code,dong,year,start=first,end=last,old=old);parts.extend(piece['rtlpList']);hashes.append(ph)
+            for a,b in ((first,middle),(middle+dt.timedelta(days=1),last)):
+                piece,ph=self.trades(code,dong,year,start=a.strftime('%Y%m%d'),end=b.strftime('%Y%m%d'),old=old)
+                parts.extend(piece['rtlpList']);hashes.append(ph)
             obj={'rtlpList':parts};h=hashlib.sha256(json.dumps(hashes).encode()).hexdigest()
-        if path:atomic_json(path,{'rows':obj['rtlpList'],'sha256':h,'checked_at':now(),'query':{k:v for k,v in args.items() if k!='_csrf'}})
+        if path:save_response(path,query,obj['rtlpList'],h,min(getattr(self,'cache_times',[])[cache_index:] or [now()]))
         return obj,h
 
 def query_plan(catalog,client):
@@ -152,7 +173,7 @@ def find_complex(candidates,key,region):
     if len(fallback)==1:return fallback[0],'exact_name_dong_year_missing_parcel'
     return None,None
 
-def collect(catalog,responses,plan,start,end,previous=()):
+def collect(catalog,responses,plan,start,end,previous=(),preserve_before=False,require_months=True):
     by_id={c['id']:dict(copy.deepcopy(c),tx=[],jeonse_tx=[],trade_binding_methods=[]) for c in catalog};stats=collections.Counter();raw_months=collections.Counter();unmatched=collections.Counter();seen=collections.defaultdict(set);connected=set();old={c['id']:c for c in previous}
     pindex={(p['code'],p['dong_code']):p for p in plan}
     for response in responses:
@@ -198,26 +219,41 @@ def collect(catalog,responses,plan,start,end,previous=()):
         c.update(data_status='collected' if c['tx'] else 'no_active_trades' if c['id'] in connected else 'matching_unconfirmed',jeonse_status='collected' if c['jeonse_tx'] else 'no_matched_records',trade_source='경기부동산포털 공개 실거래',jeonse_source=VIEW,coverage_from=start,coverage_to=end)
         before=old.get(c['id'],{})
         for field in ('tx','jeonse_tx'):
-            if len(before.get(field,[]))>=10 and len(c[field])<len(before[field])*.5:raise DataError('경기도 단지 거래 급감: '+c['name'])
-    for city in sorted({c['region'] for c in catalog}):
+            prior=[t for t in before.get(field,[]) if not preserve_before or start<=t[0][:7]<=end]
+            if len(prior)>=10 and len(c[field])<len(prior)*.5:raise DataError('경기도 단지 거래 급감: '+c['name'])
+        if preserve_before and before:
+            for key in ('region','legal_dong','build_year'):
+                if before.get(key) is not None and before.get(key)!=c.get(key):
+                    raise DataError('과거 거래 보존 대상 단지 정보 충돌: '+c['id']+' / '+key)
+            for field in ('tx','jeonse_tx'):
+                c[field]=sorted([copy.deepcopy(t) for t in before.get(field,[]) if t[0][:7]<start]+c[field],key=lambda t:(t[0],t[1],t[2] if t[2] is not None else -999,t[3]))
+            c['coverage_from']=before.get('coverage_from',start)
+            c['history_preserved_before']=start
+            if c['tx']:c['data_status']='collected'
+            if c['jeonse_tx']:c['jeonse_status']='collected'
+    for city in sorted({c['region'] for c in catalog}) if require_months else []:
         for month in month_range(start,end):
             if raw_months[(city,'A',month)]==0:raise DataError(city+' 매매 원자료 월 전체 누락: '+month)
         if sum(len(c['tx']) for c in by_id.values() if c['region']==city)==0:raise DataError(city+' 거래 연결 0건')
     report={'status':'success','checked_at':now(),'stats':dict(stats),'region_counts':{city:sum(c['region']==city for c in by_id.values()) for city in CITIES},'raw_region_month_counts':{'|'.join(k):n for k,n in sorted(raw_months.items())},'unmatched_buildings':[{'region':k[0],'name':k[1],'parcel':k[2],'year':k[3],'rows':n} for k,n in unmatched.items()],'unresolved_complexes':[{'id':c['id'],'region':c['region'],'name':c['name']} for c in by_id.values() if c['data_status']=='matching_unconfirmed'],'note':'B열 순수전세만 사용. C열 월세 제외. 신규/갱신 구분 원천 미제공. 동일 공개행 중복 제거. 용적률 미확보.'}
     return list(by_id.values()),report
 
-def download_responses(plan,start,end,cache=None,max_workers=3):
-    """매년 법정동별 공식 연도 검색. 캐시는 명시적 재현/QA에만 사용; 월별 실수집은 캐시 없이."""
+def download_responses(plan,start,end,cache=None,max_workers=3,ranged=False):
+    """조회 기간을 제한하고 성공한 범위는 48시간 재사용. 오류 응답은 저장하지 않음."""
     local=threading.local();jobs=[dict(p,year=y) for p in plan for y in range(int(start[:4]),int(end[:4])+1)];out=[]
     def job(spec):
-        path=Path(cache)/f"{spec['code']}-{spec['dong_code']}-{spec['year']}.json" if cache else None
+        path=Path(cache)/f"{spec['code']}-{spec['dong_code']}-{spec['year']}.json" if cache and not ranged else None
         if path and path.exists():obj=json.loads(path.read_text());obj['cached']=True;return obj
         if not hasattr(local,'client'):
             local.client=PublicClient()
             if cache:local.client.range_cache=Path(cache)/'ranges'
-        if spec.get('old_eup') and spec['dong']=='향남읍' and spec['year']<int(end[:4]):
+        local.client.cache_hits=0;local.client.cache_times=[]
+        if ranged:
+            first=max(start,f"{spec['year']}-01");last=min(end,f"{spec['year']}-12")
+            day=calendar.monthrange(spec['year'],int(last[5:7]))[1]
+            obj,h=local.client.trades(spec['code'],spec['dong_code'],spec['year'],start=first.replace('-','')+'01',end=last.replace('-','')+str(day),old=spec.get('old',False))
+        elif spec.get('old_eup') and spec['dong']=='향남읍' and spec['year']<int(end[:4]):
             # 이전 향남읍은 연도·분기 응답이 특히 커서 완료 연도는 월별로 직접 조회한다.
-            import calendar
             pieces=[];hashes=[]
             for month in range(1,13):
                 piece,ph=local.client.trades(spec['code'],spec['dong_code'],spec['year'],start=f"{spec['year']}{month:02}01",end=f"{spec['year']}{month:02}{calendar.monthrange(spec['year'],month)[1]:02}",old=True)
@@ -225,17 +261,19 @@ def download_responses(plan,start,end,cache=None,max_workers=3):
             obj={'rtlpList':pieces};h=hashlib.sha256(json.dumps(hashes).encode()).hexdigest()
         else:obj,h=local.client.trades(spec['code'],spec['dong_code'],spec['year'],old=spec.get('old',False))
         record={'code':spec['code'],'dong_code':spec['dong_code'],'year':spec['year'],'rows':obj['rtlpList'],'source':VIEW,'sha256':h,'checked_at':now(),'old':spec.get('old',False)}
+        record['cache_hits']=getattr(local.client,'cache_hits',0)
+        record['oldest_cached_at']=min(getattr(local.client,'cache_times',[]) or [record['checked_at']])
         if path:atomic_json(path,record)
         return record
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         futures={pool.submit(job,s):s for s in jobs}
         for i,f in enumerate(as_completed(futures),1):
             try:result=f.result()
-            except Exception:
+            except Exception as error:
                 for pending in futures:pending.cancel()
                 failed=futures[f]
-                raise DataError(f"경기 수집 실패 {failed['region']} {failed['dong']} {failed['year']}: 이전 데이터 유지") from None
+                raise DataError(f"경기 수집 실패 {failed['region']} {failed['dong']} {failed['year']}: 이전 데이터 유지 / 원인: {type(error).__name__}: {error}") from None
             out.append(result);s=futures[f]
             if result.get('cached'):continue
-            print(f"경기 수집 {i}/{len(jobs)} {s['region']} {s['dong']} {s['year']} {len(result['rows'])}행",flush=True)
+            print(f"경기 수집 {i}/{len(jobs)} {s['region']} {s['dong']} {s['year']} {len(result['rows'])}행 (재사용 {result.get('cache_hits',0)}건)",flush=True)
     return out

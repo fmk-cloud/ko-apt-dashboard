@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
   <meta name="color-scheme" content="light">
-  <title>k.APT_v47 · 부동산 실거래 상승비교</title>
+  <title>k.APT_v50 · 부동산 실거래 상승비교</title>
   <style>
 :root{
   --bg:#f3f5f8;--card:#fff;--line:#dfe5ec;--text:#1f252d;--muted:#7f8994;
@@ -255,7 +255,7 @@ html,body{height:100%;overflow:hidden}
 @media(max-width:760px){.albumStrip{max-height:130px;gap:8px}.albumThumbWrap{flex-basis:62px;width:62px}.albumThumb,.albumAdd{width:62px;height:60px}.albumAdd{flex-basis:62px}.albumThumbTools{top:42px}.albumThumbTools button{font-size:8px}.miscImageGallery .galleryPreview,.miscImageGallery .referenceMapWrap,.miscImageGallery .regionMapEmpty{height:clamp(220px,calc(100dvh - 410px),400px);min-height:0}}
 
 #galleryAddWrap{z-index:175}#galleryAddWrap .galleryAddModal{width:min(360px,calc(100vw - 32px));padding:20px;border-radius:16px}#galleryAddWrap .modalHead{margin-bottom:14px}#galleryAddWrap .modalTitle{font-size:19px}.galleryAddOptions{display:flex;flex-direction:column;gap:10px}.galleryAddOptions button{display:block;width:100%;padding:14px 12px;border:1px solid #d4deea;border-radius:10px;background:#f7faff;color:#294967;font:inherit;font-size:14px;font-weight:800;text-align:left;cursor:pointer}.galleryAddOptions button:hover{background:#eaf2fb}.galleryAddOptions button:disabled{opacity:.5;cursor:wait}#galleryAddStatus{font-size:12px;line-height:1.65;color:#65798e;margin-top:12px;white-space:pre-wrap}#galleryAddStatus:empty{display:none}
-/* v47: mobile presentation only; desktop selectors and geometry stay intact. */
+/* v49: calendar months and explicit pending-data state; layouts unchanged. */
 .mobileOnly{display:none}
 @media (max-width:760px), (max-width:1000px) and (pointer:coarse){
  html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none}
@@ -389,7 +389,7 @@ html,body{height:100%;overflow:hidden}
 <body>
 <div class="wrap">
   <div class="topMetaRow">
-    <div class="titlebar">k.APT_v47 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
+    <div class="titlebar">k.APT_v50 <button id="cloudAccountBtn" type="button">로그인</button><button id="cloudSaveBtn" type="button" title="현재 변경 내용을 클라우드에 저장">저장</button><span id="cloudBadge" role="status">이 기기에 저장</span></div>
     <div class="dataNotice" id="dataNotice">v18: v17 실행중단 오류를 수정하고 데이터 원본을 하나로 통합했습니다. 필터 전체/저장/불러오기와 팝업 불러오기도 수정했습니다.</div>
   </div>
 
@@ -911,7 +911,7 @@ function updateSummaries(){
 function openPopover(type,anchor){
   currentPop=type; const pop=$('#filterPopover'), min=$('#popMin'), max=$('#popMax');
   let title,optsMin,optsMax,vMin,vMax;
-  if(type==='period'){ title='데이터 기간'; const opts=monthsBetween(DATA.meta.min_month || '2022-09', DATA.meta.current_month).reverse(); optsMin=opts;optsMax=opts;vMin=state.fromMonth;vMax=state.toMonth; }
+  if(type==='period'){ title='데이터 기간'; const opts=periodOptions(); optsMin=opts;optsMax=opts;vMin=state.fromMonth;vMax=state.toMonth; }
   if(type==='hh'){ title='세대수';optsMin=OPTIONS.householdMin;optsMax=OPTIONS.householdMax;vMin=state.hhMin;vMax=state.hhMax; }
   if(type==='far'){ title='용적률';optsMin=OPTIONS.farMin;optsMax=OPTIONS.farMax;vMin=state.farMin;vMax=state.farMax; }
   if(type==='year'){ title='준공일자';optsMin=OPTIONS.yearMin;optsMax=OPTIONS.yearMax;vMin=state.yearMin;vMax=state.yearMax; }
@@ -926,7 +926,7 @@ function currentPopType(){
 }
 function popupRangeValues(mode){
   const type=currentPopType();
-  const cur=DATA.meta.current_month||'2026-09';
+  const cur=selectableMonth();
   const minMonth=DATA.meta.min_month||'2022-09';
   const full={
     period:[minMonth,cur], hh:['min','max'], far:['min','max'], year:['min','max'],
@@ -1397,6 +1397,12 @@ function render(){
   updateSummaries();
   const oldTarget=new Date(`${state.fromMonth}-01T12:00:00+09:00`),newTarget=new Date(`${state.toMonth}-01T12:00:00+09:00`);
   $('#oldHead').textContent=`${fmtMonth(state.fromMonth)} 시작 기준가`;$('#newHead').textContent=`${fmtMonth(state.toMonth)} 최근 기준가`;
+  if(selectedPeriodPending()){
+    shownRows=[];
+    $('#rowCount').textContent='선택 기간 데이터 수집 대기';
+    $('#tbody').innerHTML=`<tr class="emptyRow"><td colspan="12">${esc(fmtMonth(state.toMonth))}까지의 실거래 수집이 아직 완료되지 않았습니다.<br>현재 확인된 자료는 ${esc(fmtMonth(DATA.meta.current_month))}까지입니다. 기간을 이전 월로 바꾸면 비교할 수 있습니다.</td></tr>`;
+    return;
+  }
   const valid=[],missing=[];
   DATA.complexes.filter(filterComplex).forEach(c=>{
     const hasArea=txRows(c,currentArea).length>0;
@@ -1505,7 +1511,7 @@ function renderApartmentDetail(r){
 window.openDetail=function(index){const row=shownRows[index];if(row)renderApartmentDetail(row);};
 
 async function init(){
-  state.toMonth=DATA.meta.current_month || '2026-09';
+  state.toMonth=selectableMonth();
   const earliest=DATA.meta.min_month || '2022-09'; if(state.fromMonth<earliest)state.fromMonth=earliest;if(state.fromMonth>state.toMonth)state.fromMonth=state.toMonth;
   const loaded=DATA.meta.loaded_regions || ['영등포구'];selectedRegions=new Set(loaded);
 
@@ -1692,7 +1698,7 @@ function syncAllFilterUI(){
 }
 function showAllFilters(){
   state.fromMonth=DATA.meta.min_month||'2022-09';
-  state.toMonth=DATA.meta.current_month||'2026-09';
+  state.toMonth=selectableMonth();
   state.hhMin='min';state.hhMax='max';
   state.farMin='min';state.farMax='max';
   state.yearMin='min';state.yearMax='max';
@@ -1832,7 +1838,7 @@ function positionRestoreDialog(){
 function loadFilterPreset(){clearTimeout(restoreHoverTimer);closePopover();renderFilterSaves();$('#restoreFilterWrap').classList.add('show');positionRestoreDialog();}
 window.addEventListener('resize',positionRestoreDialog);
 
-function resetDashboardFilters(){state.missingGapMode='exclude';state.jeonseMode='new';state.fromMonth='2025-09';state.toMonth=DATA.meta.current_month||'2026-09';state.hhMin='300';state.hhMax='max';state.farMin='min';state.farMax='max';state.yearMin='min';state.yearMax='max';currentArea=59;if(typeof UI_RANGE_STATE!=='undefined'){UI_RANGE_STATE.price={min:'min',max:'15'};UI_RANGE_STATE.gap={min:'min',max:'max'};UI_RANGE_STATE.confidence={min:'lowest',max:'high'};updateExtraSummary('price');updateExtraSummary('gap');updateExtraSummary('confidence');}$('#areaToggle').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.area==='59'));favoriteState.selected={region:[],station:[],apt:[]};saveFavoriteState();syncRegionSelection();updateSummaries();renderFavoriteTabs();render();}
+function resetDashboardFilters(){state.missingGapMode='exclude';state.jeonseMode='new';state.fromMonth='2025-09';state.toMonth=selectableMonth();state.hhMin='300';state.hhMax='max';state.farMin='min';state.farMax='max';state.yearMin='min';state.yearMax='max';currentArea=59;if(typeof UI_RANGE_STATE!=='undefined'){UI_RANGE_STATE.price={min:'min',max:'15'};UI_RANGE_STATE.gap={min:'min',max:'max'};UI_RANGE_STATE.confidence={min:'lowest',max:'high'};updateExtraSummary('price');updateExtraSummary('gap');updateExtraSummary('confidence');}$('#areaToggle').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.area==='59'));favoriteState.selected={region:[],station:[],apt:[]};saveFavoriteState();syncRegionSelection();updateSummaries();renderFavoriteTabs();render();}
 const UI_RANGE_STATE={
   price:{min:'min',max:'15'},
   gap:{min:'min',max:'max'},
@@ -2427,8 +2433,34 @@ function paintUnsupportedPopover(type){
   $('#filterPopover').classList.toggle('featureUnavailable',unsupported);
   $('#filterPopover').title=unsupported?'UI 미리보기입니다. 선택값은 가격 비교에 반영되지 않습니다.':'';
 }
+function latestClosedMonthKST(instant=new Date()){
+  // Use the Korean calendar even when a visitor's device is in another timezone.
+  const parts=Object.fromEntries(new Intl.DateTimeFormat('en-US',{
+    timeZone:'Asia/Seoul',year:'numeric',month:'2-digit'
+  }).formatToParts(instant).map(p=>[p.type,p.value]));
+  const year=Number(parts.year),month=Number(parts.month);
+  return month===1?`${year-1}-12`:`${year}-${String(month-1).padStart(2,'0')}`;
+}
+function selectableMonth(){
+  return latestClosedMonthKST();
+}
+function periodOptions(){
+  return monthsBetween(DATA.meta.min_month || '2022-09',selectableMonth()).reverse()
+    .map(([value,label])=>[value,value>DATA.meta.current_month?`${label} · 수집 대기`:label]);
+}
+function selectedPeriodPending(){
+  return !DATA.meta.delivery_issue && Boolean(DATA.meta.current_month) &&
+    (state.fromMonth>DATA.meta.current_month || state.toMonth>DATA.meta.current_month);
+}
+function pendingMonth(){
+  const latest=DATA.meta.current_month;
+  const due=latestClosedMonthKST();
+  return latest&&latest<due?due:null;
+}
 function datasetNotice(){
   if(DATA.meta.delivery_issue)return DATA.meta.delivery_issue;
+  const pending=pendingMonth();
+  if(pending)return `⚠ ${fmtMonth(pending)} 실거래 아직 미수집 · 현재 ${fmtMonth(DATA.meta.current_month)}까지만 확인됨 · 자동 수집·배포 확인 필요 · ${DATA.meta.scope_label||'서울·경기'} ${DATA.complexes.length}개 단지`;
   return DATA.meta.source_verified
     ? `${DATA.meta.scope_label||'서울 25구'} ${DATA.complexes.length}개 단지 · 300세대 이상 · ${fmtMonth(DATA.meta.min_month)}~${fmtMonth(DATA.meta.current_month)} 매매 · 용적률·갭은 확인된 자료로 비교${DATA.meta.feature_update?.status==='preserved'?' · 전세·용적률 갱신 실패: 이전 정상 자료 사용 중':''}`
     : '영등포구 300세대 이상 · 기존 샘플 거래(재수집 전) · 붉은 항목은 준비 중';
@@ -2442,6 +2474,7 @@ function renderDataAudit(){
     ${DATA.meta.older_history_frozen?'<div>이전 연도 일부는 원천 제공 기간 밖입니다. 보존된 거래의 취소 여부는 이번 수집에서 재확인하지 못했습니다.</div>':''}
     <div>단지 정보창에서 전용면적을 직접 선택하고 저층 포함을 켤 수 있습니다. 이 경우 해당 단지의 매매·전세에만 예외를 적용합니다. 전세는 월세 0인 자료만 저장하며, 기본 갭 계산은 매매와 같은 면적(±0.1㎡)·4층 이상·최고층 제외·선택한 시작월과 이전 12개월 자료 중 최고가를 사용합니다. 기본은 신규 계약만이며, 건수는 중복 공개행 제거 후 조건을 통과한 자료 수입니다. 최근 12개월에 유효 전세가 없으면 기간 제한 없이 수집된 이전 기록의 최근 유효 거래월 최고가를 사용합니다. 시작 매매 선정월이 늦다는 이유만으로 갭을 비우지 않습니다.</div>
     <div>추가 지역 단지는 지하철 도보 경로를 아직 검증하지 않았습니다. 지역·APT 비교는 가능하며, 역 필터에서는 도보 정보가 확인된 단지만 표시합니다.</div>
+    ${DATA.meta.gyeonggi_refresh?.history_preserved?`<div>경기도는 ${esc(DATA.meta.gyeonggi_refresh.from)}~${esc(DATA.meta.gyeonggi_refresh.to)}를 재조회했습니다. 그 이전 거래는 마지막 검증 자료를 보존하며 이번 갱신에서 과거 정정·취소를 다시 확인하지 않았습니다. 실패 후 이어받기는 최대 48시간 내 성공 응답을 재사용합니다.</div>`:''}
     <div>경기도는 성남시(분당 포함)·과천시·안양시(평촌 포함)·화성시(동탄 포함)·광명시를 수집합니다. 경기 전세는 원자료가 신규·갱신 구분을 제공하지 않아 ‘전체 계약’ 선택 시에만 갭을 계산합니다. 경기도 용적률은 아직 확인하지 못했습니다.</div>
     <div>용적률 확인 ${DATA.meta.far_verified_count||0}개, 미확인 ${cs.length-(DATA.meta.far_verified_count||0)}개. 미확인 값을 0으로 취급하지 않습니다.</div>
     ${DATA.meta.feature_update?.status==='preserved'?`<div class="updateIssue">전세·용적률은 이전 정상 자료를 사용 중입니다. 마지막 성공 ${esc(DATA.meta.feature_update.checked_at||'')} · 사유: ${esc(DATA.meta.feature_update.reason||'')}</div>`:''}
@@ -2449,7 +2482,7 @@ function renderDataAudit(){
     <div>59㎡는 기존 샘플대로 해당 면적 거래가 없으면 45~75㎡ 미만의 대체 타입을 사용합니다. 기준가 팝업에서 실제 면적·선정월·층을 확인하세요.</div>
     <div>최고층은 실제 건물 최고층 정보가 없으면 수집 거래 중 관측 최고층을 사용합니다. 신뢰도는 통계적 확률이 아닌 기존 비교 규칙의 참고 등급입니다.</div>
     <div>역·노선은 공식 단지 좌표와 공개 보행망을 연결한 추정입니다. 1.3km 이내만 연결하며, 이름에는 가장 가까운 역을 표시합니다. 다른 연결 역·거리·노선은 단지명에 마우스를 올리면 볼 수 있고 역 필터에도 적용됩니다. 단지 좌표→역 출입구 기준이며, 출입구 자료가 없으면 역 좌표 기준입니다. 실제 이용하는 단지 출입문·공사·통행 제한에 따라 달라질 수 있습니다. ${DATA.meta.transport?`역 연결 ${DATA.meta.transport.summary?.linked||0}단지 · 좌표/보행 연결 미확인 ${(DATA.meta.transport.summary?.coordinate_unconfirmed||0)+(DATA.meta.transport.summary?.walk_network_unconnected||0)}단지`:''} · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a></div>
-    <div>갱신 목표: 매월 1일 한국시간 04:00 · 마지막 수집 ${esc(DATA.meta.updated_at||'미실행')} · 실패 시 마지막 정상 데이터 유지</div>
+    <div>갱신 목표: 매월 1일 한국시간 04:00 · 새 월 미수집 시 다음 날 재시도 · 마지막 수집 ${esc(DATA.meta.updated_at||'미실행')} · 실패 시 마지막 정상 데이터 유지${pendingMonth()?` · ${fmtMonth(pendingMonth())} 수집 대기 중(선택 가능 · 완료 전 가격 비교 보류)`:''}</div>
     <div>출처: <a href="https://data.seoul.go.kr/dataList/OA-21275/S/1/datasetView.do" target="_blank" rel="noopener">서울시 매매 실거래</a> / <a href="https://data.seoul.go.kr/dataList/OA-15818/S/1/datasetView.do" target="_blank" rel="noopener">서울시 단지 정보</a> / <a href="https://data.seoul.go.kr/dataList/OA-21276/A/1/datasetView.do" target="_blank" rel="noopener">서울시 전월세</a> / <a href="https://data.seoul.go.kr/dataList/OA-23051/S/1/datasetView.do" target="_blank" rel="noopener">건축물대장 총괄표제부</a> / <a href="https://gris.gg.go.kr/rtlp/selectRtlpView.do" target="_blank" rel="noopener">경기부동산포털 실거래</a> / <a href="https://www.data.go.kr/data/15073271/fileData.do" target="_blank" rel="noopener">K-apt 단지 기본정보</a></div>
     <div class="auditList">${cs.map(c=>`<div>${esc(c.region)} · ${esc(c.name)} · ${c.households}세대 · 매매 ${c.tx.length}건 · 전세 ${(c.jeonse_tx||[]).length}행 · 용적률 ${c.far_info?.status==='verified'?c.far+'%':'확인 필요'}${c.trade_binding_note?' · '+esc(c.trade_binding_note):''}${!c.tx.length?' · '+(c.data_status==='matching_unconfirmed'?'연결/거래 여부 확인 필요':'해당 기간 유효 거래 없음'):''}</div>`).join('')}</div>`;
 }

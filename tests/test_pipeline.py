@@ -65,8 +65,8 @@ class PipelineTests(unittest.TestCase):
   self.assertEqual(json.loads(html.split('=',1)[1].split(';</script>')[0]),d)
  def test_scheduler_handles_short_month_and_year_boundary(self):
   for day in ['2026-02-28','2028-02-29','2026-04-30','2026-12-31']:
-   self.assertTrue(due('schedule',dt.datetime.fromisoformat(day+'T19:00:00+00:00')))
-  self.assertFalse(due('schedule',dt.datetime.fromisoformat('2026-10-28T19:00:00+00:00')))
+   self.assertTrue(due('schedule',dt.datetime.fromisoformat(day+'T19:00:00+00:00'),published='2024-01'))
+  self.assertFalse(due('schedule',dt.datetime.fromisoformat('2026-10-28T19:00:00+00:00'),published='2026-09'))
   self.assertTrue(due('workflow_dispatch'))
   self.assertEqual(month_range('2025-12','2026-02'),['2025-12','2026-01','2026-02'])
 if __name__=='__main__':unittest.main()

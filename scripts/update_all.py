@@ -7,6 +7,7 @@ from kapt_public import download_kapt,normalize_gyeonggi,gyeonggi_region_tags
 from gyeonggi_public import CITIES,VIEW,PublicClient,query_plan,download_responses,collect
 from embed_data import embedded_html
 from dataset_storage import publish_bundle
+from refresh_window import refresh_start
 
 def merge_data(seoul,gg,report,kapt_report,held):
     d=copy.deepcopy(seoul)
@@ -15,6 +16,9 @@ def merge_data(seoul,gg,report,kapt_report,held):
     cities=[x for x in CITIES if any(c['region']==x for c in gg)]+sorted({c['region'] for c in gg}-set(CITIES))
     m=d['meta'];m.update(provider='seoul_gyeonggi_official',loaded_regions=m['loaded_regions']+cities,complex_count=len(d['complexes']),scope_label=f'서울 25구 · 경기 {len(cities)}시',updated_at=now(),gyeonggi_regions=cities,source_verified=True)
     m['available_region_filters']=list(dict.fromkeys(m['loaded_regions']+[tag for c in gg for tag in c['region_tags']]))
+    m['gyeonggi_refresh']=report.get('gyeonggi',{}).get('refresh',{})
+    m['seoul_jeonse_to']=m.get('jeonse_to',m['current_month'])
+    m['jeonse_to']=max(m['seoul_jeonse_to'],m['gyeonggi_refresh'].get('to',m['current_month']))
     m['sources'].update(gyeonggi=VIEW,kapt='https://www.data.go.kr/data/15073271/fileData.do');m['kapt_metadata_download']=kapt_report
     m['jeonse_rows']=sum(len(c.get('jeonse_tx',[])) for c in d['complexes']);m['far_verified_count']=sum((c.get('far_info') or {}).get('status')=='verified' for c in d['complexes'])
     m['region_feature_counts'].update({city:{'far_verified':0,'jeonse_rows':sum(len(c.get('jeonse_tx',[])) for c in gg if c['region']==city),'new_renewal_classification':False} for city in cities})
@@ -28,16 +32,37 @@ def merge_data(seoul,gg,report,kapt_report,held):
 def run_all(root):
     root=Path(root);old=read_json(root/'data/site-data.json');settings=read_json(root/'config/settings.json')
     try:
+        print('[1/5] K-apt 단지 목록 수집',flush=True)
         rows,kapt_report=download_kapt();cat,held=normalize_gyeonggi(rows,settings.get('gyeonggi_cities',CITIES),old.get('complexes',[]))
+        print('[2/5] 경기도 실거래 접속 및 주소 연결',flush=True)
         client=PublicClient();plan,uncovered=query_plan(cat,client)
-        responses=download_responses(plan,settings['start_month'],last_closed_month())
-        gg,gg_report=collect(cat,responses,plan,settings['start_month'],last_closed_month(),old.get('complexes',[]));gg_report['unresolved_address_ids']=uncovered;gg_report['source_hashes']=[{k:r[k] for k in ('code','dong_code','year','sha256','checked_at')} for r in responses]
+        print('[3/5] 경기도 매매·전세 수집',flush=True)
+        end=last_closed_month();start=refresh_start(old,settings['start_month'],end,full=os.getenv('KAPT_FULL_REFRESH')=='true')
+        incremental=start>settings['start_month']
+        # New complexes need full history; fetch only their address groups separately.
+        prior_ids={c['id'] for c in old.get('complexes',[])}
+        new_ids={c['id'] for c in cat}-prior_ids
+        print(f'경기 재조회 {start}~{end} / 이전 기록 '+('보존' if incremental else '전체 재수집'),flush=True)
+        cache=root/'.collection-cache'/end
+        responses=download_responses(plan,start,end,cache=cache,ranged=True)
+        gg,gg_report=collect(cat,responses,plan,start,end,old.get('complexes',[]),preserve_before=incremental)
+        if incremental and new_ids:
+            new_catalog=[c for c in cat if c['id'] in new_ids]
+            new_plan=[dict(p,ids=[cid for cid in p['ids'] if cid in new_ids]) for p in plan if new_ids.intersection(p['ids'])]
+            historical=download_responses(new_plan,settings['start_month'],end,cache=cache,ranged=True)
+            complete,_=collect(new_catalog,historical,new_plan,settings['start_month'],end,require_months=False)
+            by_id={c['id']:c for c in complete};gg=[by_id.get(c['id'],c) for c in gg]
+            responses+=historical
+        gg_report['refresh']={'from':start,'to':end,'history_preserved':incremental,'cache_max_hours':48,'new_complexes':len(new_ids)}
+        gg_report['unresolved_address_ids']=uncovered;gg_report['source_hashes']=[{k:r[k] for k in ('code','dong_code','year','sha256','checked_at','cache_hits','oldest_cached_at')} for r in responses]
         with tempfile.TemporaryDirectory(prefix='k-apt-stage-') as temp:
-            stage=Path(temp)/'project';shutil.copytree(root,stage,ignore=shutil.ignore_patterns('__pycache__'))
+            stage=Path(temp)/'project';shutil.copytree(root,stage,ignore=shutil.ignore_patterns('__pycache__','.collection-cache','_site','.git'))
+            print('[4/5] 서울 25구 매매·전세 수집',flush=True)
             report=run_public(stage,kapt_rows=rows);seoul=read_json(stage/'data/site-data.json');report['gyeonggi']=gg_report
             d,report=merge_data(seoul,gg,report,kapt_report,held)
             html=embedded_html((stage/'index.html').read_text(),d)
             # All source guards and validation above finish before changing the live snapshot.
+            print('[5/5] 전체 데이터 검증 완료 · 발행',flush=True)
             publish_bundle(root,d,previous=old,html_source=html)
             metadata=read_json(stage/'data/complexes.json')+cat;atomic_json(root/'data/complexes.json',metadata)
             atomic_json(root/'reports/update-report.json',report)
