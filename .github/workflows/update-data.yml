@@ -1,9 +1,26 @@
 name: Update Seoul and Gyeonggi data
 on:
   workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: '과거 전체 재검증 (보통 끔, 기본은 최근 12개월 갱신)'
+        type: boolean
+        default: false
+      refresh_stations:
+        description: '역·보행망도 다시 수집 (오래 걸림, 보통 끔)'
+        type: boolean
+        default: false
+  push:
+    branches: [main, master]
+    paths:
+      - '.github/workflows/update-data.yml'
+      - 'scripts/**'
+      - 'config/**'
+      - 'assets/**'
+      - 'index.html'
   schedule:
-    # UTC 19:00 = next day 04:00 KST. Guard skips dates other than KST day 1.
-    - cron: '0 19 28-31 * *'
+    # UTC 19:00 = 다음 날 한국시간 04:00. 새 월 미완료 시 매일 재시도.
+    - cron: '0 19 * * *'
 permissions:
   contents: read
 concurrency:
@@ -12,9 +29,11 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     permissions:
       contents: write
+    outputs:
+      ready: ${{ steps.bundle.outputs.ready }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,37 +41,130 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check Korea calendar
+      - name: Check published month and Korean calendar
         id: calendar
         run: python scripts/schedule_due.py
       - name: Test data safety rules
+        run: |
+          python -m unittest discover -s tests -v
+          node tests/test_period.cjs
+      - name: Restore completed public queries
+        id: query_cache
         if: steps.calendar.outputs.due == 'true'
-        run: python -m unittest discover -s tests -v
+        continue-on-error: true
+        timeout-minutes: 5
+        uses: actions/cache/restore@v4
+        with:
+          path: .collection-cache/${{ steps.calendar.outputs.target_month }}
+          key: kapt-queries-v50-${{ steps.calendar.outputs.target_month }}-${{ hashFiles('scripts/gyeonggi_public.py', 'scripts/collection_cache.py') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            kapt-queries-v50-${{ steps.calendar.outputs.target_month }}-${{ hashFiles('scripts/gyeonggi_public.py', 'scripts/collection_cache.py') }}-
       - name: Collect official public data
+        id: collect
         if: steps.calendar.outputs.due == 'true'
-        run: python scripts/update_public.py
+        continue-on-error: true
+        timeout-minutes: 200
+        shell: bash
+        env:
+          KAPT_FULL_REFRESH: ${{ inputs.full_refresh && 'true' || 'false' }}
+        run: |
+          set -o pipefail
+          python -u scripts/update_public.py 2>&1 | tee reports/collection.log
+      - name: Preserve completed queries even after collection failure
+        if: always() && steps.calendar.outputs.due == 'true' && steps.query_cache.outputs.cache-primary-key != '' && hashFiles('.collection-cache/**/*.json') != ''
+        continue-on-error: true
+        timeout-minutes: 5
+        uses: actions/cache/save@v4
+        with:
+          path: .collection-cache/${{ steps.calendar.outputs.target_month }}
+          key: ${{ steps.query_cache.outputs.cache-primary-key }}
+      - name: Verify new month was actually collected
+        id: fresh
+        if: steps.collect.outcome == 'success'
+        continue-on-error: true
+        run: python scripts/publication.py verify
       - name: Refresh nearby stations with pedestrian network
-        if: steps.calendar.outputs.due == 'true'
+        if: steps.fresh.outcome == 'success' && inputs.refresh_stations == true
+        continue-on-error: true
+        timeout-minutes: 20
         run: |
           python -m pip install -r requirements-transport.txt
-          python scripts/update_transport.py
+          python scripts/update_transport.py --strict
       - name: Validate published HTML
-        if: steps.calendar.outputs.due == 'true'
         run: python scripts/validate.py
       - name: Commit complete update
-        if: steps.calendar.outputs.due == 'true'
+        if: steps.fresh.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html data reports/update-report.json reports/coverage.json reports/transport-report.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update official apartment data for Seoul and Gyeonggi"
+            git commit -m "Update verified official apartment data"
             git push origin HEAD:${{ github.event.repository.default_branch }}
           fi
+      - name: Prepare validated website
+        id: bundle
+        run: |
+          python scripts/publication.py stage
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+      - name: Upload website for deployment
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Write update summary
+        if: always()
+        env:
+          COLLECT_OUTCOME: ${{ steps.collect.outcome }}
+        run: python scripts/publication.py summary
       - name: Keep collection report
         if: always() && steps.calendar.outputs.due == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: collection-report-${{ github.run_id }}
-          path: reports/update-report.json
+          path: |
+            reports/update-report.json
+            reports/collection.log
           retention-days: 30
+      - name: Mark unsuccessful collection
+        if: steps.collect.outcome == 'failure' || steps.fresh.outcome == 'failure'
+        run: |
+          echo "::error::새 월 수집 실패. 기존 정상 데이터는 보존했습니다. collection-report와 Summary를 확인하세요."
+          exit 1
+  deploy:
+    # A validated old snapshot can still deliver UI fixes if a source is down.
+    # Never deploy when validation, commit or artifact preparation failed.
+    needs: update
+    if: always() && !cancelled() && needs.update.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check whether GitHub Pages is configured
+        id: hosting
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const {data} = await github.rest.repos.getPages(context.repo);
+              core.setOutput('enabled', 'true');
+              if (data.build_type !== 'workflow') {
+                core.setFailed('Settings → Pages → Build and deployment → Source를 GitHub Actions로 바꾼 뒤 이 workflow를 다시 실행하세요.');
+              }
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              core.setOutput('enabled', 'false');
+              core.notice('GitHub Pages가 설정되지 않았습니다. 다른 호스팅을 쓴다면 해당 서비스의 배포 결과를 확인하세요.');
+            }
+      - name: Configure Pages
+        if: steps.hosting.outputs.enabled == 'true'
+        uses: actions/configure-pages@v5
+      - name: Deploy verified website
+        if: steps.hosting.outputs.enabled == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
